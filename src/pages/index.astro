@@ -1,17 +1,29 @@
 ---
 import Graph from '@React/Graph';
 import Layout from '@layouts/Layout.astro';
+import * as md from '@docs/test.md';
+import svg from '@ecuaciones/Identidades trigonometricas/svg/identidad-trigonometrica-fundamental-3.svg?raw';
+
+console.log(svg);
 
 ---
 
 <Layout title="Welcome to Astro.">
 
 
-	<div class="Graph">
+	<!-- <div class="Graph">
 
 		<Graph client:load />
 
-	</div>
+	</div> -->
+
+	<!-- <section class="markdown-body">
+		
+		<md.Content></md.Content>	
+	</section> -->
+
+
+	<div style="color: brown;" set:html={svg}></div>
 
 </Layout>
 
