@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef,  } from "react";
-import CartesianSystem from "./CartesianSystem";
+import CartesianSystem from "@React/utils/CartesianSystem";
 
 function Graph({width = 960, height = 540, margin = 20}) {
 

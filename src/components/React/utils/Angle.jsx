@@ -1,18 +1,21 @@
+import { cos, sin } from "@utils/MathUtils";
 import { useMemo } from "react";
 
-function Angle({cx, cy, radius, angle, ...others}) {
+function Angle({cx, cy, radius, angle, rect = false, ...others}) {
 
     const d = useMemo(() => {
 
-        const sin = Math.sin(angle);
-        const cos = Math.cos(angle);
+        if(rect) return '';
 
-        const largeArcFlag = angle > Math.PI ? 1 : 0
+        const sinAngle = sin(angle);
+        const cosAngle = cos(angle);
+
+        const largeArcFlag = angle > 180 ? 1 : 0
 
         return [
             `M${cx} ${cy}`,
             `L${cx + radius} ${cy}`,
-            `A ${radius} ${radius} 0 ${largeArcFlag} 0 ${cx + (radius * cos)} ${cy - (radius * sin)}`,
+            `A ${radius} ${radius} 0 ${largeArcFlag} 0 ${cx + (radius * cosAngle)} ${cy - (radius * sinAngle)}`,
             `L${cx} ${cy}`
         ]
         .join(' ');
@@ -21,7 +24,12 @@ function Angle({cx, cy, radius, angle, ...others}) {
 
     return (<>
     
-        <path d={d} {...others} />
+        {
+            rect ? 
+                <rect x={cx} y={cy - radius} width={radius} height={radius} {...others} />
+            :
+                <path d={d} {...others} />
+        }
 
     </>);
 }

@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react";
-import CartesianSystem from "@React/CartesianSystem";
+import CartesianSystem from "@React/utils/CartesianSystem";
 import { cos, cot, csc, degToRad, sec, sin, tan } from "@utils/MathUtils";
 import Angle from "@React/utils/Angle";
 import "./RazonesTrigonometricas.css";
@@ -123,7 +123,7 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20}) {
 
                     <circle className="point" cx={px} cy={py} r={4} fill={'#f00'} stroke={'none'} />
 
-                    <Angle cx={origin.x} cy={origin.y} radius={50} angle={degToRad(angle)} stroke={'#00f'} fill={'#0000ff37'} />
+                    <Angle cx={origin.x} cy={origin.y} radius={50} angle={angle} stroke={'#00f'} fill={'#0000ff37'} />
 
                     <line className="line-origin-to-point" x1={origin.x} y1={origin.y} x2={px} y2={py} stroke={'#777'}/>
 

@@ -1,6 +1,6 @@
 import Axis from "./Axis";
-import {createRef, forwardRef, useImperativeHandle, useMemo, useRef} from "react";
-import { useCartesianAxis } from "./hooks/useCartesianAxis";
+import {forwardRef, useImperativeHandle} from "react";
+import { useCartesianAxis } from "../hooks/useCartesianAxis";
 import Grid from "./Grid";
 
 
@@ -14,8 +14,6 @@ function CartesianSystem({size, cx, cy, domainX, domainY, showAxis = true, showG
 
     }, [scaleX, scaleY, x, y, distance, origin]);
 
-
-    
     return <>
 
         {

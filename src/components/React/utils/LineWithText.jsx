@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 
-function LineWithText({x1, y1, x2, y2, text, align = 'center', gapX = 0, gapY = 0, showText = true, ...others}) {
+function LineWithText({className, x1, y1, x2, y2, text, align = 'center', gapX = 0, gapY = 0, showText = true, color, ...others}) {
 
     const textPosition = useMemo(() => {
 
@@ -12,9 +12,9 @@ function LineWithText({x1, y1, x2, y2, text, align = 'center', gapX = 0, gapY = 
 
     }, [x1, y1, x2, y2]);
 
-    return (<g className={`line-text ${others.className || ''}`}>
+    return (<g className={`line-text ${className || ''}`}>
         
-        <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={others.color || '#777'}/>
+        <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color || '#777'} {...others} />
 
         {
             showText &&
@@ -22,7 +22,7 @@ function LineWithText({x1, y1, x2, y2, text, align = 'center', gapX = 0, gapY = 
             
                 textAnchor="middle" dominantBaseline="middle"
 
-                fill={others.color || '#777'}
+                fill={color || '#777'}
             >
                 {text}
             </text>

@@ -1,10 +1,14 @@
 ---
-import RazonesTrigonometricas from "@components/React/trigonometria/RazonesTrigonomatricas";
+import RazonesTrigonometricas from "@React/trigonometria/RazonesTrigonometricas/RazonesTrigonomatricas.jsx";
+import SumaAngulos from "@React/trigonometria/SumaAngulos/SumaAngulos.jsx";
 import Layout from "@layouts/Layout.astro";
 
 ---
 
 <Layout title="Trigonometria">
 
-    <RazonesTrigonometricas width={500} height={500} margin={0} client:load />
+    <!-- <RazonesTrigonometricas width={500} height={500} margin={0} client:load /> -->
+
+    <SumaAngulos width={700} height={600} margin={50} client:load />
+
 </Layout>
