@@ -1,0 +1,35 @@
+
+
+.Razones-trigonometricas {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.Razones-trigonometricas .nav {
+    --bs-nav-link-color: #000;
+    --bs-nav-tabs-link-active-color: var(--bs-link-color);
+}
+
+.Razones-trigonometricas-angle {
+    display: flex;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.Razones-trigonometricas-angle .value {
+    font-family: 'latin modern';
+    font-size: 22px;
+}
+
+.Razones-trigonometricas-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    place-items: center ;
+    row-gap: 20px;
+    font-family: 'latin modern';
+    font-size: 18px;
+}
