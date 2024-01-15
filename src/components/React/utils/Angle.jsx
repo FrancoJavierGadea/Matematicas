@@ -1,7 +1,7 @@
 import { cos, sin } from "@utils/MathUtils";
 import { useMemo } from "react";
 
-function Angle({cx, cy, radius, angle, rect = false, ...others}) {
+function Angle({cx, cy, radius, angle, rect = false, rotate, ...others}) {
 
     const d = useMemo(() => {
 
@@ -26,9 +26,15 @@ function Angle({cx, cy, radius, angle, rect = false, ...others}) {
     
         {
             rect ? 
-                <rect x={cx} y={cy - radius} width={radius} height={radius} {...others} />
+                <rect x={cx} y={cy - radius} width={radius} height={radius} {...others} 
+                
+                    transform={rotate && `rotate(${rotate} ${cx} ${cy})`}
+                />
             :
-                <path d={d} {...others} />
+                <path d={d} {...others} 
+                
+                    transform={rotate && `rotate(${rotate} ${cx} ${cy})`}
+                />
         }
 
     </>);
