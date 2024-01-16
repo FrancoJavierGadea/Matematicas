@@ -20,7 +20,7 @@ function LineWithText({className, x1, y1, x2, y2, text, align = 'center', gapX =
             showText &&
             <text x={textPosition.x} y={textPosition.y} 
             
-                textAnchor="middle" dominantBaseline="middle"
+                textAnchor="middle" dominantBaseline="middle" fontFamily="regular latin"
 
                 fill={color || '#777'}
             >
