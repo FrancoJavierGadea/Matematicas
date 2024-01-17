@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize-svg": "svgo -f \"src/assets/Ecuaciones/Identidades trigonometricas/svg\" -o \"src/assets/Ecuaciones/Identidades trigonometricas/optimized-svg\""
   },
   "dependencies": {
     "@astrojs/react": "^3.0.9",
@@ -23,6 +24,7 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "@types/d3": "^7.4.3"
+    "@types/d3": "^7.4.3",
+    "svgo": "^3.2.0"
   }
 }

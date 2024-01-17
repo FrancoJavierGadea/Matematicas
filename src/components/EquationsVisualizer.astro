@@ -1,0 +1,152 @@
+---
+const {main = '',  variants = [], svg = false, color = '#000'} = Astro.props;
+
+const equations = [main, ...variants];
+---
+
+<custom-equations-visualizer>
+<div class="Equations-Visualizer">
+
+    <div class="main-equation">
+        {svg ? 
+
+            <div class="svg-container" set:html={equations[0]} />
+
+            :
+
+            <img src={equations[0]} alt="" />
+        }
+    </div>
+
+    {equations.length > 1 && <div class="equation-variants">
+        {
+            equations.map((equation, i) => {
+                
+                return (<div class="variant" role="button" data-index={i} class:list={{'active': i === 0}}>
+                    {svg ? 
+                        <div class="svg-container" set:html={equation} /> 
+                        :
+                        <img src={equation} alt="" />
+                    }
+                </div>)
+            })
+        }
+    </div>}
+
+</div>
+</custom-equations-visualizer>
+
+<script>
+    //@ts-nocheck
+
+    class EquationVisualizer extends HTMLElement {
+
+        current = 0;
+
+        constructor(){
+            super();
+
+            this.mainEquation = this.querySelector('.main-equation');
+
+            this.querySelectorAll('.variant[role="button"]').forEach(btn => {
+
+                btn.addEventListener('click', (e) => {
+
+                    const target = e.currentTarget;
+                    
+                    //
+                    this.mainEquation.innerHTML = target.innerHTML;
+                    
+
+                    target.classList.add('active');
+                    
+                    this.querySelector(`.variant[data-index="${this.current}"]`).classList.toggle('active', false);
+
+                    //
+                    const index = target.getAttribute('data-index');
+                    this.current = Number(index);
+                });
+            })
+        }
+    }
+
+    customElements.define('custom-equations-visualizer', EquationVisualizer);
+</script>
+
+<style
+    define:vars={{
+        'color': color
+    }}
+>
+    .Equations-Visualizer {
+
+        --main-height: 60px;
+        --variant-height: 30px;
+
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        align-items: center;
+
+        .main-equation {
+            display: block;
+            width: 100%;
+        }
+        /* Img */
+        .main-equation img {
+            display: block;
+            margin: auto;
+            width: 100%;
+            height: var(--main-height);
+        }
+        /* SVG */
+        .main-equation .svg-container {
+            margin: auto;
+            width: fit-content;
+        }
+        .main-equation .svg-container svg {
+            display: block;
+            width: 100%;
+            height: var(--main-height);
+            color: var(--color, #000);
+        }
+
+
+        .equation-variants {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            place-items: center;
+            gap: 20px;
+        }
+
+        .equation-variants .variant {
+            display: block;
+            box-sizing: border-box;
+            padding: 10px;
+            transition: scale 0.5s;
+        }
+        .equation-variants .variant img {
+            display: block;
+            width: 100%;
+            height: var(--variant-height);
+            object-fit: scale-down;
+        }
+        .equation-variants .variant svg {
+            display: block;
+            width: 100%;
+            height: var(--variant-height);
+            color: var(--color, #000);
+        }
+
+
+        .equation-variants .variant:hover {
+            scale: 1.05;
+        }
+        .equation-variants .variant.active {
+            outline: 2px solid rgba(0, 0, 255, 0.265);
+            border-radius: 10px;
+        }   
+    }
+</style>
