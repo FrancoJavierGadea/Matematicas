@@ -307,3 +307,39 @@ export const COSENO_ALPHA_MENOS_COSENO_BETA = {
     url: await load('coseno-de-alfa-menos-coseno-de-beta.svg', 'url'),
 }
 
+
+export const SENO_ALPHA_POR_SENO_BETA = {
+    name: 'Seno de α por Seno de β',
+
+    svg: await load('seno-de-alfa-por-seno-de-beta.svg', 'raw'),
+    url: await load('seno-de-alfa-por-seno-de-beta.svg', 'url'),
+}
+
+export const COSENO_ALPHA_POR_COSENO_BETA = {
+    name: 'Coseno de α por Coseno de β',
+
+    svg: await load('coseno-de-alfa-por-coseno-de-beta.svg', 'raw'),
+    url: await load('coseno-de-alfa-por-coseno-de-beta.svg', 'url'),
+}
+
+export const SENO_ALPHA_POR_COSENO_BETA = {
+    name: 'Seno de α por Coseno de β',
+
+    svg: await load('seno-de-alfa-por-coseno-de-beta.svg', 'raw'),
+    url: await load('seno-de-alfa-por-coseno-de-beta.svg', 'url'),
+}
+
+
+export const SENO_ALPHA_AL_CUADRADO = {
+    name: 'Seno de α al cuadrado',
+
+    svg: await load('seno-de-alfa-al-cuadrado.svg', 'raw'),
+    url: await load('seno-de-alfa-al-cuadrado.svg', 'url'),
+}
+
+export const COSENO_ALPHA_AL_CUADRADO = {
+    name: 'Coseno de α al cuadrado',
+
+    svg: await load('coseno-de-alfa-al-cuadrado.svg', 'raw'),
+    url: await load('coseno-de-alfa-al-cuadrado.svg', 'url'),
+}
