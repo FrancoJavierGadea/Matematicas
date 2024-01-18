@@ -3,10 +3,12 @@ const folder = 'optimized-svg';
 
 const load = async (name, mode = 'raw') => {
 
-    const svg = (await import(`./${folder}/${name}?${mode}`)).default;
+    
+    const svg = (await import(/* @vite-ignore */`./${folder}/${name}?${mode}`)).default;
 
     return svg;
 }
+
 
 export const FUNDAMENTAL = {
 
@@ -155,9 +157,25 @@ export const SENO_DE_UNA_RESTA = {
     url: await load('seno-de-una-resta.svg', 'url'),
 }
 
+export const TANGENTE_DE_UNA_SUMA = {
+
+    name: 'Tangente de una suma',
+
+    svg: await load('tangente-de-una-suma.svg', 'raw'),
+    url: await load('tangente-de-una-suma.svg', 'url'),
+}
+
+export const TANGENTE_DE_UNA_RESTA = {
+
+    name: 'Tangente de una resta',
+
+    svg: await load('tangente-de-una-resta.svg', 'raw'),
+    url: await load('tangente-de-una-resta.svg', 'url'),
+}
+
 //-----
 
-export const SENO_DE_MENOS_ALFA = {
+export const SENO_DE_MENOS_ALPHA = {
 
     name: 'Seno de menos α',
 
@@ -165,7 +183,7 @@ export const SENO_DE_MENOS_ALFA = {
     url: await load('seno-de-menos-alfa.svg', 'url'),
 }
 
-export const COSENO_DE_MENOS_ALFA = {
+export const COSENO_DE_MENOS_ALPHA = {
 
     name: 'Coseno de menos α',
 
@@ -173,7 +191,7 @@ export const COSENO_DE_MENOS_ALFA = {
     url: await load('coseno-de-menos-alfa.svg', 'url'),
 }
 
-export const SENO_PI_MAS_ALFA = {
+export const SENO_PI_MAS_ALPHA = {
 
     name: 'Seno de π mas α',
 
@@ -188,7 +206,7 @@ export const SENO_PI_MAS_ALFA = {
     ]
 }
 
-export const SENO_PI_MENOS_ALFA = {
+export const SENO_PI_MENOS_ALPHA = {
 
     name: 'Seno de π menos α',
 
@@ -203,7 +221,7 @@ export const SENO_PI_MENOS_ALFA = {
     ]
 }
 
-export const COSENO_PI_MAS_MENOS_ALFA = {
+export const COSENO_PI_MAS_MENOS_ALPHA = {
 
     name: 'Seno de π mas o menos α',
 
@@ -217,3 +235,75 @@ export const COSENO_PI_MAS_MENOS_ALFA = {
         }
     ]
 }
+
+
+export const SENO_2_ALPHA = {
+    name: 'Seno de 2 por α',
+
+    svg: await load('seno-de-2-alfa.svg', 'raw'),
+    url: await load('seno-de-2-alfa.svg', 'url'),
+}
+
+export const COSENO_2_ALPHA = {
+    name: 'Coseno de 2 por α',
+
+    svg: await load('coseno-de-2-alfa.svg', 'raw'),
+    url: await load('coseno-de-2-alfa.svg', 'url'),
+}
+
+export const TANGENTE_2_ALPHA = {
+    name: 'Tangente de 2 por α',
+
+    svg: await load('tangente-de-2-alfa.svg', 'raw'),
+    url: await load('tangente-de-2-alfa.svg', 'url'),
+}
+
+export const SENO_ALPHA_DIVIDIDO_2 = {
+    name: 'Seno de α dividido 2',
+
+    svg: await load('seno-de-alfa-dividido-2.svg', 'raw'),
+    url: await load('seno-de-alfa-dividido-2.svg', 'url'),
+}
+
+export const COSENO_ALPHA_DIVIDIDO_2 = {
+    name: 'Coseno de α dividido 2',
+
+    svg: await load('coseno-de-alfa-dividido-2.svg', 'raw'),
+    url: await load('coseno-de-alfa-dividido-2.svg', 'url'),
+}
+
+export const TANGENTE_ALPHA_DIVIDIDO_2 = {
+    name: 'Tangente de α dividido 2',
+
+    svg: await load('tangente-de-alfa-dividido-2.svg', 'raw'),
+    url: await load('tangente-de-alfa-dividido-2.svg', 'url'),
+}
+
+export const SENO_ALPHA_MAS_SENO_BETA = {
+    name: 'Seno de α mas Seno de β',
+
+    svg: await load('seno-de-alfa-mas-seno-de-beta.svg', 'raw'),
+    url: await load('seno-de-alfa-mas-seno-de-beta.svg', 'url'),
+}
+
+export const SENO_ALPHA_MENOS_SENO_BETA = {
+    name: 'Seno de α menos Seno de β',
+
+    svg: await load('seno-de-alfa-menos-seno-de-beta.svg', 'raw'),
+    url: await load('seno-de-alfa-menos-seno-de-beta.svg', 'url'),
+}
+
+export const COSENO_ALPHA_MAS_COSENO_BETA = {
+    name: 'Seno de α mas Seno de β',
+
+    svg: await load('seno-de-alfa-mas-seno-de-beta.svg', 'raw'),
+    url: await load('seno-de-alfa-mas-seno-de-beta.svg', 'url'),
+}
+
+export const COSENO_ALPHA_MENOS_COSENO_BETA = {
+    name: 'Coseno de α menos Coseno de β',
+
+    svg: await load('coseno-de-alfa-menos-coseno-de-beta.svg', 'raw'),
+    url: await load('coseno-de-alfa-menos-coseno-de-beta.svg', 'url'),
+}
+
