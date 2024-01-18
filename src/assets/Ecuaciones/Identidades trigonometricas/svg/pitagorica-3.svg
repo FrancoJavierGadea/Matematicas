@@ -39,7 +39,7 @@
         <use x='65.191125' y='85.810626' xlink:href='#g1-97' />
         <use x='76.558918' y='85.810626' xlink:href='#g1-110' />
         <use x='89.221663' y='85.810626' xlink:href='#g1-40' />
-        <g fill='currentColor'>
+        <g class="alpha" fill='currentColor'>
             <use x='97.99952' y='85.810626' xlink:href='#g0-11' />
         </g>
         <use x='113.594558' y='85.810626' xlink:href='#g1-41' />

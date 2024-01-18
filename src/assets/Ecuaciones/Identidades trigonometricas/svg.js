@@ -48,6 +48,8 @@ export const TANGENTE = {
 
 export const SECANTE = {
 
+    name: 'Secante',
+
     svg: await load('secante-1.svg', 'raw'),
     url: await load('secante-1.svg', 'url'),
 
@@ -65,6 +67,8 @@ export const SECANTE = {
 
 export const COSECANTE = {
 
+    name: 'Cosecante',
+
     svg: await load('cosecante-1.svg', 'raw'),
     url: await load('cosecante-1.svg', 'url'),
 
@@ -81,6 +85,8 @@ export const COSECANTE = {
 }
 
 export const COTANGENTE = {
+
+    name: 'Cotangente',
 
     svg: await load('cotangente-1.svg', 'raw'),
     url: await load('cotangente-1.svg', 'url'),
@@ -100,6 +106,8 @@ export const COTANGENTE = {
 
 export const PITAGORICAS = {
 
+    name: 'Identidades Pitagoricas',
+
     svg: await load('pitagorica-1.svg', 'raw'),
     url: await load('pitagorica-1.svg', 'url'),
 
@@ -116,6 +124,7 @@ export const PITAGORICAS = {
 }
 
 export const COSENO_DE_UNA_SUMA = {
+
     name: 'Coseno de una suma',
 
     svg: await load('coseno-de-una-suma.svg', 'raw'),
@@ -123,6 +132,7 @@ export const COSENO_DE_UNA_SUMA = {
 }
 
 export const COSENO_DE_UNA_RESTA = {
+
     name: 'Coseno de una resta',
 
     svg: await load('coseno-de-una-resta.svg', 'raw'),
@@ -130,6 +140,7 @@ export const COSENO_DE_UNA_RESTA = {
 }
 
 export const SENO_DE_UNA_SUMA = {
+
     name: 'Seno de una suma',
 
     svg: await load('seno-de-una-suma.svg', 'raw'),
@@ -137,6 +148,7 @@ export const SENO_DE_UNA_SUMA = {
 }
 
 export const SENO_DE_UNA_RESTA = {
+
     name: 'Seno de una resta',
 
     svg: await load('seno-de-una-resta.svg', 'raw'),
@@ -146,6 +158,7 @@ export const SENO_DE_UNA_RESTA = {
 //-----
 
 export const SENO_DE_MENOS_ALFA = {
+
     name: 'Seno de menos α',
 
     svg: await load('seno-de-menos-alfa.svg', 'raw'),
@@ -153,6 +166,7 @@ export const SENO_DE_MENOS_ALFA = {
 }
 
 export const COSENO_DE_MENOS_ALFA = {
+
     name: 'Coseno de menos α',
 
     svg: await load('coseno-de-menos-alfa.svg', 'raw'),
@@ -160,6 +174,7 @@ export const COSENO_DE_MENOS_ALFA = {
 }
 
 export const SENO_PI_MAS_ALFA = {
+
     name: 'Seno de π mas α',
 
     svg: await load('seno-pi-mas-alfa.svg', 'raw'),
@@ -174,6 +189,7 @@ export const SENO_PI_MAS_ALFA = {
 }
 
 export const SENO_PI_MENOS_ALFA = {
+
     name: 'Seno de π menos α',
 
     svg: await load('seno-pi-menos-alfa.svg', 'raw'),
@@ -187,7 +203,8 @@ export const SENO_PI_MENOS_ALFA = {
     ]
 }
 
-export const CPSENO_PI_MAS_MENOS_ALFA = {
+export const COSENO_PI_MAS_MENOS_ALFA = {
+
     name: 'Seno de π mas o menos α',
 
     svg: await load('coseno-pi-mas-menos-alfa.svg', 'raw'),

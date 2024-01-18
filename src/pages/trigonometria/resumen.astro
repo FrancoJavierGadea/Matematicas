@@ -1,0 +1,85 @@
+---
+import * as EQ from "@assets/Ecuaciones/Identidades trigonometricas/svg.js";
+import Equation from "@components/Equation.astro";
+import Layout from "@layouts/Layout.astro";
+
+const colors = {'alpha': '#0035ff', 'beta': '#c80000'}
+---
+
+<Layout title="Resumen trigonometria">
+
+    <div class="Resumen">
+    
+        {
+            Object.values(EQ).map(equation => {
+
+                return <section class="Equations">
+            
+                    <h3 class="Equations-title">{equation.name}</h3>
+            
+                    <div class="Main-Equation">
+                        
+                        <Equation svg={equation.svg} name={EQ.FUNDAMENTAL.name} colors={colors}/>
+                    </div>
+
+                    {equation.variantes && <div class="Equations-variations">
+                        {
+                            equation.variantes.map(eq => <Equation svg={eq.svg} colors={colors} scale={0.7} /> )
+                        }
+                    </div>}
+            
+                </section>
+            })
+        }
+
+    </div>
+
+</Layout>
+
+<style>
+    .Resumen {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .Equations {
+        flex-grow: 1;
+        padding: 30px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px #00000069;
+    }
+    .Equations-title {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 200;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-bottom: 2px solid rgb(57, 0, 172);
+    }
+
+    .Main-Equation {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background-color: lightgray;
+        padding: 20px;
+    }
+
+    .Equations-variations {
+        padding: 20px;  
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    
+</style>

@@ -43,7 +43,7 @@
         <use x='65.320642' y='77.351913' xlink:href='#g2-105' />
         <use x='71.508564' y='77.351913' xlink:href='#g2-110' />
         <use x='84.171311' y='77.351913' xlink:href='#g2-40' />
-        <g fill='currentColor'>
+        <g class="alpha" fill='currentColor'>
             <use x='92.949169' y='77.351913' xlink:href='#g0-11' />
         </g>
         <use x='108.544206' y='77.351913' xlink:href='#g2-41' />
@@ -53,7 +53,7 @@
         <use x='166.228302' y='77.351913' xlink:href='#g2-111' />
         <use x='177.596095' y='77.351913' xlink:href='#g2-115' />
         <use x='186.503437' y='77.351913' xlink:href='#g2-40' />
-        <g fill='currentColor'>
+        <g class="alpha" fill='currentColor'>
             <use x='195.281294' y='77.351913' xlink:href='#g0-11' />
         </g>
         <use x='210.876332' y='77.351913' xlink:href='#g2-41' />

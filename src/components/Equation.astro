@@ -1,0 +1,39 @@
+---
+const {svg, scale, src, height, colors = {}, name = ''} = Astro.props;
+---
+
+{
+    svg && <div class="Equation" set:html={svg} title={name} />
+}
+
+{
+    src && !svg && <div class="Equation" title={name}>
+    
+        <img src={src} alt={name} />
+    </div>
+}
+
+<style
+    define:vars={{
+        'height': height,
+        'scale': scale,
+        ...colors
+    }}
+>
+    .Equation {
+        width: fit-content;
+        height: var(--height, initial);
+    }
+    .Equation :global(svg) {
+        display: block;
+        scale: var(--scale, 1);
+    }
+    .Equation :global(svg .alpha) {
+        color: var(--alpha, #0000ff);
+    }   
+    .Equation :global(svg .beta) {
+        color: var(--beta, #ff0000);
+    }
+
+    
+</style>

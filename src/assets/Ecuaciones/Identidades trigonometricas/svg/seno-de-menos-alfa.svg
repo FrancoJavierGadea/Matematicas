@@ -26,7 +26,7 @@
         <use x='71.508564' y='72.36623' xlink:href='#g2-110' />
         <use x='84.171311' y='72.36623' xlink:href='#g2-40' />
         <use x='92.949169' y='72.36623' xlink:href='#g0-0' />
-        <g fill='currentColor'>
+        <g class="alpha" fill='currentColor'>
             <use x='112.228057' y='72.36623' xlink:href='#g1-11' />
         </g>
         <use x='127.823094' y='72.36623' xlink:href='#g2-41' />
@@ -36,7 +36,7 @@
         <use x='200.531552' y='72.36623' xlink:href='#g2-105' />
         <use x='206.719474' y='72.36623' xlink:href='#g2-110' />
         <use x='219.382221' y='72.36623' xlink:href='#g2-40' />
-        <g fill='currentColor'>
+        <g class="alpha" fill='currentColor'>
             <use x='228.160079' y='72.36623' xlink:href='#g1-11' />
         </g>
         <use x='243.755116' y='72.36623' xlink:href='#g2-41' />
