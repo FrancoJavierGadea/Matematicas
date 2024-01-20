@@ -8,8 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "optimize-svg": "svgo -f \"src/assets/Ecuaciones/Identidades trigonometricas/svg\" -o \"src/assets/Ecuaciones/Identidades trigonometricas/optimized-svg\"",
-    "optimize-svg-2": "svgo -f \"src/assets/Ecuaciones/Razones trigonometricas/svg\" -o \"src/assets/Ecuaciones/Razones trigonometricas/optimized-svg\""
+    "optimize-svg": "node optimize-svg.js"
   },
   "dependencies": {
     "@astrojs/react": "^3.0.9",
