@@ -1,33 +1,40 @@
 ---
-const {main = '',  variants = [], svg = false, color = '#000'} = Astro.props;
+import Equation from "./Equation.astro";
 
-const equations = [main, ...variants];
+const {
+    equations = [],
+    svg = false, 
+    scale = 1, varScale = 0.6,
+    height = 60, 
+    colors = {}, 
+    name, title,
+    gap = '10px'
+} = Astro.props;
+
+const [main, ...variants] = equations;
 ---
 
-<custom-equations-visualizer>
+<custom-equations-visualizer svg={svg}>
 <div class="Equations-Visualizer">
 
-    <div class="main-equation">
-        {svg ? 
+    { title && <h3 class="Ecuation-title"> {title}</h3> }
 
-            <div class="svg-container" set:html={equations[0]} />
+    <div class="Main-equation">
+        {svg && <Equation svg={equations.at(0)} scale={scale} colors={colors} name={name} />}
 
-            :
-
-            <img src={equations[0]} alt="" />
-        }
+        {!svg && <Equation src={equations.at(0)} height={height} colors={colors} name={name} />}
     </div>
 
-    {equations.length > 1 && <div class="equation-variants">
+    {equations.length > 1 && <div class="Variants-Equation">
         {
-            equations.map((equation, i) => {
+            variants.map((equation, i) => {
                 
-                return (<div class="variant" role="button" data-index={i} class:list={{'active': i === 0}}>
-                    {svg ? 
-                        <div class="svg-container" set:html={equation} /> 
-                        :
-                        <img src={equation} alt="" />
-                    }
+                return (<div class="variant" role="button" data-index={++i} style={{order: ++i}}>
+
+                    {svg && <Equation svg={equation} scale={scale * varScale} colors={colors} name={name} />}
+
+                    {!svg && <Equation src={equation} height={height * varScale} colors={colors} name={name} />}
+
                 </div>)
             })
         }
@@ -38,7 +45,6 @@ const equations = [main, ...variants];
 
 <script>
     //@ts-nocheck
-
     class EquationVisualizer extends HTMLElement {
 
         current = 0;
@@ -46,7 +52,10 @@ const equations = [main, ...variants];
         constructor(){
             super();
 
-            this.mainEquation = this.querySelector('.main-equation');
+            this.svg = this.hasAttribute('svg');
+   
+            this.$MainEquation = (sel = '') => this.querySelector(`.Main-equation ${sel}`);
+            this.$Variant = (index = 0) => this.querySelector(`.Variants-Equation .variant[data-index="${index}"]`);
 
             this.querySelectorAll('.variant[role="button"]').forEach(btn => {
 
@@ -54,15 +63,26 @@ const equations = [main, ...variants];
 
                     const target = e.currentTarget;
                     
-                    //
-                    this.mainEquation.innerHTML = target.innerHTML;
-                    
+                    //Change main content
+                    const equation = (() => {
 
-                    target.classList.add('active');
-                    
-                    this.querySelector(`.variant[data-index="${this.current}"]`).classList.toggle('active', false);
+                        if(this.svg) return {
+                            target: target.querySelector('.Equation svg'),
+                            main: this.$MainEquation('.Equation svg')
+                        };
+    
+                        if(!this.svg) return {
+                            target: target.querySelector('.Equation img'),
+                            main: this.$MainEquation('.Equation img')
+                        };
 
-                    //
+                    })();
+
+                    equation.target.replaceWith(equation.main);
+
+                    this.$MainEquation('.Equation').appendChild(equation.target); 
+                    
+                    //Update current index
                     const index = target.getAttribute('data-index');
                     this.current = Number(index);
                 });
@@ -75,78 +95,46 @@ const equations = [main, ...variants];
 
 <style
     define:vars={{
-        'color': color
+        'gap': gap, 
     }}
 >
     .Equations-Visualizer {
 
-        --main-height: 60px;
-        --variant-height: 30px;
-
-        padding: 50px;
+        padding: 10px 0;
+        width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 70px;
+        gap: 10px;
         align-items: center;
+        border-radius: 10px;
+        box-shadow: 0px 0px 7px 0px #00000021;
 
-        .main-equation {
-            display: block;
-            width: 100%;
-        }
-        /* Img */
-        .main-equation img {
-            display: block;
-            margin: auto;
-            width: 100%;
-            height: var(--main-height);
-        }
-        /* SVG */
-        .main-equation .svg-container {
-            margin: auto;
-            width: fit-content;
-        }
-        .main-equation .svg-container svg {
-            display: block;
-            width: 100%;
-            height: var(--main-height);
-            color: var(--color, #000);
+        .Ecuation-title {
+            padding: 10px;
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-family: "Noto Sans Math", sans-serif;
         }
 
+        .Main-equation {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            padding: 10px;
+        }
 
-        .equation-variants {
+        .Variants-Equation {
+            padding: 10px;
+            padding-top: var(--gap);
+
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
             place-items: center;
-            gap: 20px;
+            gap: 20px 10px;
         }
-
-        .equation-variants .variant {
-            display: block;
-            box-sizing: border-box;
-            padding: 10px;
-            transition: scale 0.5s;
-        }
-        .equation-variants .variant img {
-            display: block;
+        .Variants-Equation .variant {
             width: 100%;
-            height: var(--variant-height);
-            object-fit: scale-down;
-        }
-        .equation-variants .variant svg {
-            display: block;
-            width: 100%;
-            height: var(--variant-height);
-            color: var(--color, #000);
-        }
-
-
-        .equation-variants .variant:hover {
-            scale: 1.05;
-        }
-        .equation-variants .variant.active {
-            outline: 2px solid rgba(0, 0, 255, 0.265);
-            border-radius: 10px;
-        }   
+        } 
     }
 </style>

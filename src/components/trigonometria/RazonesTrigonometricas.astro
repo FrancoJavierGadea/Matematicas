@@ -1,0 +1,105 @@
+---
+import Layout from "@layouts/Layout.astro";
+import {SIN, COS, TAN, COT, SEC, CSC} from "@ecuaciones/Razones trigonometricas/valores.js";
+---
+
+<section class="Razones-trigonometricas">
+
+    <div class="Razones-trigonometricas-values">
+        <table>
+    
+            <thead>
+                <tr>
+                    <th>Razon trigonometrica</th>
+                    <th class="angle">0º</th>
+                    <th class="angle">30º</th>
+                    <th class="angle">45º</th>
+                    <th class="angle">60º</th>
+                    <th class="angle">90º</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {
+                    [SIN, COS, TAN, COT, SEC, CSC].map((razon) => {
+    
+                        return <tr>
+                            <td>
+                                <div class="razon"> 
+                                    <span class="name">{razon.name}</span>
+                                    <span class="range">{razon.range}</span>    
+                                </div>
+                            </td>    
+                            {
+                                Object.values(razon.values)
+                                    .map(({svg}) => <td set:html={svg} />)
+                            }  
+                        </tr>
+                    })
+                }
+            </tbody>
+    
+        </table>
+    </div>
+
+</section>
+
+<style>
+    .Razones-trigonometricas-values {
+        width: fit-content;
+        margin: auto;
+        font-family: "Noto Sans Math", sans-serif;
+        font-style: normal;
+        font-size: 16px;
+        letter-spacing: 2px;
+
+        border: 1px solid gray;
+        border-radius: 10px;
+        overflow: hidden;
+
+        table td .razon {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        table td .razon .range {
+            font-size: 20px;
+        }
+
+        table td,
+        table th {
+            min-width: 100px;
+            padding: 10px 20px;
+            text-align: center;
+            border: 1px solid gray;
+        }
+        table thead tr th {
+            border-top: none;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        table td:first-child,
+        table th:first-child,
+        table td:last-child,
+        table th:last-child {
+            border-left: none;
+            border-right: none;
+        }
+
+        table tr:hover td {
+            background-color: rgb(210, 252, 194);
+        }
+        table th.angle {
+            font-weight: 200;
+            font-size: 22px;
+        }
+        table td svg {
+            transform: scale(0.7);
+        }
+    }
+
+
+    
+
+</style>

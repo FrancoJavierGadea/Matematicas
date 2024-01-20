@@ -1,35 +1,61 @@
 
 
-.Razones-trigonometricas {
+.Graph-Razones-trigonometricas {
     display: flex;
     flex-direction: column;
     gap: 30px;
     align-items: center;
+
+    .controls {
+        display: flex;
+        gap: 20px;
+        justify-content: space-around;
+    }
+    .controls li {
+        list-style: none;
+    }
+
+
+    .Razones-trigonometricas-angle {
+        display: flex;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .Razones-trigonometricas-angle .value {
+        font-family: 'latin modern';
+        font-size: 22px;
+    }
+
+    .Razones-trigonometricas-values {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        place-items: center ;
+        column-gap: 20px;
+        row-gap: 20px;
+    
+        font-family: "Noto Sans Math", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        letter-spacing: 2px;
+        white-space: nowrap;
+    }
+    .Razones-trigonometricas-values .angle {
+        font-weight: 200; 
+    }
+    .Razones-trigonometricas-values .value {
+        font-weight: 200;
+        font-style: italic;
+    }
+    
+    svg {
+        box-shadow: 0px 0px 10px 0px #00000029;
+        border-radius: 20px;
+    }
 }
 
-.Razones-trigonometricas .nav {
-    --bs-nav-link-color: #000;
-    --bs-nav-tabs-link-active-color: var(--bs-link-color);
-}
 
-.Razones-trigonometricas-angle {
-    display: flex;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-.Razones-trigonometricas-angle .value {
-    font-family: 'latin modern';
-    font-size: 22px;
-}
-
-.Razones-trigonometricas-values {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    place-items: center ;
-    row-gap: 20px;
-    font-family: 'latin modern';
-    font-size: 18px;
-}

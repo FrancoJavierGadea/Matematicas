@@ -1,27 +1,15 @@
 ---
-import RazonesTrigonometricas from "@React/trigonometria/RazonesTrigonometricas/RazonesTrigonomatricas.jsx";
-import SenoCosenoDeUnaSumaAngulos from "@React/trigonometria/SenoCosenoDeUnaSumaAngulos/SenoCosenoDeUnaSumaAngulos.jsx";
-import EquationsVisualizer from "@components/EquationsVisualizer.astro";
 import Layout from "@layouts/Layout.astro";
 
-import { FUNDAMENTAL } from "@assets/Ecuaciones/Identidades trigonometricas/svg.js";
+import IdentidadFundamental from "@components/trigonometria/IdentidadFundamental.astro";
+import RazonesTrigonometricas from "@components/trigonometria/RazonesTrigonometricas.astro";
 
 ---
 
 <Layout title="Trigonometria">
 
-    <!-- <RazonesTrigonometricas width={500} height={500} margin={0} client:load /> -->
+    <IdentidadFundamental />
 
-    <!-- <SenoCosenoDeUnaSumaAngulos width={600} height={600} marginLeft={50} marginBottom={150} client:load /> -->
-
-    <section class="container">
-
-        <h3>Identidad Trigonometrica Fundamental</h3>
-
-        <EquationsVisualizer main={FUNDAMENTAL.url} variants={FUNDAMENTAL.variantes.map(({url}) => url)} />
-
-        <EquationsVisualizer svg main={FUNDAMENTAL.svg} variants={FUNDAMENTAL.variantes.map(({svg}) => svg)} color={'#0000ff'}/>    
-
-    </section>
+    <RazonesTrigonometricas />
 
 </Layout>

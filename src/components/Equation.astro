@@ -1,5 +1,6 @@
 ---
-const {svg, scale, src, height, colors = {}, name = ''} = Astro.props;
+const {svg, scale = 1, src, height, colors = {}, name = ''} = Astro.props;
+
 ---
 
 {
@@ -21,12 +22,16 @@ const {svg, scale, src, height, colors = {}, name = ''} = Astro.props;
     }}
 >
     .Equation {
-        width: fit-content;
+        padding: calc(10% * (var(--scale) - 1));
         height: var(--height, initial);
+        display: flex;
+        justify-content: center;
     }
     .Equation :global(svg) {
+        flex-shrink: 0;
         display: block;
-        scale: var(--scale, 1);
+        transform: scale(var(--scale));
+        margin: 0;
     }
     .Equation :global(svg .alpha) {
         color: var(--alpha, #0000ff);

@@ -24,19 +24,31 @@ const COLORS = {
 }
 
 
-function RazonesTrigonometricas({width = 960, height = 540, margin = 20}) {
+function RazonesTrigonometricas({width = 960, height = 540, margin = 20, size = 800}) {
 
     const svgRef = useRef();
 
-    const [mode, setMode] = useState(MODES[0].value);
     const [angle, setAngle] = useState(60);
+    const [mode, setMode] = useState([...MODES.map(mode => mode.value)]);
 
     const handleMode = (e) => {
 
         const value = e.currentTarget.value;
+        const checked = e.currentTarget.checked;
 
-        setMode(value);
-    } 
+        setMode(old => {
+            if (checked) {
+                if (value === 'all') return [...MODES.map(mode => mode.value)];
+
+                return [...old, value];
+            }
+            else {
+                if (value === 'all') return [];
+
+                return [...old.filter(v => v !== value && v !== 'all')];
+            };
+        });
+    }
 
     const razones = useMemo(() => {
 
@@ -52,16 +64,16 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20}) {
     }, [angle]);
 
 
-    return (<div className="Razones-trigonometricas">
+    return (<div className="Graph-Razones-trigonometricas">
 
-        <ul className="nav nav-tabs">{
-            MODES.map(({value, text}) => {
+        <ul className="controls">{
+            MODES.map(({ value, text }, i) => {
 
-                const isActive = value === mode;
+                const isActive = mode.includes('all') || mode.includes(value);
 
-                return <li className="nav-item" key={`btn-${value}`}>
-
-                    <button className={`nav-link ${isActive ? 'active' : ''}`} value={value} onClick={handleMode}>{text}</button>
+                return <li key={`btn-check-${i}`}>
+                    <input type="checkbox" className="btn-check" id={`btn-check-${i}`} autoComplete="off" value={value} checked={isActive} onChange={handleMode} />
+                    <label className="btn" htmlFor={`btn-check-${i}`}>{text}</label>
                 </li>
             })
         }</ul>
@@ -73,36 +85,36 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20}) {
         </div>
 
         <div className="Razones-trigonometricas-values" style={{maxWidth: width}}>
-            {['sin-cos', 'all'].includes(mode) && <>
+            {mode.find(v => ['sin-cos', 'all'].includes(v)) && <>
                 <div> 
-                    <span className="razon">sin({angle}º)</span> <span> = </span> <span className="value">{razones.sin.toFixed(2)}</span>
+                    sin(<span className="angle">{angle}º</span>) =  <span className="value">{razones.sin.toFixed(2)}</span>
                 </div>
 
                 <div> 
-                    <span className="razon">cos({angle}º)</span> <span> = </span> <span className="value">{razones.cos.toFixed(2)}</span>
+                    cos(<span className="angle">{angle}º</span>) = <span className="value">{razones.cos.toFixed(2)}</span>
                 </div>
             </>}
 
-            {['tan', 'all'].includes(mode) && <div> 
-                <span className="razon">tan({angle}º)</span> <span> = </span> <span className="value">{razones.tan.toFixed(2)}</span>
+            {mode.find(v => ['tan', 'all'].includes(v)) && <div> 
+                tan(<span className="angle">{angle}º</span>) = <span className="value">{razones.tan.toFixed(2)}</span>
             </div>}
 
-            {['cot', 'all'].includes(mode) && <div> 
-                <span className="razon">cot({angle}º)</span> <span> = </span> <span className="value">{razones.cot.toFixed(2)}</span>
+            {mode.find(v => ['cot', 'all'].includes(v)) && <div> 
+                cot(<span className="angle">{angle}º</span>) =  <span className="value">{razones.cot.toFixed(2)}</span>
             </div>}
 
-            {['sec', 'all'].includes(mode) && <div> 
-                <span className="razon">sec({angle}º)</span> <span> = </span> <span className="value">{razones.sec.toFixed(2)}</span>
+            {mode.find(v => ['sec', 'all'].includes(v)) && <div> 
+                sec(<span className="angle">{angle}º</span>) = <span className="value">{razones.sec.toFixed(2)}</span>
             </div>}
 
-            {['csc', 'all'].includes(mode) && <div> 
-                <span className="razon">csc({angle}º)</span> <span> = </span> <span className="value">{razones.csc.toFixed(2)}</span>
+            {mode.find(v => ['csc', 'all'].includes(v)) && <div> 
+                csc(<span className="angle">{angle}º</span>) = <span className="value">{razones.csc.toFixed(2)}</span>
             </div>}
         </div>
 
         <svg width={width} height={height} viewBox={`${0} ${0} ${width} ${height}`} ref={svgRef}>
 
-            <CartesianSystem size={700} cx={width / 2} cy={height / 2} 
+            <CartesianSystem size={size} cx={width / 2} cy={height / 2} 
 
                 domainX={{min: -2, max: 2}} domainY={{min: -2, max: 2}}
 
@@ -128,7 +140,7 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20}) {
                     <line className="line-origin-to-point" x1={origin.x} y1={origin.y} x2={px} y2={py} stroke={'#777'}/>
 
                     
-                    {['tan', 'sec', 'all'].includes(mode) && <>
+                    {mode.find(v => ['tan', 'sec', 'all'].includes(v)) && <>
 
                         <line className="tan-axis" x1={tan.x} y1={y(-2)} x2={tan.x} y2={y(2)} stroke={'#777'} strokeWidth={2} strokeDasharray={4} />
 
@@ -139,7 +151,7 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20}) {
                         <circle cx={tan.x} cy={tan.y} r={3} fill={'#000000'} stroke={'none'} />
                     </>}
 
-                    {['cot', 'csc', 'all'].includes(mode) && <>
+                    {mode.find(v => ['cot', 'csc', 'all'].includes(v)) && <>
                     
                         <line className="cot-axis" x1={x(-2)} y1={cot.y} x2={x(2)} y2={cot.y} stroke={'#777'} strokeWidth={2} strokeDasharray={4} />
                         
@@ -150,7 +162,7 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20}) {
                         <circle cx={origin.x} cy={cot.y} r={3} fill={'#000000'} stroke={'none'} />
                     </>}
                     
-                    {['sin-cos', 'all'].includes(mode) && <>
+                    {mode.find(v => ['sin-cos', 'all'].includes(v)) && <>
                      
                         <LineWithText className="cos-value" x1={origin.x} y1={origin.y} x2={px} y2={origin.y} text="Cos" gapY={15} color={COLORS['cos']} />
 
@@ -159,22 +171,22 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20}) {
                         <circle cx={px} cy={origin.y} r={3} fill={'#000000'} stroke={'none'} />
                     </>}
 
-                    {['tan', 'all'].includes(mode) && <>
+                    {mode.find(v => ['tan', 'all'].includes(v)) && <>
 
                         <LineWithText className="tan-value" x1={tan.x} y1={origin.y} x2={tan.x} y2={tan.y} text="Tan" gapX={15} color={COLORS['tan']} />
                     </>}
                 
-                    {['cot', 'all'].includes(mode) && <>
+                    {mode.find(v => ['cot', 'all'].includes(v)) && <>
                     
                         <LineWithText className="cot-value" x1={origin.x} y1={cot.y} x2={cot.x} y2={cot.y} text="Cot" gapY={-15} color={COLORS['cot']} />
                     </>}
 
-                    {['sec', 'all'].includes(mode) && <>
+                    {mode.find(v => ['sec', 'all'].includes(v)) && <>
 
                         <LineWithText className="sec-value" x1={origin.x} y1={origin.y} x2={tan.x} y2={tan.y} text="Sec" gapX={15} gapY={15} color={COLORS['sec']} />
                     </>}
 
-                    {['csc', 'all'].includes(mode) && <>
+                    {mode.find(v => ['csc', 'all'].includes(v)) && <>
 
                         <LineWithText className="csc-value" x1={origin.x} y1={origin.y} x2={cot.x} y2={cot.y} text="Csc" gapX={-15} gapY={-15} color={COLORS['csc']} />
                     </>}
