@@ -9,7 +9,6 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
-      "@ecuaciones/*": ["src/assets/ecuaciones/*"],
       "@layouts/*": ["src/layouts/*"],
       "@React/*": ["src/components/React/*"],
       "@docs/*": ["src/docs/*"],
