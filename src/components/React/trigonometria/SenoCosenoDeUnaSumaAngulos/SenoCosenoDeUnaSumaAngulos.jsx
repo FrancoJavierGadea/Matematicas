@@ -66,21 +66,21 @@ function SenoCosenoDeUnaSumaAngulos({ width = 640, height = 640, marginLeft = 50
 
         return {
             alfa: {
-                name: 'α',
+                name: '𝛼',
                 angle: alfa,
                 sin: sin(alfa),
                 cos: cos(alfa),
                 color: '#0000ff'
             },
             beta: {
-                name: 'β',
+                name: '𝛽',
                 angle: beta,
                 sin: sin(beta),
                 cos: cos(beta),
                 color: '#9005a5'
             },
             gama: {
-                name: 'α + β',
+                name: '𝛼 + 𝛽',
                 angle: alfa + beta,
                 sin: sin(alfa + beta),
                 cos: cos(alfa + beta),
@@ -106,11 +106,13 @@ function SenoCosenoDeUnaSumaAngulos({ width = 640, height = 640, marginLeft = 50
             
             <div className="angles">
                 <div>
-                    <h4 className="value">α: {alfa}º</h4>
+                    <h4 className="value" style={{color: angles.alfa.color}}>{angles.alfa.name}: {alfa}º</h4>
+
                     <input className="form-range" type="range" min={0} max={90} value={alfa} onChange={handleAlfa} />
                 </div>
                 <div>
-                    <h4 className="value">β: {beta}º</h4>
+                    <h4 className="value" style={{color: angles.beta.color}}>{angles.beta.name}: {beta}º</h4>
+
                     <input className="form-range" type="range" min={0} max={90} value={beta} onChange={handleBeta} />
                 </div>
             </div>
@@ -182,8 +184,13 @@ function SenoCosenoDeUnaSumaAngulos({ width = 640, height = 640, marginLeft = 50
                                 strokeDasharray: 4,
                             }}/>
 
-                            <line x1={pivot.x} y1={gama.y} x2={gama.x} y2={gama.y} stroke={'#777'} strokeDasharray={4} {...{
-
+                            <LineWithText className="line-g" {...{
+                                x1: pivot.x,    y1: gama.y, 
+                                x2: gama.x,    y2: gama.y, 
+                                color: '#777', 
+                                text: 'g' ,
+                                gapY: -15, 
+                                strokeDasharray: 4,
                             }}/>
 
                             <Angle  {...{

@@ -1,11 +1,55 @@
 ---
 import SenoCosenoDeUnaSumaAngulos from "@components/React/trigonometria/SenoCosenoDeUnaSumaAngulos/SenoCosenoDeUnaSumaAngulos";
+import * as SenoDemostracion from "@docs/Trigonometria/Seno de una suma de angulos.md";
+
+import * as CosenoDemostracion from "@docs/Trigonometria/Coseno de una suma de angulos.md";
+import Tabs from "@layouts/Tabs.astro";
 
 ---
 
-<section>
+<section class="Demostracion-seno-coseno-de-una-suma">
 
-    <SenoCosenoDeUnaSumaAngulos client:load />
+    <h2 class="title">Demostracion Seno y Coseno de una suma de angulos</h2>
 
+    <div class="row">
+
+        <div class="col-12 col-xl-7">
+
+            <SenoCosenoDeUnaSumaAngulos client:load />
+        </div>
+
+        <div class="col-12 col-xl-5">
+            
+            <Tabs>
+        
+                <div class="markdown-body" slot="Seno">
+            
+                    <SenoDemostracion.Content />
+            
+                </div>
+            
+                <div class="markdown-body" slot="Coseno">
+                    
+                    <CosenoDemostracion.Content />
+                </div>
+        
+            </Tabs>
+        </div>
+
+    </div>
 
 </section>
+
+<style>
+    .Demostracion-seno-coseno-de-una-suma {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+
+        .title {
+            padding: 20px;
+            text-align: center;
+        }
+    }
+</style>

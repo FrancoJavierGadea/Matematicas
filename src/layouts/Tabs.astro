@@ -1,0 +1,125 @@
+---
+let {tabs = []} = Astro.props;
+
+tabs = [
+    {name: 'Majo', text: 'Other'},
+    {name: 'jaiver', text: 's'},
+    {name: 'sdd', text: 'f'},
+    {name: 'mica', text: 's'}
+]
+
+const current = Astro.slots.has('default') ? 'default' : Object.keys(Astro.slots).at(0);
+---
+
+<custom-tabs data-current={current} >
+<div class="Tabs">
+
+    <ul class="nav nav-tabs">
+    {
+        Object.keys(Astro.slots).map((name, i) => {
+
+            const isActive = Astro.slots.has('default') ? name === 'default' : i === 0;
+
+            return <li class="nav-item">
+                <button class="tab-btn nav-link" data-name={name} 
+                
+                    class:list={{'active': isActive}}
+                >
+                    {name}
+                </button>
+            </li>
+        }) 
+    }
+    </ul>
+
+    <div class="Tabs-content">
+        {
+            Object.keys(Astro.slots).map((name, i) => {
+
+                const isActive = Astro.slots.has('default') ? name === 'default' : i === 0;
+
+                return <div class="Tabs-item" data-name={name} 
+                
+                    set:html={Astro.slots.render(name)} class:list={{'active': isActive}}
+                />
+            }) 
+        }
+    </div>
+
+</div>
+</custom-tabs>
+
+<script>
+    //@ts-nocheck
+
+    class CustomTabs extends HTMLElement {
+
+        constructor(){
+            super();
+
+            const $TabsContent = (sel = '') => this.querySelector(`.Tabs-content ${sel}`);
+
+            this.current = this.getAttribute('data-current');
+
+            this.querySelectorAll('button.tab-btn').forEach(button => {
+
+                button.addEventListener('click', (e) => {
+
+                    const btn = e.currentTarget;
+
+                    const name = btn.getAttribute('data-name');
+
+                    //Update button
+                    this.querySelector(`button.tab-btn.active`).classList.toggle('active', false);
+                    btn.classList.toggle('active', true);
+
+                    //Change content
+                    $TabsContent(`.Tabs-item[data-name="${this.current}"]`).classList.toggle('active', false);
+                    $TabsContent(`.Tabs-item[data-name="${name}"]`).classList.toggle('active', true);
+
+                    //Update current
+                    this.current = name;
+                    this.setAttribute('data-current', name);
+                })
+            });
+        }
+    }
+
+    customElements.define('custom-tabs', CustomTabs);
+
+</script>
+
+<style>
+
+    .Tabs-content {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+    .Tabs-content > * {
+        grid-row-start: 1;
+        grid-column-start: 1;
+    }
+
+    .Tabs-content .Tabs-item {
+        visibility: hidden;
+    }
+    .Tabs-content .Tabs-item.active {
+        visibility: visible;
+        animation: show 1s;
+    }
+
+    @keyframes show {
+        from {
+            margin-left: -20px;
+            opacity: 0;
+        }
+        to {
+            margin-left: 0;
+            opacity: 1;
+        }
+    }
+
+
+</style>
