@@ -8,16 +8,17 @@ const {
     height = 60, 
     colors = {}, 
     name, title,
-    gap = '10px'
+    gap = '10px',
+    showVariants = false
 } = Astro.props;
 
 const [main, ...variants] = equations;
 ---
 
-<custom-equations-visualizer svg={svg}>
+<custom-equations-visualizer svg={svg} showVariants={showVariants}>
 <div class="Equations-Visualizer">
 
-    { title && <h3 class="Ecuation-title"> {title}</h3> }
+    { title && <h3 class="Ecuation-title">{title}</h3> }
 
     <div class="Main-equation">
         {svg && <Equation svg={equations.at(0)} scale={scale} colors={colors} name={name} />}
@@ -25,7 +26,15 @@ const [main, ...variants] = equations;
         {!svg && <Equation src={equations.at(0)} height={height} colors={colors} name={name} />}
     </div>
 
-    {equations.length > 1 && <div class="Variants-Equation">
+    <button class="show-variants-btn btn" title={showVariants ? 'Ocultar variantes' : 'Mostrar variantes'}>
+        <i class={`bi ${showVariants ? 'bi-chevron-up' : 'bi-chevron-down'}`} />
+    </button>
+
+    {equations.length > 1 && <details open={showVariants}>
+
+        <summary style="display: none;"></summary>
+
+        <div class="Variants-Equation">
         {
             variants.map((equation, i) => {
                 
@@ -38,7 +47,10 @@ const [main, ...variants] = equations;
                 </div>)
             })
         }
-    </div>}
+        </div>
+    
+    </details>
+    }
 
 </div>
 </custom-equations-visualizer>
@@ -48,14 +60,17 @@ const [main, ...variants] = equations;
     class EquationVisualizer extends HTMLElement {
 
         current = 0;
+        
 
         constructor(){
             super();
 
             this.svg = this.hasAttribute('svg');
-   
+            this.showVariants = this.hasAttribute('showVariants');
+
             this.$MainEquation = (sel = '') => this.querySelector(`.Main-equation ${sel}`);
             this.$Variant = (index = 0) => this.querySelector(`.Variants-Equation .variant[data-index="${index}"]`);
+            this.$ShowVariantsBtn = (sel = '') => this.querySelector(`.show-variants-btn ${sel}`);
 
             this.querySelectorAll('.variant[role="button"]').forEach(btn => {
 
@@ -86,7 +101,24 @@ const [main, ...variants] = equations;
                     const index = target.getAttribute('data-index');
                     this.current = Number(index);
                 });
-            })
+            });
+
+            this.$ShowVariantsBtn().addEventListener('click', () => {
+
+                this.showVariants = !this.showVariants;
+
+                this.querySelector('details').toggleAttribute('open');
+
+                if(this.showVariants){
+
+                    this.$ShowVariantsBtn('i').classList.replace('bi-chevron-down', 'bi-chevron-up');
+                }
+                else {
+                    this.$ShowVariantsBtn('i').classList.replace('bi-chevron-up', 'bi-chevron-down');
+                }
+
+                this.$ShowVariantsBtn().title = this.showVariants ?  'Ocultar variantes' : 'Mostrar variantes';
+            });
         }
     }
 
@@ -99,7 +131,7 @@ const [main, ...variants] = equations;
     }}
 >
     .Equations-Visualizer {
-
+        position: relative;
         padding: 10px 0;
         width: 100%;
         display: flex;
@@ -123,6 +155,9 @@ const [main, ...variants] = equations;
             padding: 10px;
         }
 
+        details {
+            width: 100%;
+        }
         .Variants-Equation {
             padding: 10px;
             padding-top: var(--gap);
@@ -133,8 +168,16 @@ const [main, ...variants] = equations;
             place-items: center;
             gap: 20px 10px;
         }
+
         .Variants-Equation .variant {
             width: 100%;
-        } 
+        }
+        
+        .show-variants-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            --bs-btn-border-width: 0;
+        }
     }
 </style>
