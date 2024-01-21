@@ -1,9 +1,10 @@
 import { useMemo, useRef, useState } from "react";
 import CartesianSystem from "@React/utils/CartesianSystem";
-import { cos, cot, csc, degToRad, sec, sin, tan } from "@utils/MathUtils";
+import { cos, cot, csc, sec, sin, tan } from "@utils/MathUtils";
 import Angle from "@React/utils/Angle";
 import "./RazonesTrigonometricas.css";
 import LineWithText from "@React/utils/LineWithText";
+import { useZoom } from "@components/React/hooks/useZoom";
 
 const MODES = [
     {value:  'sin-cos', text: 'Seno y Coseno'},
@@ -21,12 +22,13 @@ const COLORS = {
     'cot': '#0063d3',
     'sec': '#007b0c',
     'csc': '#d0a000',
-}
+};
 
 
-function RazonesTrigonometricas({width = 960, height = 540, margin = 20, size = 800}) {
+function RazonesTrigonometricas({width = 960, height = 540, margin = 20, size = 1800}) {
 
     const svgRef = useRef();
+    const zoom = useZoom({SVGRef: svgRef, elements: ['.graph']});
 
     const [angle, setAngle] = useState(60);
     const [mode, setMode] = useState([...MODES.map(mode => mode.value)]);
@@ -113,14 +115,14 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20, size = 
         </div>
 
         <svg width={width} height={height} viewBox={`${0} ${0} ${width} ${height}`} ref={svgRef}>
-
+          <g className="graph">
             <CartesianSystem size={size} cx={width / 2} cy={height / 2} 
 
-                domainX={{min: -2, max: 2}} domainY={{min: -2, max: 2}}
+                domainX={{min: -5, max: 5}} domainY={{min: -5, max: 5}}
 
                 showAxis={true} showGrid={false}
             >
-            {({x, y, origin, distance}) => {
+            {({x, y, origin, min, max, distance}) => {
                     
                 const px = x(razones.cos);
                 const py = y(razones.sin);
@@ -142,7 +144,7 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20, size = 
                     
                     {mode.find(v => ['tan', 'sec', 'all'].includes(v)) && <>
 
-                        <line className="tan-axis" x1={tan.x} y1={y(-2)} x2={tan.x} y2={y(2)} stroke={'#777'} strokeWidth={2} strokeDasharray={4} />
+                        <line className="tan-axis" x1={tan.x} y1={min.y} x2={tan.x} y2={max.y} stroke={'#777'} strokeWidth={2} strokeDasharray={4} />
 
                         <line className="tan-line-proyection" x1={px} y1={py} x2={tan.x} y2={tan.y} stroke={'#777'} strokeDasharray={4} />
 
@@ -153,7 +155,7 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20, size = 
 
                     {mode.find(v => ['cot', 'csc', 'all'].includes(v)) && <>
                     
-                        <line className="cot-axis" x1={x(-2)} y1={cot.y} x2={x(2)} y2={cot.y} stroke={'#777'} strokeWidth={2} strokeDasharray={4} />
+                        <line className="cot-axis" x1={min.x} y1={cot.y} x2={max.x} y2={cot.y} stroke={'#777'} strokeWidth={2} strokeDasharray={4} />
                         
                         <line className="cot-line-proyection" x1={px} y1={py} x2={cot.x} y2={cot.y} stroke={'#777'} strokeDasharray={4} />
 
@@ -194,7 +196,7 @@ function RazonesTrigonometricas({width = 960, height = 540, margin = 20, size = 
                     <circle className="origin" cx={origin.x} cy={origin.y} r={3} fill={'#000'} stroke={'none'} />
             </>)}}
             </CartesianSystem>
-
+          </g>
         </svg>
     </div>);
 }

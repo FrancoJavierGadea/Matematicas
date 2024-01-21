@@ -1,5 +1,3 @@
-
-
 import CartesianSystem from "@React/utils/CartesianSystem";
 import "./SenoCosenoDeUnaSumaAngulos.css";
 import { useMemo, useRef, useState } from "react";
@@ -11,7 +9,7 @@ import KeyMark from "@React/utils/KeyMark";
 const values = {
     'alfa': 30,
     'beta': 30
-}
+};
 
 const MODES = [
     { value: 'triangle-A', text: 'Triangulo A' },
@@ -19,9 +17,9 @@ const MODES = [
     { value: 'triangle-C', text: 'Triangulo C' },
     { value: 'proyections', text: 'Proyecciones' },
     { value: 'all', text: 'Todos' }
-]
+];
 
-function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 540, marginLeft = 20, marginBottom }) {
+function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 640, marginLeft = 50, marginBottom = 150}) {
 
     const svgRef = useRef();
 
@@ -124,59 +122,11 @@ function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 540, marginLeft = 20
 
                         <circle className="circle" cx={origin.x} cy={origin.y} r={distance({ x: 1, y: 0 })} fill={'none'} stroke={'#777'} strokeWidth={2} />
 
-                        {mode.find(v => ['triangle-A', 'all'].includes(v)) && <g className="triangle triangle-A">
+                        {mode.find(v => ['triangle-A', 'all'].includes(v)) && <Triangle className="Triangle-A" origin={origin} angle={alfa} angleRadius={50} /> }
 
-                            <path className="bg" d={`M${origin.x} ${origin.y}L${alfa.x} ${origin.y} L${alfa.x} ${alfa.y} L${origin.x} ${origin.y}`} fill={`${alfa.color}`} />
+                        {mode.find(v => ['triangle-B', 'all'].includes(v)) && <Triangle className="Triangle-B" origin={origin} angle={beta} angleRadius={50} transform={`rotate(${-alfa.angle}, ${origin.x}, ${origin.y})`} />}
 
-                            <Angle cx={origin.x} cy={origin.y} radius={50} angle={alfa.angle} stroke={alfa.color} fill={`${alfa.color}60`} />
-
-                            <line x1={origin.x} y1={origin.y} x2={alfa.x} y2={alfa.y} stroke={alfa.color} />
-
-                            <LineWithText {...{x1: origin.x, y1: origin.y, x2: alfa.x, y2: origin.y}} {...{color: alfa.color, text: `cos(${alfa.name})`, gapY: -15}} />
-
-                            <LineWithText {...{x1: alfa.x, y1: alfa.y, x2: alfa.x, y2: origin.y}} {...{color: alfa.color, text: `sin(${alfa.name})`, gapX: -25}} />
-
-                            <KeyMark {...{x1: origin.x, y1: origin.y, x2: alfa.x, y2: origin.y, gap: 125, radius: 70}} {...{text: `Cos(${alfa.name})`, color: alfa.color, stroke: alfa.color, strokeDasharray: 4}} />
-
-                            <circle {...{cx: alfa.x, cy: origin.y, r: 3, fill: '#000', stroke: 'none'}} />
-                            <circle {...{cx: alfa.x, cy: alfa.y, r: 3, fill: '#000', stroke: 'none'}} />
-                        </g>}
-
-                        {mode.find(v => ['triangle-B', 'all'].includes(v)) && <g className="triangle triangle-B" transform={`rotate(${-beta.angle} ${origin.x} ${origin.y})`}>
-
-                            <path className="bg" d={`M${origin.x} ${origin.y}L${beta.x} ${origin.y} L${beta.x} ${beta.y} L${origin.x} ${origin.y}`} fill={`${beta.color}`} />
-
-                            <Angle cx={origin.x} cy={origin.y} radius={50} angle={alfa.angle} stroke={beta.color} fill={`${beta.color}60`} />
-
-                            <line x1={origin.x} y1={origin.y} x2={beta.x} y2={beta.y} stroke={beta.color} />
-
-                            <LineWithText x1={origin.x} y1={origin.y} x2={beta.x} y2={origin.y} color={beta.color} text={`cos(${beta.name})`} gapY={-15} />
-
-                            <LineWithText x1={beta.x} y1={beta.y} x2={beta.x} y2={origin.y} color={beta.color} text={`sin(${beta.name})`} gapX={-25} />
-
-                            <Angle cx={beta.x - 15} cy={origin.y} radius={15} rect stroke={'#007e04'} fill={'#007e0437'} />
-
-                            <circle cx={beta.x} cy={origin.y} r={3} fill={'#000'} stroke={'none'} />
-                            <circle cx={beta.x} cy={beta.y} r={3} fill={'#000'} stroke={'none'} />
-                        </g>}
-
-                        {mode.find(v => ['triangle-C', 'all'].includes(v)) && <g className="triangle triangle-C">
-
-                            <path className="bg" d={`M${origin.x} ${origin.y}L${gama.x} ${origin.y} L${gama.x} ${gama.y} L${origin.x} ${origin.y}`} fill={`${gama.color}`} />
-
-                            <Angle cx={origin.x} cy={origin.y} radius={30} angle={gama.angle} stroke={gama.color} fill={`${gama.color}60`} />
-
-                            <line x1={origin.x} y1={origin.y} x2={gama.x} y2={gama.y} stroke={gama.color} />
-
-                            <LineWithText x1={origin.x} y1={origin.y} x2={gama.x} y2={origin.y} color={gama.color} text={`cos(${gama.name})`} gapY={-15} />
-
-                            <LineWithText x1={gama.x} y1={gama.y} x2={gama.x} y2={origin.y} color={gama.color} text={`sin(${gama.name})`} gapX={-40} />
-
-                            <KeyMark x1={origin.x} y1={origin.y} x2={gama.x} y2={origin.y} gap={20} radius={20} text={`Cos(${gama.name})`} color={gama.color} stroke={gama.color} strokeDasharray={4} />
-
-                            <circle cx={gama.x} cy={origin.y} r={3} fill={'#000'} stroke={'none'} />
-                            <circle cx={gama.x} cy={gama.y} r={3} fill={'#000'} stroke={'none'} />
-                        </g>}
+                        {mode.find(v => ['triangle-C', 'all'].includes(v)) && <Triangle className="Triangle-C" origin={origin} angle={gama} angleRadius={30} />}
 
                         {mode.find(v => ['proyections', 'all'].includes(v)) && <g className="proyections-lines">
 
@@ -198,9 +148,11 @@ function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 540, marginLeft = 20
                             <circle cx={pivot.x} cy={gama.y} r={3} fill={'#777'} stroke={'none'} />
                             <circle cx={pivot.x} cy={origin.y} r={3} fill={'#777'} stroke={'none'} />
 
-                            <KeyMark {...{ x1: gama.x, y1: origin.y, x2: pivot.x, y2: origin.y, gap: 20, radius: 20, text: "g", color: '#777', stroke: '#777', strokeDasharray: 4 }} />
+                            <KeyMark {...{x1: origin.x, y1: origin.y, x2: alfa.x, y2: origin.y, gap: 125, radius: 70}} {...{text: `Cos(${alfa.name})`, color: alfa.color, stroke: alfa.color, strokeDasharray: 4}} />
+                            <KeyMark x1={origin.x} y1={origin.y} x2={gama.x} y2={origin.y} gap={20} radius={20} text={`Cos(${gama.name})`} color={gama.color} stroke={gama.color} strokeDasharray={4} />
 
-                            <KeyMark {...{ x1: origin.x, y1: origin.y, x2: pivot.x, y2: origin.y, gap: 70, radius: 40, text: "h", color: '#777', stroke: '#777', strokeDasharray: 4 }} />
+                            <KeyMark className="line-g" {...{ x1: gama.x, y1: origin.y, x2: pivot.x, y2: origin.y, gap: 20, radius: 20, text: "g", color: '#777', stroke: '#777', strokeDasharray: 4 }} />
+                            <KeyMark className="line-h" {...{ x1: origin.x, y1: origin.y, x2: pivot.x, y2: origin.y, gap: 70, radius: 40, text: "h", color: '#777', stroke: '#777777', strokeDasharray: 4 }} />
                         </g>}
 
                         <circle {...{ className: 'origin', cx: origin.x, cy: origin.y, r: 3, fill: '#000', stroke: 'none' }} />
@@ -211,6 +163,30 @@ function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 540, marginLeft = 20
         </svg>
 
     </div>);
+};
+
+
+function Triangle({className, origin, angle, angleRadius = 30, ...others}){
+
+    const {name, color} = angle;
+
+    return <g className={`triangle ${className || ''}`} {...others}>
+
+        <path className="bg" d={`M${origin.x} ${origin.y}L${angle.x} ${origin.y} L${angle.x} ${angle.y} L${origin.x} ${origin.y}`} fill={`${color}`} />
+
+        <Angle cx={origin.x} cy={origin.y} radius={angleRadius} angle={angle.angle} stroke={color} fill={`${color}60`} />
+
+        <line x1={origin.x} y1={origin.y} x2={angle.x} y2={angle.y} stroke={color} />
+
+        <LineWithText x1={origin.x} y1={origin.y} x2={angle.x} y2={origin.y} color={color} text={`cos(${name})`} gapY={-15} />
+
+        <LineWithText x1={angle.x} y1={angle.y} x2={angle.x} y2={origin.y} color={color} text={`sin(${name})`} gapX={-40} />
+
+        <Angle cx={angle.x - 15} cy={origin.y} radius={15} rect stroke={'#007e04'} fill={'#007e0437'} />
+
+        <circle cx={angle.x} cy={origin.y} r={3} fill={'#000'} stroke={'none'} />
+        <circle cx={angle.x} cy={angle.y} r={3} fill={'#000'} stroke={'none'} />
+    </g>
 }
 
 export default SenoCosenoDeUnaSumaAngulos;

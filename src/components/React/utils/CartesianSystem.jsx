@@ -6,7 +6,7 @@ import Grid from "./Grid";
 
 function CartesianSystem({size, cx, cy, domainX, domainY, showAxis = true, showGrid = true, children}, ref) {
 
-    const {scaleX, scaleY, x, y, distance, origin} = useCartesianAxis({ cx, cy, size, domainX, domainY, });
+    const {scaleX, scaleY, x, y, distance, origin, min, max} = useCartesianAxis({ cx, cy, size, domainX, domainY, });
 
     useImperativeHandle(ref, () => {
 
@@ -34,7 +34,7 @@ function CartesianSystem({size, cx, cy, domainX, domainY, showAxis = true, showG
             </>
         }
     
-        { children({x, y, origin, distance}) }
+        { children({x, y, origin, min, max, distance}) }
 
     </>;
 }

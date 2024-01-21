@@ -46,6 +46,30 @@ export function useCartesianAxis({size = 700, cx = 0, cy = 0, domainX = {}, doma
 
     }, [scaleX, scaleY]);
 
+    const min = useMemo(() => {
+        
+        const { min:minX = -10 } = domainX;
+        const { min:minY = -10 } = domainY;
+
+        return {
+            x: scaleX(minX),
+            y: scaleY(minY)
+        }
+
+    }, [scaleX, scaleY, domainX, domainY]);
+
+    const max = useMemo(() => {
+        
+        const { max:maxX = -10 } = domainX;
+        const { max:maxY = -10 } = domainY;
+
+        return {
+            x: scaleX(maxX),
+            y: scaleY(maxY)
+        }
+
+    }, [scaleX, scaleY, domainX, domainY]);
+
 
     //Distance between 2 points
     const distance = useCallback((pointA, pointB = { x: 0, y: 0 }) => {
@@ -64,8 +88,10 @@ export function useCartesianAxis({size = 700, cx = 0, cy = 0, domainX = {}, doma
         scaleX,
         scaleY,
         origin,
+        min,
+        max,
         distance,
         x: (x) => scaleX(x),
-        y: (y) => scaleY(y)
+        y: (y) => scaleY(y),
     }
 }
