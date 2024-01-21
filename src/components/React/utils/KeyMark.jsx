@@ -3,12 +3,18 @@ import {radToDeg} from '@utils/MathUtils.js';
 
 function KeyMark({className, x1, y1, x2, y2, gap = 50, radius = 20, text = '', fontSize = 14, color = '#000', rotate, ...others}) {
 
-    const data = useMemo(() => {
+    const distance = useMemo(() => {
 
         const distance = Math.hypot(Math.abs(x1 - x2), Math.abs(y1 - y2));
 
-        const sin = Math.abs(y1 - y2) / distance;
-        const cos = Math.abs(x1 - x2) / distance;
+        return distance;
+
+    }, [x1, x2, y1, y2]);
+
+    const data = useMemo(() => {
+
+        const sin =  Math.abs(y1 - y2) / distance;
+        const cos =  Math.abs(x1 - x2) / distance;
 
         const pivotA = {
             x: x1 + (gap * sin),
@@ -56,22 +62,28 @@ function KeyMark({className, x1, y1, x2, y2, gap = 50, radius = 20, text = '', f
             },
         }
 
-    }, [x1, y1, x2, y2, gap, fontSize, radius]);
+    }, [x1, y1, x2, y2, gap, fontSize, radius, distance]);
 
 
     return (<g className={`keymark ${className || ''}`}>
 
-        <path d={data.d} fill="none" stroke='#000' {...others} />
+        {
+            distance > 0 && <>
+            
+                <path d={data.d} fill="none" stroke='#000' {...others} />
 
-        <text x={data.textPosition.x} y={data.textPosition.y} 
+                <text x={data.textPosition.x} y={data.textPosition.y} 
+                
+                    textAnchor="middle" dominantBaseline="middle" fill={color} fontSize={fontSize} fontFamily="regular latin"
+
+                    transform={rotate && `rotate(${-data.angle} ${data.textPosition.x} ${data.textPosition.y})`}
+                >
+                    {text}
+                </text>
+            
+            </>
+        }
         
-            textAnchor="middle" dominantBaseline="middle" fill={color} fontSize={fontSize} fontFamily="regular latin"
-
-            transform={rotate && `rotate(${-data.angle} ${data.textPosition.x} ${data.textPosition.y})`}
-        >
-            {text}
-        </text>
-
     </g>);
 }
 

@@ -5,11 +5,8 @@ import Angle from "@React/utils/Angle";
 import { cos, sin } from "@utils/MathUtils";
 import LineWithText from "@React/utils/LineWithText";
 import KeyMark from "@React/utils/KeyMark";
-
-const values = {
-    'alfa': 30,
-    'beta': 30
-};
+import Triangle from "./Triangle";
+import { useZoom } from "@components/React/hooks/useZoom";
 
 const MODES = [
     { value: 'triangle-A', text: 'Triangulo A' },
@@ -19,9 +16,30 @@ const MODES = [
     { value: 'all', text: 'Todos' }
 ];
 
-function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 640, marginLeft = 50, marginBottom = 150}) {
+function SenoCosenoDeUnaSumaAngulos({ width = 640, height = 640, marginLeft = 50, marginBottom = 150}) {
 
     const svgRef = useRef();
+
+    const zoom = useZoom({SVGRef: svgRef, elements: ['.graph']});
+
+    const [alfa, setAlfa] = useState(30);
+    const [beta, setBeta] = useState(30);
+    
+    const handleAlfa = (e) => {
+        const value = Number(e.currentTarget.value);
+
+        if((beta + value) >= 0 && (beta + value) <= 90){
+            setAlfa(value);
+        };
+    }
+
+    const handleBeta = (e) => {
+        const value = Number(e.currentTarget.value);
+
+        if((alfa + value) >= 0 && (alfa + value) <= 90){
+            setBeta(value);
+        };
+    }
 
     const [mode, setMode] = useState([...MODES.map(mode => mode.value)]);
 
@@ -46,8 +64,6 @@ function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 640, marginLeft = 50
 
     const angles = useMemo(() => {
 
-        const { alfa, beta } = values;
-
         return {
             alfa: {
                 name: 'α',
@@ -71,30 +87,43 @@ function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 640, marginLeft = 50
                 color: '#c56900'
             }
         }
-    }, []);
+    }, [alfa, beta]);
 
     return (<div className="Seno-Coseno-de-una-suma-demostracion">
 
-        <ul className="controls">{
-            MODES.map(({ value, text }, i) => {
+        <div className="controls">
+            <ul className="modes">{
+                MODES.map(({ value, text }, i) => {
 
-                const isActive = mode.includes('all') || mode.includes(value);
+                    const isActive = mode.includes('all') || mode.includes(value);
 
-                return <li key={`btn-check-${i}`}>
-                    <input type="checkbox" className="btn-check" id={`btn-check-${i}`} autoComplete="off" value={value} checked={isActive} onChange={handleMode} />
-                    <label className="btn" htmlFor={`btn-check-${i}`}>{text}</label>
-                </li>
-            })
-        }</ul>
+                    return <li key={`btn-check-${i}`}>
+                        <input type="checkbox" className="btn-check" id={`btn-check-${i}`} autoComplete="off" value={value} checked={isActive} onChange={handleMode} />
+                        <label className="btn" htmlFor={`btn-check-${i}`}>{text}</label>
+                    </li>
+                })
+            }</ul>
+            
+            <div className="angles">
+                <div>
+                    <h4 className="value">α: {alfa}º</h4>
+                    <input className="form-range" type="range" min={0} max={90} value={alfa} onChange={handleAlfa} />
+                </div>
+                <div>
+                    <h4 className="value">β: {beta}º</h4>
+                    <input className="form-range" type="range" min={0} max={90} value={beta} onChange={handleBeta} />
+                </div>
+            </div>
+        </div>
 
         <svg width={width} height={height} viewBox={`${0} ${0} ${width} ${height}`} ref={svgRef}>
+            <g className="graph">
+                <CartesianSystem size={2000} cx={marginLeft} cy={height - marginBottom}
 
-            <CartesianSystem size={2000} cx={marginLeft} cy={height - marginBottom}
+                    domainX={{ min: -2, max: 2 }} domainY={{ min: -2, max: 2 }}
 
-                domainX={{ min: -2, max: 2 }} domainY={{ min: -2, max: 2 }}
-
-                showAxis={true} showGrid={false}
-            >
+                    showAxis={true} showGrid={false}
+                >
                 {({ x, y, origin, distance }) => {
 
                     const alfa = {
@@ -120,7 +149,12 @@ function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 640, marginLeft = 50
 
                     return (<>
 
-                        <circle className="circle" cx={origin.x} cy={origin.y} r={distance({ x: 1, y: 0 })} fill={'none'} stroke={'#777'} strokeWidth={2} />
+                        <circle className="circle"  {...{
+                            cx: origin.x,   cy: origin.y,
+                            r: distance({x: 1, y: 0}),
+                            fill: 'none',   stroke: '#777',
+                            strokeWidth: 2,
+                        }}/>
 
                         {mode.find(v => ['triangle-A', 'all'].includes(v)) && <Triangle className="Triangle-A" origin={origin} angle={alfa} angleRadius={50} /> }
 
@@ -130,63 +164,118 @@ function SenoCosenoDeUnaSumaAngulos({ width = 960, height = 640, marginLeft = 50
 
                         {mode.find(v => ['proyections', 'all'].includes(v)) && <g className="proyections-lines">
 
-                            <LineWithText x1={pivot.x} y1={pivot.y} x2={pivot.x} y2={origin.y} color={'#777'} text="m" gapX={-15} strokeDasharray={4} />
+                            <LineWithText className="line-m" {...{
+                                x1: pivot.x,    y1: pivot.y, 
+                                x2: pivot.x,    y2: origin.y, 
+                                color: '#777', 
+                                text: 'm', 
+                                gapX: -15, 
+                                strokeDasharray: 4,
+                            }}/>
 
-                            <LineWithText x1={pivot.x} y1={pivot.y} x2={pivot.x} y2={gama.y} color={'#777'} text="p" gapX={-15} strokeDasharray={4} />
+                            <LineWithText className="line-p" {...{
+                                x1: pivot.x,    y1: pivot.y, 
+                                x2: pivot.x,    y2: gama.y, 
+                                color: '#777', 
+                                text: 'p' ,
+                                gapX: -15, 
+                                strokeDasharray: 4,
+                            }}/>
 
-                            <line x1={pivot.x} y1={gama.y} x2={gama.x} y2={gama.y} stroke={'#777'} strokeDasharray={4} />
+                            <line x1={pivot.x} y1={gama.y} x2={gama.x} y2={gama.y} stroke={'#777'} strokeDasharray={4} {...{
 
-                            <Angle cx={pivot.x - 15} cy={origin.y} radius={15} rect stroke={'#007e04'} fill={'#007e0437'} />
+                            }}/>
 
-                            <Angle cx={pivot.x - 15} cy={gama.y + 15} radius={15} rect stroke={'#007e04'} fill={'#007e0437'} />
+                            <Angle  {...{
+                                cx: pivot.x - 15,
+                                cy: origin.y,
+                                radius: 15,
+                                rect: true,
+                                stroke: '#007e04',
+                                fill: '#007e0437',
+                            }}/>
 
-                            <Angle cx={pivot.x} cy={pivot.y} radius={30} angle={90 - alfa.angle} rotate={180 - alfa.angle} stroke={'#6d6d6d'} fill={'#6d6d6d37'} />
+                            <Angle  {...{
+                                cx: pivot.x - 15,   cy: gama.y + 15,
+                                radius: 15, 
+                                rect: true, 
+                                stroke: '#007e04',  fill: '#007e0437',
+                            }}/>
 
-                            <Angle cx={pivot.x} cy={pivot.y} radius={30} angle={alfa.angle} rotate={-90} stroke={alfa.color} fill={`${alfa.color}40`} />
+                            <Angle  {...{
+                                cx: pivot.x,    cy: pivot.y, 
+                                radius: 30, 
+                                angle: 90 - alfa.angle, 
+                                rotate: 180 - alfa.angle, 
+                                stroke: '#6d6d6d',  fill: '#6d6d6d37',
+                            }} />
+
+                            <Angle  {...{
+                                cx: pivot.x,    cy: pivot.y,
+                                radius: 30,
+                                angle: alfa.angle,
+                                rotate: -90,
+                                stroke: alfa.color, fill: `${alfa.color}40`,
+                            }}/>
 
                             <circle cx={pivot.x} cy={pivot.y} r={3} fill={'#777'} stroke={'none'} />
                             <circle cx={pivot.x} cy={gama.y} r={3} fill={'#777'} stroke={'none'} />
                             <circle cx={pivot.x} cy={origin.y} r={3} fill={'#777'} stroke={'none'} />
 
-                            <KeyMark {...{x1: origin.x, y1: origin.y, x2: alfa.x, y2: origin.y, gap: 125, radius: 70}} {...{text: `Cos(${alfa.name})`, color: alfa.color, stroke: alfa.color, strokeDasharray: 4}} />
-                            <KeyMark x1={origin.x} y1={origin.y} x2={gama.x} y2={origin.y} gap={20} radius={20} text={`Cos(${gama.name})`} color={gama.color} stroke={gama.color} strokeDasharray={4} />
+                            <KeyMark {...{
+                                x1: origin.x,   y1: origin.y, 
+                                x2: alfa.x,     y2: origin.y, 
+                                gap: 125, 
+                                radius: 70, 
+                                text: `Cos(${alfa.name})`,
+                                color: alfa.color,
+                                stroke: alfa.color,
+                                strokeDasharray: 4
+                            }} />
 
-                            <KeyMark className="line-g" {...{ x1: gama.x, y1: origin.y, x2: pivot.x, y2: origin.y, gap: 20, radius: 20, text: "g", color: '#777', stroke: '#777', strokeDasharray: 4 }} />
-                            <KeyMark className="line-h" {...{ x1: origin.x, y1: origin.y, x2: pivot.x, y2: origin.y, gap: 70, radius: 40, text: "h", color: '#777', stroke: '#777777', strokeDasharray: 4 }} />
+                            <KeyMark  {...{
+                                x1: origin.x,   y1: origin.y,
+                                x2: gama.x,     y2: origin.y,
+                                gap: 20,
+                                radius: 20,
+                                text: `Cos(${gama.name})`,
+                                color: gama.color,  stroke: gama.color,
+                                strokeDasharray: 4,
+                            }}/>
+
+                            <KeyMark className="line-g" {...{
+                                x1: gama.x,     y1: origin.y, 
+                                x2: pivot.x,    y2: origin.y, 
+                                gap: 20, 
+                                radius: 20, 
+                                text: "g", 
+                                color: '#777',  stroke: '#777', 
+                                strokeDasharray: 4
+                            }} />
+
+                            <KeyMark className="line-h" {...{
+                                x1: origin.x,   y1: origin.y, 
+                                x2: pivot.x,    y2: origin.y, 
+                                gap: 70, 
+                                radius: 40, 
+                                text: "h", 
+                                color: '#777', stroke: '#777777', 
+                                strokeDasharray: 4
+                            }} />
                         </g>}
 
-                        <circle {...{ className: 'origin', cx: origin.x, cy: origin.y, r: 3, fill: '#000', stroke: 'none' }} />
+                        <circle className="origin" {...{
+                            cx: origin.x,   cy: origin.y, 
+                            r: 3, 
+                            fill: '#000', stroke: 'none' 
+                        }} />
 
                     </>)
                 }}
-            </CartesianSystem>
+                </CartesianSystem>
+            </g>
         </svg>
-
     </div>);
 };
-
-
-function Triangle({className, origin, angle, angleRadius = 30, ...others}){
-
-    const {name, color} = angle;
-
-    return <g className={`triangle ${className || ''}`} {...others}>
-
-        <path className="bg" d={`M${origin.x} ${origin.y}L${angle.x} ${origin.y} L${angle.x} ${angle.y} L${origin.x} ${origin.y}`} fill={`${color}`} />
-
-        <Angle cx={origin.x} cy={origin.y} radius={angleRadius} angle={angle.angle} stroke={color} fill={`${color}60`} />
-
-        <line x1={origin.x} y1={origin.y} x2={angle.x} y2={angle.y} stroke={color} />
-
-        <LineWithText x1={origin.x} y1={origin.y} x2={angle.x} y2={origin.y} color={color} text={`cos(${name})`} gapY={-15} />
-
-        <LineWithText x1={angle.x} y1={angle.y} x2={angle.x} y2={origin.y} color={color} text={`sin(${name})`} gapX={-40} />
-
-        <Angle cx={angle.x - 15} cy={origin.y} radius={15} rect stroke={'#007e04'} fill={'#007e0437'} />
-
-        <circle cx={angle.x} cy={origin.y} r={3} fill={'#000'} stroke={'none'} />
-        <circle cx={angle.x} cy={angle.y} r={3} fill={'#000'} stroke={'none'} />
-    </g>
-}
 
 export default SenoCosenoDeUnaSumaAngulos;
