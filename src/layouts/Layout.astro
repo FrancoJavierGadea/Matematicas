@@ -33,9 +33,17 @@ const { title } = Astro.props;
 
 <style is:global>
 	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap');
+
+	:root {
+		--font-math: "Noto Sans Math", sans-serif;
+	}
 	
 	main {
 		padding: 20px 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 50px;
 	}
 
 </style>

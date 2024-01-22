@@ -1,50 +1,166 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import {SIN, COS, TAN, COT, SEC, CSC} from "@docs/Trigonometria/Razones trigonometricas/valores.js";
+import {parseMarkdown, parseLatex} from "@utils/Markdown.js";
+import Tabs from "@layouts/Tabs.astro";
+
+const RAZONES = [SIN, COS, TAN, COT, SEC, CSC]
 ---
 
 <section class="Razones-trigonometricas">
 
-    <div class="Razones-trigonometricas-values">
-        <table>
+    <Tabs>
+        <div class="Razones-trigonometricas-values" slot="1º Cuadrante">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Razon trigonometrica</th>
+                        { [0, 30, 45, 60, 90].map(angle => <th class="angle">{angle}º</th>) }
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        RAZONES.map((razon) => {
+        
+                            return <tr>
+                                <td>
+                                    <div class="razon"> 
+                                        <span class="name">{razon.name}</span>
+                                        <span class="interval">{razon.interval}</span>    
+                                    </div>
+                                </td>    
+                                {
+                                    [0, 30, 45, 60, 90].map((angle) => {
     
-            <thead>
-                <tr>
-                    <th>Razon trigonometrica</th>
-                    <th class="angle">0º</th>
-                    <th class="angle">30º</th>
-                    <th class="angle">45º</th>
-                    <th class="angle">60º</th>
-                    <th class="angle">90º</th>
-                </tr>
-            </thead>
+                                        const {latex} = razon.values[angle];
     
-            <tbody>
-                {
-                    [SIN, COS, TAN, COT, SEC, CSC].map((razon) => {
+                                        return <td> 
+                                            <div class="value latex" set:html={parseLatex(latex)}/>
+                                        </td>
+                                    })
+                                }  
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="Razones-trigonometricas-values" slot="2º Cuadrante">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Razon trigonometrica</th>
+                        { [90, 120, 135, 150, 180].map(angle => <th class="angle">{angle}º</th>) }
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        RAZONES.map((razon) => {
+        
+                            return <tr>
+                                <td>
+                                    <div class="razon"> 
+                                        <span class="name">{razon.name}</span>
+                                        <span class="interval">{razon.interval}</span>    
+                                    </div>
+                                </td>    
+                                {
+                                    [90, 120, 135, 150, 180].map((angle) => {
     
-                        return <tr>
-                            <td>
-                                <div class="razon"> 
-                                    <span class="name">{razon.name}</span>
-                                    <span class="range">{razon.range}</span>    
-                                </div>
-                            </td>    
-                            {
-                                Object.values(razon.values)
-                                    .map(({svg}) => <td set:html={svg} />)
-                            }  
-                        </tr>
-                    })
-                }
-            </tbody>
+                                        const {latex} = razon.values[angle];
     
-        </table>
-    </div>
+                                        return <td> 
+                                            <div class="value latex" set:html={parseLatex(latex)}/>
+                                        </td>
+                                    })
+                                }  
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="Razones-trigonometricas-values" slot="3º Cuadrante">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Razon trigonometrica</th>
+                        { [180, 210, 225, 240, 270].map(angle => <th class="angle">{angle}º</th>) }
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        RAZONES.map((razon) => {
+        
+                            return <tr>
+                                <td>
+                                    <div class="razon"> 
+                                        <span class="name">{razon.name}</span>
+                                        <span class="interval">{razon.interval}</span>    
+                                    </div>
+                                </td>    
+                                {
+                                    [180, 210, 225, 240, 270].map((angle) => {
+    
+                                        const {latex} = razon.values[angle];
+    
+                                        return <td> 
+                                            <div class="value latex" set:html={parseLatex(latex)}/>
+                                        </td>
+                                    })
+                                }  
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="Razones-trigonometricas-values" slot="4º Cuadrante">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Razon trigonometrica</th>
+                        { [270, 300, 315, 330, 360].map(angle => <th class="angle">{angle}º</th>) }
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        RAZONES.map((razon) => {
+        
+                            return <tr>
+                                <td>
+                                    <div class="razon"> 
+                                        <span class="name">{razon.name}</span>
+                                        <span class="interval">{razon.interval}</span>    
+                                    </div>
+                                </td>    
+                                {
+                                    [270, 300, 315, 330, 360].map((angle) => {
+    
+                                        const {latex, value} = razon.values[angle];
+    
+                                        return <td> 
+                                            <div class="value latex" set:html={parseLatex(latex)} title={value} />
+                                        </td>
+                                    })
+                                }  
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+        </div>
+    </Tabs>
 
 </section>
 
 <style>
+    .Razones-trigonometricas {
+        max-width: 800px;
+    }
     .Razones-trigonometricas-values {
         width: fit-content;
         margin: auto;
@@ -62,8 +178,12 @@ import {SIN, COS, TAN, COT, SEC, CSC} from "@docs/Trigonometria/Razones trigonom
             flex-direction: column;
             gap: 10px;
         }
-        table td .razon .range {
-            font-size: 20px;
+        table td .razon .name {
+            font-weight: 600;
+            font-style: italic;
+        }
+        table td .razon .interval {
+            font-size: 18px;
         }
 
         table td,
@@ -75,6 +195,8 @@ import {SIN, COS, TAN, COT, SEC, CSC} from "@docs/Trigonometria/Razones trigonom
         }
         table thead tr th {
             border-top: none;
+            background-color: rgb(231, 231, 231);
+            padding: 10px;
         }
         table tbody tr:last-child td {
             border-bottom: none;
@@ -94,12 +216,17 @@ import {SIN, COS, TAN, COT, SEC, CSC} from "@docs/Trigonometria/Razones trigonom
             font-weight: 200;
             font-size: 22px;
         }
-        table td svg {
-            transform: scale(0.7);
+
+        table td .value.latex {
+            font-size: 24px;
+            font-family: var(--font-math);
+
+            p {
+                margin: 0;
+            }
+        }   
+        table td .value.svg svg {
+            transform: scale(0.6);
         }
     }
-
-
-    
-
 </style>
