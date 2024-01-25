@@ -4,11 +4,10 @@ const inFolder = 'svg'
 const outFolder = 'optimized-svg';
 
 const paths = [
-    './src/docs/Trigonometria/Razones trigonometricas',
     './src/docs/Trigonometria/Identidades trigonometricas'
 ];
 
-const i = 1;
+const i = 0;
 
 const script = `svgo -f "${paths[i]}/${inFolder}" -o "${paths[i]}/${outFolder}"`
 

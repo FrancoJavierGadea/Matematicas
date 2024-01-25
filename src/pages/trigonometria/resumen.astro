@@ -2,6 +2,9 @@
 import * as EQ from "@docs/Trigonometria/Identidades trigonometricas/svg.js";
 import Equation from "@components/Equation.astro";
 import Layout from "@layouts/Layout.astro";
+import EquationsVisualizer from "@components/EquationsVisualizer.astro";
+
+console.log(Object.keys(EQ));
 
 const colors = {'alpha': '#0035ff', 'beta': '#c80000'}
 ---
@@ -9,76 +12,213 @@ const colors = {'alpha': '#0035ff', 'beta': '#c80000'}
 <Layout title="Resumen trigonometria">
 
     <div class="Resumen">
+
+        <section class="Razones-pitagoricas horizontal" data-cols="3">
+
+            <EquationsVisualizer svg scale={0.8} title={EQ.PITAGORICA_SENO.name} equations={[EQ.PITAGORICA_SENO.svg]} colors={colors} />
+
+            <EquationsVisualizer svg scale={0.8} title={EQ.PITAGORICA_COSENO.name} equations={[EQ.PITAGORICA_COSENO.svg]} colors={colors} />
+
+            <EquationsVisualizer svg scale={0.8} title={EQ.PITAGORICA_TANGENTE.name} equations={[EQ.PITAGORICA_TANGENTE.svg]} colors={colors} />
+        </section>
+
+        <section class="Razones-trigonometricas" data-cols="3">
     
-        {
-            Object.values(EQ).map(equation => {
-
-                return <section class="Equations">
+            <EquationsVisualizer svg title={EQ.TANGENTE.name} colors={colors}
+    
+                equations={[ EQ.TANGENTE.svg, ...EQ.TANGENTE.variantes.map(({svg}) => svg) ]} 
+            />
+    
+            <EquationsVisualizer svg title={EQ.SECANTE.name} colors={colors}
+    
+                equations={[ EQ.SECANTE.svg, ...EQ.SECANTE.variantes.map(({svg}) => svg) ]} 
+            />
+    
+            <EquationsVisualizer svg title={EQ.COSECANTE.name} colors={colors}
+    
+                equations={[ EQ.COSECANTE.svg, ...EQ.COSECANTE.variantes.map(({svg}) => svg) ]} 
+            />
+    
+            <EquationsVisualizer svg title={EQ.COTANGENTE.name} colors={colors}
+    
+                equations={[ EQ.COTANGENTE.svg, ...EQ.COTANGENTE.variantes.map(({svg}) => svg) ]} 
+            />
+    
+        </section>
+        
+        <section class="Identidad-fundamental" data-cols="2">
+    
+            <h2 class="title">Identidad trigonometrica fundamental</h2>
+    
+            <EquationsVisualizer svg colors={colors}
             
-                    <h3 class="Equations-title">{equation.name}</h3>
-            
-                    <div class="Main-Equation">
-                        
-                        <Equation svg={equation.svg} name={EQ.FUNDAMENTAL.name} colors={colors}/>
-                    </div>
+                equations={[EQ.FUNDAMENTAL.svg, EQ.FUNDAMENTAL.variantes.map(({svg}) => svg)]}
+            />
+    
+        </section>
 
-                    {equation.variantes && <div class="Equations-variations">
-                        {
-                            equation.variantes.map(eq => <Equation svg={eq.svg} colors={colors} scale={0.7} /> )
-                        }
-                    </div>}
-            
-                </section>
-            })
-        }
+        <section class="Seno-de-una-suma-y-resta vertical" data-cols="2">
+    
+            <EquationsVisualizer svg scale={0.85} title={EQ.SENO_DE_UNA_SUMA.name} equations={[EQ.SENO_DE_UNA_SUMA.svg]} colors={colors} />
+    
+            <EquationsVisualizer svg scale={0.85} title={EQ.SENO_DE_UNA_RESTA.name} equations={[EQ.SENO_DE_UNA_RESTA.svg]} colors={colors} />
+    
+        </section>
 
+        <section class="Angulo-doble vertical" data-cols="1" data-rows="2">
+            
+            <h2 class="title">Angulo Doble</h2>
+    
+            <EquationsVisualizer svg scale={0.7} title={EQ.SENO_2_ALPHA.name} equations={[EQ.SENO_2_ALPHA.svg]} colors={colors} />
+    
+            <EquationsVisualizer svg scale={0.7} title={EQ.COSENO_2_ALPHA.name} equations={[EQ.COSENO_2_ALPHA.svg]} colors={colors} />
+    
+            <EquationsVisualizer svg scale={0.7} title={EQ.TANGENTE_2_ALPHA.name} equations={[EQ.TANGENTE_2_ALPHA.svg]} colors={colors} />
+        </section>
+
+        <section class="Coseno-de-una-suma-y-resta vertical" data-cols="2">
+
+            <EquationsVisualizer svg scale={0.9} title={EQ.COSENO_DE_UNA_SUMA.name} equations={[EQ.COSENO_DE_UNA_SUMA.svg]} colors={colors} />
+    
+            <EquationsVisualizer svg scale={0.9} title={EQ.COSENO_DE_UNA_RESTA.name} equations={[EQ.COSENO_DE_UNA_RESTA.svg]} colors={colors} />
+    
+        </section>
+
+        <section class="Tangente-de-una-suma-y-resta vertical" data-cols="2">
+
+            <EquationsVisualizer svg scale={1.1} title={EQ.TANGENTE_DE_UNA_SUMA.name} equations={[EQ.TANGENTE_DE_UNA_SUMA.svg]} colors={colors} />
+    
+            <EquationsVisualizer svg scale={1.1} title={EQ.TANGENTE_DE_UNA_RESTA.name} equations={[EQ.TANGENTE_DE_UNA_RESTA.svg]} colors={colors} />
+    
+        </section>
+
+        <section class="Angulo-medio vertical" data-cols="1" data-rows="2">
+            
+            <h2 class="title">Angulo Medio</h2>
+    
+            <EquationsVisualizer svg scale={0.7} title={EQ.SENO_ALPHA_DIVIDIDO_2.name} equations={[EQ.SENO_ALPHA_DIVIDIDO_2.svg]} colors={colors} />
+    
+            <EquationsVisualizer svg scale={0.7} title={EQ.COSENO_ALPHA_DIVIDIDO_2.name} equations={[EQ.COSENO_ALPHA_DIVIDIDO_2.svg]} colors={colors} />
+    
+            <EquationsVisualizer svg scale={0.7} title={EQ.TANGENTE_ALPHA_DIVIDIDO_2.name} equations={[EQ.TANGENTE_ALPHA_DIVIDIDO_2.svg]} colors={colors} />
+
+        </section>
+
+        <section class="Suma-de-senos-cosenos vertical" data-cols="2">
+
+            <EquationsVisualizer svg scale={1.2} title={EQ.SENO_ALPHA_MAS_SENO_BETA.name} equations={[EQ.SENO_ALPHA_MAS_SENO_BETA.svg]} colors={colors} />
+    
+            <EquationsVisualizer svg scale={1.2} title={EQ.COSENO_ALPHA_MAS_COSENO_BETA.name} equations={[EQ.COSENO_ALPHA_MAS_COSENO_BETA.svg]} colors={colors} />
+    
+        </section>
+
+        <section class="Resta-de-senos-cosenos vertical" data-cols="2">
+
+            <EquationsVisualizer svg scale={1.2} title={EQ.SENO_ALPHA_MENOS_SENO_BETA.name} equations={[EQ.SENO_ALPHA_MENOS_SENO_BETA.svg]} colors={colors} />
+    
+            <EquationsVisualizer svg scale={1.2} title={EQ.COSENO_ALPHA_MENOS_COSENO_BETA.name} equations={[EQ.COSENO_ALPHA_MENOS_COSENO_BETA.svg]} colors={colors} />
+    
+        </section>
+
+        <section class="Potencia-seno-coseno vertical">
+
+            <EquationsVisualizer svg scale={1.2} title={EQ.SENO_ALPHA_AL_CUADRADO.name} equations={[EQ.SENO_ALPHA_AL_CUADRADO.svg]} colors={colors} />
+
+            <EquationsVisualizer svg scale={1.2} title={EQ.COSENO_ALPHA_AL_CUADRADO.name} equations={[EQ.COSENO_ALPHA_AL_CUADRADO.svg]} colors={colors} />
+
+        </section>
+
+        <section class="Producto-seno-coseno vertical" data-cols="2" data-rows="2">
+
+            <EquationsVisualizer svg scale={1.2} title={EQ.SENO_ALPHA_POR_SENO_BETA.name} equations={[EQ.SENO_ALPHA_POR_SENO_BETA.svg]} colors={colors} />
+
+            <EquationsVisualizer svg scale={1.2} title={EQ.COSENO_ALPHA_POR_COSENO_BETA.name} equations={[EQ.COSENO_ALPHA_POR_COSENO_BETA.svg]} colors={colors} />
+
+            <EquationsVisualizer svg scale={1.2} title={EQ.SENO_ALPHA_POR_SENO_BETA.name} equations={[EQ.SENO_ALPHA_POR_SENO_BETA.svg]} colors={colors} />
+        </section>
+
+        <section class="Seno-coseno-de-pi-mas-menos-alpha vertical">
+
+            <EquationsVisualizer svg scale={0.8} title={EQ.SENO_PI_MAS_ALPHA.name} equations={[EQ.SENO_PI_MAS_ALPHA.svg]} colors={colors} />
+
+            <EquationsVisualizer svg scale={0.8} title={EQ.SENO_PI_MENOS_ALPHA.name} equations={[EQ.SENO_PI_MENOS_ALPHA.svg]} colors={colors} />
+        
+            <EquationsVisualizer svg scale={0.8} title={EQ.COSENO_PI_MAS_MENOS_ALPHA.name} equations={[EQ.COSENO_PI_MAS_MENOS_ALPHA.svg]} colors={colors} />
+        </section>
+
+        <section class="Seno-coseno-de-menos-alpha vertical">
+
+            <h2 class="title">Angulos opuestos</h2>
+
+            <EquationsVisualizer svg scale={0.8} title={EQ.SENO_DE_MENOS_ALPHA.name} equations={[EQ.SENO_DE_MENOS_ALPHA.svg]} colors={colors} />
+
+            <EquationsVisualizer svg scale={0.8} title={EQ.COSENO_DE_MENOS_ALPHA.name} equations={[EQ.COSENO_DE_MENOS_ALPHA.svg]} colors={colors} />
+        </section>
     </div>
 
 </Layout>
 
 <style>
     .Resumen {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+        width: 100%;
+        display: grid;
+        min-height: 100vh;
+        gap: 50px 20px;
+        grid-template-columns: repeat(3, minmax(200px, 1fr));
+
+        align-items: start;
+
+        & > *[data-cols="1"] {
+            grid-column: auto / span 1;
+        }
+        & > *[data-cols="2"] {
+            grid-column: auto / span 2;
+        }
+        & > *[data-cols="3"] {
+            grid-column: auto / span 3;
+        }
+
+        & > *[data-rows="1"] {
+            grid-row: auto / span 1;
+        }
+        & > *[data-rows="2"] {
+            grid-row: auto / span 2;
+        }
+        & > *[data-rows="3"] {
+            grid-row: auto / span 3;
+        }
     }
-    .Equations {
-        flex-grow: 1;
-        padding: 30px 0px;
+
+    section {
+        width: 100%;
+        background-color: rgb(217, 255, 215);
+        padding: 20px;
+        border-radius: 20px;
+
+        .title {
+            text-align: center;
+            padding: 10px;
+        }
+    }
+
+
+    .Razones-trigonometricas {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(2, minmax(400px, 1fr));
+    }
+
+    .vertical {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        align-items: center;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px 0px #00000069;
-    }
-    .Equations-title {
-        text-align: center;
-        font-size: 30px;
-        font-weight: 200;
-        padding-bottom: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-        border-bottom: 2px solid rgb(57, 0, 172);
     }
 
-    .Main-Equation {
-        width: 100%;
+    .horizontal {
         display: flex;
-        justify-content: center;
-        background-color: lightgray;
-        padding: 20px;
-    }
-
-    .Equations-variations {
-        padding: 20px;  
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
         gap: 20px;
-        align-items: center;
-        justify-content: center;
-
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 
     

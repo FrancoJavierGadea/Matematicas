@@ -106,23 +106,26 @@ export const COTANGENTE = {
 }
 
 
-export const PITAGORICAS = {
+export const PITAGORICA_SENO = {
 
-    name: 'Identidades Pitagoricas',
+    name: 'Seno',
 
     svg: await load('pitagorica-1.svg', 'raw'),
     url: await load('pitagorica-1.svg', 'url'),
+}
 
-    variantes: [
-        {
-            svg: await load('pitagorica-2.svg', 'raw'),
-            url: await load('pitagorica-2.svg', 'url'),
-        },
-        {
-            svg: await load('pitagorica-3.svg', 'raw'),
-            url: await load('pitagorica-3.svg', 'url'),
-        }
-    ]
+export const PITAGORICA_COSENO = {
+    name: 'Coseno',
+
+    svg: await load('pitagorica-2.svg', 'raw'),
+    url: await load('pitagorica-2.svg', 'url'),
+}
+
+export const PITAGORICA_TANGENTE = {
+    name: 'Tangente',
+
+    svg: await load('pitagorica-3.svg', 'raw'),
+    url: await load('pitagorica-3.svg', 'url'),
 }
 
 export const COSENO_DE_UNA_SUMA = {
@@ -177,7 +180,7 @@ export const TANGENTE_DE_UNA_RESTA = {
 
 export const SENO_DE_MENOS_ALPHA = {
 
-    name: 'Seno de menos α',
+    name: 'Seno de menos 𝛼',
 
     svg: await load('seno-de-menos-alfa.svg', 'raw'),
     url: await load('seno-de-menos-alfa.svg', 'url'),
@@ -185,7 +188,7 @@ export const SENO_DE_MENOS_ALPHA = {
 
 export const COSENO_DE_MENOS_ALPHA = {
 
-    name: 'Coseno de menos α',
+    name: 'Coseno de menos 𝛼',
 
     svg: await load('coseno-de-menos-alfa.svg', 'raw'),
     url: await load('coseno-de-menos-alfa.svg', 'url'),
@@ -193,7 +196,7 @@ export const COSENO_DE_MENOS_ALPHA = {
 
 export const SENO_PI_MAS_ALPHA = {
 
-    name: 'Seno de π mas α',
+    name: 'Seno de π mas 𝛼',
 
     svg: await load('seno-pi-mas-alfa.svg', 'raw'),
     url: await load('seno-pi-mas-alfa.svg', 'url'),
@@ -208,7 +211,7 @@ export const SENO_PI_MAS_ALPHA = {
 
 export const SENO_PI_MENOS_ALPHA = {
 
-    name: 'Seno de π menos α',
+    name: 'Seno de π menos 𝛼',
 
     svg: await load('seno-pi-menos-alfa.svg', 'raw'),
     url: await load('seno-pi-menos-alfa.svg', 'url'),
@@ -223,7 +226,7 @@ export const SENO_PI_MENOS_ALPHA = {
 
 export const COSENO_PI_MAS_MENOS_ALPHA = {
 
-    name: 'Seno de π mas o menos α',
+    name: 'Seno de π mas o menos 𝛼',
 
     svg: await load('coseno-pi-mas-menos-alfa.svg', 'raw'),
     url: await load('coseno-pi-mas-menos-alfa.svg', 'url'),
@@ -238,70 +241,70 @@ export const COSENO_PI_MAS_MENOS_ALPHA = {
 
 
 export const SENO_2_ALPHA = {
-    name: 'Seno de 2 por α',
+    name: 'Seno de 2 por 𝛼',
 
     svg: await load('seno-de-2-alfa.svg', 'raw'),
     url: await load('seno-de-2-alfa.svg', 'url'),
 }
 
 export const COSENO_2_ALPHA = {
-    name: 'Coseno de 2 por α',
+    name: 'Coseno de 2 por 𝛼',
 
     svg: await load('coseno-de-2-alfa.svg', 'raw'),
     url: await load('coseno-de-2-alfa.svg', 'url'),
 }
 
 export const TANGENTE_2_ALPHA = {
-    name: 'Tangente de 2 por α',
+    name: 'Tangente de 2 por 𝛼',
 
     svg: await load('tangente-de-2-alfa.svg', 'raw'),
     url: await load('tangente-de-2-alfa.svg', 'url'),
 }
 
 export const SENO_ALPHA_DIVIDIDO_2 = {
-    name: 'Seno de α dividido 2',
+    name: 'Seno de 𝛼 dividido 2',
 
     svg: await load('seno-de-alfa-dividido-2.svg', 'raw'),
     url: await load('seno-de-alfa-dividido-2.svg', 'url'),
 }
 
 export const COSENO_ALPHA_DIVIDIDO_2 = {
-    name: 'Coseno de α dividido 2',
+    name: 'Coseno de 𝛼 dividido 2',
 
     svg: await load('coseno-de-alfa-dividido-2.svg', 'raw'),
     url: await load('coseno-de-alfa-dividido-2.svg', 'url'),
 }
 
 export const TANGENTE_ALPHA_DIVIDIDO_2 = {
-    name: 'Tangente de α dividido 2',
+    name: 'Tangente de 𝛼 dividido 2',
 
     svg: await load('tangente-de-alfa-dividido-2.svg', 'raw'),
     url: await load('tangente-de-alfa-dividido-2.svg', 'url'),
 }
 
 export const SENO_ALPHA_MAS_SENO_BETA = {
-    name: 'Seno de α mas Seno de β',
+    name: 'Seno de 𝛼 mas Seno de 𝛽',
 
     svg: await load('seno-de-alfa-mas-seno-de-beta.svg', 'raw'),
     url: await load('seno-de-alfa-mas-seno-de-beta.svg', 'url'),
 }
 
 export const SENO_ALPHA_MENOS_SENO_BETA = {
-    name: 'Seno de α menos Seno de β',
+    name: 'Seno de 𝛼 menos Seno de 𝛽',
 
     svg: await load('seno-de-alfa-menos-seno-de-beta.svg', 'raw'),
     url: await load('seno-de-alfa-menos-seno-de-beta.svg', 'url'),
 }
 
 export const COSENO_ALPHA_MAS_COSENO_BETA = {
-    name: 'Seno de α mas Seno de β',
+    name: 'Coseno de 𝛼 mas Coseno de 𝛽',
 
-    svg: await load('seno-de-alfa-mas-seno-de-beta.svg', 'raw'),
-    url: await load('seno-de-alfa-mas-seno-de-beta.svg', 'url'),
+    svg: await load('coseno-de-alfa-mas-coseno-de-beta.svg', 'raw'),
+    url: await load('coseno-de-alfa-mas-coseno-de-beta.svg', 'url'),
 }
 
 export const COSENO_ALPHA_MENOS_COSENO_BETA = {
-    name: 'Coseno de α menos Coseno de β',
+    name: 'Coseno de 𝛼 menos Coseno de 𝛽',
 
     svg: await load('coseno-de-alfa-menos-coseno-de-beta.svg', 'raw'),
     url: await load('coseno-de-alfa-menos-coseno-de-beta.svg', 'url'),
@@ -309,21 +312,21 @@ export const COSENO_ALPHA_MENOS_COSENO_BETA = {
 
 
 export const SENO_ALPHA_POR_SENO_BETA = {
-    name: 'Seno de α por Seno de β',
+    name: 'Seno de 𝛼 por Seno de 𝛽',
 
     svg: await load('seno-de-alfa-por-seno-de-beta.svg', 'raw'),
     url: await load('seno-de-alfa-por-seno-de-beta.svg', 'url'),
 }
 
 export const COSENO_ALPHA_POR_COSENO_BETA = {
-    name: 'Coseno de α por Coseno de β',
+    name: 'Coseno de 𝛼 por Coseno de 𝛽',
 
     svg: await load('coseno-de-alfa-por-coseno-de-beta.svg', 'raw'),
     url: await load('coseno-de-alfa-por-coseno-de-beta.svg', 'url'),
 }
 
 export const SENO_ALPHA_POR_COSENO_BETA = {
-    name: 'Seno de α por Coseno de β',
+    name: 'Seno de 𝛼 por Coseno de 𝛽',
 
     svg: await load('seno-de-alfa-por-coseno-de-beta.svg', 'raw'),
     url: await load('seno-de-alfa-por-coseno-de-beta.svg', 'url'),
@@ -331,14 +334,14 @@ export const SENO_ALPHA_POR_COSENO_BETA = {
 
 
 export const SENO_ALPHA_AL_CUADRADO = {
-    name: 'Seno de α al cuadrado',
+    name: 'Seno de 𝛼 al cuadrado',
 
     svg: await load('seno-de-alfa-al-cuadrado.svg', 'raw'),
     url: await load('seno-de-alfa-al-cuadrado.svg', 'url'),
 }
 
 export const COSENO_ALPHA_AL_CUADRADO = {
-    name: 'Coseno de α al cuadrado',
+    name: 'Coseno de 𝛼 al cuadrado',
 
     svg: await load('coseno-de-alfa-al-cuadrado.svg', 'raw'),
     url: await load('coseno-de-alfa-al-cuadrado.svg', 'url'),
