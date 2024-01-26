@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Geogebra</title>
+
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="ggb-element"></div> 
+
+        <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+
+        <script>
+
+            window.createGeogebra = (params, onload = () => {}) => {
+
+                console.log('creating geogebra app');
+
+                const onloadApplet = (e) => {
+
+                    console.log('geogebra creating');
+
+                    onload(e);
+                }
+            
+                const applet = new GGBApplet({
+
+                    appletOnLoad: onloadApplet, 
+
+                    ...params,
+
+                }, true);
+    
+            
+                applet.inject('ggb-element');
+            }
+
+
+
+        </script>
+    </body>
+</html>

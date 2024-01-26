@@ -1,0 +1,79 @@
+---
+    const {
+
+        links = []
+
+    } = Astro.props;
+---
+
+
+<nav class="navbar navbar-expand-lg">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="/">
+            <slot name="brand" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="Navigation">
+            <ul class="navbar-nav ms-auto">
+                {
+                    links.map(link => {
+
+                        const {name, url, children, active} = link;
+
+                        if(!children) return (
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" class:list={{'active': active}} href={url || '#'}>{name}</a>
+                            </li>
+                        );
+
+                        if(children && Array.isArray(children)) return (
+
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" href={url || '#'} role="button" data-bs-toggle="dropdown">{name}</a>
+                                
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    { url && 
+                                        <li>
+                                            <a class="dropdown-item" href={url}>Inicio</a>
+                                        </li>
+                                    }
+                                    {
+                                        children.map(({name, url}) => (
+
+                                            <li>
+                                                <a class="dropdown-item" href={url || '#'}>{name}</a>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            </li>
+                        );
+
+                    })
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+
+    nav {
+        font-family: var(--font-math);
+        box-shadow: 0px 0px 10px 0px #00000039;
+
+
+        .navbar-nav {
+            gap: 5px 25px;
+        }
+    }
+
+</style>

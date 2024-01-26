@@ -1,9 +1,12 @@
 ---
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js?url';
+
 import 'katex/dist/katex.min.css';
 //import '../css/github-markdown-dark.css';
 import '../css/github-markdown-light.css';
+import Navigation from './Navigation.astro';
 
 const { title } = Astro.props;
 ---
@@ -23,11 +26,29 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+
+		<Navigation 
+			links={[
+				{ name: 'inicio', url: '/' },
+				{ 
+					name: 'Trigonometria',
+					//url: '/trigonometria',
+					children: [
+						{name: 'Resumen', url: '/trigonometria/resumen'},
+						{name: 'Identidades trigonometricas', url: '/trigonometria/identidades-trigonometricas'}
+					]
+				}
+			]} 
+		>
+			<span slot="brand">Matematicas</span>
+		</Navigation>
 		
 		<main class="container">
 			<slot />
 		</main>
 
+
+		<script is:inline src={bootstrap}></script>
 	</body>
 </html>
 
