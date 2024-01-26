@@ -4,7 +4,7 @@ const inFolder = 'svg'
 const outFolder = 'optimized-svg';
 
 const paths = [
-    './src/docs/Trigonometria/Identidades trigonometricas'
+    './src/docs/assets/Trigonometria/Identidades trigonometricas'
 ];
 
 const i = 0;
