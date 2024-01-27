@@ -6,6 +6,7 @@ const {
     height = 540,
     borderColor = '#888888',
     borderRadius = 20,
+    controls,
     
     showFullScreenButton = false,
     showMenuBar = false,
@@ -42,6 +43,7 @@ const {
 .join(''); */
 
 ---
+
 <custom-geogebra title={title} width={width} height={height} id={id}
 
     showFullScreenButton={showFullScreenButton} 
@@ -54,7 +56,29 @@ const {
 
     borderRadius={borderRadius} borderColor={borderColor}
 >
-    <!-- <iframe src={url} title={title} width={`${width}px`} height={`${height}px`} style="border: 0px;" allow="fullscreen" /> -->
+    <div class="Geogebra">
+
+        { title && <h4 class="title">{title}</h4> }
+
+        <div class="content">
+            <!-- <iframe src={url} title={title} width={`${width}px`} height={`${height}px`} style="border: 0px;" allow="fullscreen" /> -->
+        </div>
+        
+        {
+            controls &&
+            <div class="controls">
+                <button class="btn btn-primary change-perspective">1</button>
+                <button class="btn btn-primary">1</button>
+                <button class="btn btn-primary">1</button>
+
+                <label class="btn btn-primary showMenuBar">
+                    <input type="checkbox" class="btn-check" autocomplete="off" checked={showMenuBar} />
+                    <span>Menu bar</span>
+                </label>
+            </div>
+        }
+        
+    </div>
 </custom-geogebra>
 
 <script>
@@ -78,6 +102,8 @@ const {
 
         constructor(){
             super();
+
+            this.$Button = (sel = ``) => this.querySelector(`.controls ${sel}`); 
 
             const iframe = document.createElement('iframe');
 
@@ -124,7 +150,7 @@ const {
                 });
             });
 
-            this.appendChild(iframe);
+            this.querySelector('.content').appendChild(iframe);
 
             this.iframe = this.querySelector('iframe');
         }
@@ -140,13 +166,21 @@ const {
         'border-radius': `${borderRadius}px`
     }}
 >
+    .Geogebra {
 
-    custom-geogebra :global(iframe) {
+    }
+    .Geogebra custom-geogebra :global(iframe) {
 
         /* border: 1px solid var(--border-color); */
         border-radius: var(--border-radius);
 
         box-shadow: 0px 0px 10px 0px #00000039;
+    }
+
+    .Geogebra .controls {
+        padding: 5px 20px;
+        display: flex;
+        gap: 20px;
     }
 
 </style>
