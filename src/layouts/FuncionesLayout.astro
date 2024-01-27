@@ -1,0 +1,25 @@
+---
+import { getExamples } from "@docs/Funciones/examples";
+import Layout from "@layouts/Layout.astro";
+
+const EXAMPLES = await getExamples();
+
+const sideBarLinks = [
+    {
+        name: 'Ejemplos',
+        children: Object.keys(EXAMPLES).map((name) => {
+
+            return {name, url: `/funciones/ejemplos/${name}`}
+        })
+    },
+]
+
+const { title } = Astro.props;
+---
+
+
+<Layout title={title} showSidebar sideBarTitle="Funciones" sideBarLinks={sideBarLinks}>
+
+    <slot />
+
+</Layout>

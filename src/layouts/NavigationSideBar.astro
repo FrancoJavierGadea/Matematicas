@@ -1,0 +1,156 @@
+---
+import caret from "@assets/caret.svg?raw";
+
+const {
+
+    links = [],
+
+	id = 'offcanvasScrolling',
+
+	title = ''
+
+} = Astro.props;
+---
+
+<aside class="offcanvas offcanvas-start show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id={id} >
+    
+    <div class="offcanvas-header">
+
+        <h5 class="offcanvas-title">{title}</h5>
+
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
+    </div>
+
+    <div class="offcanvas-body">
+
+        <ul class="links">
+			{
+				links.map((link) => {
+
+					const {name, url, children, active} = link;
+
+					if(!children) return (
+						
+						<li class="link-item">
+							<a class="" class:list={{'active': active}} href={url || '#'}>{name}</a>
+						</li>
+					);
+
+					if(children && Array.isArray(children)) return (
+
+						<li class="link-item">
+
+							<details open>
+								<summary>
+									<span>{name}</span>
+									<i set:html={caret}/>
+								</summary>	
+
+								<ul class="">
+									{ url && 
+										<li>
+											<a class="" href={url}>Inicio</a>
+										</li>
+									}
+									{
+										children.map(({name, url}) => (
+
+											<li>
+												<a class="" href={url || '#'}>{name}</a>
+											</li>
+										))
+									}
+								</ul>
+							</details>
+						</li>
+					);
+				})
+			}
+		</ul>
+
+    </div>
+</aside>
+
+
+<style>
+  
+	aside.offcanvas {
+
+		--bs-offcanvas-width: 300px;
+		--bs-offcanvas-zindex: 10500; 
+
+		
+		
+		@media (min-width: 992px) {
+			
+			position: sticky;
+			left: 0;
+			top: var(--nav-height, 0);
+			height: calc(100vh - var(--nav-height, 0));
+			transform: none;
+			visibility: visible;
+			flex-shrink: 0;
+			--bs-offcanvas-width: 300px;
+			--bs-offcanvas-zindex: 9000;
+				
+
+			.offcanvas-header .btn-close {
+				visibility: hidden;
+			}
+		}
+
+		@media (max-width: 575.98px) {
+
+			--bs-offcanvas-width: 100vw;
+		}
+	} 
+
+	.offcanvas-body {
+
+		.links {
+			list-style: none;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+		.link-item a {
+			text-decoration: none;
+			color: #787878;
+			font-family: var(--font-math);
+		}
+		.link-item a:hover {
+			color: #000000;
+		}
+
+
+		/*Details and summary*/
+		.link-item details summary {
+			display: flex;
+			justify-content: space-between;
+			font-family: var(--font-math);
+		}
+
+		/* Caret icon */
+		.link-item details summary i {
+			rotate: 0deg;
+			transition: rotate 0.2s;
+		}
+		.link-item details[open] summary i {
+			rotate: 90deg;
+		}
+
+		/* Links content */
+		.link-item details ul {
+			border-left: 1px solid gray;
+			list-style: none;
+			padding: 0;
+			padding-top: 10px;
+			padding-left: 20px;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+	}
+
+</style>

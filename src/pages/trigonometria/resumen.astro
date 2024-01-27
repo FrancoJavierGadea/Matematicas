@@ -1,13 +1,13 @@
 ---
 import * as EQ from "@docs/assets/Identidades trigonometricas/svg.js";
 import Equation from "@components/Equation.astro";
-import Layout from "@layouts/Layout.astro";
+import TrigonometriaLayout from "@layouts/TrigonometriaLayout.astro";
 import EquationsVisualizer from "@components/EquationsVisualizer.astro";
 
 const colors = {'alpha': '#0035ff', 'beta': '#c80000'}
 ---
 
-<Layout title="Resumen trigonometria">
+<TrigonometriaLayout title="Resumen trigonometria">
 
     <div class="Resumen">
 
@@ -153,12 +153,11 @@ const colors = {'alpha': '#0035ff', 'beta': '#c80000'}
             <EquationsVisualizer svg scale={0.8} title={EQ.COSENO_DE_MENOS_ALPHA.name} equations={[EQ.COSENO_DE_MENOS_ALPHA.svg]} colors={colors} />
         </section>
     </div>
-
-</Layout>
+</TrigonometriaLayout>
 
 <style>
     .Resumen {
-        width: 100%;
+        overflow: hidden;
         display: grid;
         min-height: 100vh;
         gap: 50px 20px;
@@ -190,7 +189,7 @@ const colors = {'alpha': '#0035ff', 'beta': '#c80000'}
     section {
         width: 100%;
         background-color: rgb(217, 255, 215);
-        padding: 20px;
+        padding: 10px;
         border-radius: 20px;
 
         .title {
@@ -216,7 +215,7 @@ const colors = {'alpha': '#0035ff', 'beta': '#c80000'}
         display: flex;
         gap: 20px;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
     }
 
     

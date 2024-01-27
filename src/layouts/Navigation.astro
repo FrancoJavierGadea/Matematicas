@@ -6,7 +6,6 @@
     } = Astro.props;
 ---
 
-
 <nav class="navbar navbar-expand-lg">
 
     <div class="container">
@@ -15,14 +14,18 @@
             <slot name="brand" />
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="controls">
+            <slot name="control" />
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
 
         <div class="collapse navbar-collapse" id="Navigation">
             <ul class="navbar-nav ms-auto">
                 {
-                    links.map(link => {
+                    links.map((link) => {
 
                         const {name, url, children, active} = link;
 
@@ -56,7 +59,6 @@
                                 </ul>
                             </li>
                         );
-
                     })
                 }
             </ul>
@@ -67,10 +69,35 @@
 <style>
 
     nav {
+        position: sticky;
+        top: 0;
+        z-index: 10000;
+
+        min-height: var(--nav-height, 70px);
+        max-height: var(--nav-height, 70px);
+
+        background-color: #fff;
+
         font-family: var(--font-math);
         box-shadow: 0px 0px 10px 0px #00000039;
 
+        @media (max-width: 991.98px) {
+            max-height: none;
+        }
 
+
+        .controls {
+            display: flex;
+            gap: 20px;
+
+            i.bi {
+                font-size: 30px;
+            } 
+
+            @media (min-width: 992px) {
+                visibility: hidden;
+            }
+        }
         .navbar-nav {
             gap: 5px 25px;
         }

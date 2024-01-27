@@ -1,0 +1,40 @@
+---
+import { getExamples } from "@docs/Funciones/examples";
+import FuncionesLayout from "@layouts/FuncionesLayout.astro";
+
+
+
+export async function getStaticPaths() {
+
+  const EXAMPLES = await getExamples();
+
+  return Object.keys(EXAMPLES).map((name) => {
+
+    return { params: {name} };
+  });
+}
+
+const {name} = Astro.params;
+
+const EXAMPLES = await getExamples();
+
+const Example = EXAMPLES[name];
+---
+
+
+<FuncionesLayout>
+
+    <section>
+    
+    
+        <div class="markdown-body">
+    
+            <Example.Content />
+            
+        </div>
+    
+    
+    </section>
+
+
+</FuncionesLayout>

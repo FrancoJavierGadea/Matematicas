@@ -1,0 +1,19 @@
+---
+import { getExamples } from "@docs/Funciones/examples";
+import FuncionesLayout from "@layouts/FuncionesLayout.astro";
+
+const EXAMPLES = await getExamples();
+
+
+---
+
+<FuncionesLayout>
+
+    {
+        Object.keys(EXAMPLES).map((name) => {
+
+            return <a href={`/funciones/ejemplos/${name}`}>{name}</a>
+        })
+    }
+
+</FuncionesLayout>

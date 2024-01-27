@@ -1,0 +1,18 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+
+
+const sideBarLinks = [
+    
+]
+
+const { title } = Astro.props;
+---
+
+
+<Layout title={title} showSidebar sideBarTitle="Trigonometria" sideBarLinks={sideBarLinks}>
+
+    <slot />
+
+</Layout>

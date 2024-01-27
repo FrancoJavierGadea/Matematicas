@@ -7,8 +7,28 @@ import 'katex/dist/katex.min.css';
 //import '../css/github-markdown-dark.css';
 import '../css/github-markdown-light.css';
 import Navigation from './Navigation.astro';
+import NavigationSideBar from './NavigationSideBar.astro';
 
-const { title } = Astro.props;
+const { title, showSidebar, sideBarLinks, sideBarTitle } = Astro.props;
+
+const navigationLinks = [
+	{ name: 'inicio', url: '/' },
+	{ 
+		name: 'Trigonometria',
+		url: '/trigonometria',
+		children: [
+			{name: 'Resumen', url: '/trigonometria/resumen'},
+			{name: 'Identidades trigonometricas', url: '/trigonometria/identidades-trigonometricas'}
+		]
+	},
+	{
+		name: 'Funciones',
+		url: '/funciones',
+		children: [
+			{name: 'Ejemplos', url: '/funciones/ejemplos'}
+		]
+	}
+];
 ---
 
 <!DOCTYPE html>
@@ -27,27 +47,30 @@ const { title } = Astro.props;
 	</head>
 	<body>
 
-		<Navigation 
-			links={[
-				{ name: 'inicio', url: '/' },
-				{ 
-					name: 'Trigonometria',
-					url: '/trigonometria',
-					children: [
-						{name: 'Resumen', url: '/trigonometria/resumen'},
-						{name: 'Identidades trigonometricas', url: '/trigonometria/identidades-trigonometricas'}
-					]
-				}
-			]} 
-		>
+		<Navigation links={navigationLinks}>
+
 			<span slot="brand">Matematicas</span>
+
+			{
+				showSidebar &&
+				<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#Navigation-side-bar" slot="control">
+					<i class="bi bi-journal-text"></i>
+				</button>
+			}
 		</Navigation>
+
+		<div class="page-content">
+
+			{
+				showSidebar &&
+				<NavigationSideBar id="Navigation-side-bar" title={sideBarTitle} links={sideBarLinks} />
+			}
+
+			<main class="container">
+				<slot />
+			</main>
+		</div>
 		
-		<main class="container">
-			<slot />
-		</main>
-
-
 		<script is:inline src={bootstrap}></script>
 	</body>
 </html>
@@ -57,13 +80,22 @@ const { title } = Astro.props;
 
 	:root {
 		--font-math: "Noto Sans Math", sans-serif;
+		--nav-height: 70px;
+	}
+
+	.page-content {
+
+		display: flex;
+
+		& > * {
+			flex-grow: 1;
+		}
 	}
 	
 	main {
 		padding: 20px 0;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		gap: 50px;
 	}
 
