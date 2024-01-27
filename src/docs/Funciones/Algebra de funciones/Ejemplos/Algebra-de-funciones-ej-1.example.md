@@ -1,8 +1,9 @@
 ---
-
+geogebra_id: hnd2ttnn
+geogebra_link: https://www.geogebra.org/m/hnd2ttnn
 ---
 
-
+# Ejemplo 1
 
 $$
     f(x) = \sqrt{1 - x}

@@ -1,4 +1,11 @@
+---
+geogebra_id: xvkndjgc
+
+geogebra_link: https://www.geogebra.org/m/xvkndjgc
+---
+
 # Funcion cuadratica 
+
 #### Dominio: $\mathbb{R}$
 
 #### Forma general

@@ -2,6 +2,8 @@
 import { getExamples } from "@docs/Funciones/examples";
 import FuncionesLayout from "@layouts/FuncionesLayout.astro";
 
+import GeogebraEmbed from "@layouts/GeogebraEmbed/GeogebraEmbed.astro";
+
 
 
 export async function getStaticPaths() {
@@ -19,6 +21,8 @@ const {name} = Astro.params;
 const EXAMPLES = await getExamples();
 
 const Example = EXAMPLES[name];
+
+const {geogebra_id, geogebra_link} = Example.frontmatter;
 ---
 
 
@@ -26,7 +30,13 @@ const Example = EXAMPLES[name];
 
     <section>
     
-    
+		{
+			geogebra_id && <div class="geogebra">
+				
+				<GeogebraEmbed id={geogebra_id} enableShiftDragZoom allowStyleBar enableRightClick />	
+			</div>
+		}
+
         <div class="markdown-body">
     
             <Example.Content />
@@ -38,3 +48,12 @@ const Example = EXAMPLES[name];
 
 
 </FuncionesLayout>
+
+<style>
+
+	.geogebra {
+		display: flex;
+		justify-content: center;
+	}
+
+</style>
