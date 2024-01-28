@@ -4,10 +4,11 @@ const inFolder = 'svg'
 const outFolder = 'optimized-svg';
 
 const paths = [
-    './src/docs/assets/Trigonometria/Identidades trigonometricas'
+    './src/docs/assets/Trigonometria/Identidades trigonometricas',
+    './src/docs/assets/Algebra/binomio de newton'
 ];
 
-const i = 0;
+const i = 1;
 
 const script = `svgo -f "${paths[i]}/${inFolder}" -o "${paths[i]}/${outFolder}"`
 

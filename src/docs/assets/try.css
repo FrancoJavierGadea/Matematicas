@@ -1,7 +1,8 @@
 .var-x {
     color: blue;
 }
-.var-c {
+.var-c,
+.var-a {
     color: rgb(140, 0, 103);
 }
 .var-f {
@@ -10,12 +11,16 @@
 .var-g {
     color: rgb(56, 0, 116);
 }
-.var-k {
+.var-k,
+.var-b {
     color: rgb(228, 231, 59);
 }
 .var-n {
     color: rgb(0, 217, 255);
 }
-.var-x {
+.exponent {
     color: blue;
+}
+.var-r {
+    color: rgb(0, 255, 98);
 }

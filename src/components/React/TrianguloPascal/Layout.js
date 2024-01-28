@@ -11,12 +11,12 @@ export function LayoutTriangulo(opts = {}){
     const height = triangulo.length * (cellHeight + gap) - gap;
 
 
-    const layout = triangulo.map((row, i) => {
+    const rows = triangulo.map((row, i) => {
 
         const currentRowWidth = row.length * (cellWidth + gap) - gap;
 
         const rowX = (width / 2) - (currentRowWidth / 2);
-        const rowY = (cellHeight + gap) * i + cellHeight;
+        const rowY = (cellHeight + gap) * i;
 
         const cells = row.map((value, j) => {
 
@@ -25,8 +25,8 @@ export function LayoutTriangulo(opts = {}){
 
             return {
                 name: `cell-${i}-${j}`,
-                row: i,
-                cell: j,
+                rowIndex: i,
+                index: j,
                 width: cellWidth,
                 height: cellHeight,
                 x,
@@ -37,8 +37,8 @@ export function LayoutTriangulo(opts = {}){
 
         return {
             name: `row-${i}`,
-            row: i,
-            values: cells,
+            index: i,
+            cells,
             width: currentRowWidth,
             height: cellHeight,
             x: rowX,
@@ -46,5 +46,11 @@ export function LayoutTriangulo(opts = {}){
         }
     });
 
-    return layout;
+    return {
+        width, 
+        height,
+        centerX: width / 2,
+        centerY: height / 2,
+        rows  
+    };
 }
