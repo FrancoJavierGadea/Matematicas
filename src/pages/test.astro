@@ -1,14 +1,24 @@
 ---
 import TrianguloPascal from "@React/TrianguloPascal/TrianguloPascal.jsx";
+import Equation from "@components/React/utils/Equation.jsx";
+
+import * as EQ from "@docs/assets/Algebra/binomio de newton/svg.js";
+
+import * as EQPath from "@docs/assets/Algebra/binomio de newton/path.js";
+import Tabs from "@layouts/Tabs.astro";
 ---
 
-<div class="svg-container">
-
-    <TrianguloPascal client:load />
-
-</div>
 
 
+<!-- <TrianguloPascal client:load /> -->
+
+<Equation client:load SVGPath={EQPath.BINOMIO_RESTA_3.path} colors={{'var-a': '#456', 'var-b': '#f05'}} style={{height: '30px'}} />
+
+
+<script>
+    
+
+</script>
 
 
 <style>
