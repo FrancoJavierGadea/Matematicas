@@ -11,13 +11,15 @@ function Equation({SVGPath, colors = {}, ...others}) {
 
     useEffect(() => {
 
+        if(!SVGPath) return;
+
         loadAndStyleSVG(SVGPath, colors)
         .then(value => {
 
             setEquation(value.url);
         });
 
-    }, []);
+    }, [SVGPath, colors]);
 
     return (<>
     

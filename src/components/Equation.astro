@@ -27,6 +27,10 @@ const {svg, scale = 1, src, height, colors = {}, name = ''} = Astro.props;
         display: flex;
         justify-content: center;
     }
+    .Equation img {
+        flex-shrink: 0;
+        height: 100%;
+    }
     .Equation :global(svg) {
         flex-shrink: 0;
         display: block;

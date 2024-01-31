@@ -1,0 +1,95 @@
+
+
+.Triangulo-pascal-numeros-combinatorios {
+
+    position: relative;
+    width: fit-content;
+    height: auto;
+    border: 1px solid gray;
+
+    svg {
+        display: block;
+
+        .cell-over {
+            cursor: pointer;
+        }
+        .cell text {
+            user-select: none;
+        }
+    }
+
+    math {
+        display: block;
+        padding: 10px;
+        font-size: 18px;
+        
+        mtd {
+            padding: 5px 2px;
+        }
+        mfrac > :nth-child(1) {
+            padding-bottom: 0.2em;
+        }
+        mfrac > :nth-child(2) {
+            padding-top: 0.2em;
+        }
+        
+        .operator-C {
+            font-size: 1.3em;
+        }
+    }
+
+    .custom-tooltip {
+        position: absolute;
+        visibility: hidden;
+        background-color: white;
+        top: 0;
+        left: 0;
+
+        border: 1px solid black;
+        box-shadow: 0px 0px 10px 0px #00000039;
+        border-radius: 10px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        translate: -50% -50%;
+
+        &.show {
+            padding-top: 15px;
+            padding-inline: 5px;
+            padding-bottom: 5px;
+        }
+
+        .close-btn {
+            display: none;
+            padding: 0px 5px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: none;
+            font-size: 20px;
+
+            &:hover {
+                color: red;
+            }
+        }
+        &.show .close-btn {
+            display: block;
+        }
+
+        .controls {
+            padding-top: 5px;
+            display: none;
+
+            .btn {
+                --bs-btn-padding-y: 2px;
+            }
+        }
+        &.show .controls {
+            display: flex;
+            gap: 10px;
+        }
+    }
+}

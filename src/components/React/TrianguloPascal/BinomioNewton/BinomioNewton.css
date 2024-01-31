@@ -1,0 +1,43 @@
+.Triangulo-pascal-binomio-newton {
+
+    position: relative;
+    width: fit-content;
+    outline: 1px solid gray;
+
+    svg {
+        display: block;
+
+        .row-over:hover {
+            stroke: black;
+            cursor: pointer;
+        }
+    }
+
+    .toltip {
+        padding-top: 30px;
+        padding-inline: 15px;
+        padding-bottom: 10px;
+        background-color: white;
+        border: 1px solid black;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        margin: auto;
+        transform: translate(-50%, 0);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 0px #00000029;
+
+        .close-btn {
+            padding: 0px 5px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: none;
+            font-size: 20px;
+
+            &:hover {
+                color: red;
+            }
+        }
+    }
+}

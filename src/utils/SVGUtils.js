@@ -4,7 +4,7 @@ export function loadSVG(path = ''){
 
     const svg = new URL(path, import.meta.url);
 
-    return svg.href;
+    return svg;
 }
 
 
