@@ -1,0 +1,34 @@
+
+
+math.Binomio-Newton-formule {
+
+    display: block;
+    font-size: 20px;
+    padding: 15px;
+
+    .var-a {
+        color: var(--var-a, initial);
+    }
+    .var-b {
+        color: var(--var-b, initial);
+    }
+    .exponente {
+        color: var(--exponente, initial);
+    }
+    .exponente-a {
+        color: var(--exponente-a, initial);
+    }
+    .exponente-b {
+        color: var(--exponente-b, initial);
+    }
+
+    /* &:hover {
+        .Termino {
+            opacity: 0.4;
+        }
+        .Termino:hover {
+            opacity: 1;
+        }
+    } */
+    
+}

@@ -12,29 +12,15 @@
 
         .cell-over {
             cursor: pointer;
+
+            &:hover {
+
+                stroke: #000;
+                stroke-width: 2;
+            }
         }
         .cell text {
             user-select: none;
-        }
-    }
-
-    math {
-        display: block;
-        padding: 10px;
-        font-size: 18px;
-        
-        mtd {
-            padding: 5px 2px;
-        }
-        mfrac > :nth-child(1) {
-            padding-bottom: 0.2em;
-        }
-        mfrac > :nth-child(2) {
-            padding-top: 0.2em;
-        }
-        
-        .operator-C {
-            font-size: 1.3em;
         }
     }
 

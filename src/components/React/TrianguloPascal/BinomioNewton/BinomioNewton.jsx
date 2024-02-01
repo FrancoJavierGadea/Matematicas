@@ -8,20 +8,8 @@ import Triangulo from "../Triangulo";
 import * as D3Select from "d3-selection";
 import "./BinomioNewton.css";
 import * as EQ from "@docs/assets/Algebra/binomio de newton/svg.js";
-import Equation from "@components/React/utils/Equation.jsx";
-import Tabs from "@components/React/utils/Tabs/Tabs.jsx";
+import MathFormuleWrapper from "./MathFormuleWrapper";
 
-
-const BINOMIOS_NEWTON = [
-    { suma: EQ.BINOMIO_0, resta: EQ.BINOMIO_0 },
-    { suma: EQ.BINOMIO_SUMA_1,  resta: EQ.BINOMIO_RESTA_1 },
-    { suma: EQ.BINOMIO_SUMA_2,  resta: EQ.BINOMIO_RESTA_2 },
-    { suma: EQ.BINOMIO_SUMA_3,  resta: EQ.BINOMIO_RESTA_3 },
-    { suma: EQ.BINOMIO_SUMA_4,  resta: EQ.BINOMIO_RESTA_4 },
-    { suma: EQ.BINOMIO_SUMA_5,  resta: EQ.BINOMIO_RESTA_5 },
-    { suma: EQ.BINOMIO_SUMA_6,  resta: EQ.BINOMIO_RESTA_6 },
-    { suma: EQ.BINOMIO_SUMA_7,  resta: EQ.BINOMIO_RESTA_7 }
-]
 const colors = {
     'var-a': '#770000',
     'var-b': '#000077'
@@ -35,15 +23,18 @@ function BinomioNewton({n = 7, width = 940, height = 600, cellWidth = 50, cellHe
 
         const triangulo = generateTrianguloPascal(n > 7 ? 7 : n);
 
-        return LayoutTriangulo({triangulo, cellWidth, cellHeight, gap})
+        return {
+            values: triangulo,
+            layout: LayoutTriangulo({triangulo, cellWidth, cellHeight, gap})
+        }
 
     }, [n, cellWidth, cellHeight, gap]);
 
     const defaultTransform = useMemo(() => {
 
         return {
-            x: (width / 2) - (triangulo.centerX),
-            y: (height / 2) - (triangulo.centerY),
+            x: (width / 2) - (triangulo.layout.centerX),
+            y: (height / 2) - (triangulo.layout.centerY),
         }
 
     }, [triangulo, width, height, cellWidth, cellHeight]);
@@ -57,28 +48,109 @@ function BinomioNewton({n = 7, width = 940, height = 600, cellWidth = 50, cellHe
     //Events
     const [currentRow, setCurrentRow] = useState(null);
 
+    const tooltipRef = useRef();
+    const $tooltip = useMemo(() => {
+
+        return {
+            show: (x, y) => {
+                tooltipRef.current.style.visibility = 'visible';
+                tooltipRef.current.style.top = `${y}px`;
+                tooltipRef.current.style.left = `${x}px`;
+            },
+            hide: () => {
+                tooltipRef.current.style.visibility = '';
+                tooltipRef.current.style.top = '';
+                tooltipRef.current.style.left = '';
+            }
+        }
+    }, []);
+
+    const showRef = useRef(false);
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+
+        showRef.current = show;
+        tooltipRef.current.classList.toggle('show', show);
+
+    }, [show]);
+
+
     useEffect(() => {
 
         const handleClick = (e) => {
 
-            const rowIndex = Number(e.currentTarget.getAttribute('data-row-index'));
+            setShow(true);
+            
+            const target = e.currentTarget;
 
-            const gap = rowIndex > 5 ? -200 : 30;
+            const rowIndex = Number(target.getAttribute('data-row-index'));
 
-            setCurrentRow({index: rowIndex, top: `${e.offsetY + gap}px`});
+            setCurrentRow(rowIndex);
+            
+            const gap = rowIndex > 5 ? -70 : 70;
+            $tooltip.show(e.offsetX, e.offsetY + gap);
+        }
+
+        const handleEnter = (e) => {
+
+            if(showRef.current) return;
+
+            const target = e.currentTarget;
+
+            const rowIndex = Number(target.getAttribute('data-row-index'));
+
+            setCurrentRow(rowIndex);
+            
+            const gap = rowIndex > 5 ? -70 : 70;
+            $tooltip.show(e.offsetX, e.offsetY + gap);
+        }
+
+        const handleMove = (e) => {
+
+            if(showRef.current) return;
+
+            const target = e.currentTarget;
+
+            const rowIndex = Number(target.getAttribute('data-row-index'));
+
+            const gap = rowIndex > 5 ? -70 : 70;
+            $tooltip.show(e.offsetX, e.offsetY + gap);
+        }
+
+        const handleLeave = (e) => {
+
+            if(showRef.current) return;
+            
+            setCurrentRow(null);
+            $tooltip.hide();
         }
 
         const rows = D3Select.select(svgRef.current)
             .selectAll('.row-over');
 
             rows.on("click", handleClick);
+            rows.on("mousemove", handleMove);
+            rows.on("mouseenter", handleEnter);
+            rows.on("mouseleave", handleLeave);
             
         return () => {
 
             rows.on("click", null);
+            rows.on("mousemove", null);
+            rows.on("mouseenter", null);
+            rows.on("mouseleave", null);
         }
 
-    }, []);
+    }, [$tooltip]);
+
+    const handleClick = () => {
+        
+        setShow(false);
+        setCurrentRow(null);
+
+        $tooltip.hide();
+    }
 
 
     const arrowHeadID = useId();
@@ -91,10 +163,10 @@ function BinomioNewton({n = 7, width = 940, height = 600, cellWidth = 50, cellHe
 
             <g className="graph" transform={`translate(${defaultTransform.x}, ${defaultTransform.y})`}>
 
-                <Triangulo triangulo={triangulo}  showPath showLabels margin={50} />
+                <Triangulo triangulo={triangulo.layout}  showPath showLabels margin={50} />
 
                 {//Events
-                    triangulo.rows.map(row => {
+                    triangulo.layout.rows.map(row => {
 
                         return <rect className="row-over" {...{
                             width: row.width, 
@@ -111,7 +183,7 @@ function BinomioNewton({n = 7, width = 940, height = 600, cellWidth = 50, cellHe
                 }
 
                 {//Arrow images
-                    triangulo.rows.map(row => {
+                    triangulo.layout.rows.map(row => {
 
                         const x = row.x + row.width;
                         const y = row.y + row.height / 2;
@@ -137,35 +209,17 @@ function BinomioNewton({n = 7, width = 940, height = 600, cellWidth = 50, cellHe
             </g>
         </svg>
 
-        {//Tooltip
-            (() => {
+        <div className="toltip" style={{position: 'absolute', visibility: 'hidden'}} ref={tooltipRef}>
 
-                if(!currentRow) return;
+            <MathFormuleWrapper n={currentRow} coeficientes={triangulo.values[currentRow]} showControls={show} colors={colors} />
 
-                const {index, top} = currentRow;
-
-                const suma = BINOMIOS_NEWTON[index].suma;
-                const resta = BINOMIOS_NEWTON[index].resta;
-    
-                return <div className="toltip" style={{position: 'absolute', top}}>
-
-                    {index == 0 ?
-                        <Equation style={{height: '30px', aspectRatio: suma.aspectRatio.join(' / ')}} SVGPath={suma.path} colors={colors} />
-                        :
-                        <Tabs fill maxWidth="800px">
-
-                            <Equation style={{height: '30px', aspectRatio: suma.aspectRatio.join(' / ')}} SVGPath={suma.path} slot="Suma" colors={colors} />
-                            
-                            <Equation style={{height: '30px', aspectRatio: resta.aspectRatio.join(' / ')}} SVGPath={resta.path} slot="Resta"  colors={colors} />
-                        </Tabs>
-                    }
-
-                    <button className="btn close-btn" onClick={() => setCurrentRow(null)}>
-                        <i className="bi bi-x"/>
-                    </button>
-                </div>
-            })()
-        }    
+            {
+                show &&
+                <button className="btn close-btn" onClick={handleClick}>
+                    <i className="bi bi-x"/>
+                </button>
+            }
+        </div>    
     </div>);
 }
 

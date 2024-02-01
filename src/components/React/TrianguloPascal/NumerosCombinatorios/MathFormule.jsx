@@ -1,7 +1,25 @@
 
-export function MathFormule({n = 'n', r = 'r', result = 'k', ncr, showFormule = true, ...others}){
+import { useMemo } from "react";
+import "./MathFormule.css";
 
-    return (<math display="block" {...others}>
+export function MathFormule({n = 'n', r = 'r', result = 'k', ncr, showFormule = true,  colors = {}, style = {}, ...others}){
+
+    const varColors = useMemo(() => {
+
+        return Object.entries(colors).reduce((acc, [key, value]) => {
+
+            acc[`--${key}`] = value;
+
+            return acc;
+        }, {});
+
+    }, [colors])
+
+
+    return (<math className="Numeros-conbinatorios-formule" display="block" 
+    
+        style={{...varColors, ...style}} {...others}
+    >
         <mrow>
             {
                 ncr ? <>

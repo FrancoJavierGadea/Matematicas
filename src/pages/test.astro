@@ -6,12 +6,13 @@ import * as EQ from "@docs/assets/Algebra/binomio de newton/svg.js";
 
 import Tabs from "@layouts/Tabs.astro";
 import Layout from "@layouts/Layout.astro";
+import MathFormule from "@components/React/TrianguloPascal/BinomioNewton/MathFormule";
 ---
 
 <Layout>
 
     
-    <!-- <TrianguloPascalBinomioNewton client:load /> -->
+    <TrianguloPascalBinomioNewton client:load />
 
     <NumerosCombinatorios client:load />
 
@@ -24,6 +25,11 @@ import Layout from "@layouts/Layout.astro";
     } -->
 
 
+    <MathFormule client:load n={7} coeficientes={[1, 5, 15, 30, 30, 15, 5, 1]} resta showAll/>
+
+    <MathFormule client:load n={7} coeficientes={[1, 5, 15, 30, 30, 15, 5, 1]} />
+
+    <MathFormule client:load n={7} coeficientes={[1, 5, 15, 30, 30, 15, 5, 1]} resta />
 </Layout>
 
 
