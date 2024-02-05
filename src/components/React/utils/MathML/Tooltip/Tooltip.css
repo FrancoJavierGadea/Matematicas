@@ -1,0 +1,52 @@
+
+
+.Math-tooltip {
+
+    visibility: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 10px;
+    border-radius: 5px;
+    translate: -50% -50%;
+
+    border: 1px solid black;
+    background-color: #fff;
+
+    position: absolute;
+
+    &.top {
+
+        top: -20%;
+        left: 50%;
+    }
+    &.top::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: black transparent transparent transparent;
+    }
+
+    &.bottom {
+
+        bottom: -120%;
+        left: 50%;
+    }
+    &.bottom::before {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #000 transparent;
+    }
+}

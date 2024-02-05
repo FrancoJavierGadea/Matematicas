@@ -1,0 +1,18 @@
+---
+import RuffiniTable from "@components/React/Ruffini/RuffiniTable";
+import RuffiniGeneralTable from "@components/React/Ruffini/RuffiniGeneralTable";
+import Ruffini from "@components/React/Ruffini/Ruffini";
+import AlgebraLayout from "@layouts/AlgebraLayout.astro";
+---
+
+<AlgebraLayout title="Regla de Ruffini">
+
+    <h1>Ruffini</h1>
+
+    <Ruffini client:load />
+
+    <RuffiniTable client:load />
+
+    <RuffiniGeneralTable client:load />
+
+</AlgebraLayout>

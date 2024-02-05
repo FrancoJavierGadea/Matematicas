@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 import react from "@astrojs/react";
 import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+//import rehypeKatex from 'rehype-katex';
+import rehypeMathjax from 'rehype-mathjax/chtml';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,8 +10,12 @@ export default defineConfig({
   markdown: {
     // Applied to .md and .mdx files
     remarkPlugins: [remarkMath],
-    rehypePlugins: [[rehypeKatex, {
-      output: 'html'
-    }]]
+    rehypePlugins: [
+      [rehypeMathjax,{ 
+        chtml: {
+          fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+        }
+      }]
+    ]
   }
 });

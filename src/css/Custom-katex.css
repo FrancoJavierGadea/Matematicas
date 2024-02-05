@@ -1,0 +1,35 @@
+
+
+/* Fracciones */
+.katex .mfrac {
+
+    .frac-line {
+        border-color: var(--frac-line-color, currentColor);
+    }
+
+    .vlist-t > .vlist-r > .vlist > span > .mord {
+
+        /* Left right margin */
+        padding-inline: 20px;
+    }
+}
+
+/*Operadores binarios */
+.katex .mbin {
+
+    /* Left right margin */
+    padding-inline: 0.4em;
+}
+
+/*Operadores de comparacion*/
+.katex .base > .mrel {
+
+    /* Left right margin */
+    padding-inline: 0.4em;
+}
+
+/* Letras */
+.katex .mathnormal {
+    color: var(--letters-color);
+}
+

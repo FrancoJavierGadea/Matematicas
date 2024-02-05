@@ -120,6 +120,25 @@ export const BASICS = {
         latex: '-\\infty' 
     }),
 
+    //Geometria
+    'grado': new Simbolo({
+        html: '&deg;',
+        hex: 0x00b0,
+        latex: '\\circ'
+    }),
+    'angulo': new Simbolo({
+        html: '&ang;',
+        hex: 0x2220,
+        latex: '\\angle'
+    }),
+    'anguloRecto': new Simbolo({
+        html: '&angrt;',
+        hex: 0x221f,
+        latex: ''
+    })
+}
+
+export const LOGICA = {
     //Logica y teoria de conjuntos
     'not': new Simbolo({ 
         html: '&not;', 
@@ -196,24 +215,31 @@ export const BASICS = {
         html: '&there4;', 
         hex: 0x2234,
         latex: '\\therefore' 
-    }),
-
-    //Geometria
-    'grado': new Simbolo({
-        html: '&deg;',
-        hex: 0x00b0,
-        latex: '\\circ'
-    }),
-    'angulo': new Simbolo({
-        html: '&ang;',
-        hex: 0x2220,
-        latex: '\\angle'
-    }),
-    'anguloRecto': new Simbolo({
-        html: '&angrt;',
-        hex: 0x221f,
-        latex: ''
     })
+}
+
+export const PUNTOS = {
+    horizontal: new Simbolo({
+        html: '&hellip;',
+        hex: 0x2026,
+        latex: ''
+    }),
+    center: new Simbolo({
+        html: '&ctdot;',
+        hex: 0x22EF,
+        latex: '\\cdots'
+    }),
+    vertical: new Simbolo({
+        html: '&vellip;',
+        hex: 0x22EE,
+        latex: '\\vdots'
+    }),
+    diagonal: new Simbolo({
+        html: '&dtdot;',
+        hex: 0x22F1,
+        latex: '\\ddots'
+    })
+
 }
 
 

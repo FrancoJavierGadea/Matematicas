@@ -4,7 +4,8 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import {unified} from 'unified';
 import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+//import rehypeKatex from 'rehype-katex';
+import rehypeMathjax from 'rehype-mathjax/chtml';
 
 export async function parseMarkdown(md = ''){
 
@@ -14,24 +15,35 @@ export async function parseMarkdown(md = ''){
         .use(remarkParse)
         .use(remarkMath)
         .use(remarkRehype)
-        .use(rehypeKatex)
+        .use(rehypeMathjax, {
+            chtml: {
+                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+            }
+        })
         .use(rehypeStringify)
         .process(md);
   
     return file.value;
 }
 
-export async function parseLatex(latex = ''){
+export async function parseLatex(latex = '', inline = false){
 
     if(!latex) return '';
+
+    const text = inline ? `$${latex}$` : `$$\n${latex}\n$$`;
 
     const file = await unified()
         .use(remarkParse)
         .use(remarkMath)
         .use(remarkRehype)
-        .use(rehypeKatex, {displayMode: false, output: 'html'})
+        .use(rehypeMathjax, {
+            chtml: {
+                display: true,
+                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+            }
+        })
         .use(rehypeStringify)
-        .process(`$$${latex}$$`);
+        .process(text);
   
     return file.value;
 }

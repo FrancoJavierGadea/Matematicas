@@ -1,49 +1,32 @@
 ---
-import TrianguloPascalBinomioNewton from "@components/React/TrianguloPascal/BinomioNewton/BinomioNewton.jsx";
-import Equation from "@components/Equation.astro";
-import NumerosCombinatorios from "@components/React/TrianguloPascal/NumerosCombinatorios/NumerosCombinatorios.jsx";
-import * as EQ from "@docs/assets/Algebra/binomio de newton/svg.js";
-
-import Tabs from "@layouts/Tabs.astro";
 import Layout from "@layouts/Layout.astro";
-import MathFormule from "@components/React/TrianguloPascal/BinomioNewton/MathFormule";
+import Ruffini from "@components/React/Ruffini/Ruffini";
+import RuffiniTable from "@components/React/Ruffini/RuffiniTable";
+import { parseLatex } from "@utils/Markdown";
+
+const html = await parseLatex('\\lim_{x \\to 5}');
 ---
 
 <Layout>
 
+    <div style="font-size: 22px;" set:html={html}></div>
     
-    <TrianguloPascalBinomioNewton client:load />
-
-    <NumerosCombinatorios client:load />
-
-    <!-- {
-        Object.values(EQ).map(v =>  {
-
-
-            return <Equation src={v.url} name={v.name} height="50px"/>
-        })
-    } -->
-
-
-    <MathFormule client:load n={7} coeficientes={[1, 5, 15, 30, 30, 15, 5, 1]} resta showAll/>
-
-    <MathFormule client:load n={7} coeficientes={[1, 5, 15, 30, 30, 15, 5, 1]} />
-
-    <MathFormule client:load n={7} coeficientes={[1, 5, 15, 30, 30, 15, 5, 1]} resta />
 </Layout>
 
 
 
 
 <script>
-    import * as EQ from "@docs/assets/Algebra/binomio de newton/svg.js";
-
-    console.log(EQ);
 
 </script>
 
 
 <style>
+
+    div {
+        --frac-line: rgb(9, 9, 245);
+        --op-raiz: rgb(245, 9, 210);
+    }
 
     .svg-container {
         width: fit-content;
