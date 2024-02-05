@@ -1,10 +1,10 @@
 ---
 import SenoCosenoDeUnaSumaAngulos from "@components/React/trigonometria/SenoCosenoDeUnaSumaAngulos/SenoCosenoDeUnaSumaAngulos";
-import * as SenoDemostracion from "@docs/Trigonometria/Seno de una suma de angulos.md";
-
-import * as CosenoDemostracion from "@docs/Trigonometria/Coseno de una suma de angulos.md";
 import Tabs from "@layouts/Tabs.astro";
+import { getEntry } from "astro:content";
 
+const SenoDemostracion = await (await getEntry('docs', 'trigonometria/seno-de-una-suma-de-angulos')).render();
+const CosenoDemostracion = await (await getEntry('docs', 'trigonometria/coseno-de-una-suma-de-angulos')).render();
 ---
 
 <section class="Demostracion-seno-coseno-de-una-suma">

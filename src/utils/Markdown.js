@@ -4,7 +4,6 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import {unified} from 'unified';
 import remarkMath from 'remark-math';
-//import rehypeKatex from 'rehype-katex';
 import rehypeMathjax from 'rehype-mathjax/chtml';
 
 export async function parseMarkdown(md = ''){
@@ -38,7 +37,6 @@ export async function parseLatex(latex = '', inline = false){
         .use(remarkRehype)
         .use(rehypeMathjax, {
             chtml: {
-                display: true,
                 fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
             }
         })
