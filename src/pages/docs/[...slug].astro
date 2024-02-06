@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
+import DocsLayout from "@layouts/DocsLayout.astro";
 
 export async function getStaticPaths() {
 
@@ -19,11 +19,64 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout>
+<DocsLayout currentPage={entry.id} title={entry.data.title || entry.slug.split('/').at(-1)}>
 
+    <div>
 
-</Layout>
+        <div class="Doc-source">
+    
+            <a href={`${import.meta.env.PUBLIC_GITHUB_REPOSITORY}/tree/main/src/content/${entry.collection}/${entry.id}`} 
+                target="_blank" rel="noopener noreferrer" title="Ver en github"
+            >
+                <i class="bi bi-github"></i>
+            </a>
+    
+            <a href={`${import.meta.env.PUBLIC_GITHUB_RAW}/main/src/content/${entry.collection}/${entry.id}`} 
+                target="_blank" rel="noopener noreferrer" title="Ver raw markdown"
+            >
+                <i class="bi bi-filetype-raw"></i>
+            </a>
+        </div>
+    
+        <div class="Render-markdown markdown-body" style="--var-x: red;">
+    
+            <Content />
+    
+        </div>
 
-<h1>{entry.data.title}</h1>
+    </div>
 
-<Content />
+</DocsLayout>
+
+<style>
+
+    .Doc-source {
+        display: flex;
+        justify-content: end;
+        padding-inline: 20px;
+        gap: 20px;
+
+        a {
+            text-decoration: none;
+            color: #000;
+            font-size: 24px;
+
+            &:hover {
+                color: rgb(5, 72, 159);
+            }
+        }
+    }
+
+    .Render-markdown {
+
+        padding-block: 20px;
+        padding-inline: clamp(0px, 2vw, 50px);
+
+        & :global(mjx-container.MathJax) {
+
+            font-size: 1.2em;
+            padding-block: 20px;
+        }
+    }
+</style>
+

@@ -1,0 +1,99 @@
+---
+import caret from "@assets/caret.svg?raw";
+const { item, ...others} = Astro.props;
+
+
+---
+
+{
+    item.children ?
+
+    <li {...others} data-folder-links>
+        
+        <details open={item.open}>
+            <summary>
+                <span class="name">{item.name.replaceAll('-', ' ')}</span>
+                <i set:html={caret}/>
+            </summary>	
+    
+            <ul class="">
+                {
+                    item.children.map((child) => {
+    
+                        return <Astro.self item={child} />  
+                    })
+                }
+            </ul>
+        </details>
+    
+    </li>
+
+    :
+
+    <li {...others} data-link>
+
+        <a class="" 
+
+            class:list={{'active': item.active}} 
+
+            href={item.url || '#'}
+        >
+            <span class="name">{item.name.replaceAll('-', ' ')}</span>
+        </a>
+
+    </li>    
+}
+
+<style>
+    /*Details and summary*/
+    details {
+
+        summary {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-math);
+    
+            i {
+                rotate: 0deg;
+                transition: rotate 0.2s;
+            }
+        }
+
+        &[open] summary i {
+            rotate: 90deg;
+        }
+
+        ul {
+			border-left: 1px solid gray;
+			list-style: none;
+			padding: 0;
+			padding-top: 10px;
+			padding-left: 20px;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+    } 
+
+
+
+    a {
+        text-decoration: none;
+        color: #787878;
+        font-family: var(--font-math);
+    }
+    a.active {
+        color: brown;
+    }
+    a:hover {
+        color: #000000;
+    }
+
+    .name {
+        display: inline-block;
+    }
+    .name::first-letter {    
+        text-transform: capitalize;
+    }
+    
+</style>

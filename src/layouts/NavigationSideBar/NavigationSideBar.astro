@@ -1,5 +1,6 @@
 ---
 import caret from "@assets/caret.svg?raw";
+import SideBarItem from "./SideBarItem.astro";
 
 const {
 
@@ -29,7 +30,7 @@ const {
 
 					const {name, url, children, active} = link;
 
-					if(!children) return (
+					/* if(!children) return (
 						
 						<li class="link-item">
 							<a class="" class:list={{'active': active}} href={url || '#'}>{name}</a>
@@ -63,7 +64,10 @@ const {
 								</ul>
 							</details>
 						</li>
-					);
+					); */
+
+					return  <SideBarItem item={link} class="link-item" />	
+					
 				})
 			}
 		</ul>
@@ -113,44 +117,17 @@ const {
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
-		}
-		.link-item a {
-			text-decoration: none;
-			color: #787878;
-			font-family: var(--font-math);
-		}
-		.link-item a:hover {
-			color: #000000;
-		}
 
+			
+			*[data-folder-links] {
+				order: 1;
+			}
 
-		/*Details and summary*/
-		.link-item details summary {
-			display: flex;
-			justify-content: space-between;
-			font-family: var(--font-math);
+			*[data-link] {
+				order: 2;
+			}	
 		}
-
-		/* Caret icon */
-		.link-item details summary i {
-			rotate: 0deg;
-			transition: rotate 0.2s;
-		}
-		.link-item details[open] summary i {
-			rotate: 90deg;
-		}
-
-		/* Links content */
-		.link-item details ul {
-			border-left: 1px solid gray;
-			list-style: none;
-			padding: 0;
-			padding-top: 10px;
-			padding-left: 20px;
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-		}
+	
 	}
 
 </style>
