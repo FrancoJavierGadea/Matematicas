@@ -3,13 +3,24 @@ import Layout from "@layouts/Layout.astro";
 import Ruffini from "@components/React/Ruffini/Ruffini";
 import RuffiniTable from "@components/React/Ruffini/RuffiniTable";
 import { parseLatex } from "@utils/Markdown";
+import ExcalidrawEmbed from "@layouts/ExcalidrawEmbed/ExcalidrawEmbed.astro";
 
 const html = await parseLatex('\\lim_{x \\to 5}');
 ---
 
 <Layout>
 
-    <div style="font-size: 22px;" set:html={html}></div>
+    <div class="try">
+
+        <div style="font-size: 58px;" set:html={html}></div>
+    
+        <div>
+
+            <ExcalidrawEmbed />
+
+        </div>
+
+    </div>
     
 </Layout>
 
@@ -22,6 +33,16 @@ const html = await parseLatex('\\lim_{x \\to 5}');
 
 
 <style>
+
+    .try {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        & > * {
+            grid-row-start: 1;
+            grid-column-start: 1;
+        }
+    }
 
     div {
         --frac-line: rgb(9, 9, 245);

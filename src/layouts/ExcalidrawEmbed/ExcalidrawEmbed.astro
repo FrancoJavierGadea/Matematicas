@@ -1,0 +1,53 @@
+---
+const {width, height} = Astro.props;
+---
+
+<custom-excalidraw width={width} height={height}>
+
+
+
+</custom-excalidraw>
+
+
+<script>
+    //@ts-nocheck
+    import excalidrawIframe from "./excalidrawIframe.html?raw"; 
+
+    class CustomExcalidraw extends HTMLElement {
+
+        constructor(){
+            super();
+
+            const iframe = document.createElement('iframe');
+
+            this.width = this.getAttribute('width');
+            this.height = this.getAttribute('height'); 
+
+            iframe.title = this.getAttribute('title');
+            iframe.width = this.width ? `${this.width}px`: '100%';
+            iframe.height = this.height ? `${this.height}px`: '100%';
+
+            iframe.srcdoc = excalidrawIframe;
+
+            this.appendChild(iframe);
+        }
+    }
+
+    customElements.define('custom-excalidraw', CustomExcalidraw);
+
+</script>
+
+<style>
+
+custom-excalidraw {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px 0px 5px 0px #00000029;
+    border-radius: 20px;
+    z-index: 8000;
+}
+
+
+</style>

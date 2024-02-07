@@ -7,7 +7,7 @@ import ArrowHead from "../../assets/ArrowHead";
 import Triangulo from "../Triangulo";
 import * as D3Select from "d3-selection";
 import "./BinomioNewton.css";
-import * as EQ from "@assets/algebra/binomi-de-newton/svg.js";
+import * as EQ from "@assets/algebra/binomio-de-newton/svg.js";
 import MathFormuleWrapper from "./MathFormuleWrapper";
 
 const colors = {

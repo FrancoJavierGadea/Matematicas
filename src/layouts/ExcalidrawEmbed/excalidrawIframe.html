@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Excalidraw in browser</title>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@excalidraw/excalidraw@0.17.1-7441-4e2c539/dist/browser/dev/index.css"
+    />
+
+    <style>
+
+    button.dropdown-menu-button.main-menu-trigger,
+    label[title="Library"],
+    label[title="Biblioteca"] {
+        
+        display: none;
+    }
+
+    .App-toolbar__extra-tools-dropdown .dropdown-menu-container {
+
+        & > div {
+            display: none;
+        }
+
+        & > button[data-testid="toolbar-magicframe"],
+        & > button[data-testid="toolbar-magicSettings"],
+        & > div + button[data-testid="toolbar-embeddable"] {
+            display: none;
+        }
+    }
+
+    </style>
+  </head>
+
+  <body style="margin: 0; padding: 0;">
+
+    <div id="app" style="width: 100vw; height: 100vh;"></div>
+    
+    <script defer type="module">
+
+        import * as ExcalidrawLib from "https://unpkg.com/@excalidraw/excalidraw@0.17.1-7441-b272514/dist/browser/dev/index.js";
+
+        const App = () => {
+
+            const [excalidrawAPI, setExcalidrawAPI] = React.useState(null);
+
+            React.useEffect(() => {
+
+                if(!excalidrawAPI) return;
+
+                excalidrawAPI.updateScene({
+
+                    appState: {
+                        viewBackgroundColor: "#00000000",
+                    }
+                });
+
+
+            }, [excalidrawAPI])
+
+
+            return React.createElement(
+                'div',
+                {
+                    style: {
+                        height: '100%'
+                    },
+                    onWheelCapture: (e) => {
+
+                        e.stopPropagation();
+                    }
+                },
+                
+                React.createElement(ExcalidrawLib.Excalidraw, {
+
+                    excalidrawAPI: (api) => setExcalidrawAPI(api),
+
+                    UIOptions: {
+                        canvasActions: {
+                            changeViewBackgroundColor: false,
+                            export: false,
+                            toggleTheme: false,
+                            loadScene: false,
+                            saveToActiveFile: false,
+                            saveAsImage: false
+                        }
+                    },
+
+                    detectScroll: false,
+                    zenModeEnabled: false,
+                    langCode: "es-ES"
+                }),  
+            );
+        };
+
+        const excalidrawWrapper = document.getElementById("app");
+        const root = ReactDOM.createRoot(excalidrawWrapper);
+        root.render(React.createElement(App));
+
+    </script>
+  </body>
+</html>

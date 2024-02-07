@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import DocsLayout from "@layouts/DocsLayout.astro";
+import ExcalidrawEmbed from "@layouts/ExcalidrawEmbed/ExcalidrawEmbed.astro";
 
 export async function getStaticPaths() {
 
@@ -24,6 +25,13 @@ const { Content } = await entry.render();
     <div>
 
         <div class="Doc-source">
+
+            <button class="btn" title="Mostrar / Ocultar Excalidraw"
+            
+                onclick="document.getElementById('excalidraw-embed').classList.toggle('show')" 
+            >
+                <i class="bi bi-pencil-square"></i>
+            </button>
     
             <a href={`${import.meta.env.PUBLIC_GITHUB_REPOSITORY}/tree/main/src/content/${entry.collection}/${entry.id}`} 
                 target="_blank" rel="noopener noreferrer" title="Ver en github"
@@ -37,12 +45,23 @@ const { Content } = await entry.render();
                 <i class="bi bi-filetype-raw"></i>
             </a>
         </div>
-    
-        <div class="Render-markdown markdown-body" style="--var-x: red;">
-    
-            <Content />
-    
+
+        <div class="Doc-content">
+
+            <div class="Render-markdown markdown-body" style="--var-x: red;">
+        
+                <Content />
+        
+            </div>
+
+            <div class="excalidraw-embed" id="excalidraw-embed">
+
+                <ExcalidrawEmbed />
+
+            </div>
+
         </div>
+    
 
     </div>
 
@@ -54,6 +73,7 @@ const { Content } = await entry.render();
         display: flex;
         justify-content: end;
         padding-inline: 20px;
+        padding-bottom: 20px;
         gap: 20px;
 
         a {
@@ -64,6 +84,33 @@ const { Content } = await entry.render();
             &:hover {
                 color: rgb(5, 72, 159);
             }
+        }
+        button {
+            font-size: 24px;
+            padding: 0;
+            border: none;
+
+            &:hover {
+                color: rgb(5, 72, 159);
+            }
+        }
+    }
+    .Doc-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+
+        & > * {
+            grid-row-start: 1;
+            grid-column-start: 1;
+        }
+
+
+        .excalidraw-embed {
+            visibility: hidden;
+        }
+        .excalidraw-embed.show {
+            visibility: visible;
         }
     }
 
