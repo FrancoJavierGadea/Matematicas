@@ -7,20 +7,22 @@ Expresión de Números o Variables que están siendo operadas por: `Multiplicaci
 
 
 $$
-    {\color{#ff0000} a} \cdot {\color{#280494} x}^{{\color{#00fbff} n}}
+    a \cdot x^{n}
 $$
 
-- ${\color{#ff0000} a}$ = `Coeficiente`: Un numero real contante y con signo
+- $a$ = `Coeficiente`: Un numero real contante y con signo
 
-- ${\color{#280494} x}^{{\color{#00fbff} n}}$ = `Parte literal`: Las `variables` con sus correspondientes `Exponentes`
+- ${x^{n}}$ = `Parte literal`: Las `variables` con sus correspondientes `Exponentes`
 
-> Una letra sola tiene `coeficiente` y `exponente` igual a 1
->
-> $$x = 1 \cdot x^{1}$$
+    Una letra sola tiene `coeficiente` y `exponente` igual a $1$
+    
+    $$x = 1 \cdot x^{1}$$
 
-> Una numero solo tiene *cualquier letra* con `exponente` igual a 0
->
-> $$7 = 7 \cdot x^{0}$$
+    Una numero solo tiene *cualquier letra* con `exponente` igual a $0$
+
+    $$7 = 7 \cdot x^{0}$$
+
+<br>
 
 ## Grado absoluto y relativo
 

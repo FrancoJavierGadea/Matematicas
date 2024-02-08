@@ -1,6 +1,6 @@
-## Divicion de Polinomios
+## Divicion de Polinomios - Algoritmo de la divicion larga
 
-Tomamos el primer termino y lo dividimos
+Tomamos el primer termino del `divisor` y lo dividimos con el primer termino del `dividendo`
 $$
     \begin{array}{cc}
         \begin{array}{rrrrr}
@@ -38,7 +38,7 @@ $$
 \\\
 $$
 
-Multiplicamos $3 \cdot x$ por todo el `divisor`
+Multiplicamos el resultado $3 \cdot x$ por todo el `divisor`
 
 $$
     3 \cdot x \cdot (x \hspace{0.2em}+\hspace{0.2em} 2)
@@ -49,9 +49,10 @@ $$
 \\\
 $$
 
-Lo restamos al polinomio original
+Lo restamos al polinomio original, el `divisor`
 
-O que es lo mismo, lo multiplicamos por $-10$ y lo sumanos al polinomio original
+O que es lo mismo, lo multiplicamos por $-10$ y lo sumanos
+
 $$
     \begin{array}{cc}
         \begin{array}{rrrrr}
@@ -68,15 +69,17 @@ $$
             3 \cdot x \\\\ 
         \end{array}
     \end{array}
+\\\
 $$
 
 
 
-Mientras el grado del polinomio residuo sea igual o mayor al del divisor, podemos continuar la divicion
+Mientras el grado del `resto` sea igual o mayor al del `divisor`, podemos continuar la divicion
 
 ---
 
-Tomamos el primer termino y lo dividimos
+Tomamos el primer termino y lo dividimos con el primer termino del `divisor`
+
 $$
     \begin{array}{cc}
         \begin{array}{rrrrr}
@@ -103,7 +106,9 @@ $$
     -4
 \\\
 $$
+
 Ponemos el resultado
+
 $$
     \begin{array}{cc}
         \begin{array}{rrrrr}
@@ -123,7 +128,8 @@ $$
     \end{array}
 $$
 
-Multiplicamos $-4$ por todo el `divisor`
+Multiplicamos el resultado $-4$ por todo el `divisor`
+
 $$
     -4 \cdot (x \hspace{0.2em}+\hspace{0.2em} 2)
     = 
@@ -132,9 +138,9 @@ $$
     8
 \\\
 $$
-Lo restamos al polinomio original
+Lo restamos al polinomio
 
-O que es lo mismo, lo multiplicamos por $-1$ y lo sumanos al polinomio original
+O que es lo mismo, lo multiplicamos por $-1$ y lo sumanos
 
 $$
     \begin{array}{cc}
@@ -158,7 +164,7 @@ $$
 \\\
 $$
 
-El grado del polinomio residuo es menor al del divisor entonces **la divicion termina**
+El grado del `resto` es menor al del `divisor` entonces **la divicion termina**
 
 De esta manera obtenemos que:
 
