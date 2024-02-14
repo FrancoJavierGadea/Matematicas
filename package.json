@@ -19,8 +19,10 @@
     "bootstrap-icons": "^1.11.3",
     "d3": "^7.8.5",
     "mathjax": "^3.2.2",
+    "photoswipe": "^5.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rehype-external-links": "^3.0.0",
     "rehype-mathjax": "^6.0.0",
     "remark-math": "^6.0.0"
   },

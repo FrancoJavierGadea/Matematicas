@@ -3,11 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js?url';
 
-// import 'katex/dist/katex.min.css';
-// import '../css/Custom-katex.css';
-import '../css/Custom-mathjax.css';
 //import '../css/github-markdown-dark.css';
 import '../css/github-markdown-light.css';
+
+import '../css/Custom-mathjax.css';
+import '../css/Custom-markdown.css';
+
+import 'photoswipe/style.css';
+
 import Navigation from './Navigation.astro';
 import NavigationSideBar from './NavigationSideBar/NavigationSideBar.astro';
 
@@ -24,19 +27,9 @@ const navigationLinks = [
 		]
 	},
 	{
-		name: 'Funciones',
-		url: '/funciones',
-		children: [
-			{name: 'Ejemplos', url: '/funciones/ejemplos'}
-		]
+		name: 'Docs',
+		url: '/docs',
 	},
-	{
-		name: 'Algebra',
-		url: '/algebra',
-		children: [
-			{name: 'Regla de Ruffini', url: '/algebra/ruffini'}
-		]
-	}
 ];
 ---
 

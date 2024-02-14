@@ -25,23 +25,24 @@ $$
 Resolvemos el `trinomio cuadrado perfecto`
 
 $$
-    \frac{
-        (x + 1)^{35} + 7 \cdot (x + 1)^{28} + 3 \cdot (x + 1)^{17} + 3
+\begin{array}{l}
+    \displaystyle{
+        \frac{
+            (x + 1)^{35} + 7 \cdot (x + 1)^{28} + 3 \cdot (x + 1)^{17} + 3
+        }
+        { \underbrace{x^{2} + 2 \cdot x + 1} + 1 }
     }
-    {
-        \underbrace{x^{2} + 2 \cdot x + 1} + 1
+    \\\
+    \\\
+    \displaystyle{
+        \frac{
+            (x + 1)^{35} + 7 \cdot (x + 1)^{28} + 3 \cdot (x + 1)^{17} + 3
+        }
+        { (x + 1)^{2} + 1 }
     }
-\\\
+\end{array}
 $$
-$$
-    \frac{
-        (x + 1)^{35} + 7 \cdot (x + 1)^{28} + 3 \cdot (x + 1)^{17} + 3
-    }
-    {
-        (x + 1)^{2} + 1
-    }
-\\\
-$$
+
 
 Aplicamos un **cambio de variable**
 
@@ -53,26 +54,38 @@ $$
 Operamos el numerador con el objetivo de agrupar $(x + 1)^{2}$
 
 $$
-    \left((x + 1)^{2}\right)^{17} \cdot (x + 1) 
-    + 7 \cdot \left((x + 1)^{2}\right)^{14} 
-    + 3 \cdot \left((x + 1)^{2}\right)^{8} \cdot (x + 1) 
-    + 3
-\\\
+\begin{array}{c}
+    \displaystyle{
+        (x + 1)^{35} + 7 \cdot (x + 1)^{28} + 3 \cdot (x + 1)^{17} + 3
+    }
+    \\\
+    \\\
+    \displaystyle{
+        \left((x + 1)^{2}\right)^{17} \cdot (x + 1) 
+        + 7 \cdot \left((x + 1)^{2}\right)^{14} 
+        + 3 \cdot \left((x + 1)^{2}\right)^{8} \cdot (x + 1) 
+        + 3
+    }
+    \\\
+    \\\
+    \displaystyle{
+        {\underbrace{\left((x + 1)^{2}\right)}_{t}}^{17} \cdot (x + 1) 
+        + 7 \cdot {\underbrace{\left((x + 1)^{2}\right)}_{t}}^{14} 
+        + 3 \cdot {\underbrace{\left((x + 1)^{2}\right)}_{t}}^{8} \cdot (x + 1) 
+        + 3
+    }
+    \\\
+    \\\
+    \displaystyle{
+        t^{17} \cdot (x + 1) 
+        + 7 \cdot t^{14} 
+        + 3 \cdot t^{8} \cdot (x + 1) 
+        + 3
+    }  
+\end{array}
+
 $$
-$$
-    {\underbrace{\left((x + 1)^{2}\right)}_{t}}^{17} \cdot (x + 1) 
-    + 7 \cdot {\underbrace{\left((x + 1)^{2}\right)}_{t}}^{14} 
-    + 3 \cdot {\underbrace{\left((x + 1)^{2}\right)}_{t}}^{8} \cdot (x + 1) 
-    + 3
-\\\
-$$
-$$
-    t^{17} \cdot (x + 1) 
-    + 7 \cdot t^{14} 
-    + 3 \cdot t^{8} \cdot (x + 1) 
-    + 3
-\\\
-$$
+
 
 Remplazamos
 

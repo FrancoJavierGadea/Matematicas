@@ -18,11 +18,13 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 
 const { Content } = await entry.render();
+
+const stylesVar = Object.entries(entry.data.styles || {}).map(([key, value]) => `--${key}: ${value};`).join(' ');
 ---
 
 <DocsLayout currentPage={entry.id} title={entry.data.title || entry.slug.split('/').at(-1)}>
 
-    <div>
+    <div class="Doc">
 
         <div class="Doc-source">
 
@@ -48,7 +50,7 @@ const { Content } = await entry.render();
 
         <div class="Doc-content">
 
-            <div class="Render-markdown markdown-body" style="--var-x: red;">
+            <div class="Render-markdown markdown-body" style={`${stylesVar}`}>
         
                 <Content />
         
@@ -67,7 +69,42 @@ const { Content } = await entry.render();
 
 </DocsLayout>
 
+<script>
+    import PhotoSwipeLightbox from 'photoswipe/lightbox';
+
+    const images = document.querySelectorAll('.Render-markdown img')
+    
+    console.log('images')
+    
+    images.forEach(img => {
+
+        const anchor = document.createElement('a');
+
+        anchor.setAttribute('data-pswp-src', img.src);
+        anchor.setAttribute('data-pswp-width', img.naturalWidth);
+        anchor.setAttribute('data-pswp-height', img.naturalHeight);
+        anchor.classList.add('image-link-wrapper')
+
+        img.parentElement.appendChild(anchor);
+        anchor.appendChild(img);
+    });
+
+    if(images.length > 0) {
+        
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '.Render-markdown',
+            children: '.image-link-wrapper',
+            pswpModule: () => import('photoswipe'),
+        });
+    
+        lightbox.init();
+    }
+</script>
+
 <style>
+    .Doc {
+        width: 100%;
+    }
 
     .Doc-source {
         display: flex;
@@ -96,17 +133,28 @@ const { Content } = await entry.render();
         }
     }
     .Doc-content {
+        width: 100%;
+        max-width: 100%;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
 
         & > * {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0px;/*<--- Esto arregla el overflow */
             grid-row-start: 1;
             grid-column-start: 1;
         }
 
+        .Render-markdown {
+            .image-link-wrapper {
+                cursor: pointer;
+            }
+        }
 
         .excalidraw-embed {
+            
             visibility: hidden;
         }
         .excalidraw-embed.show {
@@ -114,16 +162,5 @@ const { Content } = await entry.render();
         }
     }
 
-    .Render-markdown {
-
-        padding-block: 20px;
-        padding-inline: clamp(0px, 2vw, 50px);
-
-        & :global(mjx-container.MathJax) {
-
-            font-size: 1.2em;
-            padding-block: 20px;
-        }
-    }
 </style>
 

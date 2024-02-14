@@ -1,249 +1,270 @@
 
-.MathJax {
+mjx-container.MathJax {
+    width: 100%;
+    font-size: 1.2em;
+    padding-block: 20px;
 
-
-
-    /* Operaciones */
+    /* Suma */
+    .mjx-c2B {
+        color: var(--mjx-plus-color, currentColor);
+        padding-inline: var(--mjx-plus-gap, initial);
+    }
+    /* Resta */
+    .mjx-c2212 {
+        color: var(--mjx-minus-color, currentColor);
+        padding-inline: var(--mjx-minus-gap, initial);
+    }
+    /* Multiplicacion */
+    .mjx-c22C5 {
+        color: var(--mjx-product-color, currentColor);
+        padding-inline: var(--mjx-product-gap, initial);
+    }
+    
+    /*Fracciones*/
     mjx-frac {
         mjx-line {
-    
-            /* margin-block: var(--frac-gap-y, 0.18em);
-            margin-inline: var(--frac-gap-x, -0.1em); */
-    
-            border-color: var(--frac-line, currentColor);
+            border-color: var(--mjx-frac-line-color, currentColor);
         }
     }
+
+    /* Raiz cuadrada */
     mjx-sqrt {
         .mjx-c221A {
-            color: var(--op-raiz, currentColor); 
+            color: var(--mjx-sqrt-color, currentColor); 
         }
         & > mjx-box {
-            border-color: var(--op-raiz, currentColor);
+            border-color: var(--mjx-sqrt-color, currentColor);
         }
     }
-    .mjx-c22C5 {
-        color: var(--op-producto, currentColor);
-    }
-    .mjx-c2B {
-        color: var(--op-suma, currentColor);
-    }
-    .mjx-c2212 {
-        color: var(--op-resta, currentColor);
-    }
+
     
     
+
+    /*Menor o igual*/
+    .mjx-c2264 {
+        color: var(--mjx-leq-color, currentColor);
+        padding-inline: var(--mjx-leq-gap, initial);
+    }
+    
+    /* Arrow */
+    .mjx-c2192 {
+        color: var(--mjx-arrow-color, currentColor);
+        padding-inline: var(--mjx-arrow-gap, 0.1em);
+    }
+    .mjx-c27F6 {
+        color: var(--mjx-long-arrow-color, currentColor);
+        padding-inline: var(--mjx-long-arrow-gap, 0.1em);
+    }
+
     /* Letras griegas minuscula */
     .mjx-c1D6FC {
-        color: var(--var-alpha, currentColor);
+        color: var(--mjx-var-alpha, currentColor);
     }
     .mjx-c1D6FD {
-        color: var(--var-beta, currentColor);
+        color: var(--mjx-var-beta, currentColor);
     }
     .mjx-c1D6FE {
-        color: var(--var-gamma, currentColor);
+        color: var(--mjx-var-gamma, currentColor);
     }
     .mjx-c1D6FF {
-        color: var(--var-delta, currentColor);
+        color: var(--mjx-var-delta, currentColor);
     }
     .mjx-c1D700 {
-        color: var(--var-epsilon, currentColor);
+        color: var(--mjx-var-epsilon, currentColor);
     }
     .mjx-c1D701 {
-        color: var(--var-zeta, currentColor);
+        color: var(--mjx-var-zeta, currentColor);
     }
     .mjx-c1D702 {
-        color: var(--var-eta, currentColor);
+        color: var(--mjx-var-eta, currentColor);
     }
     .mjx-c1D703 {
-        color: var(--var-theta, currentColor);
+        color: var(--mjx-var-theta, currentColor);
     }
     .mjx-1D704 {
-        color: var(--var-iota, currentColor);
+        color: var(--mjx-var-iota, currentColor);
     }
     .mjx-1D705 {
-        color: var(--var-kappa, currentColor);
+        color: var(--mjx-var-kappa, currentColor);
     }
     .mjx-c1D706 {
-        color: var(--var-lamda, currentColor);
+        color: var(--mjx-var-lamda, currentColor);
     }
     .mjx-c1D707 {
-        color: var(--var-mu, currentColor);
+        color: var(--mjx-var-mu, currentColor);
     }
     .mjx-c1D708 {
-        color: var(--var-nu, currentColor);
+        color: var(--mjx-var-nu, currentColor);
     }
     .mjx-c1D709 {
-        color: var(--var-xi, currentColor);
+        color: var(--mjx-var-xi, currentColor);
     }
     .mjx-c1D70A {
-        color: var(--var-omicron, currentColor);
+        color: var(--mjx-var-omicron, currentColor);
     }
     .mjx-c1D70B {
-        color: var(--var-pi, currentColor);
+        color: var(--mjx-var-pi, currentColor);
     }
     
-    
-    
-    
+     
     /* Letras minuscula */
     .mjx-c1D41A, .mjx-c1D44E, .mjx-c1D482 {
-        color: var(--var-a, currentColor);
+        color: var(--mjx-var-a, currentColor);
     }
     .mjx-c1D41B, .mjx-c1D44F, .mjx-c1D483 {
-        color: var(--var-b, currentColor);
+        color: var(--mjx-var-b, currentColor);
     }
     .mjx-c1D41C, .mjx-c1D450, .mjx-c1D484 {
-        color: var(--var-c, currentColor);
+        color: var(--mjx-var-c, currentColor);
     }
     .mjx-c1D41D, .mjx-c1D451, .mjx-c1D485 {
-        color: var(--var-d, currentColor);
+        color: var(--mjx-var-d, currentColor);
     }
     .mjx-c1D41E, .mjx-c1D452, .mjx-c1D486 {
-        color: var(--var-e, currentColor);
+        color: var(--mjx-var-e, currentColor);
     }
     .mjx-c1D41F, .mjx-c1D453, .mjx-c1D487 {
-        color: var(--var-f, currentColor);
+        color: var(--mjx-var-f, currentColor);
     }
     .mjx-c1D420, .mjx-c1D454, .mjx-c1D488 {
-        color: var(--var-g, currentColor);
+        color: var(--mjx-var-g, currentColor);
     }
     .mjx-c1D421, .mjx-c1D455, .mjx-c1D489 {
-        color: var(--var-h, currentColor);
+        color: var(--mjx-var-h, currentColor);
     }
     .mjx-c1D422, .mjx-c1D456, .mjx-c1D48A {
-        color: var(--var-i, currentColor);
+        color: var(--mjx-var-i, currentColor);
     }
     .mjx-c1D423, .mjx-c1D457, .mjx-c1D48B {
-        color: var(--var-j, currentColor);
+        color: var(--mjx-var-j, currentColor);
     }
     .mjx-c1D424, .mjx-c1D458, .mjx-c1D48C {
-        color: var(--var-k, currentColor);
+        color: var(--mjx-var-k, currentColor);
     }
     .mjx-c1D426, .mjx-c1D45A, .mjx-c1D48E {
-        color: var(--var-m, currentColor);
+        color: var(--mjx-var-m, currentColor);
     }
     .mjx-c1D427, .mjx-c1D45B, .mjx-c1D48F {
-        color: var(--var-n, currentColor);
+        color: var(--mjx-var-n, currentColor);
     }
     .mjx-c1D425, .mjx-c1D459, .mjx-c1D48D {
-        color: var(--var-l, currentColor);
+        color: var(--mjx-var-l, currentColor);
     }
     .mjx-c1D428, .mjx-c1D45C, .mjx-c1D490 {
-        color: var(--var-o, currentColor);
+        color: var(--mjx-var-o, currentColor);
     }
     .mjx-c1D429, .mjx-c1D45D, .mjx-c1D491 {
-        color: var(--var-p, currentColor);
+        color: var(--mjx-var-p, currentColor);
     }
     .mjx-c1D42A, .mjx-c1D45E, .mjx-c1D492 {
-        color: var(--var-q, currentColor);
+        color: var(--mjx-var-q, currentColor);
     }
     .mjx-c1D42B, .mjx-c1D45F, .mjx-c1D493 {
-        color: var(--var-r, currentColor);
+        color: var(--mjx-var-r, currentColor);
     }
     .mjx-c1D42C, .mjx-c1D460, .mjx-c1D494 {
-        color: var(--var-s, currentColor);
+        color: var(--mjx-var-s, currentColor);
     }
     .mjx-c1D42D, .mjx-c1D461, .mjx-c1D495 {
-        color: var(--var-t, currentColor);
+        color: var(--mjx-var-t, currentColor);
     }
     .mjx-c1D42E, .mjx-c1D462, .mjx-c1D496 {
-        color: var(--var-u, currentColor);
+        color: var(--mjx-var-u, currentColor);
     }
     .mjx-c1D42F, .mjx-c1D463, .mjx-c1D497 {
-        color: var(--var-v, currentColor);
+        color: var(--mjx-var-v, currentColor);
     }
     .mjx-c1D430, .mjx-c1D464, .mjx-c1D498 {
-        color: var(--var-w, currentColor);
+        color: var(--mjx-var-w, currentColor);
     }
     .mjx-c1D465, .mjx-c1D431, .mjx-c1D499 {
-        color: var(--var-x, currentColor);
+        color: var(--mjx-var-x, currentColor);
     }
     .mjx-c1D466, .mjx-c1D432, .mjx-c1D49A {
-        color: var(--var-y, currentColor);
+        color: var(--mjx-var-y, currentColor);
     }
     .mjx-c1D433, .mjx-c1D467, .mjx-c1D49B {
-        color: var(--var-z, currentColor);
+        color: var(--mjx-var-z, currentColor);
     }
     
     /* Letras mayuscula */
     .mjx-c1D400, .mjx-c1D434, .mjx-c1D468 {
-        color: var(--var-A, currentColor);
+        color: var(--mjx-var-A, currentColor);
     }	
     .mjx-c1D401, .mjx-c1D435, .mjx-c1D469 {
-        color: var(--var-B, currentColor);
+        color: var(--mjx-var-B, currentColor);
     }	
     .mjx-c1D402, .mjx-c1D436, .mjx-c1D46A {
-        color: var(--var-C, currentColor);
+        color: var(--mjx-var-C, currentColor);
     }	
     .mjx-c1D403, .mjx-c1D437, .mjx-c1D46B {
-        color: var(--var-D, currentColor);
+        color: var(--mjx-var-D, currentColor);
     }	
     .mjx-c1D404, .mjx-c1D438, .mjx-c1D46C {
-        color: var(--var-E, currentColor);
+        color: var(--mjx-var-E, currentColor);
     }	
     .mjx-c1D405, .mjx-c1D439, .mjx-c1D46D {
-        color: var(--var-F, currentColor);
+        color: var(--mjx-var-F, currentColor);
     }	
     .mjx-c1D406, .mjx-c1D43A, .mjx-c1D46E {
-        color: var(--var-G, currentColor);
+        color: var(--mjx-var-G, currentColor);
     }	
     .mjx-c1D407, .mjx-c1D43B, .mjx-c1D46F {
-        color: var(--var-H, currentColor);
+        color: var(--mjx-var-H, currentColor);
     }	
     .mjx-c1D408, .mjx-c1D43C, .mjx-c1D470 {
-        color: var(--var-I, currentColor);
+        color: var(--mjx-var-I, currentColor);
     }	
     .mjx-c1D409, .mjx-c1D43D, .mjx-c1D471 {
-        color: var(--var-J, currentColor);
+        color: var(--mjx-var-J, currentColor);
     }	
     .mjx-c1D40A, .mjx-c1D43E, .mjx-c1D472 {
-        color: var(--var-K, currentColor);
+        color: var(--mjx-var-K, currentColor);
     }	
     .mjx-c1D40B, .mjx-c1D43F, .mjx-c1D473 {
-        color: var(--var-L, currentColor);
+        color: var(--mjx-var-L, currentColor);
     }	
     .mjx-c1D40C, .mjx-c1D440, .mjx-c1D474 {
-        color: var(--var-M, currentColor);
+        color: var(--mjx-var-M, currentColor);
     }	
     .mjx-c1D40D, .mjx-c1D441, .mjx-c1D475 {
-        color: var(--var-N, currentColor);
+        color: var(--mjx-var-N, currentColor);
     }	
     .mjx-c1D40E, .mjx-c1D442, .mjx-c1D476 {
-        color: var(--var-O, currentColor);
+        color: var(--mjx-var-O, currentColor);
     }	
     .mjx-c1D40F, .mjx-c1D443, .mjx-c1D477 {
-        color: var(--var-P, currentColor);
+        color: var(--mjx-var-P, currentColor);
     }	
     .mjx-c1D410, .mjx-c1D444, .mjx-c1D478 {
-        color: var(--var-Q, currentColor);
+        color: var(--mjx-var-Q, currentColor);
     }	
     .mjx-c1D411, .mjx-c1D445, .mjx-c1D479 {
-        color: var(--var-R, currentColor);
+        color: var(--mjx-var-R, currentColor);
     }	
     .mjx-c1D412, .mjx-c1D446, .mjx-c1D47A {
-        color: var(--var-S, currentColor);
+        color: var(--mjx-var-S, currentColor);
     }	
     .mjx-c1D413, .mjx-c1D447, .mjx-c1D47B {
-        color: var(--var-T, currentColor);
+        color: var(--mjx-var-T, currentColor);
     }	
     .mjx-c1D414, .mjx-c1D448, .mjx-c1D47C {
-        color: var(--var-U, currentColor);
+        color: var(--mjx-var-U, currentColor);
     }	
     .mjx-c1D415, .mjx-c1D449, .mjx-c1D47D {
-        color: var(--var-V, currentColor);
+        color: var(--mjx-var-V, currentColor);
     }	
     .mjx-c1D416, .mjx-c1D44A, .mjx-c1D47E {
-        color: var(--var-W, currentColor);
+        color: var(--mjx-var-W, currentColor);
     }	
     .mjx-c1D417, .mjx-c1D44B, .mjx-c1D47F {
-        color: var(--var-X, currentColor);
+        color: var(--mjx-var-X, currentColor);
     }	
     .mjx-c1D418, .mjx-c1D44C, .mjx-c1D480 {
-        color: var(--var-Y, currentColor);
+        color: var(--mjx-var-Y, currentColor);
     }	
     .mjx-c1D419, .mjx-c1D44D, .mjx-c1D481 {
-        color: var(--var-Z, currentColor);
+        color: var(--mjx-var-Z, currentColor);
     }
-
 }    
 
