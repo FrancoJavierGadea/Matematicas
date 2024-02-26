@@ -25,9 +25,9 @@ $$
 
 #### Ejemplos
 
-![Grafica x sobre sin x](./x-sobre-sin-de-x.svg)
+![Grafica x sobre sin x](./teorema-del-emparedado-1.svg)
 
-![Grafica sin x sobre x](./sin-de-x-sobre-x.svg)
+![Grafica sin x sobre x](./teorema-del-emparedado-2.svg)
 
-![Grafica sin x sobre x](../../assets/teorema-emparedado-ej-1.svg)
+![Grafica sin x sobre x](./teorema-del-emparedado-3.svg)
 

@@ -56,6 +56,41 @@ mjx-container.MathJax {
         padding-inline: var(--mjx-long-arrow-gap, 0.1em);
     }
 
+    /* slash */
+    .mjx-c2F {
+        color: var(--mjx-slash-color, currentColor);
+        padding-inline: var(--mjx-slash-gap, 0.3em);
+    }
+
+    /* Corchetes */
+    .mjx-c7D, .mjx-c7B {
+        color: var(--mjx-braces-color, currentColor);
+        padding-inline: var(--mjx-braces-gap, 0.2em);
+    }
+
+    /* comma */
+    .mjx-c2C {
+        color: var(--mjx-comma-color, currentColor);
+        padding-inline: var(--mjx-comma-gap, 0.2em 0.4em);
+    }
+
+    /* For all */
+    .mjx-c2200 {
+        color: var(--mjx-forall-color, currentColor);
+        padding-inline: var(--mjx-forall-gap, 0.2em 0.4em);
+    }
+
+    /* Matrices */
+    mjx-msub mjx-texatom {
+
+        & > *:nth-child(1) {
+            color: var(--mjx-subindex-i-color, currentColor);
+        }
+        & > *:nth-child(2) {
+            color: var(--mjx-subindex-j-color, currentColor);
+        }
+    }
+
     /* Letras griegas minuscula */
     .mjx-c1D6FC {
         color: var(--mjx-var-alpha, currentColor);

@@ -20,9 +20,19 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 
 const stylesVar = Object.entries(entry.data.styles || {}).map(([key, value]) => `--${key}: ${value};`).join(' ');
+
+const title =  (() => {
+
+    if(entry.data.title) return entry.data.title;
+
+    const title = entry.slug.split('/').at(-1).replaceAll('-', ' ');
+
+    return `${title.at(0).toUpperCase()}${title.slice(1)}`;
+
+})();
 ---
 
-<DocsLayout currentPage={entry.id} title={entry.data.title || entry.slug.split('/').at(-1)}>
+<DocsLayout currentPage={entry.id} title={title}>
 
     <div class="Doc">
 
