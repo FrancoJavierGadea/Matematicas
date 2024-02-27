@@ -1,0 +1,116 @@
+---
+---
+
+
+<custom-theme-switch data-theme="dark">
+
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="theme-switch">
+        <label class="form-check-label" for="theme-switch"></label>
+    </div>
+
+</custom-theme-switch>
+
+<script>
+    class CustomThemeSwitch extends HTMLElement {
+
+        constructor(){
+            super();
+
+
+            const theme = document.documentElement.getAttribute('data-theme');
+
+            if(!theme){
+                this.isDark = false;
+                this.isLight = true;
+                this.theme = 'light';
+            }
+            else {
+                this.theme = theme;
+                this.isDark = theme === 'dark';
+                this.isLight = theme === 'light';
+            }
+
+            if(this.isLight){
+                this.querySelector('#theme-switch').checked = true;
+            }
+
+            this.querySelector('#theme-switch').title = this.isDark ? 'Modo claro' : 'Modo oscuro';
+
+            this.querySelector('#theme-switch').addEventListener('change', (e) => {
+                
+                document.documentElement.setAttribute('data-theme', this.isDark ? 'light' : 'dark');
+                document.documentElement.setAttribute('data-bs-theme', this.isDark ? 'light' : 'dark');
+
+                this.querySelector('#theme-switch').title = this.isDark ? 'Modo oscuro' : 'Modo claro';
+
+                this.isDark = !this.isDark;
+                this.isLight = !this.isLight;
+            });
+        }
+    }
+
+    customElements.define('custom-theme-switch', CustomThemeSwitch);
+</script>
+
+<style
+    define:vars={{
+        'switch-svg': `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent('#2a70f3')}'/%3e%3c/svg%3e")`,
+        'switch-svg-checked': `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent('#fff')}'/%3e%3c/svg%3e")`
+    }}
+>
+    custom-theme-switch {
+
+        .form-switch .form-check-input {
+            --size: 25px;
+            width: calc(2 * var(--size));
+            height: var(--size);
+            margin: 0 10px;
+            position: relative;
+
+            &:not(:checked):not(:focus),
+            &:focus {
+
+                --bs-form-switch-bg: var(--switch-svg);
+            }
+
+            &:checked {
+                --bs-form-switch-bg: var(--switch-svg-checked);
+            }
+        }
+        .form-switch .form-check-input:focus {
+            border-color: #2a70f383;
+            
+            box-shadow: none;
+        }
+    
+        /*dark theme icon*/
+        .form-switch .form-check-input::before {
+            content: "\f495";
+            color: white;
+            font-family: 'bootstrap-icons';
+            display: none;
+            position: absolute;
+            left: 5px;
+            top: 0;
+        }
+        .form-switch .form-check-input:checked::before {
+            
+            display: inline-block;
+        }
+        
+        /*light theme icon*/
+        .form-switch .form-check-input::after {
+            content: "\f1D1";
+            color: #f6fb00;
+            font-family: 'bootstrap-icons';
+            display: inline-block;
+            position: absolute;
+            right: 5px;
+            top: 0;
+        }
+        .form-switch .form-check-input:checked::after {
+            display: none;
+        }
+    }
+</style>

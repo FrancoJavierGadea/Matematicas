@@ -10,19 +10,19 @@
 
     <div class="container">
 
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand order-1 me-auto" href="/">
             <slot name="brand" />
         </a>
 
-        <div class="controls">
-            <slot name="control" />
+        <div class="hide-controls order-3">
+            <slot name="hide-control" />
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
 
-        <div class="collapse navbar-collapse" id="Navigation">
+        <div class="collapse navbar-collapse order-4 order-lg-3" id="Navigation">
             <ul class="navbar-nav ms-auto">
                 {
                     links.map((link) => {
@@ -63,10 +63,21 @@
                 }
             </ul>
         </div>
+
+        <div class="controls order-2 order-lg-4">
+            <slot name="control" />
+        </div>
     </div>
 </nav>
 
 <style>
+
+    :global([data-theme="dark"]) {
+        --navigation-navbar-shadow-color: #81818139;
+    }
+    :global([data-theme="light"]) {
+        --navigation-navbar-shadow-color: #00000039;
+    }
 
     nav {
         width: 100%;
@@ -77,17 +88,16 @@
         min-height: var(--nav-height, 70px);
         max-height: var(--nav-height, 70px);
 
-        background-color: #fff;
+        background-color: var(--bs-body-bg);
 
         font-family: var(--font-math);
-        box-shadow: 0px 0px 10px 0px #00000039;
+        box-shadow: 0px 0px 10px 0px var(--navigation-navbar-shadow-color);
 
         @media (max-width: 991.98px) {
             max-height: none;
         }
 
-
-        .controls {
+        .hide-controls {
             display: flex;
             gap: 20px;
 
@@ -99,6 +109,16 @@
                 visibility: hidden;
             }
         }
+        .controls {
+            padding-inline: 20px;
+            display: flex;
+            gap: 20px;
+            
+            i.bi {
+                font-size: 30px;
+            }
+        }
+
         .navbar-nav {
             gap: 5px 25px;
         }

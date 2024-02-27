@@ -39,15 +39,24 @@ const {width, height} = Astro.props;
 
 <style>
 
-custom-excalidraw {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-    box-shadow: inset 0px 0px 5px 0px #00000029;
-    border-radius: 20px;
-    z-index: 8000;
-}
+    :global([data-theme="dark"]) {
+        
+        --excalidraw-embed-shadow-color: #2a70f360;
+    }
+    :global([data-theme="light"]) {
+        
+        --excalidraw-embed-shadow-color: #00000029;
+    }
+
+    custom-excalidraw {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 0px 0px 5px 0px var(--excalidraw-embed-shadow-color);
+        border-radius: 20px;
+        z-index: 8000;
+    }
 
 
 </style>

@@ -45,6 +45,16 @@ const { item, ...others} = Astro.props;
 }
 
 <style>
+
+    :global([data-theme="dark"]) {
+        --sidebar-item-color: #848d97;
+        --sidebar-item-color-hover: #2a70f3;
+    }
+    :global([data-theme="light"]) {
+        --sidebar-item-color: #3d3d3d;
+        --sidebar-item-color-hover: #0b0280;
+    }
+
     /*Details and summary*/
     details {
 
@@ -81,16 +91,17 @@ const { item, ...others} = Astro.props;
 
     a {
         text-decoration: none;
-        color: #3d3d3d;
         font-family: var(--font-math);
+        color: var(--sidebar-item-color);
+        font-weight: 400;
     }
     a.active {
         color: brown;
-        font-weight: 600;
+        font-weight: 800;
     }
     a:hover {
-        color: #510086;
-        font-weight: 600;
+        color: var(--sidebar-item-color-hover);
+        font-weight: 800;
     }
 
     .name {

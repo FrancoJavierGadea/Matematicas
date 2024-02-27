@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js?url';
 
-//import '../css/github-markdown-dark.css';
-import '../css/github-markdown-light.css';
+
+import '../css/github-markdown.css';
 
 import '../css/Custom-mathjax.css';
 import '../css/Custom-markdown.css';
@@ -13,6 +13,7 @@ import 'photoswipe/style.css';
 
 import Navigation from './Navigation.astro';
 import NavigationSideBar from './NavigationSideBar/NavigationSideBar.astro';
+import ThemeSwitch from '@components/ThemeSwitch.astro';
 
 const { title, showSidebar, sideBarLinks, sideBarTitle } = Astro.props;
 
@@ -35,13 +36,15 @@ const navigationLinks = [
 
 <!DOCTYPE html>
 
-<html lang="es">
+<html lang="es" data-theme="dark" data-bs-theme="dark">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+
+		<meta name="color-scheme" content="light" />
 
 		<meta name="description" content="Astro description" />
 
@@ -55,10 +58,12 @@ const navigationLinks = [
 
 			{
 				showSidebar &&
-				<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#Navigation-side-bar" slot="control">
+				<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#Navigation-side-bar" slot="hide-control">
 					<i class="bi bi-journal-text"></i>
 				</button>
 			}
+
+			<ThemeSwitch slot="control"/>
 		</Navigation>
 
 		<div class="page-content">
@@ -83,6 +88,10 @@ const navigationLinks = [
 	:root {
 		--font-math: "Noto Sans Math", sans-serif;
 		--nav-height: 70px;
+		color-scheme: light;
+	}
+	[data-bs-theme="dark"] {
+		--bs-body-bg: #0d1117;
 	}
 
 	.page-content {
@@ -93,14 +102,15 @@ const navigationLinks = [
 		& > * {
 			flex-grow: 1;
 		}
+
+		main {
+			padding-inline: 12px;
+			padding-block: 20px 0;
+			display: flex;
+			flex-direction: column;
+			gap: 50px;
+		}
 	}
 	
-	main {
-		padding: 20px 0;
-		display: flex;
-		flex-direction: column;
-		gap: 50px;
-		overflow: hidden;
-	}
 
 </style>

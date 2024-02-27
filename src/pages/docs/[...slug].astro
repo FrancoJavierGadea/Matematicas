@@ -112,6 +112,16 @@ const title =  (() => {
 </script>
 
 <style>
+
+    :global([data-theme="dark"]) {
+        --doc-control-color: #848d97;
+        --doc-control-color-hover: #2a70f3;
+    }
+    :global([data-theme="light"]) {
+        --doc-control-color: #3d3d3d;
+        --doc-control-color-hover: #0b0280;
+    }
+    
     .Doc {
         width: 100%;
     }
@@ -125,20 +135,21 @@ const title =  (() => {
 
         a {
             text-decoration: none;
-            color: #000;
+            color: var(--doc-control-color);
             font-size: 24px;
 
             &:hover {
-                color: rgb(5, 72, 159);
+                color: var(--doc-control-color-hover);
             }
         }
         button {
             font-size: 24px;
             padding: 0;
             border: none;
+            color: var(--doc-control-color);
 
             &:hover {
-                color: rgb(5, 72, 159);
+                color: var(--doc-control-color-hover);
             }
         }
     }
@@ -164,7 +175,9 @@ const title =  (() => {
         }
 
         .excalidraw-embed {
-            
+            position: sticky;
+            top: var(--nav-height);
+            height: calc(100vh - var(--nav-height));
             visibility: hidden;
         }
         .excalidraw-embed.show {
