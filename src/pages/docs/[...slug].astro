@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import DocsLayout from "@layouts/DocsLayout.astro";
 import ExcalidrawEmbed from "@layouts/ExcalidrawEmbed/ExcalidrawEmbed.astro";
+import {github} from "@utils/baseURLUtil.js";
 
 export async function getStaticPaths() {
 
@@ -54,16 +55,16 @@ const title =  (() => {
                 <i class="bi bi-filetype-html"></i>
             </button>
     
-            <a href={`${import.meta.env.PUBLIC_GITHUB_REPOSITORY}/tree/main/src/content/${entry.collection}/${entry.id}`} 
+            <a href={github.fileBaseURL(`${entry.collection}/${entry.id}`)} 
                 target="_blank" rel="noopener noreferrer" title="Ver en github"
             >
                 <i class="bi bi-github"></i>
             </a>
     
-            <a href={`${import.meta.env.PUBLIC_GITHUB_RAW}/main/src/content/${entry.collection}/${entry.id}`} 
+            <a href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} 
                 target="_blank" rel="noopener noreferrer" title="Ver raw markdown"
             >
-                <i class="bi bi-filetype-raw"></i>
+                <i class="bi bi-filetype-md"></i>
             </a>
         </div>
 

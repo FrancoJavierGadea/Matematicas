@@ -6,7 +6,11 @@ import rehypeExternalLinks from 'rehype-external-links';
 
 // https://astro.build/config
 export default defineConfig({
+
   integrations: [react()],
+
+  base: 'dist',
+  
   markdown: {
     // Applied to .md and .mdx files
     remarkPlugins: [remarkMath],

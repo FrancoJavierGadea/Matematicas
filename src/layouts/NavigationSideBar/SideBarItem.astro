@@ -1,5 +1,6 @@
 ---
 import caret from "@assets/caret.svg?raw";
+import { baseURL } from "@utils/baseURLUtil";
 const { item, ...others} = Astro.props;
 
 
@@ -36,7 +37,7 @@ const { item, ...others} = Astro.props;
 
             class:list={{'active': item.active}} 
 
-            href={item.url || '#'}
+            href={baseURL(item.url) || '#'}
         >
             <span class="name">{item.name.replaceAll('-', ' ').replaceAll('.md', '')}</span>
         </a>
