@@ -39,7 +39,7 @@ const title =  (() => {
 
         <div class="Doc-source">
 
-            <button class="btn" title="Mostrar / Ocultar Excalidraw"
+            <button class="btn Doc-source-btn" title="Mostrar / Ocultar Excalidraw"
             
                 onclick="document.getElementById('excalidraw-embed').classList.toggle('show')" 
             >
@@ -47,21 +47,34 @@ const title =  (() => {
             </button>
 
 
-            <button class="btn" title="Descargar HTML" id="download-html">
-                <i class="bi bi-download"></i>
-            </button>
-
-            <button class="btn" title="Ver HTML" id="show-html">
+            <div class="dropdown-center">
+                <button class="btn Doc-source-btn" title="Descargar" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-download"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <button class="dropdown-item" id="download-html" title="Descargar HTML">Descargar HTML</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" id="download-pdf" title="Descargar PDF">Descargar PDF</button>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} download={`${title}.md`} title="Descargar Markdown" id="download-md">Descargar Markdown</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <button class="btn Doc-source-btn" title="Ver HTML" id="show-html">
                 <i class="bi bi-filetype-html"></i>
             </button>
     
-            <a href={github.fileBaseURL(`${entry.collection}/${entry.id}`)} 
+            <a class="Doc-source-btn" href={github.fileBaseURL(`${entry.collection}/${entry.id}`)} 
                 target="_blank" rel="noopener noreferrer" title="Ver en github"
             >
                 <i class="bi bi-github"></i>
             </a>
     
-            <a href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} 
+            <a class="Doc-source-btn" href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} 
                 target="_blank" rel="noopener noreferrer" title="Ver raw markdown"
             >
                 <i class="bi bi-filetype-md"></i>
@@ -121,23 +134,15 @@ const title =  (() => {
 </script>
 
 <script>
-    import {downloadHTML, downloadFileByURL} from "@utils/DownloadUtils.js";
+    import {downloadHTML, downloadFileByURL, downloadPDF} from "@utils/DownloadUtils.js";
 
     const title = document.head.querySelector('title').textContent;
+    const getRootAttributes = () => ({
+        'data-theme': document.documentElement.getAttribute('data-theme'),
+        'data-bs-theme': document.documentElement.getAttribute('data-theme'),
+        'lang': document.documentElement.getAttribute('lang')
+    });
 
-    const getUrl = async () => {
-
-        return await downloadHTML(document.querySelector('.Render-markdown'), {
-
-            title,
-
-            rootAttributes: {
-                'data-theme': document.documentElement.getAttribute('data-theme'),
-                'data-bs-theme': document.documentElement.getAttribute('data-theme'),
-                'lang': document.documentElement.getAttribute('lang')
-            }
-        })
-    }
 
     const showHtmlBtn = document.getElementById('show-html');
 
@@ -145,18 +150,56 @@ const title =  (() => {
 
         showHtmlBtn.disabled = true;
  
-        getUrl().then(url => {
+        downloadHTML(document.querySelector('.Render-markdown'), {title, rootAttributes: getRootAttributes()})
+        .then(url => {
+
             open(url, '_blank');
             showHtmlBtn.disabled = false;
-        })
-    })
+        });
+    });
 
-    document.getElementById('download-html').addEventListener('click', () => {
+    const downloadHtmlBtn = document.getElementById('download-html');
 
-        getUrl().then(url => {
+    downloadHtmlBtn.addEventListener('click', () => {
+
+        downloadHtmlBtn.disabled = true;
+
+        downloadHTML(document.querySelector('.Render-markdown'), {title, rootAttributes: getRootAttributes()})
+        .then(url => {
+            
             downloadFileByURL(url, `${title}.html`);
+            downloadHtmlBtn.disabled = false;
+        });
+    });
+
+    const downloadPdfBtn = document.getElementById('download-pdf');
+
+    downloadPdfBtn.addEventListener('click', () => {
+
+        downloadPdfBtn.disabled = true;
+
+        downloadPDF(document.querySelector('.Render-markdown'), {title, rootAttributes: getRootAttributes()})
+        .then(() => {
+
+            downloadPdfBtn.disabled = false;
         })
-    })
+    });
+
+    document.getElementById('download-md').addEventListener('click', (e) => {
+
+        e.preventDefault();
+        const url = e.currentTarget.href;
+        const name = e.currentTarget.download;
+        console.log(url, name);
+
+        fetch(url)
+        .then((response) => response.blob())
+        .then(text => {
+
+            const url = URL.createObjectURL(text);
+            downloadFileByURL(url, name);
+        })
+    });
 </script>
 
 <style>
@@ -181,16 +224,8 @@ const title =  (() => {
         padding-bottom: 20px;
         gap: 20px;
 
-        a {
+        .Doc-source-btn {
             text-decoration: none;
-            color: var(--doc-control-color);
-            font-size: 24px;
-
-            &:hover {
-                color: var(--doc-control-color-hover);
-            }
-        }
-        button {
             font-size: 24px;
             padding: 0;
             border: none;

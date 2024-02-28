@@ -3,9 +3,7 @@ import markdownCss from "@css/github-markdown.css?url";
 import customMarkdown from "@css/Custom-markdown.css?url";
 import customMathjax from "@css/Custom-mathjax.css?url";
 
-
-
-export async function downloadHTML(main, options = {}){
+function generateHTML(main, options = {}){
 
     const {title = 'documento', rootAttributes = {}} = options;
 
@@ -44,12 +42,59 @@ export async function downloadHTML(main, options = {}){
         img.src = new URL(img.src, import.meta.url).href;
     });
 
+    return doc;
+}
+
+export async function downloadHTML(main, options = {}){
+
+    const doc = generateHTML(main, options);
+
     //Generate link
     const response = await fetch(`data:text/html;charset=UTF-8,${encodeURIComponent(doc.documentElement.outerHTML)}`)
     
     const blob = await response.blob();
 
     return URL.createObjectURL(blob);
+}
+
+export async function downloadPDF(main, options = {}){
+
+    return new Promise((resolve) => {
+
+        const doc = generateHTML(main, options);
+
+        doc.querySelector('.controls').style.display = 'none';
+    
+        const popupWindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+    
+        popupWindow.document.write(doc.documentElement.outerHTML);
+        popupWindow.document.close();
+        popupWindow.focus();
+    
+        const timer = setInterval(() => {   
+            if(popupWindow.closed) {  
+
+                clearInterval(timer);  
+                resolve(); 
+            } 
+            
+        }, 1000);
+
+        popupWindow.onafterprint = () => {
+
+            popupWindow.close();
+
+            clearInterval(timer); 
+            resolve();
+        };
+    
+        setTimeout(() => {
+    
+            popupWindow.print();
+    
+        }, 1000);
+
+    });
 }
 
 
@@ -72,5 +117,7 @@ export function downloadFileByURL(url, name) {
         link.parentNode.removeChild(link);
 
     }, 1000);
-  }
+}
+
+
 
