@@ -1,0 +1,36 @@
+
+
+[data-theme="dark"] {
+
+    --sb-track-color: var(--bs-body-bg);
+    --sb-thumb-color: #525254;
+}
+[data-theme="light"] {
+
+    --sb-track-color: var(--bs-body-bg);
+    --sb-thumb-color: #cccccc;
+}
+
+.horizontal-scroll-bar {
+
+    overflow-x: auto;
+
+    /* Scroll bar color */
+    --sb-size: 7px;
+                
+    &::-webkit-scrollbar {
+        height: var(--sb-size)
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--sb-track-color);
+        border-radius: 1px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--sb-thumb-color);
+        border-radius: 1px;
+    }
+    @supports not selector(::-webkit-scrollbar) {
+    
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}

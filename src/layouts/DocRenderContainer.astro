@@ -147,6 +147,12 @@ const Tabsname = Object.keys(Astro.slots)
         width: 100%;
         display: flex;
         padding-bottom: 20px;
+        
+        @media (max-width: 575.98px) {
+            gap: 20px;
+            flex-wrap: wrap-reverse;
+            justify-content: center;
+        }
 
         .nav-tabs {
 
@@ -159,16 +165,31 @@ const Tabsname = Object.keys(Astro.slots)
 
                 text-transform: capitalize; 
             }
+
+            .nav-item {
+                @media (max-width: 575.98px) {
+                    flex-grow: 1;
+
+                    .nav-link {
+                        width: 100%;
+                    }
+                }
+            }
         }
 
         .controls {
             display: flex;
             justify-content: end;
             align-items: center;
-            padding-inline: 20px;
+            padding-inline: 40px 20px;
             gap: 20px;
     
             border-bottom: var(--doc-controls-border-size) solid var(--doc-controls-border-color);
+
+            @media (max-width: 575.98px) {
+                border-bottom: none;
+                padding-inline: 20px;
+            }
 
             .btn {
                 text-decoration: none;

@@ -84,7 +84,7 @@ console.log(geogebra);
 
 
 
-            <div class="markdown-body" style={`${stylesVar}`} slot="markdown">
+            <div class="markdown-body horizontal-scroll-bar" style={`${stylesVar}`} slot="markdown">
         
                 <Content />
         
@@ -96,7 +96,7 @@ console.log(geogebra);
                     {
                         geogebra.map(({id, title}) => {
 
-                            return <div class="geogebra-item">
+                            return <div class="geogebra-item horizontal-scroll-bar">
                                 {title && <h3 class="geogebra-item-title">{title}</h3>}
                                 <GeogebraEmbed id={id} width={960} height={540} />    
                             </div>
@@ -190,10 +190,12 @@ console.log(geogebra);
     
     .Doc {
         width: 100%;
+        margin-bottom: 20px;
 
         .geogebra-item {
             margin-bottom: 30px;
             padding-inline: 20px;
+            padding-block: 10px;
 
             .geogebra-item-title {
                 padding-block: 10px;

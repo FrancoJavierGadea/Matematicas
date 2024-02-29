@@ -81,7 +81,7 @@
         --navigation-navbar-shadow-color: #00000039;
     }
 
-    nav {
+    nav.navbar {
         width: 100%;
         position: fixed;
         top: 0;
@@ -110,6 +110,9 @@
             @media (min-width: 992px) {
                 visibility: hidden;
             }
+            @media (max-width: 575.98px) {
+                gap: 0px;
+            }
         }
         .controls {
             padding-inline: 20px;
@@ -131,4 +134,10 @@
         }
     }
 
+    nav.navbar > .container {
+
+        @media (max-width: 575.98px) {
+            /* flex-wrap: nowrap; */
+        }
+    }
 </style>
