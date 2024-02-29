@@ -1,4 +1,4 @@
-# Apuentes 1812
+# Facultad apuntes
 
 Mis apuentes sobre `matematicas` para el cursado de las materias:
 
