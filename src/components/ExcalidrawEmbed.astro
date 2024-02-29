@@ -2,16 +2,11 @@
 const {width, height} = Astro.props;
 ---
 
-<custom-excalidraw width={width} height={height}>
-
-
-
-</custom-excalidraw>
-
+<custom-excalidraw width={width} height={height} />
 
 <script>
     //@ts-nocheck
-    import excalidrawIframe from "./excalidrawIframe.html?raw"; 
+    import excalidrawIframe from "@assets/excalidraw-iframe-template.html?raw"; 
 
     class CustomExcalidraw extends HTMLElement {
 

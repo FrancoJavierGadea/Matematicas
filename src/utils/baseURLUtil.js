@@ -25,3 +25,11 @@ export const github = {
         return `${import.meta.env.PUBLIC_GITHUB_RAW}/main/src/content/${url.replace(/^\//, '')}`;
     }
 }
+
+export const geogebra = {
+    
+    openFile: (id) => {
+
+        return `${import.meta.env.PUBLIC_GEOGEBRA_OPEN}/${id}`
+    }
+}

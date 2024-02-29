@@ -1,6 +1,7 @@
 ---
-geogebra_id: hnd2ttnn
-geogebra_link: https://www.geogebra.org/m/hnd2ttnn
+geogebra: [
+    {id: 'hnd2ttnn', title: ''}
+]
 ---
 
 # Ejemplo 1

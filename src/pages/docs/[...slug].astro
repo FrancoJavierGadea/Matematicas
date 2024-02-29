@@ -1,8 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import DocsLayout from "@layouts/DocsLayout.astro";
-import ExcalidrawEmbed from "@layouts/ExcalidrawEmbed/ExcalidrawEmbed.astro";
+import ExcalidrawEmbed from "@components/ExcalidrawEmbed.astro";
 import {github} from "@utils/baseURLUtil.js";
+import DocRenderContainer from "@layouts/DocRenderContainer.astro";
+import GeogebraEmbed from "@components/GeogebraEmbed.astro";
 
 export async function getStaticPaths() {
 
@@ -31,107 +33,83 @@ const title =  (() => {
     return `${title.at(0).toUpperCase()}${title.slice(1)}`;
 
 })();
+
+const geogebra = entry.data.geogebra;
+
+console.log(geogebra);
 ---
 
 <DocsLayout currentPage={entry.id} title={title}>
 
     <div class="Doc">
 
-        <div class="Doc-source">
+        <DocRenderContainer >
 
-            <button class="btn Doc-source-btn" title="Mostrar / Ocultar Excalidraw"
-            
-                onclick="document.getElementById('excalidraw-embed').classList.toggle('show')" 
-            >
-                <i class="bi bi-pencil-square"></i>
-            </button>
+            <Fragment slot="controls">
 
-
-            <div class="dropdown-center">
-                <button class="btn Doc-source-btn" title="Descargar" type="button" data-bs-toggle="dropdown">
-                    <i class="bi bi-download"></i>
+                <div class="dropdown-center">
+                    <button class="btn Doc-source-btn" title="Descargar" type="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-download"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <button class="dropdown-item" id="download-html" title="Descargar HTML">Descargar HTML</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" id="download-pdf" title="Descargar PDF">Descargar PDF</button>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} download={`${title}.md`} title="Descargar Markdown" id="download-md">Descargar Markdown</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <button class="btn Doc-source-btn" title="Ver HTML" id="show-html">
+                    <i class="bi bi-filetype-html"></i>
                 </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <button class="dropdown-item" id="download-html" title="Descargar HTML">Descargar HTML</button>
-                    </li>
-                    <li>
-                        <button class="dropdown-item" id="download-pdf" title="Descargar PDF">Descargar PDF</button>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} download={`${title}.md`} title="Descargar Markdown" id="download-md">Descargar Markdown</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <button class="btn Doc-source-btn" title="Ver HTML" id="show-html">
-                <i class="bi bi-filetype-html"></i>
-            </button>
-    
-            <a class="Doc-source-btn" href={github.fileBaseURL(`${entry.collection}/${entry.id}`)} 
-                target="_blank" rel="noopener noreferrer" title="Ver en github"
-            >
-                <i class="bi bi-github"></i>
-            </a>
-    
-            <a class="Doc-source-btn" href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} 
-                target="_blank" rel="noopener noreferrer" title="Ver raw markdown"
-            >
-                <i class="bi bi-filetype-md"></i>
-            </a>
-        </div>
+        
+                <a class="btn" href={github.fileBaseURL(`${entry.collection}/${entry.id}`)} 
+                    target="_blank" rel="noopener noreferrer" title="Ver en github"
+                >
+                    <i class="bi bi-github"></i>
+                </a>
+        
+                <a class="btn" href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} 
+                    target="_blank" rel="noopener noreferrer" title="Ver raw markdown"
+                >
+                    <i class="bi bi-filetype-md"></i>
+                </a>
+            </Fragment>
 
-        <div class="Doc-content">
 
-            <div class="Render-markdown markdown-body" style={`${stylesVar}`}>
+
+
+            <div class="markdown-body" style={`${stylesVar}`} slot="markdown">
         
                 <Content />
         
             </div>
 
-            <div class="excalidraw-embed" id="excalidraw-embed">
+            {
+                geogebra && <div slot="geogebra">
+                        
+                    {
+                        geogebra.map(({id, title}) => {
 
-                <ExcalidrawEmbed />
+                            return <div class="geogebra-item">
+                                {title && <h3 class="geogebra-item-title">{title}</h3>}
+                                <GeogebraEmbed id={id} width={960} height={540} />    
+                            </div>
+                        })
+                    }  
+                </div> 
+            }
 
-            </div>
+        </DocRenderContainer>
 
-        </div>
-    
     </div>
 
 </DocsLayout>
-
-<script>
-    import PhotoSwipeLightbox from 'photoswipe/lightbox';
-
-    const images = document.querySelectorAll('.Render-markdown img')
-    
-    console.log('images')
-    
-    images.forEach(img => {
-
-        const anchor = document.createElement('a');
-
-        anchor.setAttribute('data-pswp-src', img.src);
-        anchor.setAttribute('data-pswp-width', img.naturalWidth);
-        anchor.setAttribute('data-pswp-height', img.naturalHeight);
-        anchor.classList.add('image-link-wrapper')
-
-        img.parentElement.appendChild(anchor);
-        anchor.appendChild(img);
-    });
-
-    if(images.length > 0) {
-        
-        const lightbox = new PhotoSwipeLightbox({
-            gallery: '.Render-markdown',
-            children: '.image-link-wrapper',
-            pswpModule: () => import('photoswipe'),
-        });
-    
-        lightbox.init();
-    }
-</script>
 
 <script>
     import {downloadHTML, downloadFileByURL, downloadPDF} from "@utils/DownloadUtils.js";
@@ -190,7 +168,6 @@ const title =  (() => {
         e.preventDefault();
         const url = e.currentTarget.href;
         const name = e.currentTarget.download;
-        console.log(url, name);
 
         fetch(url)
         .then((response) => response.blob())
@@ -205,68 +182,25 @@ const title =  (() => {
 <style>
 
     :global([data-theme="dark"]) {
-        --doc-control-color: #848d97;
-        --doc-control-color-hover: #2a70f3;
+        --geogebra-title-border-color: #21262d;
     }
     :global([data-theme="light"]) {
-        --doc-control-color: #3d3d3d;
-        --doc-control-color-hover: #0b0280;
+        --geogebra-title-border-color: #d8dee4;
     }
     
     .Doc {
         width: 100%;
-    }
 
-    .Doc-source {
-        display: flex;
-        justify-content: end;
-        padding-inline: 20px;
-        padding-bottom: 20px;
-        gap: 20px;
+        .geogebra-item {
+            margin-bottom: 30px;
+            padding-inline: 20px;
 
-        .Doc-source-btn {
-            text-decoration: none;
-            font-size: 24px;
-            padding: 0;
-            border: none;
-            color: var(--doc-control-color);
+            .geogebra-item-title {
+                padding-block: 10px;
+                margin-bottom: 20px;
 
-            &:hover {
-                color: var(--doc-control-color-hover);
+                border-bottom: 1px solid var(--geogebra-title-border-color);
             }
-        }
-    }
-    .Doc-content {
-        width: 100%;
-        max-width: 100%;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
-
-        & > * {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0px;/*<--- Esto arregla el overflow */
-            grid-row-start: 1;
-            grid-column-start: 1;
-        }
-
-        .Render-markdown {
-            .image-link-wrapper {
-                cursor: pointer;
-            }
-            max-width: 100vw;
-            overflow: hidden;
-        }
-
-        .excalidraw-embed {
-            position: sticky;
-            top: var(--nav-height);
-            height: calc(100vh - var(--nav-height));
-            visibility: hidden;
-        }
-        .excalidraw-embed.show {
-            visibility: visible;
         }
     }
 

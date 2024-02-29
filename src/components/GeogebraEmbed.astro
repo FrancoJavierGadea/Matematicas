@@ -1,0 +1,267 @@
+---
+import {geogebra} from '@utils/baseURLUtil.js';
+
+const {
+    title = '',
+    id,
+    width = 960,
+    height = 540,
+    borderColor = '#888888',
+    borderRadius = 20,
+    controls,
+    
+    showFullScreenButton = false,
+    showMenuBar = false,
+    showToolBar = false,
+    showToolBarHelp = false,
+    showAlgebraInput = false,
+    allowStyleBar = false,
+    showResetIcon = false,
+    enableRightClick = false,
+    enableLabelDrags = false,
+    enableShiftDragZoom = false,
+    clickToLoad = false,
+
+} = Astro.props; 
+
+/* const url = [
+    'https://www.geogebra.org/material/iframe',
+    `/id/${id}`,
+    `/width/${width}`,
+    `/height/${height}`,
+    `/border/${border.replace('#', '')}`,
+    `/sfsb/${showFullScreenButton}`,
+    `/smb/${showMenuBar}`,
+    `/stb/${showToolBar}`,
+    `/stbh/${showToolBarHelp}`,
+    `/ai/${showAlgebraInput}`,
+    `/asb/${allowStyleBar}`,
+    `/sri/${showResetIcon}`,
+    `/rc/${enableRightClick}`,
+    `/ld/${enableLabelDrags}`,
+    `/sdz/${enableShiftDragZoom}`,
+    `/ctl/${clickToLoad}`,
+]
+.join(''); */
+
+---
+
+<custom-geogebra title={title} width={width} height={height} id={id}
+
+    showFullScreenButton={showFullScreenButton} 
+
+    showMenuBar={showMenuBar} showAlgebraInput={showAlgebraInput} showToolBar={showToolBar}
+
+    enableShiftDragZoom={enableShiftDragZoom} enableRightClick={enableRightClick} enableLabelDrags={enableLabelDrags}
+
+    allowStyleBar={allowStyleBar}
+
+    borderRadius={borderRadius} borderColor={borderColor}
+>
+    <div class="iframe-container"></div>
+
+    <div class="iframe-controls">
+
+        <a class="btn" target="_blank" rel="noopener noreferrer" href={geogebra.openFile(id)} title="Abrir en Geogebra">
+            <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+
+        <button class="btn fullscreen-btn" title="Pantalla completa">
+            <i class="bi bi-arrows-fullscreen"></i>
+        </button>
+    </div>
+</custom-geogebra>
+
+
+<script>
+    
+    import geogebraIframe from "@assets/geogebra-iframe-template.html?raw";
+
+    class CustomGeogebra extends HTMLElement {
+
+        isFullScreen = false;
+
+        constructor(){
+            super();
+
+            this.id = this.getAttribute('id');
+
+            this.width = this.getAttribute('width');
+            this.height = this.getAttribute('height'); 
+
+            //Eventos cuando cambia el full screen
+            window.document.addEventListener('fullscreenchange', (e) => {
+
+                if(this.isFullScreen){
+
+                    this.exitFullScreen();
+                }
+
+                if(window.document.fullscreenElement === this){
+
+                    this.enterFullScreen();
+                }
+            })
+
+            //Eventos de boton full screen
+            this.querySelector('.fullscreen-btn').addEventListener('click', () => {
+
+                if(window.document.fullscreenElement === this){
+                    
+                    window.document.exitFullscreen();
+                }
+                else {
+
+                    this.requestFullscreen();  
+                }
+            });
+            
+            //Iniciar la carga del iframe cuando el componente se muestre en pantalla
+            const observer = new IntersectionObserver((e) => {
+
+                const [entry] = e;
+
+                if(entry.isIntersecting){
+                    
+                    this.init();
+
+                    observer.disconnect();
+                }
+
+            }, { root: null, rootMargin: "0px", threshold: 1.0 });
+
+            observer.observe(this);
+        }
+
+        init(){
+            const iframe = this.createIframe();
+
+            this.querySelector('.iframe-container').appendChild(iframe);
+        }
+
+        createIframe({width, height} = {}){
+            const iframe = document.createElement('iframe');
+
+            iframe.title = this.getAttribute('title');
+            iframe.width = `${width ?? this.width}px`;
+            iframe.height = `${height ?? this.height}px`;
+            iframe.allowFullscreen = true;
+            iframe.setAttribute('allowtransparency', 'true');
+
+            iframe.srcdoc = geogebraIframe;
+
+            iframe.addEventListener('load', () => {
+                
+                console.log('load iframe');
+                
+                //iframe.contentWindow.document.body.style.backgroundColor = this.getAttribute('backgroundColor');
+
+                const params = {
+                    'material_id': this.id,
+                    'width': width ?? this.width,
+                    'height': height ?? this.height
+                }
+
+                iframe.contentWindow.createGeogebra(params, (api) => {
+
+                    console.log('Mostrando: ', this.id);
+                });
+            });
+
+            return iframe;
+        }
+
+        enterFullScreen(){
+
+            this.querySelector('.iframe-container').innerHTML = '';
+
+            const iframe = this.createIframe({
+                width: window.screen.width,
+                height: window.screen.height
+            });
+
+            this.querySelector('.iframe-container').appendChild(iframe);
+
+            this.isFullScreen = true;
+        }
+
+        exitFullScreen(){
+            this.querySelector('.iframe-container').innerHTML = '';
+
+            const iframe = this.createIframe();
+
+            this.querySelector('.iframe-container').appendChild(iframe);
+
+            this.isFullScreen = false;
+        }
+    }
+
+    customElements.define('custom-geogebra', CustomGeogebra);
+
+</script>
+
+<style>
+    :global([data-theme="dark"]) {
+        
+        --geogebra-embed-shadow-color: #5a90f79f;
+    }
+    :global([data-theme="light"]) {
+        
+        --geogebra-embed-shadow-color: #00000029;
+    }
+
+    custom-geogebra {
+        width: fit-content;
+        display: grid;
+        margin: auto;
+        
+        box-shadow: 0px 0px 5px 0px var(--geogebra-embed-shadow-color);
+        border-radius: 10px;
+        overflow: hidden;
+        grid-template-columns: 1fr;
+
+        & > * {
+            grid-column-start: 1;
+            grid-row-start: 1;
+            position: relative;
+        }
+
+        .iframe-container {}
+
+        .iframe-controls {
+            height: fit-content;
+            width: fit-content;
+            justify-self: start;
+            align-self: end;
+            padding: 10px 10px;
+
+            display: flex;
+            gap: 10px;
+
+            .btn {
+                color: #757575;
+                width: 36px;
+                height: 36px;
+                padding: 0;
+                font-size: 16px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                background-color: #fff;
+                border-radius: 50%;
+                box-shadow: 0 1px 3px 0 #00000033,0 1px 1px 0 #00000024,0 2px 1px -1px #0000001f;
+                
+                &:hover {
+                    color: #000;
+                    background-color: #f3f2f7;
+                }
+            }
+        }
+    }
+
+    custom-geogebra .iframe-container :global(iframe) {
+        display: block;
+    }
+</style>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <meta name=viewport content="width=device-width,initial-scale=1">  
+        <meta charset="utf-8"/>
+        <title>Geogebra</title>
+
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                overflow: hidden;
+            }
+
+            .ggb-container {
+                width: 100%;
+                min-height: 500px;
+                height: auto;
+                margin-inline: auto;
+                overflow: hidden;
+
+                /* resize: both;
+                outline: 1px solid gray; */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="ggb-container">
+
+            <div id="ggb-element"></div> 
+        </div>
+
+       
+
+        <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+
+        <script>
+            //https://wiki.geogebra.org/en/SetPerspective_Command
+            window.GEOGEBRA_PESPECTIVES = {
+                'Algebra': 'A',
+                'Graphics': 'G',
+                'Graphics_2': 'D',
+                'Probability_Calculator': 'B',
+                'CAS': 'C',
+                'Construction_Protocol': 'L',
+                'Properties': 'P',
+                'Spreadsheet': 'S',
+                '3D_Graphics': 'T'
+            }
+
+            //Show: https://wiki.geogebra.org/en/Reference:GeoGebra_App_Parameters
+            window.GEOGEBRA_DEFAULT_OPTIONS = {
+                  
+                'appName': 'suite',
+                'language': 'es-ES',
+
+                'showZoomButtons': true,
+                'showToolBar': true,
+                'showAlgebraInput': true, 
+                'showMenuBar': true,
+
+                //'scaleContainerClass': 'ggb-container',
+                'autoHeight': false,
+                'allowUpscale': false,
+                
+                'buttonShadows': true,
+                'transparentGraphics': true,
+
+                'borderColor': '#00000000',
+                'borderRadius': 0,
+            }
+
+            window.createGeogebra = (params = {}, onload = () => {}) => {
+
+                console.log('Creating geogebra app');
+
+                const onloadApplet = (api) => {
+
+                    console.log('geogebra creating');
+
+                    api.setPerspective(GEOGEBRA_PESPECTIVES.Graphics);
+
+                    onload(api);
+                }
+            
+                const applet = new GGBApplet({
+
+                    appletOnLoad: onloadApplet, 
+
+                    ...window.GEOGEBRA_DEFAULT_OPTIONS,
+
+                    ...params,
+
+                }, true);
+    
+                applet.inject('ggb-element');
+            }
+
+
+            // //---------
+            // window.addEventListener('load', () => {
+            //     const examples = ['hnd2ttnn', 'pjvvamsh']
+            //     createGeogebra({
+            //         'material_id': examples[0]
+            //     })
+            // })
+        </script>
+    </body>
+</html>

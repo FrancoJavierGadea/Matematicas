@@ -1,3 +1,10 @@
+---
+geogebra: [
+    {id: 'pjvvamsh', title: 'Definicion de la derivada'},
+    {id: 'k9pbcekr', title: 'Derivada y diferencial de y'},
+]
+---
+
 ## Derivada
 
 $$

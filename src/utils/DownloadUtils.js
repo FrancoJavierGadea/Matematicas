@@ -1,4 +1,5 @@
-import templateHtml from "@assets/downloadHtmlTemplate.html?raw";
+import templateHtml from "@assets/download-doc-html-template.html?raw";
+
 import markdownCss from "@css/github-markdown.css?url";
 import customMarkdown from "@css/Custom-markdown.css?url";
 import customMathjax from "@css/Custom-mathjax.css?url";
