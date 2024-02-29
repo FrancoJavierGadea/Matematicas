@@ -1,35 +1,16 @@
 ---
 import Layout from '@layouts/Layout.astro';
-
-import GeogebraEmbed from '@components/GeogebraEmbed.astro';
-
+import Logo from '@components/Logo.astro';
+import mathLogo from '@assets/matematicas-logo.svg?raw';
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Apuentes 1812">
 
 
-	<div class="Graph">
-
-		<!-- <Graph client:load /> -->
-
-		
-
-	</div>
-
-	<GeogebraEmbed id="xvkndjgc" enableShiftDragZoom allowStyleBar enableRightClick controls />
-
-	<div style="height: 500px;"></div>
+	
 	
 </Layout>
 
 <style>
-	.Graph {
-		width: fit-content;
-		margin: auto;
-		border: 1px dashed gray;
-	}
-
-	.Graph :global(svg) {
-		display: block;
-	}
+	
 </style>

@@ -17,6 +17,8 @@ import 'photoswipe/style.css';
 import Navigation from './Navigation.astro';
 import NavigationSideBar from './NavigationSideBar/NavigationSideBar.astro';
 import ThemeSwitch from '@components/ThemeSwitch.astro';
+import Logo from '@components/Logo.astro';
+import mathLogo from '@assets/matematicas-logo.svg?raw';
 
 const { title, showSidebar, sideBarLinks, sideBarTitle } = Astro.props;
 
@@ -44,7 +46,7 @@ const navigationLinks = [
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<link rel="icon" type="image/svg+xml" href={baseURL('/favicon.svg')} />
+		<link rel="icon" type="image/svg+xml" href={baseURL('/favicon2.svg')} />
 		<meta name="generator" content={Astro.generator} />
 
 		<meta name="description" content="Astro description" />
@@ -55,7 +57,7 @@ const navigationLinks = [
 
 		<Navigation links={navigationLinks}>
 
-			<span slot="brand">Matematicas</span>
+			<Logo svg={mathLogo} slot="brand"/>
 
 			{
 				showSidebar &&

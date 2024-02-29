@@ -18,7 +18,8 @@
             super();
 
 
-            const theme = document.documentElement.getAttribute('data-theme');
+            const theme = localStorage.getItem('data-theme') || document.documentElement.getAttribute('data-theme');
+
 
             if(!theme){
                 this.isDark = false;
@@ -32,7 +33,11 @@
             }
 
             if(this.isLight){
+                
                 this.querySelector('#theme-switch').checked = true;
+
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.documentElement.setAttribute('data-bs-theme', 'light');
             }
 
             this.querySelector('#theme-switch').title = this.isDark ? 'Modo claro' : 'Modo oscuro';
@@ -46,7 +51,12 @@
 
                 this.isDark = !this.isDark;
                 this.isLight = !this.isLight;
+                this.theme = this.isDark ? 'dark' : 'light';
+
+                localStorage.setItem('data-theme', this.theme);
             });
+
+            console.log({...this})
         }
     }
 

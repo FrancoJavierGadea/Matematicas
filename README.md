@@ -1,44 +1,53 @@
-# Astro Starter Kit: Basics
+# Apuentes 1812
 
-```sh
-npm create astro@latest -- --template basics
-```
+Mis apuentes sobre `matematicas` para el cursado de las materias:
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+- **Analisis matematico 1**
+- **Analisis matematico 2**
+- **Algebra y geometria analitica**
+- **Matemarica discreta**
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+de la carrera de `Ing. en sistemas de informacione` en la **Universidad Tecnologica nacional Facultad Regional de Tucuman** (**`UTN-FRT`**)
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+<br>
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura del proyecto
 
 ```text
 /
 ├── public/
 │   └── favicon.svg
+│
 ├── src/
+│   ├── assets/
+│   │   └── math/
+│   │
 │   ├── components/
-│   │   └── Card.astro
+│   │   └── React/
+│   │
+│   ├── content/
+│   │   └── docs/
+│   │
+│   ├── css/
+│   │
 │   ├── layouts/
 │   │   └── Layout.astro
+│   │
+│   ├── utils/
+│   │
 │   └── pages/
+│       ├── docs/
 │       └── index.astro
+│
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+<br>
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Comandos
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
+#### Astro 
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
@@ -49,6 +58,16 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+<br>
+
+## Docs
+
+- [astro](https://docs.astro.build)
+- [mathjax](https://www.mathjax.org/)
+- [remark](https://github.com/remarkjs/remark)
+- [remark-math](https://github.com/remarkjs/remark-math)
+- [d3](https://d3js.org/)
+- [svgo](https://github.com/svg/svgo)
+- [bootstrap](https://getbootstrap.com/)
+- [bootstrap-icons](https://icons.getbootstrap.com/)

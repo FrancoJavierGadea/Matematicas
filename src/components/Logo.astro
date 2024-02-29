@@ -1,0 +1,40 @@
+---
+
+const {svg} = Astro.props;
+---
+
+<div class="Logo animated" set:html={svg}>
+
+</div>
+
+<style>
+
+    .Logo {
+
+
+    }
+    .Logo.animated :global(svg path){
+
+        fill-opacity: 0;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: dash 2s ease-in forwards;
+        stroke: currentColor;
+        fill: currentColor;
+        stroke-width: 0.5;
+    }
+
+	@keyframes dash {
+
+        0% {  
+            fill-opacity: 0;
+            stroke-opacity: 100%;
+        }
+
+		100% {
+            fill-opacity: 100%;
+			stroke-dashoffset: 0;
+            stroke-opacity: 0;
+		}
+	}
+</style>

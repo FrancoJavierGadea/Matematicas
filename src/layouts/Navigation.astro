@@ -12,7 +12,7 @@
 
     <div class="container">
 
-        <a class="navbar-brand order-1 me-auto" href="/">
+        <a class="navbar-brand order-1 me-auto" href={baseURL()}>
             <slot name="brand" />
         </a>
 
@@ -131,13 +131,6 @@
         .navbar-toggler {
             --bs-border-width: 0;
             --bs-navbar-toggler-focus-width: 1px;
-        }
-    }
-
-    nav.navbar > .container {
-
-        @media (max-width: 575.98px) {
-            /* flex-wrap: nowrap; */
         }
     }
 </style>
