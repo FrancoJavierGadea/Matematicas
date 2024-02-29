@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Ruffini from "@components/React/Ruffini/Ruffini";
 import RuffiniTable from "@components/React/Ruffini/RuffiniTable";
 import { parseLatex } from "@utils/Markdown";
-import ExcalidrawEmbed from "@layouts/ExcalidrawEmbed/ExcalidrawEmbed.astro";
+import ExcalidrawEmbed from "@components/ExcalidrawEmbed.astro";
 
 const html = await parseLatex('\\lim_{x \\to 5}');
 ---

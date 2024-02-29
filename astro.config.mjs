@@ -9,7 +9,8 @@ export default defineConfig({
 
   integrations: [react()],
 
-  base: 'dist',
+  site: 'https://francojaviergadea.github.io/facultad-apuntes',
+  base: 'facultad-apuntes',
   
   markdown: {
     // Applied to .md and .mdx files
