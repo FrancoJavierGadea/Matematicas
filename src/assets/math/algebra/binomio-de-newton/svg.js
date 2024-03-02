@@ -2,13 +2,13 @@ import { MultipleFilesLoader } from "@utils/ImportUtils"
   
 const loader = new MultipleFilesLoader({
 
-    path: `/src/assets/math/algebra/binomio-de-newton/optimized-svg`,
+    path: `/src/assets/math/algebra/binomio-de-newton/svg`,
 
-    rawFiles: import.meta.glob('/src/assets/math/algebra/binomio-de-newton/optimized-svg/*.svg', {
+    rawFiles: import.meta.glob('/src/assets/math/algebra/binomio-de-newton/svg/*.svg', {
         query: '?raw'
     }),
 
-    urlFiles: import.meta.glob('/src/assets/math/algebra/binomio-de-newton/optimized-svg/*.svg', {
+    urlFiles: import.meta.glob('/src/assets/math/algebra/binomio-de-newton/svg/*.svg', {
         query: '?url'
     }),
 

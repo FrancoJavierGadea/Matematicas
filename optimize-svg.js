@@ -1,31 +1,45 @@
-import { exec } from 'node:child_process';
 
-const inFolder = 'svg'
-const outFolder = 'optimized-svg';
+import { readFile } from 'node:fs/promises';
+import { optimize, loadConfig } from 'svgo';
 
-const paths = [
-    './src/docs/assets/Trigonometria/Identidades trigonometricas',
-    './src/docs/assets/Algebra/binomio de newton'
-];
+const svgo_config = await loadConfig();
 
-const i = 1;
 
-const script = `svgo -f "${paths[i]}/${inFolder}" -o "${paths[i]}/${outFolder}"`
+export function optimizeSVGPlugin(){
 
-console.log(`> ${script}`);
+    return {
+        name: 'optimize-svg-plugin',
 
-exec(script, (err, stdout, stderr) => {
+        enforce: 'pre',
 
-    if(!err){
-        console.log('\n' + stdout);
+        async load(id) {
 
-        console.log('Done !');
+            const isSVG = (path = '') => path.match(/\.svg\?raw$/);
+
+            if(isSVG(id)){
+
+                const [path, query] = id.split('?', 2);
+
+                let rawSVG;
+
+                try {
+
+                    rawSVG = await readFile(path, 'utf-8');
+                } 
+                catch (ex) {
+                    
+                    return;
+                }
+
+                const result = optimize(rawSVG, {
+                    path,
+                    ...svgo_config
+                });
+
+                return `export default \`${result.data}\`;`;
+            }
+        }
     }
-    else {
-
-        console.log('\n' + stderr);
-    }
-})
-
+}
 
 

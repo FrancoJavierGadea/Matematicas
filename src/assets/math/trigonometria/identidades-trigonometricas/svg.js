@@ -1,16 +1,14 @@
 import { MultipleFilesLoader } from "@utils/ImportUtils"
   
-const folder = 'optimized-svg';
-
 const loader = new MultipleFilesLoader({
 
-    path: `/src/assets/math/trigonometria/identidades-trigonometricas/optimized-svg`,
+    path: `/src/assets/math/trigonometria/identidades-trigonometricas/svg`,
 
-    rawFiles: import.meta.glob(`/src/assets/math/trigonometria/identidades-trigonometricas/optimized-svg/*.svg`, {
+    rawFiles: import.meta.glob(`/src/assets/math/trigonometria/identidades-trigonometricas/svg/*.svg`, {
         query: '?raw',
     }),
 
-    urlFiles: import.meta.glob(`/src/assets/math/trigonometria/identidades-trigonometricas/optimized-svg/*.svg`, {
+    urlFiles: import.meta.glob(`/src/assets/math/trigonometria/identidades-trigonometricas/svg/*.svg`, {
         query: '?url',
     }),
     
@@ -37,8 +35,6 @@ export const FUNDAMENTAL = {
         }
     ]
 }
-
-console.log(FUNDAMENTAL);
 
 export const TANGENTE = {
 
