@@ -1,13 +1,39 @@
 ---
-import DocsLayout from "@layouts/DocsLayout.astro";
+import Layout from "@layouts/Layout.astro";
+import { CollectionFileStructure } from "@utils/CollectionUtils";
+import { getCollection } from "astro:content";
+import FolderContent from "@components/FolderContent.astro";
+
+const docs = await getCollection('docs');
+
+const fileStructure = new CollectionFileStructure({collection: docs});
+
+//Siempre desplegada
+const folders = ['teoria'].reduce((acc, path) => {
+
+    const {result} = fileStructure.find(path);
+
+    result.open = true;
+
+    acc[path] = result;
+
+    return acc;
+}, {});
 
 
+const sideBar = {
+    title: 'Docs',
+    titleURL: '/docs',
+    links: [
+        ...fileStructure.files   
+    ]
+}
 ---
 
-<DocsLayout title="Docs">
+<Layout title="Docs" sideBar={sideBar}>
 
 
-    <h1>Docss</h1>
 
+    <FolderContent folder={folders.teoria} />
 
-</DocsLayout>
+</Layout>

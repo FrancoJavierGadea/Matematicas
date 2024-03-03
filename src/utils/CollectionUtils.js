@@ -1,3 +1,5 @@
+import { getCollection } from "astro:content";
+
 
 /*
  * Crea la estructura de carpetas y archivos a partir
@@ -20,78 +22,126 @@
  * ]}
  * 
 */
-export function getFileSystemStruture(collection = []){
+export class CollectionFileStructure {
 
-    const files = collection.reduce((acc, doc) => {
+    constructor({ collection = [], deep = Infinity, onlyFolders = false } = {}){
+        
+        this.collection = collection;
+        this.files = [];
+        this.deep = deep;
+        this.onlyFolders = onlyFolders;
 
-        const [path, ...subpath] = doc.id.split('/');
-    
-        const isFile = (name) => ['.md', '.mdoc', '.mdx'].some(ext => name.endsWith(ext));
-    
-        if(!acc[path]){
-    
-            acc[path] = isFile(path) ? 
-                { name: path, url: `/${doc.collection}/${doc.slug}`, } 
-                :
-                { name: path, children: [] }
-            ; 
-        }
-    
-        if(!isFile(path)) {
-    
-            let aux = acc[path].children;
-    
-            for (const path of subpath) {
-    
-                if(isFile(path)) {
-    
-                    aux.push({ name: path, url: `/docs/${doc.slug}`, }); 
+        //Crea la estructura de carpetas y archivos a partir de las path de cada archivo
+        collection.forEach((entry) => {
+            
+            const file = (() => {
+
+                const fileName = entry.id.split('/').at(-1);
+                const paths = entry.id.split('/').slice(0, -1);
+                const slugNames = entry.slug.split('/');
+
+                return {
+                    paths,
+                    slugNames, 
+                    name: fileName,
+                    deep: paths.length + 1
+                };
+            })();
+
+            //Obtener y/o crear los folders
+            const folder = file.paths.reduce((acc, folderName, index) => {
+
+                if(this.deep <= index) return acc;
+
+                let folder = acc.find(({name}) => {
+
+                    return name === folderName;
+                });
+
+                //Crear el folder
+                if(!folder){
+
+                    const slug = file.slugNames.slice(0, index + 1).join('/');
+                    const path = file.paths.slice(0, index + 1).join('/');
+
+                    folder = {
+                        type: 'folder',
+                        name: folderName,
+                        children: [],
+                        deep: index + 1,
+                        url: `/${entry.collection}/${slug}`,
+                        slug,
+                        path
+                    };
+
+                    acc.push(folder);
                 }
-                else {
-    
-                    const exist = aux.find(({name}) => {
-    
-                        return name === path;
-                    });
-    
-                    if(exist){
-    
-                        aux = exist.children;
-                    }
-                    else {
-    
-                        const folder = { name: path, children: [], };
-    
-                        aux.push(folder);
-    
-                        aux = folder.children;
-                    }
-                }   
+
+                return folder.children;
+
+            }, this.files);
+
+            //Agregar los archivos
+            if(!onlyFolders && file.deep <= this.deep){
+
+                folder.push({
+                    type: 'file', 
+                    name: file.name, 
+                    deep: file.deep,
+                    url: `/${entry.collection}/${entry.slug}`,
+                    path: `/${entry.collection}/${entry.id}`,
+                    slug: entry.slug,
+                    entry
+                }); 
+            } 
+        }); 
+    }
+
+    find(file = ''){
+
+        const paths = file.split('/');
+
+        const parents = [];
+
+        const result = paths.reduce((acc, key) => {
+
+            if(!acc){
+
+                return this.files.find(({name}) => name === key);
             }
+            else {
+
+                parents.push(acc);
+
+                return acc.children.find(({name}) => name === key);
+            }
+
+        }, null);
+
+        return {result, parents};
+    }
+
+    //Obtener todos los elementos en un array de una dimension
+    getAll(){
+
+        const result = new Set();
+
+        const deep = (element) => {
+
+            if(element.type === 'folder'){
+
+                element.children.forEach(child => deep(child));
+            }
+            
+            result.add(element);
         }
-    
-        return acc;
-    }, {});
 
-    return Object.values(files);
+        this.files.forEach(child => deep(child));
+        
+        return Array.from(result);
+    }
+
+
 }
 
 
-/*
-
-    const A = 
-
-let cont = 0;
-
-const test = (element) => {
-
-    if(!element.children){
-        cont += 1
-    }
-    else {
-        element.children.forEach(e => test(e));
-    }
-}
-
-Object.values(A).forEach(e => test(e));
-*/

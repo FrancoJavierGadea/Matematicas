@@ -61,5 +61,53 @@ export class MultipleFilesLoader {
 
         return baseURL(`${this.path}/${filename}`);
     }
+
+    async loadAll(mode = ''){
+
+        if(import.meta.env.SSR){
+
+            if(mode === 'raw'){
+
+                const result = await Object.entries(this.rawFiles).reduce(async (accp, [file, fn]) => {
+
+                    const acc = await accp;
+
+                    const [name, ext] = file.split('/').at(-1).split('.');
+
+                    const svg = (await fn()).default;
+
+                    acc[name] = { name, svg }
+
+                    return acc;
+
+                }, Promise.resolve({}));
+
+                return result;
+            }
+            
+            if(mode === 'url'){
+
+                const result = await Object.entries(this.urlFiles).reduce(async (accp, [file, fn]) => {
+
+                    const acc = await accp;
+
+                    const [name, ext] = file.split('/').at(-1).split('.');
+
+                    const url = (await fn()).default;
+
+                    acc[name] = { name, url: baseURL(url) }
+
+                    return acc;
+
+                }, Promise.resolve({}));
+
+                return result;
+            }
+        }
+        else {
+
+
+        }
+    }
 }
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg width="200" height="150" viewBox="0 0 200 150" version="1.1" id="svg1" xml:space="preserve"
+  inkscape:export-filename="folder.svg" inkscape:export-xdpi="96" inkscape:export-ydpi="96"
+  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1"
+    inkscape:showpageshadow="false" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050"
+    inkscape:document-units="px" showborder="true" showguides="true">
+    <sodipodi:guide position="-163.56075,74.941298" orientation="0,-1" id="guide1" inkscape:locked="false" />
+    <sodipodi:guide position="100.26498,219.45731" orientation="1,0" id="guide2" inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs id="defs1" />
+  <g style="fill:currentColor" id="g2" transform="matrix(11.188412,0,0,11.188412,10.375116,-8.686412)">
+    <path
+      d="M 0.54,3.87 0.5,3 a 2,2 0 0 1 2,-2 H 6.172 A 2,2 0 0 1 7.586,1.586 L 8.414,2.414 A 2,2 0 0 0 9.828,3 h 3.982 a 2,2 0 0 1 1.992,2.181 l -0.637,7 A 2,2 0 0 1 13.174,14 H 2.826 A 2,2 0 0 1 0.835,12.181 l -0.637,-7 A 2,2 0 0 1 0.54,3.871 Z M 2.19,4 A 1,1 0 0 0 1.194,5.09 l 0.637,7 A 1,1 0 0 0 2.826,13 h 10.348 a 1,1 0 0 0 0.995,-0.91 l 0.637,-7 A 1,1 0 0 0 13.81,4 Z M 6.88,2.293 A 1,1 0 0 0 6.172,2 H 2.5 a 1,1 0 0 0 -1,0.981 L 1.506,3.12 Q 1.829,3.001 2.19,3 h 5.396 z"
+      id="path1" />
+  </g>
+</svg>

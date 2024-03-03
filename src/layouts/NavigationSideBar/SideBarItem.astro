@@ -12,7 +12,8 @@ const { item, ...others} = Astro.props;
     <li {...others} data-folder-links>
         
         <details open={item.open}>
-            <summary>
+
+            <summary data-href={baseURL(item.url)}>
                 <span class="name">{item.name.replaceAll('-', ' ')}</span>
                 <i set:html={caret}/>
             </summary>	
@@ -44,6 +45,23 @@ const { item, ...others} = Astro.props;
 
     </li>    
 }
+
+<script>
+    document.querySelectorAll(`li[data-folder-links] details summary`).forEach(summary => {
+        
+        summary.addEventListener('click', (e) => {
+
+            if(e.ctrlKey){
+
+                e.preventDefault();
+
+                const url = e.currentTarget.getAttribute('data-href');
+
+                window.location.replace(url);
+            }
+        })
+    })
+</script>
 
 <style>
 

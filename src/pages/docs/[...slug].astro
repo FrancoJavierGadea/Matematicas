@@ -1,210 +1,87 @@
 ---
 import { getCollection } from "astro:content";
-import DocsLayout from "@layouts/DocsLayout.astro";
-import ExcalidrawEmbed from "@components/ExcalidrawEmbed.astro";
-import {github} from "@utils/baseURLUtil.js";
-import DocRenderContainer from "@layouts/DocRenderContainer.astro";
-import GeogebraEmbed from "@components/GeogebraEmbed.astro";
+import Layout from "@layouts/Layout.astro";
+import Doc from "@layouts/Doc.astro";
+
+import { CollectionFileStructure } from "@utils/CollectionUtils";
+import FolderContent from "@components/FolderContent.astro";
+
 
 export async function getStaticPaths() {
 
-    const blogEntries = await getCollection('docs');
+    const docs = await getCollection('docs');
 
-    return blogEntries.map((entry) => ({
+    const FileStructure = new CollectionFileStructure({collection: docs});
 
-        params: { slug: entry.slug },
+    const files = FileStructure.getAll();
 
-        props: { entry },
+    return files.map((file) => ({
+
+        params: { slug: file.slug },
+
+        props: { file },
     }));
 }
 
-const { entry } = Astro.props;
+const { slug } = Astro.params;
+const { file } = Astro.props;
 
-const { Content } = await entry.render();
-
-const stylesVar = Object.entries(entry.data.styles || {}).map(([key, value]) => `--${key}: ${value};`).join(' ');
 
 const title =  (() => {
 
-    if(entry.data.title) return entry.data.title;
+    if(file.entry?.data.title) return file.entry?.data.title;
 
-    const title = entry.slug.split('/').at(-1).replaceAll('-', ' ');
+    const title = file.name;
 
     return `${title.at(0).toUpperCase()}${title.slice(1)}`;
 
 })();
 
-const geogebra = entry.data.geogebra;
 
-console.log(geogebra);
----
+const sideBar = await (async () => {
+    
+    const docs = await getCollection('docs');
+    
+    const FileStructure = new CollectionFileStructure({collection: docs});
 
-<DocsLayout currentPage={entry.id} title={title}>
-
-    <div class="Doc">
-
-        <DocRenderContainer >
-
-            <Fragment slot="controls">
-
-                <div class="dropdown-center">
-                    <button class="btn Doc-source-btn" title="Descargar" type="button" data-bs-toggle="dropdown">
-                        <i class="bi bi-download"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <button class="dropdown-item" id="download-html" title="Descargar HTML">Descargar HTML</button>
-                        </li>
-                        <li>
-                            <button class="dropdown-item" id="download-pdf" title="Descargar PDF">Descargar PDF</button>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} download={`${title}.md`} title="Descargar Markdown" id="download-md">Descargar Markdown</a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <button class="btn Doc-source-btn" title="Ver HTML" id="show-html">
-                    <i class="bi bi-filetype-html"></i>
-                </button>
-        
-                <a class="btn" href={github.fileBaseURL(`${entry.collection}/${entry.id}`)} 
-                    target="_blank" rel="noopener noreferrer" title="Ver en github"
-                >
-                    <i class="bi bi-github"></i>
-                </a>
-        
-                <a class="btn" href={github.rawBaseURL(`${entry.collection}/${entry.id}`)} 
-                    target="_blank" rel="noopener noreferrer" title="Ver raw markdown"
-                >
-                    <i class="bi bi-filetype-md"></i>
-                </a>
-            </Fragment>
-
-
-
-
-            <div class="markdown-body horizontal-scroll-bar" style={`${stylesVar}`} slot="markdown">
-        
-                <Content />
-        
-            </div>
-
-            {
-                geogebra && <div slot="geogebra">
-                        
-                    {
-                        geogebra.map(({id, title}) => {
-
-                            return <div class="geogebra-item horizontal-scroll-bar">
-                                {title && <h3 class="geogebra-item-title">{title}</h3>}
-                                <GeogebraEmbed id={id} width={960} height={540} />    
-                            </div>
-                        })
-                    }  
-                </div> 
-            }
-
-        </DocRenderContainer>
-
-    </div>
-
-</DocsLayout>
-
-<script>
-    import {downloadHTML, downloadFileByURL, downloadPDF} from "@utils/DownloadUtils.js";
-
-    const title = document.head.querySelector('title').textContent;
-    const getRootAttributes = () => ({
-        'data-theme': document.documentElement.getAttribute('data-theme'),
-        'data-bs-theme': document.documentElement.getAttribute('data-theme'),
-        'lang': document.documentElement.getAttribute('lang')
-    });
-
-
-    const showHtmlBtn = document.getElementById('show-html');
-
-    showHtmlBtn.addEventListener('click', (e) => {
-
-        showHtmlBtn.disabled = true;
- 
-        downloadHTML(document.querySelector('.Render-markdown'), {title, rootAttributes: getRootAttributes()})
-        .then(url => {
-
-            open(url, '_blank');
-            showHtmlBtn.disabled = false;
-        });
-    });
-
-    const downloadHtmlBtn = document.getElementById('download-html');
-
-    downloadHtmlBtn.addEventListener('click', () => {
-
-        downloadHtmlBtn.disabled = true;
-
-        downloadHTML(document.querySelector('.Render-markdown'), {title, rootAttributes: getRootAttributes()})
-        .then(url => {
-            
-            downloadFileByURL(url, `${title}.html`);
-            downloadHtmlBtn.disabled = false;
-        });
-    });
-
-    const downloadPdfBtn = document.getElementById('download-pdf');
-
-    downloadPdfBtn.addEventListener('click', () => {
-
-        downloadPdfBtn.disabled = true;
-
-        downloadPDF(document.querySelector('.Render-markdown'), {title, rootAttributes: getRootAttributes()})
-        .then(() => {
-
-            downloadPdfBtn.disabled = false;
-        })
-    });
-
-    document.getElementById('download-md').addEventListener('click', (e) => {
-
-        e.preventDefault();
-        const url = e.currentTarget.href;
-        const name = e.currentTarget.download;
-
-        fetch(url)
-        .then((response) => response.blob())
-        .then(text => {
-
-            const url = URL.createObjectURL(text);
-            downloadFileByURL(url, name);
-        })
-    });
-</script>
-
-<style>
-
-    :global([data-theme="dark"]) {
-        --geogebra-title-border-color: #21262d;
-    }
-    :global([data-theme="light"]) {
-        --geogebra-title-border-color: #d8dee4;
+    const {result, parents} = FileStructure.find(file.path);
+    
+    parents.forEach(folder => folder.open = true);
+    
+    if(result.type === 'file'){
+    
+        result.active = true; 
     }
     
-    .Doc {
-        width: 100%;
-        margin-bottom: 20px;
+    if(result.type === 'folder'){
 
-        .geogebra-item {
-            margin-bottom: 30px;
-            padding-inline: 20px;
-            padding-block: 10px;
-
-            .geogebra-item-title {
-                padding-block: 10px;
-                margin-bottom: 20px;
-
-                border-bottom: 1px solid var(--geogebra-title-border-color);
-            }
-        }
+        result.open = true
     }
 
-</style>
+    return {
+        title: 'Docs',
+        titleURL: '/docs',
+        links: [
+            ...FileStructure.files
+        ]
+    }
+})();
+
+---
+
+<Layout title={title} sideBar={sideBar}>
+
+    {
+        file.type === 'file' ?
+
+            <Doc doc={file} />
+        :
+            <FolderContent folder={file} />
+    }
+
+</Layout>
+
+
+
+
 

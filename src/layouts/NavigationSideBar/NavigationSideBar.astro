@@ -1,5 +1,5 @@
 ---
-import caret from "@assets/caret.svg?raw";
+import { baseURL } from "@utils/baseURLUtil";
 import SideBarItem from "./SideBarItem.astro";
 
 const {
@@ -8,7 +8,9 @@ const {
 
 	id = 'offcanvasScrolling',
 
-	title = ''
+	title = '',
+
+	titleURL,
 
 } = Astro.props;
 ---
@@ -17,7 +19,13 @@ const {
     
     <div class="offcanvas-header">
 
-        <h5 class="offcanvas-title">{title}</h5>
+        <h5 class="offcanvas-title">
+			{titleURL ? 
+				<a href={baseURL(titleURL)}>{title}</a>
+				:
+				<span>{title}</span> 
+			}
+		</h5>
 
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
     </div>
@@ -28,46 +36,7 @@ const {
 			{
 				links.map((link) => {
 
-					const {name, url, children, active} = link;
-
-					/* if(!children) return (
-						
-						<li class="link-item">
-							<a class="" class:list={{'active': active}} href={url || '#'}>{name}</a>
-						</li>
-					);
-
-					if(children && Array.isArray(children)) return (
-
-						<li class="link-item">
-
-							<details open>
-								<summary>
-									<span>{name}</span>
-									<i set:html={caret}/>
-								</summary>	
-
-								<ul class="">
-									{ url && 
-										<li>
-											<a class="" href={url}>Inicio</a>
-										</li>
-									}
-									{
-										children.map(({name, url}) => (
-
-											<li>
-												<a class="" href={url || '#'}>{name}</a>
-											</li>
-										))
-									}
-								</ul>
-							</details>
-						</li>
-					); */
-
 					return  <SideBarItem item={link} class="link-item" />	
-					
 				})
 			}
 		</ul>
@@ -83,8 +52,6 @@ const {
 		--bs-offcanvas-width: 300px;
 		--bs-offcanvas-zindex: 10500; 
 
-		
-		
 		@media (min-width: 992px) {
 			
 			position: sticky;
@@ -108,6 +75,13 @@ const {
 			--bs-offcanvas-width: 100vw;
 		}
 	} 
+
+	.offcanvas-title {
+		a {
+			text-decoration: none;
+			color: currentColor;
+		}
+	}
 
 	.offcanvas-body {
 

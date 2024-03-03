@@ -9,12 +9,27 @@ const Tabsname = Object.keys(Astro.slots)
     return !['default', 'controls', 'markdown'].includes(v)
 });
 
+const Tabscontent = await ['markdown', ...Tabsname].reduce(async (pacc, name) => {
+
+    const acc = await pacc;
+
+    const render = await Astro.slots.render(name);
+
+    if(Boolean(render)){
+
+        acc.push({name, render});
+    }
+
+    return acc;
+
+}, Promise.resolve([]));
+
 ---
 
 <div class="Doc-controls">
     <ul class="nav nav-tabs">
         {
-            ['markdown', ...Tabsname].map((name, i) => {
+            Tabscontent.map(({name}, i) => {
     
                 const isActive = defaultTab === name;
     
@@ -47,11 +62,11 @@ const Tabsname = Object.keys(Astro.slots)
 <div class="Doc-content">
 
     {
-        ['markdown', ...Tabsname].map((name) => {
+        Tabscontent.map(({name, render}) => {
 
             const isActive = defaultTab === name;
 
-            return <div class="Doc-content-tab" set:html={Astro.slots.render(name)} data-tab-name={name}
+            return <div class="Doc-content-tab" set:html={render    } data-tab-name={name}
             
                 class:list={{
                     'active': isActive,
