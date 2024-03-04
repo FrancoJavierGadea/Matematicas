@@ -48,15 +48,8 @@ const sideBar = await (async () => {
     
     parents.forEach(folder => folder.open = true);
     
-    if(result.type === 'file'){
-    
-        result.active = true; 
-    }
-    
-    if(result.type === 'folder'){
-
-        result.open = true
-    }
+    result.active = true; 
+    if(result.type === 'folder') result.open = true
 
     return {
         title: 'Docs',

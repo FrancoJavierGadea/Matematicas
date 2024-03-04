@@ -4,7 +4,7 @@ import { useCartesianAxis } from "../hooks/useCartesianAxis";
 import Grid from "./Grid";
 
 
-function CartesianSystem({size, cx, cy, domainX, domainY, showAxis = true, showGrid = true, children}, ref) {
+function CartesianSystem({className = '', size, cx, cy, domainX, domainY, showAxis = true, showGrid = true, children}, ref) {
 
     const {scaleX, scaleY, x, y, distance, origin, min, max} = useCartesianAxis({ cx, cy, size, domainX, domainY, });
 
@@ -14,7 +14,7 @@ function CartesianSystem({size, cx, cy, domainX, domainY, showAxis = true, showG
 
     }, [scaleX, scaleY, x, y, distance, origin]);
 
-    return <>
+    return <g className={`Cartesian-system ${className}`}>
 
         {
             showAxis && <>
@@ -36,7 +36,7 @@ function CartesianSystem({size, cx, cy, domainX, domainY, showAxis = true, showG
     
         { children({x, y, origin, min, max, distance}) }
 
-    </>;
+    </g>;
 }
 
 export default forwardRef(CartesianSystem);

@@ -13,8 +13,15 @@ const { item, ...others} = Astro.props;
         
         <details open={item.open}>
 
-            <summary data-href={baseURL(item.url)}>
-                <span class="name">{item.name.replaceAll('-', ' ')}</span>
+            <summary data-href={baseURL(item.url)}  >
+
+                <span class="name"
+                
+                    class:list={{'active': item.active}}
+                >
+                    {item.name.replaceAll('-', ' ')}
+                </span>
+
                 <i set:html={caret}/>
             </summary>	
     
@@ -34,13 +41,14 @@ const { item, ...others} = Astro.props;
 
     <li {...others} data-link>
 
-        <a class="" 
+        <a class="" href={baseURL(item.url) || '#'}>
 
-            class:list={{'active': item.active}} 
-
-            href={baseURL(item.url) || '#'}
-        >
-            <span class="name">{item.name.replaceAll('-', ' ').replaceAll('.md', '')}</span>
+            <span class="name" 
+            
+                class:list={{'active': item.active}}
+            >
+                {item.name.replaceAll('-', ' ').replaceAll('.md', '')}
+            </span>
         </a>
 
     </li>    
@@ -114,19 +122,21 @@ const { item, ...others} = Astro.props;
         color: var(--sidebar-item-color);
         font-weight: 400;
     }
-    a.active {
-        color: brown;
-        font-weight: 800;
-    }
-    a:hover {
-        color: var(--sidebar-item-color-hover);
-        font-weight: 800;
-    }
+    
 
     .name {
         display: inline-block;
         font-size: 14px;
         letter-spacing: 1px;
+
+        &.active {
+        color: brown;
+        font-weight: 800;
+        }
+        &:hover {
+            color: var(--sidebar-item-color-hover);
+            font-weight: 800;
+        }
     }
     .name::first-letter {    
         text-transform: capitalize;

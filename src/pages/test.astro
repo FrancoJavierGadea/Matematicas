@@ -6,25 +6,21 @@ import { parseLatex } from "@utils/Markdown";
 import ExcalidrawEmbed from "@components/ExcalidrawEmbed.astro";
 
 import svg from "@assets/icons/funciones.svg?raw";
+import Graph from "@components/React/trigonometria/RazonesTrigonometricas/Graph";
+import RazonesTrigonometricas from "@components/React/trigonometria/RazonesTrigonometricas/RazonesTrigonomatricas";
 
 const html = await parseLatex('\\lim_{x \\to 5}');
 ---
 
 <Layout>
 
-    <!-- <div class="try">
+    <div class="svg-container">
 
-        <div style="font-size: 58px;" set:html={html}></div>
-    
-        <div>
+        <Graph client:only/>
 
-            <ExcalidrawEmbed />
+    </div>
 
-        </div>
-
-    </div> -->
-
-    <div class="svg-container" set:html={svg}></div>
+    <RazonesTrigonometricas client:only/>
     
 </Layout>
 
@@ -32,112 +28,7 @@ const html = await parseLatex('\\lim_{x \\to 5}');
 
 
 <script>
-    const files = [
-        'ejercicios/derivadas/derivacion-logaritmica-1',
-        'ejercicios/derivadas/derivacion-logaritmica-2',
-        'ejercicios/derivadas/derivacion-logaritmica-3',
-        'ejercicios/limite/limites-trigonometricos/ejemplo-1',
-        'ejercicios/limite/limites-trigonometricos/ejemplo-2',
-        'ejercicios/limite/limites-trigonometricos/ejemplo-6',
-        'latex',
-        'readme',
-        'teoria/algebra/casos-de-factoreo/diferencia-de-cuadrados',
-        'teoria/algebra/casos-de-factoreo/factor-comun-por-grupo',
-        'teoria/algebra/casos-de-factoreo/factor-comun',
-        'teoria/algebra/divicion-de-polinomios/divicion-de-polinomios',
-        'teoria/algebra/divicion-de-polinomios/divicion-larga',
-        'teoria/algebra/divicion-de-polinomios/ejemplos-teorema-resto/teorema-resto-ej-1',
-        'teoria/algebra/divicion-de-polinomios/ejemplos-teorema-resto/teorema-resto-ej-4',
-        'teoria/algebra/divicion-de-polinomios/ejemplos-teorema-resto/teorema-resto-ej-5',
-        'teoria/algebra/divicion-de-polinomios/ejemplos-teorema-resto/teorema-resto-ej-6',
-        'teoria/algebra/divicion-de-polinomios/regla-de-ruffini',
-        'teoria/algebra/divicion-de-polinomios/teorema-del-resto',
-        'teoria/algebra/factorizar',
-        'teoria/algebra/polinomios',
-        'teoria/algebra/razionalizacion/racionalizacion-ej-1',
-        'teoria/algebra/razionalizacion/racionalizacion-ej-2',
-        'teoria/algebra/razionalizacion/racionalizacion-ej-3',
-        'teoria/algebra/razionalizacion/racionalizacion-ej-4',
-        'teoria/algebra/razionalizacion/racionalizacion-ej-5',
-        'teoria/basico/logaritmos/logaritmos',
-        'teoria/basico/logaritmos/propiedades-de-logaritmos',
-        'teoria/derivadas/derivada',
-        'teoria/derivadas/derivadas-por-definicion/derivada-por-definicion-ej-1',
-        'teoria/derivadas/reglas-de-derivacion/forma-compuesta',
-        'teoria/derivadas/reglas-de-derivacion/forma-simple',
-        'teoria/derivadas/reglas-de-derivacion/operaciones',
-        'teoria/funciones/algebra-de-funciones/algebra-de-funciones',
-        'teoria/funciones/algebra-de-funciones/divicion-de-funciones',
-        'teoria/funciones/algebra-de-funciones/ejemplos/algebra-de-funciones-ej-1',
-        'teoria/funciones/algebra-de-funciones/funcion-compuesta',
-        'teoria/funciones/algebra-de-funciones/producto-de-funciones',
-        'teoria/funciones/algebra-de-funciones/resta-de-funciones',
-        'teoria/funciones/algebra-de-funciones/suma-de-funciones',
-        'teoria/funciones/asintotas',
-        'teoria/funciones/biunivoca',
-        'teoria/funciones/clasificacion-de-funciones',
-        'teoria/funciones/clasificacion-de-funciones/algebraica-y-trascendente',
-        'teoria/funciones/clasificacion-de-funciones/explicita-e-implicita',
-        'teoria/funciones/clasificacion-de-funciones/funiones-especiales',
-        'teoria/funciones/crecimiento-y-decrecimiento',
-        'teoria/funciones/ejemplos/dominio-y-rango-2',
-        'teoria/funciones/ejemplos/dominio-y-rango',
-        'teoria/funciones/funcion-inverva/ejemplo-funcion-raiz',
-        'teoria/funciones/funcion-inverva/funcion-inversa',
-        'teoria/funciones/funciones-acotadas/funciones-acodatadas',
-        'teoria/funciones/funciones-fraccionaria/funcion-fraccionaria',
-        'teoria/funciones/funciones-fraccionaria/hiperbola',
-        'teoria/funciones/funciones-polinomicas/funcion-cuadratica/formula-de-bhaskara',
-        'teoria/funciones/funciones-polinomicas/funcion-cuadratica/funcion-cuadratica',
-        'teoria/funciones/funciones-polinomicas/funcion-lineal/funcion-lineal',
-        'teoria/funciones/funciones-trascendentes/funcion-exponensial',
-        'teoria/funciones/funciones-trascendentes/funcion-logaritmica',
-        'teoria/funciones/funciones-trigonometricas/funcion-cotangente',
-        'teoria/funciones/funciones-trigonometricas/funcion-seno-y-coseno',
-        'teoria/funciones/funciones-trigonometricas/funcion-tangente',
-        'teoria/funciones/funciones',
-        'teoria/funciones/paridad-y-simetria',
-        'teoria/funciones/reglas-sagradas-del-calculo',
-        'teoria/limite/cero-sobre-cero/limite-factorizacion-ej-1',
-        'teoria/limite/cero-sobre-cero/limite-factorizacion-ej-2',
-        'teoria/limite/cero-sobre-cero/limite-factorizacion-ej-3',
-        'teoria/limite/cero-sobre-cero/limite-factorizacion-ej-4',
-        'teoria/limite/cero-sobre-cero/limite-factorizacion-ej-6',
-        'teoria/limite/continuidad-de-una-funcion/continuidad',
-        'teoria/limite/divicion-de-polinomios',
-        'teoria/limite/infinitesimos/infinitesimos-equivalentes',
-        'teoria/limite/infinitesimos/infinitesimos',
-        'teoria/limite/infinito-menos-infinito/limite-infinito-menos-infinito-ej-1',
-        'teoria/limite/infinito-menos-infinito/limite-infinito-menos-infinito-ej-2',
-        'teoria/limite/infinito-sobre-infinito/limite-infinito-sobre-infinito-ej-1',
-        'teoria/limite/infinito-sobre-infinito/limite-infinito-sobre-infinito-ej-2',
-        'teoria/limite/infinito-sobre-infinito/limite-infinito-sobre-infinito-ej-3',
-        'teoria/limite/infinito-sobre-infinito/limite-infinito-sobre-infinito-ej-4',
-        'teoria/limite/infinito-sobre-infinito/limite-infinito-sobre-infinito-ej-5',
-        'teoria/limite/infinito-sobre-infinito/limite-infinito-sobre-infinito-ej-6',
-        'teoria/limite/infinito-sobre-infinito/limite-infinito-sobre-infinito-ej-7',
-        'teoria/limite/limite-de-una-funcion-en-1-punto',
-        'teoria/limite/limite-trigonometrico-fundamental/limite-trigonometrico-fundamental',
-        'teoria/limite/limites-por-factorizacion',
-        'teoria/limite/propiedades-de-los-limites',
-        'teoria/limite/razionalizacion/limite-razionalizacion-ej-1',
-        'teoria/limite/razionalizacion/limite-razionalizacion-ej-2',
-        'teoria/matrices/determinante/determinante-metodo-gauss',
-        'teoria/matrices/determinante/determinante',
-        'teoria/matrices/determinante/propiedades-determinante',
-        'teoria/matrices/determinante/regla-de-laplace',
-        'teoria/matrices/determinante/regla-de-sarrus',
-        'teoria/matrices/matrices',
-        'teoria/matrices/matriz-cuadrada',
-        'teoria/matrices/matriz-inversa/matriz-inversa-metodo-gauss-jordan',
-        'teoria/matrices/matriz-inversa/matriz-inversa',
-        'teoria/matrices/menor-cofactor-adjunta/matriz-adjunta',
-        'teoria/matrices/menor-cofactor-adjunta/menor-y-cofactor',
-    ];
-
-    
-    
-    getFoldersPath(files);
+   
 
 </script>
 
@@ -162,10 +53,10 @@ const html = await parseLatex('\\lim_{x \\to 5}');
     .svg-container {
         width: fit-content;
         margin: 50px auto;
-
+        outline: 1px dashed gray;
     }
     .svg-container :global(svg){
-        scale: 3;
+        
     }
 
 </style>

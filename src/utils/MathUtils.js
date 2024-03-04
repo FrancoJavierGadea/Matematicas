@@ -10,60 +10,46 @@ export function radToDeg(angle = 0){
     return angle * (180 / Math.PI);
 }
 
+export function parseAngle(angle){
+
+    if(typeof angle === 'number') return angle;
+
+    if(typeof angle === 'string') {
+
+        const value = Number(angle.slice(0, -3));
+        const units = angle.slice(-3);
+
+        if(['deg', 'degrees', 'º'].includes(units)) return degToRad(value);
+
+        if(['rad', 'radians'].includes(units)) return value;
+    }
+}
+
 
 //Razones trigonometricas
-export function sin(angle = 0){
+export function sin(angle){
 
-    if([0, 180, 360].includes(angle)) return 0;
+    const value = parseAngle(angle);
 
-    const rad = degToRad(angle);
-
-    return Math.sin(rad);
+    return Math.sin(value);
 }
 
-export function cos(angle = 0){
+export function cos(angle){
 
-    if([90, 270].includes(angle)) return 0;
+    const value = parseAngle(angle);
 
-    const rad = degToRad(angle);
-
-    return Math.cos(rad);
-}
-
-export function tan(angle = 0){
-
-    if([90, 270].includes(angle)) return Infinity;
-
-    const rad = degToRad(angle);
-
-    return Math.tan(rad);
-}
-
-export function cot(angle = 0){
-
-    if([0, 180, 360].includes(angle)) return Infinity;
-
-    const rad = degToRad(angle);
-
-    return 1 / Math.tan(rad);
-}
-
-export function sec(angle = 0){
-
-    if([90, 270].includes(angle)) return Infinity;
-
-    const rad = degToRad(angle);
-
-    return 1 / Math.cos(rad);
-}
-
-export function csc(angle = 0){
-
-    if([0, 180, 360].includes(angle)) return Infinity;
-
-    const rad = degToRad(angle);
-
-    return 1 / Math.sin(rad);
+    return Math.cos(value);
 }
 
 
+export function distanceBeetween2Points(pointA, pointB){
+
+    const {x1, y1, x2, y2} = {
+        x1: Array.isArray(pointA) ? pointA.at(0) : pointA.x,
+        y1: Array.isArray(pointA) ? pointA.at(1) : pointA.y, 
+        x2: Array.isArray(pointB) ? pointB.at(0) : pointB.x, 
+        y2: Array.isArray(pointB) ? pointB.at(1) : pointB.y,  
+    }
+
+    return Math.hypot(Math.abs(x1 - x2), Math.abs(y1 - y2));
+}

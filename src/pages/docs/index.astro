@@ -14,6 +14,7 @@ const folders = ['teoria'].reduce((acc, path) => {
     const {result} = fileStructure.find(path);
 
     result.open = true;
+    result.active = true;
 
     acc[path] = result;
 
@@ -28,12 +29,33 @@ const sideBar = {
         ...fileStructure.files   
     ]
 }
+
+const {result: readme} = fileStructure.find('readme.md');
+
+const {Content} = await readme.entry.render();
 ---
 
 <Layout title="Docs" sideBar={sideBar}>
 
+    <section>
+
+        <div class="markdown-body horizontal-scroll-bar">
+        
+            <Content />
+    
+        </div>
+    
+        <FolderContent folder={folders.teoria} />
 
 
-    <FolderContent folder={folders.teoria} />
+    </section>
+
 
 </Layout>
+
+<style>
+    section {
+        padding-bottom: 50px;
+    }
+
+</style>

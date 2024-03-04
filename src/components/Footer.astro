@@ -1,0 +1,31 @@
+---
+
+const name = import.meta.env.PUBLIC_FOOTER_NAME;
+const link = import.meta.env.PUBLIC_FOOTER_LINK;
+---
+
+<footer>
+    <p>
+        <span>Hecho por</span>
+        <a href={link} target="_blank" rel="noopener noreferrer">{name}</a>
+    </p>
+</footer>
+
+<style>
+    footer {
+        padding-block: 20px 5px;
+
+
+        p {
+            text-align: center;
+            margin: 0;
+            font-family: var(--font-math);
+            letter-spacing: 1px;
+            font-size: 12px;
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+</style>

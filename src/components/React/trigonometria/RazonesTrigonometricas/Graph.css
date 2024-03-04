@@ -1,0 +1,96 @@
+
+[data-theme="light"] {
+
+    --sin-color: #930000;
+    --cos-color: #8901c8;
+    --tan-color: #031684;
+    --cot-color: #0063d3;
+    --sec-color: #007b0c;
+    --csc-color: #d0a000;
+    --tan-cot-axis-color: #777;
+    --line-color: #000;
+}
+[data-theme="dark"] {
+
+    --sin-color: #930000;
+    --cos-color: #8901c8;
+    --tan-color: #031684;
+    --cot-color: #0063d3;
+    --sec-color: #007b0c;
+    --csc-color: #d0a000;
+    --tan-cot-axis-color: #777;
+    --line-color: #fff;
+}
+
+
+
+.Razones-trigonometricas-graph {
+
+    .Graph-svg-angle {
+        fill: #f73b9a;
+        fill-opacity: 0.7;
+    }
+    .Graph-svg-line, .Graph-svg-angle, .Graph-svg-circle {
+        
+        stroke: var(--line-color);
+    }
+
+    .tan-axis, .cot-axis, .tan-proyection, .cot-proyection, .cos-proyection {
+        stroke-width: 2;
+        stroke-dasharray: 6;
+        stroke-dashoffset: 8;
+        stroke-opacity: 0.7;
+        stroke: var(--tan-cot-axis-color);
+    }
+
+    .reason-value {
+        stroke-width: 3.5;
+        stroke-opacity: 1;
+        &.cos { stroke: var(--cos-color); }
+        &.sin { stroke: var(--sin-color); }
+        &.tan { stroke: var(--tan-color); }
+        &.cot { stroke: var(--cot-color); }
+        &.sec { stroke: var(--sec-color); }
+        &.csc { stroke: var(--csc-color); }
+    }
+
+    &[data-hide~="sin"] {
+        .sin { visibility: hidden; }
+    }
+    &[data-hide~="cos"] {
+        .cos { visibility: hidden; }
+        .cos-proyection { visibility: hidden; }
+    }
+    &[data-hide~="tan"] {
+        .tan { visibility: hidden; }
+        .tan-proyection { visibility: hidden; }
+    }
+    &[data-hide~="cot"] {
+        .cot { visibility: hidden; }
+        .cot-proyection { visibility: hidden; }
+    }
+    &[data-hide~="sec"] {   
+        .sec { visibility: hidden; }
+    }
+    &[data-hide~="csc"] {
+        .csc { visibility: hidden; }
+    }
+    &[data-hide~="tan"][data-hide~="sec"] {
+        .tan-sec-point { visibility: hidden; }
+    }
+    &[data-hide~="cot"][data-hide~="csc"] {
+        .cot-csc-point { visibility: hidden; }
+    }
+    &[data-hide~="cos"][data-hide~="sin"] {
+        .sin-cos-point{ visibility: hidden; }
+    }
+    &:not([data-hide~="sec"]) {   
+        .tan-proyection { visibility: hidden; }
+    }
+    &:not([data-hide~="csc"]) {
+        .cot-proyection { visibility: hidden; }
+    }
+    &:not([data-hide~="sin"]) {
+        .cos-proyection { visibility: hidden; }
+    }
+}
