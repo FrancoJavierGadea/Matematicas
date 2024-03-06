@@ -9,6 +9,9 @@ import { optimizeSVGPlugin } from './optimize-svg.js';
 export default defineConfig({
 
   integrations: [react()],
+  devToolbar: {
+    enabled: false
+  },
 
   site: 'https://francojaviergadea.github.io/facultad-apuntes',
   base: 'facultad-apuntes',

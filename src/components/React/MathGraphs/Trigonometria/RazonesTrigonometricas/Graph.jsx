@@ -2,13 +2,13 @@ import Circle from "@components/React/GraphSVG/Circle/Circle";
 import AngleLine from "@components/React/GraphSVG/Lines/AngleLine";
 import SimpleLine from "@components/React/GraphSVG/Lines/SimpleLine";
 import Point from "@components/React/GraphSVG/Points/Point";
-import CartesianSystem from "@components/React/utils/CartesianSystem";
+import CartesianSystem from "@components/React/GraphSVG/CartesianSystem";
 import { cos, sin } from "@utils/MathUtils";
 import { useMemo, useRef } from "react";
 
 import "./Graph.css";
 import Angle from "@components/React/GraphSVG/Angles/Angle";
-import { useZoom } from "@components/React/hooks/useZoom";
+import { useZoom } from "@components/React/GraphSVG/hooks/useZoom";
 
 
 function Graph({width = 960, height = 540, angle = '30deg', size = 1800, hide = ''}) {

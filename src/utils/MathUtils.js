@@ -53,3 +53,29 @@ export function distanceBeetween2Points(pointA, pointB){
 
     return Math.hypot(Math.abs(x1 - x2), Math.abs(y1 - y2));
 }
+
+
+export function getFunctionValues(callback, opt = {}){
+
+    const {min = -5, max = 5, increment = 0.1} = opt;
+
+    const values = [];
+
+    let x = min;
+
+    do {
+        const y = callback(x);
+
+        values.push({x, y});
+
+        x += increment;
+    }
+    while(x <= max);
+
+    return values;
+}
+
+export function middle(a, b){
+
+    return (a + b) / 2;
+}

@@ -40,27 +40,27 @@ function SimpleArrow({className = '', from, to, gapX = 14, gapY = 7, arrowEnd = 
             },
 
             arrowEnd: {
-                d: [
+                d: !Number.isNaN(angle) ? [
                     `M${position.x2} ${position.y2}`,
                     `l${-gapX} ${-gapY}`,
                     `M${position.x2} ${position.y2}`,
                     `l${-gapX} ${gapY}`,
                     'Z'
-                ].join(' '),
+                ].join(' ') : '',
 
-                transform: `rotate(${angle} ${position.x2} ${position.y2})`
+                transform: !Number.isNaN(angle) ? `rotate(${angle} ${position.x2} ${position.y2})` : ''
             },
 
             arrowStart: {
-                d: [
+                d: !Number.isNaN(angle) ? [
                     `M${position.x1} ${position.y1}`,
                     `l${gapX} ${-gapY}`,
                     `M${position.x1} ${position.y1}`,
                     `l${gapX} ${gapY}`,
                     'Z',
-                ].join(' '),
+                ].join(' ') : '',
 
-                transform: `rotate(${angle} ${position.x1} ${position.y1})`
+                transform: !Number.isNaN(angle) ? `rotate(${angle} ${position.x1} ${position.y1})` : ''
             }
         }
 

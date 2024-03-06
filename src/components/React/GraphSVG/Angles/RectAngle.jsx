@@ -77,7 +77,7 @@ function Angle({className = "", point, size = 100, region = 4, rotate = 0, ...ot
         return {
             angle: {
                 d: d,
-                transform: rotate && `rotate(${angle} ${x} ${y})`
+                transform: rotate ? `rotate(${angle} ${x} ${y})` : ''
             }
         }
 

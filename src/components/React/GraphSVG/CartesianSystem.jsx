@@ -1,6 +1,6 @@
 import Axis from "./Axis";
 import {forwardRef, useImperativeHandle} from "react";
-import { useCartesianAxis } from "../hooks/useCartesianAxis";
+import { useCartesianAxis } from "./hooks/useCartesianAxis";
 import Grid from "./Grid";
 
 

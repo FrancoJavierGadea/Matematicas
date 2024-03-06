@@ -2,7 +2,7 @@ import "./NumerosCombinatorios.css";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { generateTrianguloPascal } from "../GenerateTrianguloPascal";
 import { LayoutTriangulo } from "../Layout";
-import { useZoom } from "../../hooks/useZoom";
+import { useZoom } from "../../GraphSVG/hooks/useZoom";
 import Triangulo from "../Triangulo";
 import * as D3Select from "d3-selection";
 import MathFormuleWrapper from "./MathFormuleWrapper";

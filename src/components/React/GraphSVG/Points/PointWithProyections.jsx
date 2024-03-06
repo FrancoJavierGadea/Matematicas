@@ -18,9 +18,9 @@ const defaultAttributesLines = {
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
     strokeMiterlimit: 10,
-    strokeWidth: 1,
-    strokeDasharray: 4,
-    strokeDashoffset: 10, 
+    strokeWidth: 2.5,
+    strokeDasharray: '4 10',
+    strokeDashoffset: '12' 
 }
 
 function Point({className = '', point, origin = [0, 0], size = 10, pointAttr = {}, linesAttr = {}}) {
@@ -55,21 +55,21 @@ function Point({className = '', point, origin = [0, 0], size = 10, pointAttr = {
             },
         }
 
-    }, []);
+    }, [position]);
 
-    return (<g>
+    return (<g className={className}>
 
-        <path className={`Graph-svg-line ${className}`} d={paths.lineX.d}
-
-            {...Object.assign(defaultAttributesLines, linesAttr)}
-        />
-
-        <path className={`Graph-svg-line ${className}`} d={paths.lineY.d}
+        <path className={`Graph-svg-line proyection proyection-x`} d={paths.lineX.d}
 
             {...Object.assign(defaultAttributesLines, linesAttr)}
         />
 
-        <circle className={`Graph-svg-point ${className}`} 
+        <path className={`Graph-svg-line proyection proyection-y`} d={paths.lineY.d}
+
+            {...Object.assign(defaultAttributesLines, linesAttr)}
+        />
+
+        <circle className={`Graph-svg-point`} 
 
             cx={position.x} cy={position.y} r={size / 2}
 

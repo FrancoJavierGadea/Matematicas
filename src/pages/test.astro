@@ -6,21 +6,29 @@ import { parseLatex } from "@utils/Markdown";
 import ExcalidrawEmbed from "@components/ExcalidrawEmbed.astro";
 
 import svg from "@assets/icons/funciones.svg?raw";
-import Graph from "@components/React/trigonometria/RazonesTrigonometricas/Graph";
-import RazonesTrigonometricas from "@components/React/trigonometria/RazonesTrigonometricas/RazonesTrigonomatricas";
+// import Graph from "@components/React/MathGraphs/Derivada/Graph.jsx";
+import Derivada from "@components/React/MathGraphs/Derivada/Derivada";
+import Graph from "@components/React/MathGraphs/Trigonometria/SenoCosenoDeUnaSumaAngulos/Graph";
+import SenoCosenoDeUnaSumaAngulos from "@components/React/MathGraphs/Trigonometria/SenoCosenoDeUnaSumaAngulos/SenoCosenoDeUnaSumaAngulos";
+// import Graph from "@components/React/MathGraphs/Trigonometria/RazonesTrigonometricas/Graph";
+// import RazonesTrigonometricas from "@components/React/MathGraphs/Trigonometria/RazonesTrigonometricas/RazonesTrigonomatricas";
+//import Graph from "@components/React/Graph";
+
 
 const html = await parseLatex('\\lim_{x \\to 5}');
 ---
 
 <Layout>
 
-    <div class="svg-container">
+    <!-- <div class="svg-container">
 
         <Graph client:only/>
 
-    </div>
+    </div> -->
 
-    <RazonesTrigonometricas client:only/>
+    <!-- <Derivada client:only/> -->
+
+    <SenoCosenoDeUnaSumaAngulos client:only />
     
 </Layout>
 
@@ -29,6 +37,7 @@ const html = await parseLatex('\\lim_{x \\to 5}');
 
 <script>
    
+
 
 </script>
 

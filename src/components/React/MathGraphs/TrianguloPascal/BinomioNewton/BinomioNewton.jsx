@@ -1,7 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { generateTrianguloPascal } from "../GenerateTrianguloPascal";
 import { LayoutTriangulo } from "../Layout";
-import { useZoom } from "../../hooks/useZoom";
+import { useZoom } from "../../GraphSVG/hooks/useZoom";
 import SimpleArrow from "../../utils/SimpleArrow";
 import ArrowHead from "../../assets/ArrowHead";
 import Triangulo from "../Triangulo";

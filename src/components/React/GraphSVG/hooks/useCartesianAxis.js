@@ -84,6 +84,11 @@ export function useCartesianAxis({size = 700, cx = 0, cy = 0, domainX = {}, doma
 
     }, [scaleX, scaleY]);
 
+
+    const x = useCallback((x) => scaleX(x), [scaleX]);
+    
+    const y = useCallback((y) => scaleY(y), [scaleY]);
+
     return {
         scaleX,
         scaleY,
@@ -91,7 +96,7 @@ export function useCartesianAxis({size = 700, cx = 0, cy = 0, domainX = {}, doma
         min,
         max,
         distance,
-        x: (x) => scaleX(x),
-        y: (y) => scaleY(y),
+        x,
+        y,
     }
 }

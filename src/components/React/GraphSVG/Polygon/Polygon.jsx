@@ -16,7 +16,7 @@ function Point({className = '', points = [], size = 10, ...others}) {
     const pointsPath = useMemo(() => {
 
         return points.map((point) => {
-            console.log(point)
+            
             const x = Array.isArray(point) ? point.at(0) : point.x;
             const y = Array.isArray(point) ? point.at(1) : point.y; 
 
