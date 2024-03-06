@@ -19,7 +19,27 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      # Setting an environment variable with the value of a configuration variable
+      PUBLIC_GITHUB_REPOSITORY: ${{ vars.PUBLIC_GITHUB_REPOSITORY }}
+      PUBLIC_GITHUB_RAW: ${{ vars.PUBLIC_GITHUB_RAW }}
+      PUBLIC_GEOGEBRA_OPEN: ${{ vars.PUBLIC_GEOGEBRA_OPEN }}
+      PUBLIC_FOOTER_NAME: ${{ vars.PUBLIC_FOOTER_NAME }}
+      PUBLIC_FOOTER_LINK: ${{ vars.PUBLIC_FOOTER_LINK }}
+
     steps:
+      - name: Show variables
+        run: echo "PUBLIC_GITHUB_REPOSITORY=${{ vars.PUBLIC_GITHUB_REPOSITORY }}"
+      - name: Show variables
+        run: echo "PUBLIC_GITHUB_RAW=${{ vars.PUBLIC_GITHUB_RAW }}"
+      - name: Show variables
+        run: echo "PUBLIC_GEOGEBRA_OPEN=${{ vars.PUBLIC_GEOGEBRA_OPEN }}"
+      - name: Show variables
+        run: echo "PUBLIC_FOOTER_NAME=${{ vars.PUBLIC_FOOTER_NAME }}"
+      - name: Show variables
+        run: echo "PUBLIC_FOOTER_LINK=${{ vars.PUBLIC_FOOTER_LINK}}"
+          
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
