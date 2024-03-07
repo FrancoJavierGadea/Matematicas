@@ -1,5 +1,5 @@
 
-[data-theme="light"] {
+[data-theme="light"], .Seno-y-coseno-de-una-suma-graph[data-theme="light"] {
 
     --proyections-color: #777;
     --alpha-color: #034da1;
@@ -8,7 +8,7 @@
     --rect-angle-color: #006d18;
     --line-color: #000;
 }
-[data-theme="dark"] {
+[data-theme="dark"], .Seno-y-coseno-de-una-suma-graph[data-theme="dark"] {
 
     --proyections-color: #777;
     --alpha-color: #034da1;

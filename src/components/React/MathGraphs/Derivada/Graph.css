@@ -20,6 +20,13 @@
 
 .Definicion-derivada {
 
+    .Graph-svg-text {
+        font-family: 'Latin Modern';
+        font-style: italic;
+        font-size: 22px;
+        fill: var(--line-color);
+    }
+
     .Graph-svg-line {
         stroke: var(--line-color);
     }
@@ -108,6 +115,21 @@
         .delta-y-arrow, .delta-y-text, 
         .dx-arrow, .dx-text, .pivot-A, .pivot-B,    
         .dy-arrow, .dy-text { 
+            visibility: hidden; 
+        }
+    }
+    &[data-hide~="triangle-sec"] {
+        .triangle-rec-secante, 
+        .delta-y-arrow, .delta-y-text  
+        { 
+            visibility: hidden; 
+        }
+    }
+    &[data-hide~="triangle-tan"] {
+        .triangle-rec-tangente, 
+        .dy-arrow, .dy-text, 
+        .pivot-B   
+        { 
             visibility: hidden; 
         }
     }

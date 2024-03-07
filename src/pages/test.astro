@@ -8,10 +8,11 @@ import ExcalidrawEmbed from "@components/ExcalidrawEmbed.astro";
 import svg from "@assets/icons/funciones.svg?raw";
 // import Graph from "@components/React/MathGraphs/Derivada/Graph.jsx";
 import Derivada from "@components/React/MathGraphs/Derivada/Derivada";
-import Graph from "@components/React/MathGraphs/Trigonometria/SenoCosenoDeUnaSumaAngulos/Graph";
-import SenoCosenoDeUnaSumaAngulos from "@components/React/MathGraphs/Trigonometria/SenoCosenoDeUnaSumaAngulos/SenoCosenoDeUnaSumaAngulos";
+import Graph from "@components/React/MathGraphs/Trigonometria/DemostracionSenoCosenoSuma/Graph";
+import SenoCosenoDeUnaSumaAngulos from "@components/React/MathGraphs/Trigonometria/DemostracionSenoCosenoSuma/DemostracionSenoCosenoSuma";
+import Dropdown from "@components/React/Dropdown";
 // import Graph from "@components/React/MathGraphs/Trigonometria/RazonesTrigonometricas/Graph";
-// import RazonesTrigonometricas from "@components/React/MathGraphs/Trigonometria/RazonesTrigonometricas/RazonesTrigonomatricas";
+import RazonesTrigonometricas from "@components/React/MathGraphs/Trigonometria/RazonesTrigonometricas/RazonesTrigonomatricas";
 //import Graph from "@components/React/Graph";
 
 
@@ -28,7 +29,11 @@ const html = await parseLatex('\\lim_{x \\to 5}');
 
     <!-- <Derivada client:only/> -->
 
-    <SenoCosenoDeUnaSumaAngulos client:only />
+    <SenoCosenoDeUnaSumaAngulos client:load />
+
+    <Derivada client:load  />
+
+    <RazonesTrigonometricas client:load />
     
 </Layout>
 

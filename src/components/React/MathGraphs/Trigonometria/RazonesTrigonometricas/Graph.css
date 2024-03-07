@@ -1,5 +1,5 @@
 
-[data-theme="light"] {
+[data-theme="light"], .Razones-trigonometricas-graph[data-theme="light"]  {
 
     --sin-color: #930000;
     --cos-color: #8901c8;
@@ -9,8 +9,9 @@
     --csc-color: #d0a000;
     --tan-cot-axis-color: #777;
     --line-color: #000;
+    --angle-color: #2ccb86;
 }
-[data-theme="dark"] {
+[data-theme="dark"], .Razones-trigonometricas-graph[data-theme="dark"]  {
 
     --sin-color: #930000;
     --cos-color: #8901c8;
@@ -20,14 +21,29 @@
     --csc-color: #d0a000;
     --tan-cot-axis-color: #777;
     --line-color: #fff;
+    --angle-color: #2ccb86;
 }
 
 
 
 .Razones-trigonometricas-graph {
 
+    .Graph-svg-text {
+        font-family: 'Latin Modern';
+        font-style: italic;
+        font-size: 22px;
+        fill: var(--line-color);
+
+        &.cos-text { fill: var(--cos-color); }
+        &.sin-text { fill: var(--sin-color); }
+        &.tan-text { fill: var(--tan-color); }
+        &.cot-text { fill: var(--cot-color); }
+        &.sec-text { fill: var(--sec-color); }
+        &.csc-text { fill: var(--csc-color); }
+    }
+
     .Graph-svg-angle {
-        fill: #f73b9a;
+        fill: var(--angle-color);
         fill-opacity: 0.7;
     }
     .Graph-svg-line, .Graph-svg-angle, .Graph-svg-circle {
@@ -55,25 +71,25 @@
     }
 
     &[data-hide~="sin"] {
-        .sin { visibility: hidden; }
+        .sin, .sin-text { visibility: hidden; }
     }
     &[data-hide~="cos"] {
-        .cos { visibility: hidden; }
+        .cos, .cos-text { visibility: hidden; }
         .cos-proyection { visibility: hidden; }
     }
     &[data-hide~="tan"] {
-        .tan { visibility: hidden; }
+        .tan, .tan-text { visibility: hidden; }
         .tan-proyection { visibility: hidden; }
     }
     &[data-hide~="cot"] {
-        .cot { visibility: hidden; }
+        .cot, .cot-text { visibility: hidden; }
         .cot-proyection { visibility: hidden; }
     }
     &[data-hide~="sec"] {   
-        .sec { visibility: hidden; }
+        .sec, .sec-text { visibility: hidden; }
     }
     &[data-hide~="csc"] {
-        .csc { visibility: hidden; }
+        .csc, .csc-text { visibility: hidden; }
     }
     &[data-hide~="tan"][data-hide~="sec"] {
         .tan-sec-point { visibility: hidden; }

@@ -1,5 +1,5 @@
 import { Fragment, useMemo, useRef } from "react";
-import "./Graph.css";
+import css from "./Graph.css?raw";
 import { useZoom } from "@components/React/GraphSVG/hooks/useZoom";
 import CartesianSystem from "@components/React/GraphSVG/CartesianSystem";
 import Circle from "@components/React/GraphSVG/Circle/Circle";
@@ -49,7 +49,10 @@ function Graph({width = 960, height = 540, angles = ['30deg', '30deg'], size = 1
 
     }, [angles]);
 
-    return (<svg className="Seno-y-coseno-de-una-suma-graph" width={width} height={height} viewBox={`${0} ${0} ${width} ${height}`} data-hide={hide} ref={svgRef}>
+    return (<svg className="Seno-y-coseno-de-una-suma-graph" xmlns='http://www.w3.org/2000/svg' data-hide={hide} ref={svgRef}
+    
+        width={width} height={height} viewBox={`${0} ${0} ${width} ${height}`}
+    >
 
         <CartesianSystem className="graph" size={size} cx={150} cy={height - 120} 
 
@@ -123,7 +126,7 @@ function Graph({width = 960, height = 540, angles = ['30deg', '30deg'], size = 1
         }}
         </CartesianSystem>
 
-
+        <style>{css}</style>
     </svg>);
 }
 

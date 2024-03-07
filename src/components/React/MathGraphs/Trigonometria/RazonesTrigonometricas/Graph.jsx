@@ -3,12 +3,13 @@ import AngleLine from "@components/React/GraphSVG/Lines/AngleLine";
 import SimpleLine from "@components/React/GraphSVG/Lines/SimpleLine";
 import Point from "@components/React/GraphSVG/Points/Point";
 import CartesianSystem from "@components/React/GraphSVG/CartesianSystem";
-import { cos, sin } from "@utils/MathUtils";
+import { cos, middle, sin } from "@utils/MathUtils";
 import { useMemo, useRef } from "react";
 
-import "./Graph.css";
+import css from "./Graph.css?raw";
 import Angle from "@components/React/GraphSVG/Angles/Angle";
 import { useZoom } from "@components/React/GraphSVG/hooks/useZoom";
+import Text from "@components/React/GraphSVG/Text/Text";
 
 
 function Graph({width = 960, height = 540, angle = '30deg', size = 1800, hide = ''}) {
@@ -30,7 +31,10 @@ function Graph({width = 960, height = 540, angle = '30deg', size = 1800, hide = 
 
     }, [angle]);
 
-    return (<svg className="Razones-trigonometricas-graph" width={width} height={height} viewBox={`${0} ${0} ${width} ${height}`} data-hide={hide} ref={svgRef}>
+    return (<svg className="Razones-trigonometricas-graph" xmlns='http://www.w3.org/2000/svg' data-hide={hide} ref={svgRef}
+    
+        width={width} height={height} viewBox={`${0} ${0} ${width} ${height}`}
+    >
 
         <CartesianSystem className="graph" size={size} cx={width / 2} cy={height / 2} 
 
@@ -76,7 +80,15 @@ function Graph({width = 960, height = 540, angle = '30deg', size = 1800, hide = 
                 <SimpleLine className="reason-value cot" from={[origin.x, CotPivot.y]} to={CotPivot} />
                 <SimpleLine className="reason-value sec" from={origin} to={TanPivot} />
                 <SimpleLine className="reason-value csc" from={origin} to={CotPivot} />
-                
+
+                <Text className="cos-text" point={[middle(Pivot.x, origin.x), origin.y]} gap={15}>cos</Text>
+                <Text className="sin-text" point={[Pivot.x, middle(Pivot.y, origin.y)]} side='right' gap={8}>sin</Text>
+                <Text className="tan-text" point={[TanPivot.x, middle(TanPivot.y, origin.y)]} side='right' gap={8}>tan</Text>
+                <Text className="cot-text" point={[middle(CotPivot.x, origin.x), CotPivot.y]} side='top' gap={15}>cot</Text>
+
+                <Text className="sec-text" point={[middle(TanPivot.x, origin.x), middle(TanPivot.y, origin.y)]} side='left' gap={10}>sec</Text>
+                <Text className="csc-text" point={[middle(CotPivot.x, origin.x), middle(CotPivot.y, origin.y)]} side='left' gap={10}>csc</Text>
+
                 <Point point={[x(1), origin.y]} />
                 <Point point={[origin.x, y(1)]} />
                 <Point className="sin-cos-point" point={[Pivot.x, origin.y]} />
@@ -87,7 +99,7 @@ function Graph({width = 960, height = 540, angle = '30deg', size = 1800, hide = 
             </>
         }}
         </CartesianSystem>
-    
+        <style>{css}</style>
     </svg>);
 }
 

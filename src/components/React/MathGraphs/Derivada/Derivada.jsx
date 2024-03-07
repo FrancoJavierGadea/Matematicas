@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Graph from "./Graph";
 import './Derivada.css';
+import Dropdown from "@components/React/Dropdown";
 
 const MODES = [
     {value:  'tangente', text: 'Recta tangente'},
     {value:  'secante', text: 'Recta secante'},
     {value:  'triangles', text: 'Pendientes'},
+    {value:  'triangle-sec', text: 'Pendiente secante'},
+    {value:  'triangle-tan', text: 'Pendiente tangente'},
 ];
 
 function Derivada() {
@@ -30,24 +33,28 @@ function Derivada() {
 
     return (<div className="Definicion-de-la-derivada">
 
-        <ul className="controls">{
-            MODES.map(({value, text}, i) => {
+        <div className="controls">
+        
+            <Dropdown text="Mostrar">
+                {
+                    MODES.map(({value, text}, i) => {
 
-                const isActive = !hide.includes(value);
+                        const isActive = !hide.includes(value);
 
-                return <li key={`btn-check-${i}`}>
-                    <input type="checkbox" className="btn-check" id={`btn-check-${i}`} autoComplete="off" value={value} checked={isActive} onChange={handleHide} />
-                    <label className="btn" htmlFor={`btn-check-${i}`}>{text}</label>
-                </li>
-            })
-        }</ul>
+                        return <div className="form-check" key={`btn-check-${i}`}>
+                            <input className="form-check-input" type="checkbox" value={value} checked={isActive} onChange={handleHide} id={`btn-check-${i}`} />
+                            <label className="form-check-label" htmlFor={`btn-check-${i}`}>{text}</label>
+                        </div>
+                    })
+                }
+            </Dropdown>
 
-        <div className="h-value-control">
-            <h4 className="value">{h}</h4>
+            <div className="h-value-control">
+                <h4 className="value">{h}</h4>
 
-            <input className="form-range" type="range" min={0} max={2} step={0.01} value={h} onChange={(e) => setH(+e.currentTarget.value)} />
-        </div>
-
+                <input className="form-range" type="range" min={0} max={2} step={0.01} value={h} onChange={(e) => setH(+e.currentTarget.value)} />
+            </div>
+        </div>       
         <Graph h={h} hide={hide} />
     
     </div>);

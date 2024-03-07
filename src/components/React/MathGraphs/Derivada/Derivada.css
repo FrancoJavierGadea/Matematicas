@@ -1,44 +1,53 @@
 
+[data-theme="dark"] {
+        
+    --shadow-color: #a0bef560;
+}
+[data-theme="light"] {
+    
+    --shadow-color: #00000029;
+}
 
 .Definicion-de-la-derivada {
-
+    width: fit-content;
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    align-items: center;
+    gap: 10px;
 
-    .controls {
-        display: flex;
-        gap: 20px;
-        justify-content: space-around;
-        
-        li {
-            list-style: none;
-        }
+    svg {
+        box-shadow: 0px 0px 10px 0px var(--shadow-color);
+        border-radius: 20px;
     }
+}
 
+.Definicion-de-la-derivada .controls {
+
+    padding-inline: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
     .h-value-control {
         display: flex;
         width: 400px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+
+        input {
+            min-width: 200px;
+            max-width: 300px;
+        }
+        .value {
+            font-family: 'latin modern';
+            font-size: 22px;
+            margin: 0;
+        }
     }
-    .h-value-control .value {
-        font-family: 'latin modern';
-        font-size: 22px;
-    }
-    
-    
-    
-    svg {
-        box-shadow: 0px 0px 10px 0px #00000029;
-        border-radius: 20px;
-    }
+
 }
-
-
 
 
 

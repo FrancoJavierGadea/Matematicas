@@ -4,6 +4,7 @@ import { useMemo, useRef, useState } from "react";
 import { cos, sin } from "@utils/MathUtils";
 import { useZoom } from "@components/React/GraphSVG/hooks/useZoom";
 import Graph from "./Graph";
+import Dropdown from "@components/React/Dropdown";
 
 const MODES = [
     { value: 'triangle-alpha', text: 'Triangulo Alpha' },
@@ -57,18 +58,20 @@ function SenoCosenoDeUnaSumaAngulos() {
 
         <div className="controls">
 
-            <ul className="hide-controls">{
-                MODES.map(({value, text}, i) => {
+            <Dropdown text="Mostrar">
+                {
+                    MODES.map(({value, text}, i) => {
 
-                    const isActive = !hide.includes(value);
+                        const isActive = !hide.includes(value);
 
-                    return <li key={`btn-check-${i}`}>
-                        <input type="checkbox" className="btn-check" id={`btn-check-${i}`} autoComplete="off" value={value} checked={isActive} onChange={handleHide} />
-                        <label className="btn" htmlFor={`btn-check-${i}`}>{text}</label>
-                    </li>
-                })
-            }</ul>
-            
+                        return <div className="form-check" key={`btn-check-${i}`}>
+                            <input className="form-check-input" type="checkbox" value={value} checked={isActive} onChange={handleHide} id={`btn-check-${i}`} />
+                            <label className="form-check-label" htmlFor={`btn-check-${i}`}>{text}</label>
+                        </div>
+                    })
+                }
+            </Dropdown>
+
             <div className="angles">
                 <div>
                     <h4 className="value">{alfa}º</h4>

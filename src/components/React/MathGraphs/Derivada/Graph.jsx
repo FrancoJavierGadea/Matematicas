@@ -6,7 +6,7 @@ import { useZoom } from "@components/React/GraphSVG/hooks/useZoom";
 import Polygon from "@components/React/GraphSVG/Polygon/Polygon";
 import { useMemo, useRef} from "react";
 import MathFunction from "@components/React/GraphSVG/MathFunction/MathFunction";
-import "./Graph.css";
+import css from "./Graph.css?raw";
 import SimpleArrow from "@components/React/GraphSVG/Arrows/SimpleArrow";
 import Text from "@components/React/GraphSVG/Text/Text";
 
@@ -47,7 +47,10 @@ function Graph({width = 960, height = 540, valueX = 1.2, h = 0.9, size = 1800, h
 
     }, [valueX, h]);
 
-    return (<svg className="Definicion-derivada" width={width} height={height} viewBox={`${0} ${0} ${width} ${height}`} data-hide={hide} ref={svgRef}>
+    return (<svg className="Definicion-derivada" xmlns='http://www.w3.org/2000/svg' data-hide={hide} ref={svgRef}
+    
+        width={width} height={height} viewBox={`${0} ${0} ${width} ${height}`} 
+    >
 
         <CartesianSystem className="graph" size={size} cx={90} cy={height - 50} 
 
@@ -126,7 +129,7 @@ function Graph({width = 960, height = 540, valueX = 1.2, h = 0.9, size = 1800, h
             </>
         }}
         </CartesianSystem>
-
+        <style>{css}</style>
     </svg>);
 }
 

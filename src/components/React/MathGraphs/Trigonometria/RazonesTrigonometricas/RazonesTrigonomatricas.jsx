@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import "./RazonesTrigonometricas.css";
 import Graph from "./Graph";
+import Dropdown from "@components/React/Dropdown";
 
 const MODES = [
     {value:  'sin', text: 'Seno'},
@@ -14,7 +15,7 @@ const MODES = [
 
 function RazonesTrigonometricas() {
 
-    const [angle, setAngle] = useState(60);
+    const [angle, setAngle] = useState(55);
     const [hide, setHide] = useState('');
 
     const handleHide = (e) => {
@@ -35,23 +36,29 @@ function RazonesTrigonometricas() {
 
     return (<div className="Graph-Razones-trigonometricas">
 
-        <ul className="controls">{
-            MODES.map(({value, text}, i) => {
+        <div className="controls">
+            <Dropdown text="Mostrar">
+                {
+                    MODES.map(({value, text}, i) => {
 
-                const isActive = !hide.includes(value);
+                        const isActive = !hide.includes(value);
 
-                return <li key={`btn-check-${i}`}>
-                    <input type="checkbox" className="btn-check" id={`btn-check-${i}`} autoComplete="off" value={value} checked={isActive} onChange={handleHide} />
-                    <label className="btn" htmlFor={`btn-check-${i}`}>{text}</label>
-                </li>
-            })
-        }</ul>
+                        return <div className="form-check" key={`btn-check-${i}`}>
+                            <input className="form-check-input" type="checkbox" value={value} checked={isActive} onChange={handleHide} id={`btn-check-${i}`} />
+                            <label className="form-check-label" htmlFor={`btn-check-${i}`}>{text}</label>
+                        </div>
+                    })
+                }
+            </Dropdown>
 
-        <div className="Razones-trigonometricas-angle">
-            <h4 className="value">{angle}º</h4>
+            <div className="Razones-trigonometricas-angle">
+                <h4 className="value">{angle}º</h4>
 
-            <input className="form-range" type="range" min={0} max={360} value={angle} onChange={(e) => setAngle(+e.currentTarget.value)} />
+                <input className="form-range" type="range" min={0} max={360} value={angle} onChange={(e) => setAngle(+e.currentTarget.value)} />
+            </div>
         </div>
+
+     
 
         <Graph angle={`${angle}deg`} hide={hide} />
     </div>);
