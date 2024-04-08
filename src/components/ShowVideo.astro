@@ -1,0 +1,66 @@
+---
+const {src, width = 560, height = 315} = Astro.props;
+
+const url = new URL(src);
+
+const isYoutube = url.host === 'www.youtube.com';
+
+const isVideoFile = ['.webm', '.mp4'].some(ext => url.pathname.endsWith(ext));
+
+console.log(isVideoFile)
+---
+
+<div class="Show-video">
+
+    {
+        isYoutube && 
+        (() => {
+
+            const videoID = url.searchParams.get('v');
+
+            const embedUrl = new URL(`https://www.youtube.com/embed/${videoID}`);
+
+            return <iframe class="Youtube-iframe"
+                width={width}
+                height={height} 
+                src={embedUrl.href} 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen 
+            />
+        })() 
+    }
+
+    {
+        isVideoFile &&
+        <video
+            src={url.href}
+            width={width}
+            height={height}
+            controls
+        />
+    }
+    
+</div>
+
+<style>
+
+    .Show-video {
+        width: fit-content;
+        height: fit-content;
+        border-radius: 10px;
+        margin-inline: auto;
+        margin-block: 20px;
+        overflow: hidden;
+
+        iframe {
+            display: block;
+        }
+
+        video {
+            display: block;
+            object-fit: cover;
+        }
+    }
+</style>

@@ -5,10 +5,7 @@ import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js?url';
 import { baseURL } from '@utils/baseURLUtil.js';
 
 import '@css/horizontal-scroll-bar.css';
-
-
 import '@css/github-markdown.css';
-
 import '@css/Custom-mathjax.css';
 import '@css/Custom-markdown.css';
 
@@ -18,23 +15,15 @@ import Navigation from './Navigation.astro';
 import NavigationSideBar from './NavigationSideBar/NavigationSideBar.astro';
 import ThemeSwitch from '@components/ThemeSwitch.astro';
 import Logo from '@components/Logo.astro';
-import mathLogo from '@assets/matematicas-logo.svg?raw';
+import {LOGOS} from '@assets/logos';
 
-const { title, sideBar, } = Astro.props;
+const { title, sideBar, logo = 'default', home = '' } = Astro.props;
 
 const navigationLinks = [
 	{ name: 'inicio', url: '/' },
-	{ 
-		name: 'Trigonometria',
-		url: '/trigonometria',
-		children: [
-			{name: 'Resumen', url: '/trigonometria/resumen'},
-			{name: 'Identidades trigonometricas', url: '/trigonometria/identidades-trigonometricas'}
-		]
-	},
 	{
-		name: 'Docs',
-		url: '/docs',
+		name: 'Matematicas',
+		url: '/matematicas',
 	},
 ];
 ---
@@ -55,9 +44,9 @@ const navigationLinks = [
 	</head>
 	<body>
 
-		<Navigation links={navigationLinks}>
+		<Navigation links={navigationLinks} home={home}>
 
-			<Logo svg={mathLogo} slot="brand"/>
+			<Logo svg={LOGOS[logo]} slot="brand"/>
 
 			{
 				sideBar &&

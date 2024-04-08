@@ -1,3 +1,11 @@
+---
+videos: [
+    {url: 'https://www.youtube.com/watch?v=rFLylhq1Npo'},
+    {url: 'https://www.youtube.com/watch?v=wEQRuusSQu8'},
+    {url: 'https://www.youtube.com/watch?v=Lb9nFiYri6o'},
+]
+---
+
 ## Teorema de Cauchy
 
 Dadas 2 funciones $f(x)$ y $g(x)$ que son:

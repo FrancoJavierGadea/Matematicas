@@ -3,7 +3,8 @@
 
     const {
 
-        links = []
+        links = [],
+        home = ''
 
     } = Astro.props;
 ---
@@ -12,7 +13,7 @@
 
     <div class="container">
 
-        <a class="navbar-brand order-1 me-auto" href={baseURL()}>
+        <a class="navbar-brand order-1 me-auto" href={baseURL(home)}>
             <slot name="brand" />
         </a>
 

@@ -65,14 +65,15 @@ const Tabscontent = await ['markdown', ...Tabsname].reduce(async (pacc, name) =>
         Tabscontent.map(({name, render}) => {
 
             const isActive = defaultTab === name;
-
-            return <div class="Doc-content-tab" set:html={render    } data-tab-name={name}
+            
+            return <div class="Doc-content-tab" data-tab-name={name}
             
                 class:list={{
                     'active': isActive,
-                    'Render-markdown': name === 'markdown'
                 }}
-            />
+            >
+                <div class={`Doc-content-${name}`} set:html={render} />
+            </div>
         })
     }
 
@@ -112,35 +113,9 @@ const Tabscontent = await ['markdown', ...Tabsname].reduce(async (pacc, name) =>
 </script>
 
 <script>
-    import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import {initPhotoSwipe} from "@utils/scripts/PhotoSwipeUtils.js";
 
-    const images = document.querySelectorAll('.Render-markdown img')
-    
-    //console.log('images')
-    
-    images.forEach(img => {
-
-        const anchor = document.createElement('a');
-
-        anchor.setAttribute('data-pswp-src', img.src);
-        anchor.setAttribute('data-pswp-width', img.naturalWidth);
-        anchor.setAttribute('data-pswp-height', img.naturalHeight);
-        anchor.classList.add('image-link-wrapper')
-
-        img.parentElement.appendChild(anchor);
-        anchor.appendChild(img);
-    });
-
-    if(images.length > 0) {
-        
-        const lightbox = new PhotoSwipeLightbox({
-            gallery: '.Render-markdown',
-            children: '.image-link-wrapper',
-            pswpModule: () => import('photoswipe'),
-        });
-    
-        lightbox.init();
-    }
+    initPhotoSwipe('.Doc-content-markdown');
 </script>
 
 <style>
@@ -245,7 +220,7 @@ const Tabscontent = await ['markdown', ...Tabsname].reduce(async (pacc, name) =>
             }
         }
 
-        .Render-markdown {
+        .Doc-content-markdown {
             .image-link-wrapper {
                 cursor: pointer;
             }

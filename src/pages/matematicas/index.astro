@@ -4,7 +4,7 @@ import { CollectionFileStructure } from "@utils/CollectionUtils";
 import { getCollection } from "astro:content";
 import FolderContent from "@components/FolderContent.astro";
 
-const docs = await getCollection('docs');
+const docs = await getCollection('matematicas');
 
 const fileStructure = new CollectionFileStructure({collection: docs});
 
@@ -23,8 +23,8 @@ const folders = ['teoria'].reduce((acc, path) => {
 
 
 const sideBar = {
-    title: 'Docs',
-    titleURL: '/docs',
+    title: 'Matematicas',
+    titleURL: '/matematicas',
     links: [
         ...fileStructure.files   
     ]
@@ -35,7 +35,7 @@ const {result: readme} = fileStructure.find('readme.md');
 const {Content} = await readme.entry.render();
 ---
 
-<Layout title="Docs" sideBar={sideBar}>
+<Layout title="Matematicas" sideBar={sideBar} logo="matematicas" home="/matematicas">
 
     <section>
 

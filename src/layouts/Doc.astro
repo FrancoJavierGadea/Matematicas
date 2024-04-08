@@ -2,6 +2,7 @@
 import {github} from "@utils/baseURLUtil.js";
 import DocRenderContainer from "@layouts/DocRenderContainer.astro";
 import GeogebraEmbed from "@components/GeogebraEmbed.astro";
+import ShowVideo from "@components/ShowVideo.astro";
 const { doc } = Astro.props;
 
 const { Content } = await doc.entry.render();
@@ -14,6 +15,8 @@ const styles = Object.entries(doc.entry.data.styles || {})
     .join(' ');
 
 const geogebra = doc.entry.data.geogebra;
+
+const videos = doc.entry.data.videos;
 ---
 
 <custom-doc class="Doc">
@@ -63,12 +66,23 @@ const geogebra = doc.entry.data.geogebra;
         </div>
 
         {
-
             geogebra?.map(({id, title}) => {
 
                 return <div class="geogebra-item horizontal-scroll-bar" slot="geogebra">
                     {title && <h3 class="geogebra-item-title">{title}</h3>}
                     <GeogebraEmbed id={id} width={960} height={540} />    
+                </div>
+            })
+        }
+
+        {
+            videos?.map(({title, url}) => {
+
+                return <div class="" slot="videos">
+
+                    {title && <h3 class="">{title}</h3>}
+
+                    <ShowVideo src={url} width={460} height={270} />   
                 </div>
             })
         }
@@ -186,6 +200,12 @@ const geogebra = doc.entry.data.geogebra;
                 border-bottom: 1px solid var(--geogebra-title-border-color);
             }
         }
-    }
 
+    }
+    
+    .Doc :global(.Doc-content-videos) {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
 </style>

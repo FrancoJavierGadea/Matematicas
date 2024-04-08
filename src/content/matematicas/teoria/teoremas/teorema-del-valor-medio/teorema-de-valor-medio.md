@@ -1,3 +1,11 @@
+---
+videos: [
+    {url: 'https://www.youtube.com/watch?v=8VkifqlE6eA'},
+    {url: 'https://www.youtube.com/watch?v=Z2jbjdW3jvE'},
+    {url: 'https://www.youtube.com/watch?v=00i9xzjLibU'},
+]
+---
+
 ## Teorema del valor medio
 
 Dada una funcion $f(x)$ que es:
