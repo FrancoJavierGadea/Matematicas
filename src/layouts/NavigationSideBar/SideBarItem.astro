@@ -3,12 +3,26 @@ import caret from "@assets/caret.svg?raw";
 import { baseURL } from "@utils/baseURLUtil";
 const { item, ...others} = Astro.props;
 
+const isOneFileSameName = (() => {
 
+    if(item.children?.length === 1){
+
+        const slug = item.children.at(0).slug.split('/')
+
+        return slug.at(-1) === slug.at(-2)
+    }
+
+    return false;
+})()
+
+
+if(isOneFileSameName){
+    console.log(item.name)
+}
 ---
 
 {
-    item.children ?
-
+    item.children && !isOneFileSameName &&
     <li {...others} data-folder-links>
         
         <details open={item.open}>
@@ -36,9 +50,15 @@ const { item, ...others} = Astro.props;
         </details>
     
     </li>
+}
 
-    :
+{
+    item.children && isOneFileSameName &&
+    <Astro.self item={item.children.at(0)} />    
+}
 
+{
+    !item.children && 
     <li {...others} data-link>
 
         <a class="" href={baseURL(item.url) || '#'}>

@@ -33,7 +33,7 @@ const title =  (() => {
 
     const title = file.name;
 
-    return `${title.at(0).toUpperCase()}${title.slice(1)}`;
+    return `${title.at(0).toUpperCase()}${title.slice(1)}`.replaceAll('-', ' ');
 
 })();
 

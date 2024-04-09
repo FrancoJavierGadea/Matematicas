@@ -8,7 +8,7 @@ const icons = await Icons.loadAll('raw');
 
 <section class="folder">
 
-    <h2 class="folder-title">{folder.name}</h2>
+    <h2 class="folder-title">{folder.name.replaceAll('-', ' ')}</h2>
 
     <div class="folder-content">
         {
