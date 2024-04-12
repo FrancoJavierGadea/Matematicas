@@ -1,0 +1,106 @@
+---
+const {svg, width, height} = Astro.props;
+---
+
+<custom-svg-graph
+
+    style={{
+        width: `${width}px`,
+        height: `${height}px`
+    }}
+
+    data-width={width}
+    data-height={height}
+>
+
+    <div class="SVG-graph-content" 
+         
+        set:html={svg}
+    />
+
+</custom-svg-graph>
+
+<script>
+    import * as D3Zoom from "d3-zoom";
+    import * as D3Selection from "d3-selection";
+
+    class CustomSVGGraph extends HTMLElement {
+
+        content: HTMLElement;
+        width: number;
+        height: number;
+
+        constructor(){
+            super();
+
+            this.width = Number(this.getAttribute('data-width'));
+            this.height = Number(this.getAttribute('data-height'));
+
+            this.content = this.querySelector('.SVG-graph-content');
+
+            //Default zoom
+
+            const initialZoom = (() => {
+
+                const {width, height} = this.content.getBoundingClientRect();
+
+                const scaleX = this.width / width;
+                const scaleY = this.height / height;
+                const scale = Math.max(scaleX, scaleY);
+
+                const x = (this.width / 2) - ((width * scale) / 2);
+                const y = (this.height / 2) - ((height * scale) / 2);
+
+                return D3Zoom.zoomIdentity.translate(x, y).scale(scale);
+            })();
+
+            const handleZoom = ({transform}) => {
+
+                console.log(transform)
+
+                this.content.style.transformOrigin = '0 0';
+                this.content.style.transform = `translate(${transform.x}px, ${transform.y}px) scale(${transform.k})`;
+            }
+
+            const zoom = D3Zoom.zoom()
+                .scaleExtent([0.2, 10])
+                .on('zoom', handleZoom); 
+
+            D3Selection.select(this) 
+                .call(zoom)
+                .call(zoom.transform, initialZoom)    
+        }
+    }
+
+    customElements.define('custom-svg-graph', CustomSVGGraph);
+</script>
+
+<style>
+    :global([data-theme="dark"]) {
+        
+        --custom-svg-graph-shadow-color: #5a90f79f;
+    }
+    :global([data-theme="light"]) {
+        
+        --custom-svg-graph-shadow-color: #00000029;
+    }
+
+    custom-svg-graph {
+        display: block;
+        box-shadow: 0px 0px 5px 0px var(--custom-svg-graph-shadow-color);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-inline: auto;
+        margin-block: 10px;
+
+        .SVG-graph-content {
+            width: fit-content;
+            height: fit-content;
+        }
+    }
+
+    custom-svg-graph :global(svg) {
+        display: block;
+    }
+    
+</style>

@@ -6,8 +6,6 @@ const url = new URL(src);
 const isYoutube = url.host === 'www.youtube.com';
 
 const isVideoFile = ['.webm', '.mp4'].some(ext => url.pathname.endsWith(ext));
-
-console.log(isVideoFile)
 ---
 
 <div class="Show-video">

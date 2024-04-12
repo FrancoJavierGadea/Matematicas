@@ -4,6 +4,11 @@ videos: [
     {url: 'https://www.youtube.com/watch?v=Z2jbjdW3jvE'},
     {url: 'https://www.youtube.com/watch?v=00i9xzjLibU'},
 ]
+images: [
+    {url: 'https://raw.githubusercontent.com/FrancoJavierGadea/Manim-math-animations/main/Teorema-del-valor-medio/Lagrange-ej-1/Teorema-de-Lagrange-ej-1.svg'},
+    {url: 'https://raw.githubusercontent.com/FrancoJavierGadea/Manim-math-animations/main/Teorema-del-valor-medio/Lagrange-ej-2/Teorema-de-Lagrange-ej-2.svg'},
+    {url: 'https://raw.githubusercontent.com/FrancoJavierGadea/Manim-math-animations/main/Teorema-del-valor-medio/Lagrange-ej-3/Teorema-de-Lagrange-ej-3.svg'},
+]
 ---
 
 ## Teorema del valor medio

@@ -4,6 +4,11 @@ videos: [
     {url: 'https://www.youtube.com/watch?v=wEQRuusSQu8'},
     {url: 'https://www.youtube.com/watch?v=Lb9nFiYri6o'},
 ]
+images: [
+    {url: 'https://raw.githubusercontent.com/FrancoJavierGadea/Manim-math-animations/main/Teorema-del-valor-medio/Cauchy-ej-1/Teorema-de-Cauchy-ej-1.svg'},
+    {url: 'https://raw.githubusercontent.com/FrancoJavierGadea/Manim-math-animations/main/Teorema-del-valor-medio/Cauchy-ej-2/Teorema-de-Cauchy-ej-2.svg'},
+    {url: 'https://raw.githubusercontent.com/FrancoJavierGadea/Manim-math-animations/main/Teorema-del-valor-medio/Cauchy-ej-3/Teorema-de-Cauchy-ej-3.svg'},
+]
 ---
 
 ## Teorema de Cauchy

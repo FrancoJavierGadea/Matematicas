@@ -16,6 +16,7 @@ import NavigationSideBar from './NavigationSideBar/NavigationSideBar.astro';
 import ThemeSwitch from '@components/ThemeSwitch.astro';
 import Logo from '@components/Logo.astro';
 import {LOGOS} from '@assets/logos';
+import ExcalidrawButton from '@components/ExcalidrawButton.astro';
 
 const { title, sideBar, logo = 'default', home = '' } = Astro.props;
 
@@ -56,6 +57,8 @@ const navigationLinks = [
 			}
 
 			<ThemeSwitch slot="control"/>
+
+			<ExcalidrawButton slot="control"/>
 		</Navigation>
 
 		<div class="page-content">
@@ -81,10 +84,11 @@ const navigationLinks = [
 		--font-math: "Noto Sans Math", sans-serif;
 		--nav-height: 70px;
 		color-scheme: light;
+		scroll-behavior: auto;
 	}
 	[data-theme="light"] {
 		--bs-body-bg: #fff;
-		color-scheme: dark;
+		color-scheme: light;
 	}
 	[data-theme="dark"] {
 		--bs-body-bg: #0d1117;

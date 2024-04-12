@@ -1,0 +1,52 @@
+custom-excalidraw-iframe {
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 12000;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+
+    & > * {
+        grid-row-start: 1;
+        grid-column-start: 1;
+    }
+
+    iframe {
+        display: block;
+        color-scheme: normal;
+    }
+
+    &[theme="dark"] {
+        --excalidraw-text-color: #e3e3e8;
+        --excalidraw-hide-btn-bg: #232329;
+        --excalidraw-hide-btn-hover-bg: #363541;
+    }
+    &[theme="light"] {
+        --excalidraw-text-color: #1b1b1f;
+        --excalidraw-hide-btn-bg: #ececf4;
+        --excalidraw-hide-btn-hover-bg: #f1f0ff;
+    }
+
+    .excalidraw-hide-btn {
+        align-self: self-end;
+        justify-self: self-end;
+        margin-right: 80px;
+        margin-bottom: 15px;
+        background-color: var(--excalidraw-hide-btn-bg);
+        color: var(--excalidraw-text-color);
+        font-size: 16px;
+
+        &:hover {
+            background-color: var(--excalidraw-hide-btn-hover-bg);
+        }
+
+        @media (max-width: 730.98px){
+            margin-bottom: 70px;
+            margin-right: 28px;
+        }
+    }
+}

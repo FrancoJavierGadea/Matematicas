@@ -1,0 +1,149 @@
+---
+const {src, width = 560, height = 315, zoom = true} = Astro.props;
+
+const url = new URL(src);
+
+const isSVG = url.pathname.endsWith('.svg');
+---
+
+<custom-show-image
+
+    style={{
+        width: `${width}px`,
+        height: `${height}px`
+    }}
+
+    data-width={width}
+    data-height={height}
+    data-is-image={!isSVG}
+    data-zoom={zoom}
+    data-src={url.href}
+>
+
+    {
+        isSVG && (async () => {
+
+            const svg = await (await fetch(url.href)).text();
+
+            return <div class="Show-image-content" 
+                 
+                set:html={svg}
+            />
+        })()
+    }
+
+    {
+        !isSVG && <div class="Show-image-content" />
+    }
+
+</custom-show-image>
+
+<script>
+    import * as D3Zoom from "d3-zoom";
+    import * as D3Selection from "d3-selection";
+
+    class CustomShowImage extends HTMLElement {
+
+        content: HTMLElement;
+        width: number;
+        height: number;
+        isImage: boolean;
+        src: string;
+zoom: boolean;
+
+        async #build(){
+
+            if(this.isImage){
+                
+                const {promise, resolve} = Promise.withResolvers();
+
+                const img = new Image();
+                img.src = this.src;
+
+                img.addEventListener('load', () => resolve('load image')); 
+
+                this.content.appendChild(img);
+
+                const result = await promise;
+            }
+
+            //Initial zoom
+            const initialZoom = (() => {
+
+                const {width, height} = this.content.getBoundingClientRect();
+
+                const scaleX = this.width / width;
+                const scaleY = this.height / height;
+                const scale = Math.max(scaleX, scaleY);
+
+                const x = (this.width / 2) - ((width * scale) / 2);
+                const y = (this.height / 2) - ((height * scale) / 2);
+
+                return D3Zoom.zoomIdentity.translate(x, y).scale(scale);
+            })();
+
+            const handleZoom = ({transform}) => {
+
+                this.content.style.transformOrigin = '0 0';
+                this.content.style.transform = `translate(${transform.x}px, ${transform.y}px) scale(${transform.k})`;
+            }
+
+            const zoom = D3Zoom.zoom()
+                .scaleExtent([0.2, 10])
+                .on('zoom', handleZoom); 
+
+            const selection = D3Selection.select(this) 
+                .call(zoom.transform, initialZoom);
+                
+            if(this.zoom) selection.call(zoom);
+        }
+
+        constructor(){
+            super();
+
+            this.width = Number(this.getAttribute('data-width'));
+            this.height = Number(this.getAttribute('data-height'));
+            this.isImage = this.hasAttribute('data-is-image');
+            this.zoom = this.hasAttribute('data-zoom');
+            this.src = this.getAttribute('data-src');
+
+            this.content = this.querySelector('.Show-image-content');
+
+            this.#build();   
+        }
+    }
+
+    customElements.define('custom-show-image', CustomShowImage);
+</script>
+
+<style>
+    :global([data-theme="dark"]) {
+        
+        --custom-show-image-shadow-color: #5a90f79f;
+    }
+    :global([data-theme="light"]) {
+        
+        --custom-show-image-shadow-color: #00000029;
+    }
+
+    custom-show-image {
+        display: block;
+        box-shadow: 0px 0px 5px 0px var(--custom-show-image-shadow-color);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-inline: auto;
+        margin-block: 10px;
+
+        resize: both;
+
+        .Show-image-content {
+            width: fit-content;
+            height: fit-content;
+        }
+    }
+
+    custom-show-image :global(svg) {
+        display: block;
+    }
+    
+</style>

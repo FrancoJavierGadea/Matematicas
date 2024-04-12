@@ -1,0 +1,86 @@
+---
+---
+
+<button class="btn" id="excalidraw-btn" title="Mostrar excalidraw">
+    <i class="bi bi-pencil-fill"></i>
+</button>
+
+<script>
+    import "@utils/web-components/ExcalidrawEmbed/ExcalidrawEmbed.js";
+    import "@utils/web-components/ExcalidrawEmbed/ExcalidrawEmbed.css";
+    import { baseURL } from "@utils/baseURLUtil";
+
+    const SCROLL_TARGET = document.documentElement;
+    
+    function createExcalidrawIframe(){
+
+        const excalidraw = document.createElement('custom-excalidraw-iframe');
+
+        excalidraw.embedURL = new URL(baseURL('/excalidraw-embed/embed.html'), import.meta.url).href;
+
+        //Sincronizar los scroll
+        SCROLL_TARGET.scrollTop = 0;
+
+        excalidraw.addEventListener('iframe-load', (e) => {
+    
+            const excalidraw = e.target;
+            const {iframe} = e.detail;
+    
+            SCROLL_TARGET.style.overflowY = 'hidden';
+    
+            iframe.contentWindow.listenScroll(({scrollTop}) => {
+    
+                if(excalidraw.show){
+
+                    SCROLL_TARGET.scrollTop = scrollTop;
+                }
+            }, );
+    
+            document.addEventListener('scroll', () => {
+    
+                if(!excalidraw.show){
+  
+                    iframe.contentWindow.setScrollTop(SCROLL_TARGET.scrollTop);
+                }
+
+            }, { passive: true, capture: true });
+        });
+
+        excalidraw.addEventListener('show-changed', (e) => {
+    
+            if(e.detail.show){
+                SCROLL_TARGET.style.overflowY = 'hidden';
+            }
+            else {
+    
+                SCROLL_TARGET.style.overflowY = '';
+            }
+        });
+
+        return excalidraw;
+    }
+
+    //Create / Show Button
+    document.getElementById('excalidraw-btn').addEventListener('click', (e) => {
+
+        const excalidraw = createExcalidrawIframe();
+
+        document.body.appendChild(excalidraw);
+
+        e.currentTarget.addEventListener('click', () => {
+
+            const excalidraw = document.querySelector('custom-excalidraw-iframe');
+            
+            excalidraw.show = true;
+        }); 
+
+    }, {once: true});
+
+</script>
+
+<style>
+    #excalidraw-btn i {
+        font-size: 18px;
+    }
+
+</style>

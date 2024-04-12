@@ -1,19 +1,20 @@
 ---
+import ShowImage from "@components/ShowImage.astro";
 import Layout from "@layouts/Layout.astro";
 
 import { parseLatex } from "@utils/Markdown";
 
 const html = await parseLatex('\\lim_{x \\to 5}');
+
+const svg = 'https://raw.githubusercontent.com/FrancoJavierGadea/Manim-math-animations/main/Teorema-del-valor-medio/Cauchy-ej-2/Teorema-de-Cauchy-ej-2.svg';
+const image = 'https://pbs.twimg.com/media/GKvCB6pWkAA2I7q?format=jpg&name=medium'
 ---
 
 <Layout>
 
-    <div class="svg-container">
+    <ShowImage src={svg} />
 
-        
-
-    </div>
-
+    <ShowImage src={image} />
 
     
 </Layout>
@@ -21,37 +22,8 @@ const html = await parseLatex('\\lim_{x \\to 5}');
 
 
 
-<script>
-   
-
-
-</script>
-
-
 <style>
 
-    .try {
-        display: grid;
-        grid-template-columns: 1fr;
-
-        & > * {
-            grid-row-start: 1;
-            grid-column-start: 1;
-        }
-    }
-
-    div {
-        --frac-line: rgb(9, 9, 245);
-        --op-raiz: rgb(245, 9, 210);
-    }
-
-    .svg-container {
-        width: fit-content;
-        margin: 50px auto;
-        outline: 1px dashed gray;
-    }
-    .svg-container :global(svg){
-        
-    }
+    
 
 </style>
