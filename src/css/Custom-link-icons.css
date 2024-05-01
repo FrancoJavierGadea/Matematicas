@@ -1,0 +1,78 @@
+
+.markdown-body {
+
+    a::before {
+        content: '\f3ee';
+        display: inline-block;
+        font-size: 0.9em;
+        font-family: 'bootstrap-icons';
+        margin-right: 5px;
+        vertical-align: bottom;
+    }
+    a:hover::before {
+        text-decoration: none;
+    }
+
+    /* Files */
+    a[href$='.mp4']::before,
+    a[href$='.webm']::before {
+        content: '\f21b';
+    }
+    a[href$='.mp3']::before {
+        content: '\f49e';
+    }
+    a[href$='.png']::before,
+    a[href$='.jpeg']::before,
+    a[href$='.jpg']::before,
+    a[href$='.webp']::before {
+        content: '\f226';
+    }
+    a[href$='.svg']::before {
+        content: '\f18b';
+    }
+
+    a[href$='.md']::before {
+        content: '\f481';
+    }
+    a[href$='.txt']::before {
+        content: '\f444';
+    }
+    a[href$='.pdf']::before {
+        content: '\f640';
+    }
+
+
+    /* Youtube */
+    a[href*='wikipedia.org/']::before {
+        content: '\f8cc';
+        color: #a1a1a1;
+    }
+
+    /* Youtube */
+    a[href*='youtube.com/']::before {
+        content: '\f62b';
+        color: #ff0000;
+    }
+
+    /*Github*/
+    a[href*='github.com/']::before {
+        content: '\f3ed';
+    }
+
+    /* Whatsapp */
+    a[href*='wa.me/']::before,
+    a[href*='whatsapp.com/']::before {
+        content: '\f618';
+        color: #1daa61;
+    }
+    
+    /* Telephone */
+    a[href*='tel:']::before {
+        content: '\f5c1';
+    }
+
+    /* Email */
+    a[href*='mailto:']::before {
+        content: '\f32f';
+    }
+}
