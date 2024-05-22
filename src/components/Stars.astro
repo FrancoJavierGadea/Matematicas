@@ -1,0 +1,120 @@
+---
+const {width = '700px', height = '500px'} = Astro.props;
+---
+
+<custom-stars class="Stars">
+    <div class="Stars-group Stars-group-1" />
+    <div class="Stars-group Stars-group-2" />
+    <div class="Stars-group Stars-group-3" />
+</custom-stars>
+
+<script>
+    class CustomStars extends HTMLElement {
+
+        constructor(){
+            super();
+
+            this.#applyProperties('.Stars-group-1', {
+                '--size': '1px',
+                '--animation-duration': '20s',
+                '--stars-box-shadow': this.#createStars()
+            });
+
+            this.#applyProperties('.Stars-group-2', {
+                '--size': '2px',
+                '--animation-duration': '15s',
+                '--stars-box-shadow': this.#createStars()
+            });
+
+            this.#applyProperties('.Stars-group-3', {
+                '--size': '4px',
+                '--animation-duration': '10s',
+                '--stars-box-shadow': this.#createStars()
+            });
+    
+        }
+
+        #createStars({total = 100, color = '#ffffff' } = {}){
+
+            const stars = [];
+            const opacities = [70, 100, 120, 40, 200, 250, 180]
+
+            const bz = (x, y, color) => `calc(var(--stars-width) * ${x}) calc(var(--stars-height) * ${y}) 0 ${color}`
+
+            for (let i = 0; i < total / 2; i++) {
+                
+                const x = Math.floor(Math.random() * 100) / 100;
+                const y = Math.floor(Math.random() * 100) / 100;
+                const opacity = opacities[Math.floor(Math.random() * opacities.length)].toString(16);
+
+                stars.push(
+                    bz(x, y, `${color}${opacity}`),
+                    bz(x, y + 1, `${color}${opacity}`)
+                );
+            }
+
+            return stars.join(', ');
+        }
+
+        #applyProperties(selector, properties = {}){
+
+            Object.entries(properties).forEach(([name, value]) => {
+
+                this.querySelector(selector).style.setProperty(name, value);
+            })
+        }
+    }
+
+    customElements.define('custom-stars', CustomStars);
+</script>
+
+<style
+    define:vars={{
+        'stars-width': width,
+        'stars-height': height
+    }}
+>
+    custom-stars.Stars {
+        background: linear-gradient(#17171730, #000);
+        inset: 0;
+        width: var(--stars-width);
+        height: var(--stars-height);
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+
+        outline: 1px dashed gray;
+        overflow: hidden;
+
+        & > * {
+
+            grid-row-start: 1;
+            grid-column-start: 1;
+        }
+
+        .Stars-group {
+            --size: 2px;
+            --star-color: #fff;
+            --stars-box-shadow: initial;
+            --animation-duration: 5s;
+            background-color: var(--star-color);
+            width: var(--size);
+            height: var(--size);
+            
+            box-shadow: var(--stars-box-shadow);
+
+            animation: StarsAnimation var(--animation-duration) linear infinite;
+        }
+
+    }
+
+    @keyframes StarsAnimation {
+        from {
+            transform: translateY(0);
+        }
+        to {
+            transform: translateY(calc(-1 * var(--stars-height)));
+        }
+    }
+</style>

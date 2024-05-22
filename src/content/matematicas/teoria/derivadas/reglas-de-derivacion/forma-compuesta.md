@@ -93,7 +93,11 @@ $$
     \large{
         f(x) = \log_{a}(u)
         \hspace{2em}
-        f'(x) = \frac{u'}{u \cdot \ln(a)}
+        \begin{array}{l}
+            f'(x) = \dfrac{u'}{u} \cdot \log_{a}(e)
+            \\\\
+            f'(x) = \dfrac{u'}{u \cdot \ln(a)}
+        \end{array}
     }
 $$
 <br>

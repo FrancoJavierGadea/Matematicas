@@ -1,0 +1,244 @@
+[
+    {
+        "function": "",
+        "derivate": "",
+        "name": "",
+        "tags": ["funcion simple", ""]
+    },
+
+    {
+        "function": "f(x) = k",
+        "derivate": "f'(x) = 0",
+        "name": "Derivada de una Funcion constante",
+        "tags": ["funcion simple", "funcion constante", "constante"]
+    },
+
+    {
+        "function": "f(x) = a \\cdot x + b",
+        "derivate": "f'(x) = a",
+        "name": "Derivada de una Funcion lineal",
+        "tags": ["funcion simple", "funcion lineal", "lineal"]
+    },
+    {
+        "function": "f(x) = x",
+        "derivate": "f'(x) = 1",
+        "name": "Derivada de f(x) = x",
+        "tags": ["funcion simple", "funcion lineal", "lineal"]
+    },
+
+
+    {
+        "function": "f(x) = k \\cdot x^{n}",
+        "derivate": "f'(x) = k \\cdot n \\cdot x^{n-1}",
+        "name": "regla general",
+        "tags": ["funcion simple", "potencia"]
+    },
+    {
+        "function": "f(x) = x^{n}",
+        "derivate": "f'(x) = n \\cdot x^{n-1}",
+        "name": "regla general f(x) = x^n",
+        "tags": ["funcion simple", "potencia"]
+    },
+
+
+    {
+        "function": "",
+        "derivate": "",
+        "name": "",
+        "tags": ["funcion simple", "raiz", ""]
+    },
+    {
+        "function": "",
+        "derivate": "",
+        "name": "",
+        "tags": ["funcion simple", "raiz", ""]
+    },
+    {
+        "function": "f(x) = \\sqrt{x}",
+        "derivate": "f'(x) = \\frac{1}{2 \\cdot \\sqrt{x}}",
+        "name": "Derivada de la funcion raiz de x",
+        "tags": ["funcion simple", "raiz", ""]
+    },
+
+
+    {
+        "function": "f(x) = a^{x}",
+        "derivate": "f'(x) = a^{x} \\cdot \\ln(a)",
+        "name": "Derivada de la funcion exponencial",
+        "tags": ["funcion simple", "exponencial"]
+    },
+    {
+        "function": "f(x) = e^{x}",
+        "derivate": "f'(x) = e^{x}",
+        "name": "Derivada de la funcion exponencial",
+        "tags": ["funcion simple", "exponencial", "e"]
+    },
+
+    {
+        "function": "f(x) = \\log_{a}(x)",
+        "derivate": "f'(x) = \\dfrac{1}{x} \\cdot \\log_{a}(e)",
+        "name": "Derivada de la funcion logaritmo",
+        "tags": ["funcion simple", "logaritmo"]
+    },
+    {
+        "function": "f(x) = \\log_{a}(x)",
+        "derivate": "f'(x) = \\dfrac{1}{x \\cdot \\ln(a)}",
+        "name": "Derivada de la funcion logaritmo",
+        "tags": ["funcion simple", "logaritmo"]
+    },
+    {
+        "function": "f(x) = \\ln(x)",
+        "derivate": "f'(x) = \\dfrac{1}{x}",
+        "name": "Derivada de la funcion logaritmo natural",
+        "tags": ["funcion simple", "logaritmo", "logaritmo natural"]
+    },
+
+    {
+        "function": "f(x) = \\sin(x)",
+        "derivate": "f'(x) = \\cos(x)",
+        "name": "Derivada de la funcion seno",
+        "tags": ["funcion simple", "trigonometricas", "sin", "seno"]
+    },
+    {
+        "function": "f(x) = \\cos(x)",
+        "derivate": "f'(x) = -\\sin(x)",
+        "name": "Derivada de la funcion coseno",
+        "tags": ["funcion simple", "trigonometricas", "cos", "coseno"]
+    },
+
+    {
+        "function": "f(x) = \\tan(x)",
+        "derivate": "f'(x) = \\sec^{2}(x)",
+        "name": "Derivada de la funcion tangente",
+        "tags": ["funcion simple", "trigonometricas", "tan", "tangente"]
+    },
+    {
+        "function": "f(x) = \\tan(x)",
+        "derivate": "f'(x) = \\dfrac{1}{\\cos^{2}(x)}",
+        "name": "Derivada de la funcion tangente",
+        "tags": ["funcion simple", "trigonometricas", "tan", "tangente"]
+    },
+    {
+        "function": "f(x) = \\tan(x)",
+        "derivate": "f'(x) = 1 + \\tan^{2}(x)",
+        "name": "Derivada de la funcion tangente",
+        "tags": ["funcion simple", "trigonometricas", "tan", "tangente"]
+    },
+
+    {
+        "function": "f(x) = \\cot(x)",
+        "derivate": "f'(x) = -\\csc^{2}(x)",
+        "name": "Derivada de la funcion cotangente",
+        "tags": ["funcion simple", "trigonometricas", "cot", "cotangente"]
+    },
+    {
+        "function": "f(x) = \\cot(x)",
+        "derivate": "f'(x) = \\dfrac{-1}{\\sin^{2}(x)}",
+        "name": "Derivada de la funcion cotangente",
+        "tags": ["funcion simple", "trigonometricas", "cot", "cotangente"]
+    },
+    {
+        "function": "f(x) = \\cot(x)",
+        "derivate": "f'(x) = - 1 - \\cot^{2}(x)",
+        "name": "Derivada de la funcion cotangente",
+        "tags": ["funcion simple", "trigonometricas", "cot", "cotangente"]
+    },
+
+    {
+        "function": "f(x) = \\sec(x)",
+        "derivate": "f'(x) = \\sec(x) \\cdot \\tan(x)",
+        "name": "Derivada de la funcion secante",
+        "tags": ["funcion simple", "trigonometricas", "sec", "secante"]
+    },
+    {
+        "function": "f(x) = \\sec(x)",
+        "derivate": "f'(x) = \\dfrac{\\sin(x)}{\\cos^{2}(x)}",
+        "name": "Derivada de la funcion secante",
+        "tags": ["funcion simple", "trigonometricas", "sec", "secante"]
+    }, 
+
+    {
+        "function": "f(x) = \\csc(x)",
+        "derivate": "f'(x) = -\\csc(x) \\cdot \\cot(x)",
+        "name": "Derivada de la funcion cosecante",
+        "tags": ["funcion simple", "trigonometricas", "csc", "cosecante"]
+    },
+    {
+        "function": "f(x) = \\csc(x)",
+        "derivate": "f'(x) = \\dfrac{-\\cos(x)}{\\sin^{2}(x)}",
+        "name": "Derivada de la funcion cosecante",
+        "tags": ["funcion simple", "trigonometricas", "csc", "cosecante"]
+    },
+
+
+    {
+        "function": "f(x) = \\arcsin(x)",
+        "derivate": "f'(x) = \\dfrac{1}{\\sqrt{1 - x^{2}}}",
+        "name": "Derivada de la funcion arco seno",
+        "tags": ["funcion simple", "trigonometricas inversas", "arcsin", ""]
+    },
+    {
+        "function": "f(x) = \\arccos(x)",
+        "derivate": "f'(x) = \\dfrac{-1}{\\sqrt{1 - x^{2}}}",
+        "name": "Derivada de la funcion arco coseno",
+        "tags": ["funcion simple", "trigonometricas inversas", "arccos", ""]
+    },
+    {
+        "function": "f(x) = \\arctan(x)",
+        "derivate": "f'(x) = \\dfrac{1}{1 + x^{2}}",
+        "name": "Derivada de la funcion arco tangente",
+        "tags": ["funcion simple", "trigonometricas inversas", "arctan", ""]
+    },
+    {
+        "function": "f(x) = \\text{arcsec}(x)",
+        "derivate": "f'(x) = \\dfrac{1}{|x| \\cdot \\sqrt{x^{2} - 1}}",
+        "name": "Derivada de la funcion arcosecante",
+        "tags": ["funcion simple", "trigonometricas inversas", "arcsec"]
+    },
+    {
+        "function": "f(x) = \\text{arccsc}(x)",
+        "derivate": "f'(x) = \\dfrac{-1}{|x| \\cdot \\sqrt{x^{2} - 1}}",
+        "name": "Derivada de la funcion arco cosecante",
+        "tags": ["funcion simple", "trigonometricas inversas", "arccsc"]
+    },
+    {
+        "function": "f(x) = \\text{arccot}(x)",
+        "derivate": "f'(x) = \\dfrac{-1}{1 + x^{2}}",
+        "name": "Derivada de la funcion arco cotangente",
+        "tags": ["funcion simple", "trigonometricas inversas", "arccot"]
+    },
+
+
+
+    {
+        "function": "y = f(g(x))",
+        "derivate": "y' = f'(g(x)) \\cdot g'(x)",
+        "name": "Regla de la cadena",
+        "tags": ["funcion compuesta", ""]
+    },
+
+    {
+        "function": "f(x) = a(x) + b(x)",
+        "derivate": "f'(x) = a'(x) + b'(x)",
+        "name": "Derivada de una Suma de funciones",
+        "tags": ["funcion compuesta", "operaciones", "suma"]
+    },
+    {
+        "function": "f(x) = a(x) - b(x)",
+        "derivate": "f'(x) = a'(x) - b'(x)",
+        "name": "Derivada de una Resta de funciones",
+        "tags": ["funcion compuesta", "operaciones", "resta"]
+    },
+    {
+        "function": "f(x) = a(x) \\cdot b(x)",
+        "derivate": "f'(x) = a(x) \\cdot b'(x) + b(x) \\cdot a'(x)",
+        "name": "Derivada de un producto de funciones",
+        "tags": ["funcion compuesta", "operaciones", "producto"]
+    },
+    {
+        "function": "f(x) = \\dfrac{a(x)}{b(x)}",
+        "derivate": "f'(x) = \\dfrac{b(x) \\cdot a'(x) - a(x) \\cdot b'(x)}{\\left[b(x)\\right]^{2}}",
+        "name": "Derivada de un cociente de funciones",
+        "tags": ["funcion compuesta", "operaciones", "divicion"]
+    },
+]

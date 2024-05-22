@@ -17,9 +17,7 @@
         constructor(){
             super();
 
-
             const theme = localStorage.getItem('data-theme') || document.documentElement.getAttribute('data-theme');
-
 
             if(!theme){
                 this.isDark = false;

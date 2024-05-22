@@ -1,5 +1,6 @@
 ---
 import ShowImage from "@components/ShowImage.astro";
+import Stars from "@components/Stars.astro";
 import Layout from "@layouts/Layout.astro";
 
 import { parseLatex } from "@utils/Markdown";
@@ -12,11 +13,11 @@ const image = 'https://pbs.twimg.com/media/GKvCB6pWkAA2I7q?format=jpg&name=mediu
 
 <Layout>
 
-    <ShowImage src={svg} />
+    <!-- <ShowImage src={svg} />
 
-    <ShowImage src={image} />
+    <ShowImage src={image} /> -->
 
-    
+    <Stars />
 </Layout>
 
 

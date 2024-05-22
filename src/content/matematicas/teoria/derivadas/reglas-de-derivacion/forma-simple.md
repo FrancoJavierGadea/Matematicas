@@ -14,7 +14,6 @@ $$
 
 $$
     \large{
-
         f(x) = k
         \hspace{2em}
         f'(x) = 0
@@ -26,7 +25,6 @@ $$
 
 $$
     \large{
-
         f(x) = a \cdot x + b
         \hspace{2em}
         f'(x) = a
@@ -35,7 +33,6 @@ $$
 
 $$
     \large{
-
         f(x) = x
         \hspace{2em}
         f'(x) = 1
@@ -47,7 +44,6 @@ $$
 
 $$
     \large{
-
         f(x) = x^{n}
         \hspace{2em}
         f'(x) = n \cdot x^{n - 1}
@@ -77,7 +73,7 @@ $$
 <br>
 
 
-#### Derivada de una exponencial
+#### Derivada de la funcion exponencial
 
 $$
     \large{
@@ -89,6 +85,27 @@ $$
 $$
 <br>
 
+#### Derivada de la funcion logaritmo
+
+$$
+    \large{
+        f(x) = \log_{a}(x)
+        \hspace{2em}
+        \begin{array}{l}
+            f'(x) = \dfrac{1}{x} \cdot \log_{a}(e)
+            \\\\
+            f'(x) = \dfrac{1}{x \cdot \ln(a)} 
+        \end{array}
+    }
+$$
+<br>
+
+$$
+    f(x) = \ln(x)
+    \hspace{2em}
+    f'(x) = \dfrac{1}{x}
+$$
+<br>
 
 ## Funciones trigonometricas
 
@@ -194,7 +211,6 @@ $$
 
 $$
     \large{
-
         f(x) = \arcsin(x)
         \hspace{2em}
         f'(x) = \frac{1}{\sqrt{1 - x^{2}}}
@@ -206,7 +222,6 @@ $$
 
 $$
     \large{
-
         f(x) = \arccos(x)
         \hspace{2em}
         f'(x) = \frac{-1}{\sqrt{1 - x^{2}}}
@@ -218,7 +233,6 @@ $$
 
 $$
     \large{
-
         f(x) = \arctan(x)
         \hspace{2em}
         f'(x) = \frac{1}{1 + x^{2}}
@@ -230,7 +244,6 @@ $$
 
 $$
     \large{
-
         f(x) = \text{arccot}(x)
         \hspace{2em}
         f'(x) = \frac{-1}{1 + x^{2}}
@@ -242,7 +255,6 @@ $$
 
 $$
     \large{
-
         f(x) = \text{arcsec}(x)
         \hspace{2em}
         f'(x) = \frac{1}{|x| \cdot \sqrt{x^{2} - 1}}
@@ -254,7 +266,6 @@ $$
 
 $$
     \large{
-
         f(x) = \text{arccsc}(x)
         \hspace{2em}
         f'(x) = \frac{-1}{|x| \cdot \sqrt{x^{2} - 1}}
