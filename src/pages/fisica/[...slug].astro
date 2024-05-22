@@ -9,7 +9,7 @@ import FolderContent from "@components/docs/FolderContent.astro";
 
 export async function getStaticPaths() {
 
-    const docs = await getCollection('matematicas');
+    const docs = await getCollection('fisica');
 
     const FileStructure = new CollectionFileStructure({collection: docs});
 
@@ -40,7 +40,7 @@ const title =  (() => {
 
 const sideBar = await (async () => {
     
-    const docs = await getCollection('matematicas');
+    const docs = await getCollection('fisica');
     
     const FileStructure = new CollectionFileStructure({collection: docs});
 
@@ -52,8 +52,8 @@ const sideBar = await (async () => {
     if(result.type === 'folder') result.open = true
 
     return {
-        title: 'Matematicas',
-        titleURL: '/matematicas',
+        title: 'Fisica',
+        titleURL: '/fisica',
         links: [
             ...FileStructure.files
         ]
@@ -62,7 +62,7 @@ const sideBar = await (async () => {
 
 ---
 
-<Layout title={title} sideBar={sideBar} logo="matematicas" home="/matematicas">
+<Layout title={title} sideBar={sideBar} logo="fisica" home="/fisica">
 
     {
         file.type === 'file' ?

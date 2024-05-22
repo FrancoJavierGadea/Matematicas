@@ -75,4 +75,15 @@
     a[href*='mailto:']::before {
         content: '\f32f';
     }
+
+
+    /* Omit photo swipe links */
+    a[data-pswp-src] {
+        &::before {
+            content: none;
+        }
+        &::after {
+            content: none;
+        }
+    }
 }

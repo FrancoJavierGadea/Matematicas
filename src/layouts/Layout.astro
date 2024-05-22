@@ -12,12 +12,12 @@ import "@css/Custom-link-icons.css";
 
 import 'photoswipe/style.css';
 
-import Navigation from './Navigation.astro';
-import NavigationSideBar from './NavigationSideBar/NavigationSideBar.astro';
-import ThemeSwitch from '@components/ThemeSwitch.astro';
-import Logo from '@components/Logo.astro';
+import Navigation from '@components/layout/Navigation.astro';
+import NavigationSideBar from '@components/layout/SideBar/NavigationSideBar.astro';
+import ThemeSwitch from '@components/layout/ThemeSwitch.astro';
+import Logo from '@components/layout/Logo.astro';
 import {LOGOS} from '@assets/logos';
-import ExcalidrawButton from '@components/ExcalidrawButton.astro';
+import ExcalidrawButton from '@components/layout/ExcalidrawButton.astro';
 
 const { title, sideBar, logo = 'default', home = '' } = Astro.props;
 
@@ -26,6 +26,10 @@ const navigationLinks = [
 	{
 		name: 'Matematicas',
 		url: '/matematicas',
+	},
+	{
+		name: 'Fisica',
+		url: '/fisica',
 	},
 ];
 ---

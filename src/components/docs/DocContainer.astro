@@ -1,0 +1,215 @@
+---
+const {defaultTab = 'markdown'} = Astro.props;
+
+const Tabsname = Object.keys(Astro.slots)
+.filter(v => {
+
+    return !['default', 'controls', 'markdown'].includes(v)
+});
+
+const Tabscontent = await ['markdown', ...Tabsname].reduce(async (pacc, name) => {
+
+    const acc = await pacc;
+
+    const render = await Astro.slots.render(name);
+
+    if(Boolean(render)){
+
+        acc.push({name, render});
+    }
+
+    return acc;
+
+}, Promise.resolve([]));
+
+---
+
+<div class="Doc-controls">
+    <ul class="nav nav-tabs">
+        {
+            Tabscontent.map(({name}, i) => {
+    
+                const isActive = defaultTab === name;
+    
+                return <li class="nav-item">
+                    <button class="tab-btn nav-link" data-tab-name={name} 
+                    
+                        class:list={{'active': isActive}}
+                    >
+                        {name}
+                    </button>
+                </li>
+            }) 
+        }
+    </ul>
+
+    <div class="controls">
+
+        <slot name="controls" />
+    </div>
+</div>
+
+<div class="Doc-content">
+    {
+        Tabscontent.map(({name, render}) => {
+
+            const isActive = defaultTab === name;
+            
+            return <div class="Doc-content-tab" data-tab-name={name}
+            
+                class:list={{
+                    'active': isActive,
+                }}
+            >
+                <div class={`Doc-content-${name}`} set:html={render} />
+            </div>
+        })
+    }
+</div>
+
+<script>
+
+    document.querySelectorAll('.Doc-controls button.tab-btn').forEach(btn => {
+
+        btn.addEventListener('click', (e) => {
+
+            const name = e.currentTarget.getAttribute('data-tab-name');
+
+            //Update buttons
+            document.querySelector('.Doc-controls .nav-tabs .nav-link.active')
+                .classList.toggle('active', false);
+
+            document.querySelector(`.Doc-controls .nav-tabs .nav-link[data-tab-name="${name}"]`)
+                .classList.toggle('active', true);
+
+            //Update content    
+            document.querySelector('.Doc-content .Doc-content-tab.active')
+                .classList.toggle('active', false);
+
+            document.querySelector(`.Doc-content .Doc-content-tab[data-tab-name="${name}"]`)
+                .classList.toggle('active', true);
+        })
+    })
+
+</script>
+
+<script>
+    import {initPhotoSwipe} from "@utils/scripts/PhotoSwipeUtils.js";
+
+    initPhotoSwipe('.Doc-content-markdown');
+</script>
+
+<!-- MARK: Styles -->
+<style>
+
+    :global([data-theme="dark"]) {
+        --doc-control-color: #848d97;
+        --doc-control-color-hover: #2a70f3;
+        --doc-controls-border-color: #7c7c7c;
+        --doc-controls-border-size: 1px;
+    }
+    :global([data-theme="light"]) {
+        --doc-control-color: #3d3d3d;
+        --doc-control-color-hover: #0b0280;
+        --doc-controls-border-color: #000000;
+        --doc-controls-border-size: 1px;
+    }
+
+    .Doc-controls {
+        width: 100%;
+        display: flex;
+        padding-bottom: 20px;
+        
+        @media (max-width: 575.98px) {
+            gap: 20px;
+            flex-wrap: wrap-reverse;
+            justify-content: center;
+        }
+
+        .nav-tabs {
+
+            flex-grow: 1;
+            --bs-nav-tabs-border-width: var(--doc-controls-border-size);
+            --bs-nav-tabs-border-color: var(--doc-controls-border-color);
+            --bs-nav-tabs-link-active-border-color: var(--doc-controls-border-color) var(--doc-controls-border-color) var(--bs-body-bg);
+
+            .tab-btn::first-letter {
+
+                text-transform: capitalize; 
+            }
+
+            .nav-item {
+                @media (max-width: 575.98px) {
+                    flex-grow: 1;
+
+                    .nav-link {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .controls {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            padding-inline: 40px 20px;
+            gap: 20px;
+    
+            border-bottom: var(--doc-controls-border-size) solid var(--doc-controls-border-color);
+
+            @media (max-width: 575.98px) {
+                border-bottom: none;
+                padding-inline: 20px;
+            }
+
+            .btn {
+                text-decoration: none;
+                font-size: 24px;
+                padding: 0;
+                border: none;
+                color: var(--doc-control-color);
+
+                &:hover {
+                    color: var(--doc-control-color-hover);
+                }
+            }
+        }
+
+    }
+
+    .Doc-content {
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+
+        & > * {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0px;/*<--- Esto arregla el overflow */
+            grid-row-start: 1;
+            grid-column-start: 1;
+            overflow: hidden;
+        }
+
+        .Doc-content-tab {
+            visibility: hidden;
+
+            &.active {
+                visibility: visible;
+            }
+        }
+
+        .Doc-content-markdown {
+
+            max-width: 100vw;
+
+            .image-link-wrapper {
+                cursor: pointer;
+            } 
+        }
+    }
+
+</style>

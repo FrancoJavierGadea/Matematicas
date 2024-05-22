@@ -1,0 +1,129 @@
+---
+import Icons from "@assets/icons/index.js";
+import { baseURL } from "@utils/baseURLUtil";
+const {folder} = Astro.props;
+
+const icons = await Icons.loadAll('raw');
+---
+
+<section class="folder">
+
+    <h2 class="folder-title">{folder.name.replaceAll('-', ' ')}</h2>
+
+    <div class="folder-content">
+        {
+            folder.children.map((child) => {
+
+                const icon = (() => {
+
+                    if(icons[child.name]) return icons[child.name].svg; 
+
+                    return child.type === 'file' ? icons.file.svg : icons.folder.svg
+
+                })();
+
+                return <a class="folder-item" href={baseURL(child.url)}
+
+                    class:list={{
+                        'folder-file': child.type === 'file',
+                        'subfolder': child.type === 'folder'
+                    }}
+                >
+                    <div class="folder-item-image" set:html={icon}></div>
+                    <span class="folder-item-name">{child.name.replaceAll('-', ' ')}</span>
+                </a>
+            })
+        }
+    </div>
+
+</section>
+
+
+<style
+
+    define:vars={{
+        'folder-item-max-width': folder.children.length >= 5 ? '1fr' : '200px'
+    }}
+>
+
+    :global([data-theme="dark"]){
+		--folder-item-bg: #3a3a3a;
+        --folder-item-bg-hover: #555555;
+	}
+    :global([data-theme="light"]) {
+		--folder-item-bg: #dddddd;
+        --folder-item-bg-hover: #aaaaaa;
+	}
+
+    .folder {
+        padding-inline: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        
+
+        .folder-title {
+            padding-block: 10px;
+            border-bottom: 1px solid gray;
+
+            &::first-letter {
+                text-transform: capitalize;
+            }
+        }
+    
+        .folder-content {
+            width: 100%;
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, var(--folder-item-max-width)));
+            gap: 20px;
+
+            & > * {
+                min-width: 0px;
+                overflow: hidden;
+            }
+    
+            .folder-item {
+                text-decoration: none;
+                color: currentColor;
+                padding: 10px;
+                background-color: var(--folder-item-bg);
+                border-radius: 10px;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+
+                &:hover {
+                    background-color: var(--folder-item-bg-hover);
+                }
+
+                &.subfolder {
+                    order: 1;
+                }
+                &.folder-file {
+                    order: 2;
+                }
+            }
+    
+            
+            .folder-item-name {
+                text-align: center;
+                display: block;
+        
+                &::first-letter {
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+
+    .folder-item-image :global(svg){
+        --size: 70px;
+        display: block;
+        height: var(--size);
+    }
+    
+</style>
