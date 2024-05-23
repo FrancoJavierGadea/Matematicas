@@ -18,7 +18,7 @@ $$
 
 <br>
 
-![alt](./fuerza-de-rozamiento.svg)
+![alt](./fuerza-rozamiento.lnkscape.svg)
 
 
 #### Caracteristicas de la `fuerza de rozamiento`

@@ -1,6 +1,5 @@
 
 
-
 # Que son las `fuerzas`
 
 Son **acciones** que **actuan sobre un cuerpo** y producen: 
@@ -10,6 +9,9 @@ Son **acciones** que **actuan sobre un cuerpo** y producen:
 - Un **cambio de movimiento** del cuerpo
   
 - **Deformacion** y **cambio de movimiento** del cuerpo
+
+
+![alt](./fuerzal.lnkscape.svg)
 
 <br>
 

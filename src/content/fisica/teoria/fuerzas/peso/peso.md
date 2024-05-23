@@ -24,7 +24,7 @@ Es la `fuerza` con la que la tierra atrae a lo objetos
 
 - Su unidad es el `Newton` $N$
 
-![alt](./peso.svg)
+![alt](./Peso.lnkscape.svg)
 
 
 $$
@@ -39,5 +39,8 @@ $$
 - Es variable, **cambia segun** el lugar en el universo **donde se encuentra el cuerpo**
 
 <br>
+
+
+!![alt](./componentes-peso.lnkscape.svg)
 
 

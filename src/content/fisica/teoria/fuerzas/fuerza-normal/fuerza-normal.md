@@ -10,7 +10,7 @@ Es siempre **perpendicular** a la superficie o plano de apoyo
 
 ### Fuerza normal y el Peso
 
-![alt](./fuerza-normal.svg)
+![alt](./fuerza-normal.lnkscape.svg)
 
 $$
 |\vec{P}_{x}| = |\vec{P}| \cdot \sin(\alpha)

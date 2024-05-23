@@ -37,7 +37,7 @@ $$
 }   
 $$
 
-![alt](./vectores-a-b.svg)
+![alt](./producto-escalar-1.svg)
 
 <br>
 
@@ -71,7 +71,7 @@ $$
 }
 $$
 
-![alt](./proyeccion-a-b.svg)
+![alt](./producto-escalar-2.svg)
 
 <br>
 
@@ -83,7 +83,7 @@ $$
 }
 $$
 
-![alt](./proyeccion-b-a.svg)
+![alt](./producto-escalar-3.svg)
 
 
 <br>

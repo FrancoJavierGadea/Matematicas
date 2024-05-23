@@ -32,11 +32,11 @@ $$
 \end{array}
 $$
 
-![](./trabajo.drawio.svg)
+![](./trabajo.lnkscape.svg)
 
 
 
 
 ### Valores del `trabajo`
 
-![alt](./trabajo-valores.drawio.svg)
+![alt](./trabajo-2.lnkscape.svg)

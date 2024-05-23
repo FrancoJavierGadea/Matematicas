@@ -1,4 +1,4 @@
 ## Tension
 
 
-![alt](./tension.drawio.svg)
+![alt](./tension.lnkscape.svg)
