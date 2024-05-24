@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Doc from "@components/docs/Doc.astro";
+
+import { CollectionFileStructure } from "@utils/CollectionUtils";
+import FolderContent from "@components/docs/FolderContent.astro";
+
+
+export async function getStaticPaths() {
+
+    const EQ = await getCollection('json');
+
+    console.log();
+
+    return EQ.map((equations) => {
+
+        return {
+            params: { slug: equations.id },
+            props: { equations: equations.data },
+        }
+    })
+}
+
+const { slug } = Astro.params;
+const { equations } = Astro.props;
+
+
+const title = `${slug.at(0).toUpperCase()}${slug.slice(1)}`.replaceAll('-', ' ');
+
+console.log(equations);
+---
+
+<Layout title={title} logo="equaciones" home="/equaciones">
+
+    <h1>equaciones</h1>
+
+</Layout>
+
+
+
+
+

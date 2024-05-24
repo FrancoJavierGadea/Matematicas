@@ -2,10 +2,9 @@
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Doc from "@components/docs/Doc.astro";
-
+import SidebarLinks from "@components/layout/Sidebar/SidebarLinks.astro";
 import { CollectionFileStructure } from "@utils/CollectionUtils";
 import FolderContent from "@components/docs/FolderContent.astro";
-
 
 export async function getStaticPaths() {
 
@@ -38,7 +37,12 @@ const title =  (() => {
 })();
 
 
-const sideBar = await (async () => {
+const sidebar = {
+    title: 'Matematicas',
+    titleURL: '/matematicas',
+}
+
+const sidebarLinks = await (async () => {
     
     const docs = await getCollection('matematicas');
     
@@ -49,20 +53,16 @@ const sideBar = await (async () => {
     parents.forEach(folder => folder.open = true);
     
     result.active = true; 
+
     if(result.type === 'folder') result.open = true
 
-    return {
-        title: 'Matematicas',
-        titleURL: '/matematicas',
-        links: [
-            ...FileStructure.files
-        ]
-    }
+    return [...FileStructure.files];   
 })();
-
 ---
 
-<Layout title={title} sideBar={sideBar} logo="matematicas" home="/matematicas">
+<Layout title={title} sidebar={sidebar} logo="matematicas" home="/matematicas">
+
+    <SidebarLinks slot="sidebar-body" links={sidebarLinks} />
 
     {
         file.type === 'file' ?

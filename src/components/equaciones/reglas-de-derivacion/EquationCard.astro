@@ -1,0 +1,91 @@
+---
+const {name = '', tags = []} = Astro.props;
+---
+
+<div class="Equation-card" data-tags={tags.join(' ')}>
+
+    <h5 class="Equation-title">{name}</h5>
+
+    <div class="Equation-content">
+
+        <div>
+            <span>Funcion</span>
+            <slot name="function" />
+            
+        </div>
+
+        <div>
+            <span>Derivada</span>
+            <slot name="derivate" />
+            
+        </div>
+    </div>
+
+    <div class="Equation-tags">
+        {
+            tags.map(tag => {
+
+                return <span class="badge text-bg-primary">{tag}</span>
+            })
+        }
+    </div>
+</div>
+
+<style>
+.Equation-card {
+
+    width: fit-content;
+    flex-grow: 1;
+    background-color: #555;
+    padding: 15px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .Equation-title {
+        text-align: center;
+
+        &::first-letter{
+
+            text-transform: capitalize;
+        }
+    }
+
+    .Equation-content {
+        display: flex;
+        gap: 20px;
+        text-align: center;
+
+        & > div {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #202020;
+            border-radius: 5px;
+            padding: 10px;
+
+            span {
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    .Equation-tags {
+        margin-top: auto;
+        display: flex;
+        gap: 10px;
+        justify-content: right;
+
+        span {
+
+            &::first-letter {
+
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+</style>

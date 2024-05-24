@@ -1,0 +1,14 @@
+[
+    {
+        "function": "f(x) = a^{x}",
+        "derivate": "f'(x) = a^{x} \\cdot \\ln(a)",
+        "name": "Derivada de la funcion exponencial",
+        "tags": ["exponencial"]
+    },
+    {
+        "function": "f(x) = e^{x}",
+        "derivate": "f'(x) = e^{x}",
+        "name": "Derivada de la funcion exponencial",
+        "tags": ["exponencial", "numero-e"]
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "function": "",
+        "derivate": "",
+        "name": "",
+        "tags": ["raiz"]
+    },
+    {
+        "function": "",
+        "derivate": "",
+        "name": "",
+        "tags": ["raiz"]
+    },
+    {
+        "function": "f(x) = \\sqrt{x}",
+        "derivate": "f'(x) = \\frac{1}{2 \\cdot \\sqrt{x}}",
+        "name": "Derivada de la funcion raiz de x",
+        "tags": ["raiz", "raiz-cuadrada"]
+    }
+]

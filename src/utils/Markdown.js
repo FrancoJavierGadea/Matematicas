@@ -45,3 +45,4 @@ export async function parseLatex(latex = '', inline = false){
   
     return file.value;
 }
+

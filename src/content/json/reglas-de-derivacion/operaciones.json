@@ -1,0 +1,33 @@
+[
+    {
+        "function": "y = f(g(x))",
+        "derivate": "y' = f'(g(x)) \\cdot g'(x)",
+        "name": "Regla de la cadena",
+        "tags": ["regla-de-la-cadena"]
+    },
+
+    {
+        "function": "f(x) = a(x) + b(x)",
+        "derivate": "f'(x) = a'(x) + b'(x)",
+        "name": "Derivada de una Suma de funciones",
+        "tags": ["operaciones", "suma"]
+    },
+    {
+        "function": "f(x) = a(x) - b(x)",
+        "derivate": "f'(x) = a'(x) - b'(x)",
+        "name": "Derivada de una Resta de funciones",
+        "tags": ["operaciones", "resta"]
+    },
+    {
+        "function": "f(x) = a(x) \\cdot b(x)",
+        "derivate": "f'(x) = a(x) \\cdot b'(x) + b(x) \\cdot a'(x)",
+        "name": "Derivada de un producto de funciones",
+        "tags": ["operaciones", "producto"]
+    },
+    {
+        "function": "f(x) = \\dfrac{a(x)}{b(x)}",
+        "derivate": "f'(x) = \\dfrac{b(x) \\cdot a'(x) - a(x) \\cdot b'(x)}{\\left[b(x)\\right]^{2}}",
+        "name": "Derivada de un cociente de funciones",
+        "tags": ["operaciones", "divicion"]
+    }
+]

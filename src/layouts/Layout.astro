@@ -13,13 +13,13 @@ import "@css/Custom-link-icons.css";
 import 'photoswipe/style.css';
 
 import Navigation from '@components/layout/Navigation.astro';
-import NavigationSideBar from '@components/layout/SideBar/NavigationSideBar.astro';
+import SideBar from '@components/layout/Sidebar/Sidebar.astro';
 import ThemeSwitch from '@components/layout/ThemeSwitch.astro';
 import Logo from '@components/layout/Logo.astro';
 import {LOGOS} from '@assets/logos';
 import ExcalidrawButton from '@components/layout/ExcalidrawButton.astro';
 
-const { title, sideBar, logo = 'default', home = '' } = Astro.props;
+const { title, sidebar, logo = 'default', home = '' } = Astro.props;
 
 const navigationLinks = [
 	{ name: 'inicio', url: '/' },
@@ -55,7 +55,7 @@ const navigationLinks = [
 			<Logo svg={LOGOS[logo]} slot="brand"/>
 
 			{
-				sideBar &&
+				sidebar &&
 				<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#Navigation-side-bar" slot="hide-control">
 					<i class="bi bi-journal-text"></i>
 				</button>
@@ -69,8 +69,10 @@ const navigationLinks = [
 		<div class="page-content">
 
 			{
-				sideBar &&
-				<NavigationSideBar id="Navigation-side-bar" title={sideBar.title} titleURL={sideBar.titleURL} links={sideBar.links} />
+				sidebar &&
+				<SideBar id="Navigation-side-bar" title={sidebar.title} titleURL={sidebar.titleURL}>
+					<div slot="sidebar-body" set:html={Astro.slots.render('sidebar-body')} />
+				</SideBar>
 			}
 
 			<main class="container">

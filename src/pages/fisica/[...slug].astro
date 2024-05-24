@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Doc from "@components/docs/Doc.astro";
-
+import SidebarLinks from "@components/layout/Sidebar/SidebarLinks.astro";
 import { CollectionFileStructure } from "@utils/CollectionUtils";
 import FolderContent from "@components/docs/FolderContent.astro";
 
@@ -37,8 +37,12 @@ const title =  (() => {
 
 })();
 
+const sidebar = {
+    title: 'Fisica',
+    titleURL: '/fisica',
+}
 
-const sideBar = await (async () => {
+const sidebarLinks = await (async () => {
     
     const docs = await getCollection('fisica');
     
@@ -51,18 +55,16 @@ const sideBar = await (async () => {
     result.active = true; 
     if(result.type === 'folder') result.open = true
 
-    return {
-        title: 'Fisica',
-        titleURL: '/fisica',
-        links: [
-            ...FileStructure.files
-        ]
-    }
+    return [
+        ...FileStructure.files
+    ];
 })();
 
 ---
 
-<Layout title={title} sideBar={sideBar} logo="fisica" home="/fisica">
+<Layout title={title} sidebar={sidebar} logo="fisica" home="/fisica">
+
+    <SidebarLinks slot="sidebar-body" links={sidebarLinks} />
 
     {
         file.type === 'file' ?

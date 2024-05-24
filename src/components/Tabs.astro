@@ -1,13 +1,6 @@
 ---
 let {tabs = []} = Astro.props;
 
-tabs = [
-    {name: 'Majo', text: 'Other'},
-    {name: 'jaiver', text: 's'},
-    {name: 'sdd', text: 'f'},
-    {name: 'mica', text: 's'}
-]
-
 const current = Astro.slots.has('default') ? 'default' : Object.keys(Astro.slots).at(0);
 ---
 
@@ -107,19 +100,6 @@ const current = Astro.slots.has('default') ? 'default' : Object.keys(Astro.slots
     }
     .Tabs-content .Tabs-item.active {
         visibility: visible;
-        animation: show 1s;
     }
-
-    @keyframes show {
-        from {
-            margin-left: -20px;
-            opacity: 0;
-        }
-        to {
-            margin-left: 0;
-            opacity: 1;
-        }
-    }
-
 
 </style>

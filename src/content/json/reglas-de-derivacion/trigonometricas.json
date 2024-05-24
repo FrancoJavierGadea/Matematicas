@@ -1,0 +1,78 @@
+[
+    {
+        "function": "f(x) = \\sin(x)",
+        "derivate": "f'(x) = \\cos(x)",
+        "name": "Derivada de la funcion seno",
+        "tags": ["trigonometricas", "sin"]
+    },
+    {
+        "function": "f(x) = \\cos(x)",
+        "derivate": "f'(x) = -\\sin(x)",
+        "name": "Derivada de la funcion coseno",
+        "tags": ["trigonometricas", "cos"]
+    },
+
+    {
+        "function": "f(x) = \\tan(x)",
+        "derivate": "f'(x) = \\sec^{2}(x)",
+        "name": "Derivada de la funcion tangente",
+        "tags": ["trigonometricas", "tan"]
+    },
+    {
+        "function": "f(x) = \\tan(x)",
+        "derivate": "f'(x) = \\dfrac{1}{\\cos^{2}(x)}",
+        "name": "Derivada de la funcion tangente",
+        "tags": ["trigonometricas", "tan"]
+    },
+    {
+        "function": "f(x) = \\tan(x)",
+        "derivate": "f'(x) = 1 + \\tan^{2}(x)",
+        "name": "Derivada de la funcion tangente",
+        "tags": ["trigonometricas", "tan"]
+    },
+
+    {
+        "function": "f(x) = \\cot(x)",
+        "derivate": "f'(x) = -\\csc^{2}(x)",
+        "name": "Derivada de la funcion cotangente",
+        "tags": ["trigonometricas", "cot"]
+    },
+    {
+        "function": "f(x) = \\cot(x)",
+        "derivate": "f'(x) = \\dfrac{-1}{\\sin^{2}(x)}",
+        "name": "Derivada de la funcion cotangente",
+        "tags": ["trigonometricas", "cot"]
+    },
+    {
+        "function": "f(x) = \\cot(x)",
+        "derivate": "f'(x) = - 1 - \\cot^{2}(x)",
+        "name": "Derivada de la funcion cotangente",
+        "tags": ["trigonometricas", "cot"]
+    },
+
+    {
+        "function": "f(x) = \\sec(x)",
+        "derivate": "f'(x) = \\sec(x) \\cdot \\tan(x)",
+        "name": "Derivada de la funcion secante",
+        "tags": ["trigonometricas", "sec"]
+    },
+    {
+        "function": "f(x) = \\sec(x)",
+        "derivate": "f'(x) = \\dfrac{\\sin(x)}{\\cos^{2}(x)}",
+        "name": "Derivada de la funcion secante",
+        "tags": ["trigonometricas", "sec"]
+    }, 
+
+    {
+        "function": "f(x) = \\csc(x)",
+        "derivate": "f'(x) = -\\csc(x) \\cdot \\cot(x)",
+        "name": "Derivada de la funcion cosecante",
+        "tags": ["trigonometricas", "csc"]
+    },
+    {
+        "function": "f(x) = \\csc(x)",
+        "derivate": "f'(x) = \\dfrac{-\\cos(x)}{\\sin^{2}(x)}",
+        "name": "Derivada de la funcion cosecante",
+        "tags": ["trigonometricas", "csc"]
+    }
+]
