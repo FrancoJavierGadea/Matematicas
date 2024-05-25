@@ -4,6 +4,7 @@ import "@css/Custom-mathjax.css";
 import {renderLatexToCHTML} from "@utils/RenderLatexCHTML.js";
 import { getEntry } from "astro:content";
 import EquationCard from "@components/equaciones/reglas-de-derivacion/EquationCard.astro";
+import Controls from "@components/equaciones/reglas-de-derivacion/Controls.astro";
 
 const renderLatex = await renderLatexToCHTML();
 
@@ -17,65 +18,11 @@ const EQ = await Promise.all([
     getEntry('json', 'reglas-de-derivacion/operaciones'),
 ]);
 
-const tags = new Map();
-
-EQ.forEach(({data}) => {
-
-    data.forEach((equation) => {
-
-        const [first, ...rest] = equation.tags;
-
-        if(!tags.has(first)){
-
-            tags.set(first, {
-                value: first,
-                children: new Set(rest)
-            });
-        }
-        else {
-            const children = tags.get(first).children;
-            rest.forEach(v => children.add(v));
-        }
-    });
-});
-
-console.log(tags);
 ---
 
 <Layout title="Reglas de derivacion" sidebar={{title: 'Reglas de derivacion'}} logo="equaciones" home="/equaciones">
 
-    <custom-controls class="Equations-controls" slot="sidebar-body">
-        {
-            [...tags.values()].map(({value, children}) => {
-
-                return <div class="control">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value={value} checked/>
-                            {value.replace('-', ' ')}
-                        </label>
-                    </div>
-                    {
-                        children.size > 0 && 
-                        <div class="check-children">
-                        {
-                            [...children].map(tag => {
-
-                                return <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value={tag} checked/>
-                                        {tag.replace('-', ' ')}   
-                                    </label>
-                                </div>
-                            })
-                        }
-                        </div>
-                    }
-                </div>
-                
-            })
-        }
-    </custom-controls>
+    <Controls slot="sidebar-body" equations={EQ} />
 
     <section>
     {
@@ -103,72 +50,8 @@ console.log(tags);
     <style set:html={renderLatex.getStyles()} />
 </Layout>
 
-<script>
-    class CustomControls extends HTMLElement {
-
-        constructor(){
-            super();
-
-            this.querySelectorAll('input').forEach(input => {
-
-                input.addEventListener('change', (e) => {
-
-                    const value = e.currentTarget.value;
-
-                    document.querySelectorAll(`.Equation-card[data-tags~="${value}"]`)
-                        .forEach(element => {
-
-                        if(!e.currentTarget.checked){
-
-                            element.classList.toggle('hide-equation', true);
-                        }
-                        else {
-                            element.classList.toggle('hide-equation', false);
-                        }
-                    });
-
-                    document.querySelectorAll('.Equations')
-                        .forEach(element => {
-
-                            const flag = [...element.children].every(item => item.classList.contains('hide-equation'));
-
-                            if(flag){
-                                element.parentElement.style.display = 'none';
-                            }
-                            else {
-                                element.parentElement.style.display = '';
-                            }
-                        })
-                });
-            });
-        }
-    }
-
-    customElements.define('custom-controls', CustomControls);
-</script>
-
 <style>
-    .Equations-controls {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        gap: 10px;
-
-        label::first-letter {
-            text-transform: capitalize;
-        }
-
-        .check-children {
-            padding-top: 5px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            max-height: 100px;
-            padding-left: 15px;
-            margin-left: 5px;
-            border-left: 1px solid gray;
-        }
-    }
+    
     details {
         margin-block: 30px;
 
@@ -189,7 +72,7 @@ console.log(tags);
         gap: 20px;
     }
 
-    .Equation {
+    .Equations :global(.Equation) {
 
         margin-block: auto;
 
@@ -197,7 +80,7 @@ console.log(tags);
             margin-block: 0;
         }
 
-        font-size: 22px;
+        font-size: 24px;
     }
     
     .Equations :global(.hide-equation) {

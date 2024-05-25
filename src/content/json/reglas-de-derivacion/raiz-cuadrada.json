@@ -1,20 +1,26 @@
 [
     {
-        "function": "",
-        "derivate": "",
-        "name": "",
-        "tags": ["raiz"]
-    },
-    {
-        "function": "",
-        "derivate": "",
-        "name": "",
+        "function": "f(x) = \\sqrt[n]{x}",
+        "derivate": "f'(x) = \\dfrac{1}{n \\cdot \\sqrt[n]{x^{n - 1}}}",
+        "name": "Derivada de la raiz",
         "tags": ["raiz"]
     },
     {
         "function": "f(x) = \\sqrt{x}",
-        "derivate": "f'(x) = \\frac{1}{2 \\cdot \\sqrt{x}}",
-        "name": "Derivada de la funcion raiz de x",
+        "derivate": "f'(x) = \\dfrac{1}{2 \\cdot \\sqrt{x}}",
+        "name": "Derivada de la raiz cuadrada",
         "tags": ["raiz", "raiz-cuadrada"]
+    },
+    {
+        "function": "f(x) = \\sqrt[n]{x^{p}} = x^{\\frac{p}{n}}",
+        "derivate": "f'(x) = \\dfrac{p}{n} \\cdot x^{\\frac{p}{n} - 1}",
+        "name": "Derivada de la raiz de x^p",
+        "tags": ["raiz"]
+    },
+    {
+        "function": "f(x) = \\sqrt[n]{x^{p}}",
+        "derivate": "f'(x) = \\dfrac{p \\cdot x^{p - 1}}{n \\cdot \\sqrt[n]{\\displaystyle{ (x^{p})^{n - 1}} }}",
+        "name": "Derivada de la raiz de x^p",
+        "tags": ["raiz"]
     }
 ]

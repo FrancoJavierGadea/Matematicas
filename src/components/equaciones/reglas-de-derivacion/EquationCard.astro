@@ -37,7 +37,7 @@ const {name = '', tags = []} = Astro.props;
     width: fit-content;
     flex-grow: 1;
     background-color: #555;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
 
     display: flex;
@@ -46,7 +46,9 @@ const {name = '', tags = []} = Astro.props;
 
     .Equation-title {
         text-align: center;
-
+        font-weight: bold;
+        letter-spacing: 2px;
+        
         &::first-letter{
 
             text-transform: capitalize;
@@ -68,7 +70,8 @@ const {name = '', tags = []} = Astro.props;
 
             span {
                 font-weight: bold;
-                letter-spacing: 1px;
+                letter-spacing: 2px;
+                color: #a1a1a1;
             }
         }
     }

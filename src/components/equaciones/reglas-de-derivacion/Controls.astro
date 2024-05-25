@@ -1,0 +1,165 @@
+---
+const { equations = [] } = Astro.props;
+
+const tags = new Map();
+
+equations.forEach(({data}) => {
+
+    data.forEach((equation) => {
+
+        const [first, ...rest] = equation.tags;
+
+        if(!tags.has(first)){
+
+            tags.set(first, {
+                value: first,
+                children: new Set(rest)
+            });
+        }
+        else {
+            const children = tags.get(first).children;
+            rest.forEach(v => children.add(v));
+        }
+    });
+});
+---
+
+<custom-controls class="Equations-controls" slot="sidebar-body">
+    <div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" checked id="all-equations"/>
+            Todos
+        </label>
+    </div>
+    {
+        [...tags.values()].map(({value, children}) => {
+
+            return <div class="control">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value={value} checked data-children={children.size} />
+                        {value.replace('-', ' ')}
+                    </label>
+                </div>
+                {
+                    children.size > 0 && 
+                    <div class="check-children">
+                    {
+                        [...children].map(tag => {
+
+                            return <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value={tag} checked />
+                                    {tag.replace('-', ' ')}   
+                                </label>
+                            </div>
+                        })
+                    }
+                    </div>
+                }
+            </div>
+            
+        })
+    }
+</custom-controls>
+
+<script>
+    //@ts-nocheck
+
+    class CustomControls extends HTMLElement {
+
+        constructor(){
+            super();
+
+            this.inputs = [...this.querySelectorAll('.control input')];
+
+            this.querySelector('#all-equations').addEventListener('change', (e) => {
+
+                this.inputs.forEach(input => {
+
+                    input.checked = e.currentTarget.checked;
+                });
+
+                this.#showHideEquations({
+                    show: e.currentTarget.checked
+                });
+            });
+
+            
+
+            this.inputs.forEach(input => {
+
+                input.addEventListener('change', (e) => {
+
+                    const childs = Number(e.currentTarget.getAttribute('data-children') ?? 0);
+
+                    this.#showHideEquations({
+                        tag: e.currentTarget.value,
+                        show: e.currentTarget.checked
+                    });
+
+                    //Check children checkboxs
+                    if(childs > 0){
+
+                        e.currentTarget.closest('.control')
+                        .querySelectorAll('.check-children input')?.forEach(input => {
+    
+                            input.checked = e.currentTarget.checked;
+                        });
+                    }
+
+                    this.querySelector('#all-equations').checked = this.inputs.every(input => input.checked);
+                });
+            });
+        }
+
+        #showHideEquations({tag, show} = {}){
+
+            document.querySelectorAll(tag ? `.Equation-card[data-tags~="${tag}"]` : '.Equation-card')
+            .forEach(element => {
+
+                if(!show){
+                    element.classList.toggle('hide-equation', true);
+                }
+                else {
+                    element.classList.toggle('hide-equation', false);
+                }
+            });
+
+            document.querySelectorAll('.Equations')
+            .forEach(element => {
+
+                const flag = [...element.children].every(item => item.classList.contains('hide-equation'));
+
+                element.parentElement.style.display = flag ? 'none' : '';
+            });
+        }
+    }
+
+    customElements.define('custom-controls', CustomControls);
+</script>
+
+
+<style>
+    .Equations-controls {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        label::first-letter {
+            text-transform: capitalize;
+        }
+
+        .check-children {
+            padding-top: 5px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            max-height: 100px;
+            padding-left: 15px;
+            margin-left: 5px;
+            border-left: 1px solid gray;
+        }
+    }
+</style>

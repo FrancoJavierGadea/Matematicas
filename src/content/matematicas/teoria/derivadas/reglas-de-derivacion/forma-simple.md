@@ -60,6 +60,12 @@ $$
 $$
 
 $$
+    f(x) = \sqrt[n]{x^{p}}
+    \hspace{2em}
+    f'(x) = \dfrac{p \cdot x^{p - 1}}{n \cdot \sqrt[n]{x^{p \cdot (n - 1)}}}
+$$
+
+$$
     f(x) = \sqrt[i]{x}
     \hspace{2em}
     f'(x) = \frac{1}{i \cdot \sqrt[i]{x^{i - 1}}}
