@@ -16,11 +16,13 @@ const active = tabs.at(0);
                     <div>
                         <span>Funcion</span>
                         <Fragment set:html={Astro.slots.render(`${tab}-function`)}/>
+                        <button class="btn btn-sm copy-btn" title="Copiar latex"><i class="bi bi-clipboard"/></button>
                     </div>
             
                     <div>
                         <span>Derivada</span>
-                        <Fragment set:html={Astro.slots.render(`${tab}-derivative`)}/> 
+                        <Fragment set:html={Astro.slots.render(`${tab}-derivative`)}/>
+                        <button class="btn btn-sm copy-btn" title="Copiar latex"><i class="bi"/></button> 
                     </div>
                 </div>
             })
@@ -58,6 +60,9 @@ const active = tabs.at(0);
 
             this.querySelectorAll('.Equation-controls button')
             .forEach(btn => btn.addEventListener('click', (e) => this.#toggleEquation(e)));
+
+            this.querySelectorAll('.Equation-tab .copy-btn')
+            .forEach(btn => btn.addEventListener('click', (e) => this.#copyLatex(e)));
         }
 
         #toggleEquation(e){
@@ -72,7 +77,23 @@ const active = tabs.at(0);
             currentBtn.classList.toggle('active', false);
             nextActive.classList.toggle('active', true);
             nextBtn.classList.toggle('active', true);
-        }   
+        } 
+        
+        #copyLatex(e){
+
+            const btn = e.currentTarget;
+            const latex = btn.parentElement
+                .querySelector('[data-latex]').getAttribute('data-latex');
+
+            window.navigator.clipboard.writeText(latex).then(() => {
+
+                btn.classList.toggle('copied', true);
+                setTimeout(() => {
+
+                    btn.classList.toggle('copied', false);
+                }, 1500);
+            });
+        }
     }
 
     customElements.define('custom-equation-card', CustomEquationCard);
@@ -114,8 +135,9 @@ const active = tabs.at(0);
             display: none;
             gap: 20px;
             text-align: center;
-    
+            
             & > div {
+                position: relative;
                 flex-grow: 1;
                 display: flex;
                 flex-direction: column;
@@ -127,6 +149,19 @@ const active = tabs.at(0);
                     font-weight: bold;
                     letter-spacing: 2px;
                     color: #a1a1a1;
+                }
+                .copy-btn {
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    --bs-btn-active-border-color: transparent;
+
+                    i.bi::before {
+                        content: '\f290';
+                    }
+                    &.copied i.bi::before {
+                        content: '\f272';
+                    }
                 }
             }
         }

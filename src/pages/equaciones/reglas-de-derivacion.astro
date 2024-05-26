@@ -44,19 +44,19 @@ const EQ = await Promise.all([
                         return <EquationCard name={name} tags={tags} tabs={tabs}>
                             {
                                 simple && 
-                                <div class="Equation" slot="simple-function" set:html={renderLatex.getHTML(simple.function)} /> 
+                                <div class="Equation" slot="simple-function" data-latex={simple.function} set:html={renderLatex.getHTML(simple.function)} /> 
                             }
                             {
                                 simple && 
-                                <div class="Equation" slot="simple-derivative" set:html={renderLatex.getHTML(simple.derivative)} />
+                                <div class="Equation" slot="simple-derivative" data-latex={simple.derivative} set:html={renderLatex.getHTML(simple.derivative)} />
                             }
                             {
                                 composition && 
-                                <div class="Equation" slot="compuesta-function" set:html={renderLatex.getHTML(composition.function)} />
+                                <div class="Equation" slot="compuesta-function" data-latex={composition.function} set:html={renderLatex.getHTML(composition.function)} />
                             }
                             {
                                 composition &&
-                                <div class="Equation" slot="compuesta-derivative" set:html={renderLatex.getHTML(composition.derivative)} />
+                                <div class="Equation" slot="compuesta-derivative" data-latex={composition.derivative} set:html={renderLatex.getHTML(composition.derivative)} />
                             }
                         </EquationCard>
                     })
