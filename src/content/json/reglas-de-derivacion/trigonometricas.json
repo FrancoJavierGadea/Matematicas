@@ -1,77 +1,149 @@
 [
     {
-        "function": "f(x) = \\sin(x)",
-        "derivate": "f'(x) = \\cos(x)",
+        "simple": {
+            "function": "f(x) = \\sin(x)",
+            "derivative": "f'(x) = \\cos(x)"
+        },
+        "composition": {
+            "function": "f(x) = \\sin(g(x))",
+            "derivative": "f'(x) = \\cos(g(x)) \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion seno",
         "tags": ["trigonometricas", "sin"]
     },
     {
-        "function": "f(x) = \\cos(x)",
-        "derivate": "f'(x) = -\\sin(x)",
+        "simple": {
+            "function": "f(x) = \\cos(x)",
+            "derivative": "f'(x) = -\\sin(x)"
+        },
+        "composition": {
+            "function": "f(x) = \\cos(g(x))",
+            "derivative": "f'(x) = -\\sin(g(x)) \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion coseno",
         "tags": ["trigonometricas", "cos"]
     },
 
     {
-        "function": "f(x) = \\tan(x)",
-        "derivate": "f'(x) = \\sec^{2}(x)",
+        "simple": {
+            "function": "f(x) = \\tan(x)",
+            "derivative": "f'(x) = \\sec^{2}(x)"
+        },
+        "composition": {
+            "function": "f(x) = \\tan(g(x))",
+            "derivative": "f'(x) = \\sec^{2}(g(x)) \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion tangente",
         "tags": ["trigonometricas", "tan"]
     },
     {
-        "function": "f(x) = \\tan(x)",
-        "derivate": "f'(x) = \\dfrac{1}{\\cos^{2}(x)}",
+        "simple": {
+            "function": "f(x) = \\tan(x)",
+            "derivative": "f'(x) = \\dfrac{1}{\\cos^{2}(x)}"
+        },
+        "composition": {
+            "function": "f(x) = \\tan(g(x))",
+            "derivative": "f'(x) = \\dfrac{g'(x)}{\\cos^{2}(g(x))}"
+        },
         "name": "Derivada de la funcion tangente",
         "tags": ["trigonometricas", "tan"]
     },
     {
-        "function": "f(x) = \\tan(x)",
-        "derivate": "f'(x) = 1 + \\tan^{2}(x)",
+        "simple": {
+            "function": "f(x) = \\tan(x)",
+            "derivative": "f'(x) = 1 + \\tan^{2}(x)"
+        },
+        "composition": {
+            "function": "f(x) = \\tan(g(x))",
+            "derivative": "f'(x) = \\left[1 + \\tan^{2}(g(x))\\right] \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion tangente",
         "tags": ["trigonometricas", "tan"]
     },
 
     {
-        "function": "f(x) = \\cot(x)",
-        "derivate": "f'(x) = -\\csc^{2}(x)",
+        "simple": {
+            "function": "f(x) = \\cot(x)",
+            "derivative": "f'(x) = -\\csc^{2}(x)"
+        },
+        "composition": {
+            "function": "f(x) = \\cot(g(x))",
+            "derivative": "f'(x) = -\\csc^{2}(g(x)) \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion cotangente",
         "tags": ["trigonometricas", "cot"]
     },
     {
-        "function": "f(x) = \\cot(x)",
-        "derivate": "f'(x) = \\dfrac{-1}{\\sin^{2}(x)}",
+        "simple": {
+            "function": "f(x) = \\cot(x)",
+            "derivative": "f'(x) = \\dfrac{-1}{\\sin^{2}(x)}"
+        },
+        "composition": {
+            "function": "f(x) = \\cot(g(x))",
+            "derivative": "f'(x) = \\dfrac{-g'(x)}{\\sin^{2}(g(x))}"
+        },
         "name": "Derivada de la funcion cotangente",
         "tags": ["trigonometricas", "cot"]
     },
     {
-        "function": "f(x) = \\cot(x)",
-        "derivate": "f'(x) = - 1 - \\cot^{2}(x)",
+        "simple": {
+            "function": "f(x) = \\cot(x)",
+            "derivative": "f'(x) = - \\left(1 + \\cot^{2}(x)\\right)"
+        },
+        "composition": {
+            "function": "f(x) = \\cot(g(x))",
+            "derivative": "f'(x) = - \\left[1 + \\cot^{2}(g(x))\\right] \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion cotangente",
         "tags": ["trigonometricas", "cot"]
     },
 
     {
-        "function": "f(x) = \\sec(x)",
-        "derivate": "f'(x) = \\sec(x) \\cdot \\tan(x)",
+        "simple": {
+            "function": "f(x) = \\sec(x)",
+            "derivative": "f'(x) = \\sec(x) \\cdot \\tan(x)"
+        },
+        "composition": {
+            "function": "f(x) = \\sec(g(x))",
+            "derivative": "f'(x) = \\sec(g(x)) \\cdot \\tan(g(x)) \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion secante",
         "tags": ["trigonometricas", "sec"]
     },
     {
-        "function": "f(x) = \\sec(x)",
-        "derivate": "f'(x) = \\dfrac{\\sin(x)}{\\cos^{2}(x)}",
+        "simple": {
+            "function": "f(x) = \\sec(x)",
+            "derivative": "f'(x) = \\dfrac{\\sin(x)}{\\cos^{2}(x)}"
+        },
+        "composition": {
+            "function": "f(x) = \\sec(g(x))",
+            "derivative": "f'(x) = \\dfrac{\\sin(g(x)) \\cdot g'(x)}{\\cos^{2}(g(x))}"
+        },
         "name": "Derivada de la funcion secante",
         "tags": ["trigonometricas", "sec"]
     }, 
 
     {
-        "function": "f(x) = \\csc(x)",
-        "derivate": "f'(x) = -\\csc(x) \\cdot \\cot(x)",
+        "simple": {
+            "function": "f(x) = \\csc(x)",
+            "derivative": "f'(x) = -\\csc(x) \\cdot \\cot(x)"
+        },
+        "composition": {
+            "function": "f(x) = \\csc(g(x))",
+            "derivative": "f'(x) = -\\csc(g(x)) \\cdot \\cot(g(x)) \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion cosecante",
         "tags": ["trigonometricas", "csc"]
     },
     {
-        "function": "f(x) = \\csc(x)",
-        "derivate": "f'(x) = \\dfrac{-\\cos(x)}{\\sin^{2}(x)}",
+        "simple": {
+            "function": "f(x) = \\csc(x)",
+            "derivative": "f'(x) = \\dfrac{-\\cos(x)}{\\sin^{2}(x)}"
+        },
+        "composition": {
+            "function": "f(x) = \\csc(g(x)) \\cdot g'(x)",
+            "derivative": "f'(x) = \\dfrac{-\\cos(g(x))}{\\sin^{2}(g(x))}"
+        },
         "name": "Derivada de la funcion cosecante",
         "tags": ["trigonometricas", "csc"]
     }

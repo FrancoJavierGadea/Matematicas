@@ -1,25 +1,49 @@
 [
     {
-        "function": "f(x) = \\sqrt[n]{x}",
-        "derivate": "f'(x) = \\dfrac{1}{n \\cdot \\sqrt[n]{x^{n - 1}}}",
+        "simple": {
+            "function": "f(x) = \\sqrt[n]{x}",
+            "derivative": "f'(x) = \\dfrac{1}{n \\cdot \\sqrt[n]{x^{n - 1}}}"
+        },
+        "composition": {
+            "function": "f(x) = \\sqrt[n]{g(x)}",
+            "derivative": "f'(x) = \\dfrac{g'(x)}{n \\cdot \\sqrt[n]{ \\displaystyle{g(x)^{n - 1}} }}"
+        },
         "name": "Derivada de la raiz",
         "tags": ["raiz"]
     },
     {
-        "function": "f(x) = \\sqrt{x}",
-        "derivate": "f'(x) = \\dfrac{1}{2 \\cdot \\sqrt{x}}",
+        "simple": {
+            "function": "f(x) = \\sqrt{x}",
+            "derivative": "f'(x) = \\dfrac{1}{2 \\cdot \\sqrt{x}}"
+        },
+        "composition": {
+            "function": "f(x) = \\sqrt{g(x)}",
+            "derivative": "f'(x) = \\dfrac{g'(x)}{2 \\cdot \\sqrt{ \\displaystyle{g(x)} }}"
+        },
         "name": "Derivada de la raiz cuadrada",
         "tags": ["raiz", "raiz-cuadrada"]
     },
     {
-        "function": "f(x) = \\sqrt[n]{x^{p}} = x^{\\frac{p}{n}}",
-        "derivate": "f'(x) = \\dfrac{p}{n} \\cdot x^{\\frac{p}{n} - 1}",
+        "simple": {
+            "function": "f(x) = \\sqrt[n]{x^{p}} = x^{\\frac{p}{n}}",
+            "derivative": "f'(x) = \\dfrac{p}{n} \\cdot x^{\\frac{p}{n} - 1}"
+        },
+        "composition": {
+            "function": "f(x) = \\sqrt[n]{ \\displaystyle{g(x)^{p}} } = g(x)^{\\frac{p}{n}}",
+            "derivative": "f'(x) = \\dfrac{p}{n} \\cdot g(x)^{\\frac{p}{n} - 1} \\cdot g'(x)"
+        },
         "name": "Derivada de la raiz de x^p",
         "tags": ["raiz"]
     },
     {
-        "function": "f(x) = \\sqrt[n]{x^{p}}",
-        "derivate": "f'(x) = \\dfrac{p \\cdot x^{p - 1}}{n \\cdot \\sqrt[n]{\\displaystyle{ (x^{p})^{n - 1}} }}",
+        "simple": {
+            "function": "f(x) = \\sqrt[n]{x^{p}}",
+            "derivative": "f'(x) = \\dfrac{p \\cdot x^{p - 1}}{n \\cdot \\sqrt[n]{\\displaystyle{ (x^{p})^{n - 1}} }}"
+        },
+        "composition": {
+            "function": "f(x) = \\sqrt[n]{ \\displaystyle{g(x)^{p}} }",
+            "derivative": "f'(x) = \\dfrac{p \\cdot g(x)^{p - 1} \\cdot g'(x)}{n \\cdot \\sqrt[n]{\\displaystyle{ [ g(x)^{p} ]^{n - 1}} }}"
+        },
         "name": "Derivada de la raiz de x^p",
         "tags": ["raiz"]
     }

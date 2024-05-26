@@ -1,19 +1,37 @@
 [
     {
-        "function": "f(x) = \\log_{a}(x)",
-        "derivate": "f'(x) = \\dfrac{1}{x} \\cdot \\log_{a}(e)",
+        "simple": {
+            "function": "f(x) = \\log_{a}(x)",
+            "derivative": "f'(x) = \\dfrac{1}{x} \\cdot \\log_{a}(e)"
+        },
+        "composition": {
+            "function": "f(x) = \\log_{a}(g(x))",
+            "derivative": "f'(x) = \\dfrac{g'(x)}{g(x)} \\cdot \\log_{a}(e)"
+        },
         "name": "Derivada de la funcion logaritmo",
         "tags": ["logaritmo"]
     },
     {
-        "function": "f(x) = \\log_{a}(x)",
-        "derivate": "f'(x) = \\dfrac{1}{x \\cdot \\ln(a)}",
+        "simple": {
+            "function": "f(x) = \\log_{a}(x)",
+            "derivative": "f'(x) = \\dfrac{1}{x \\cdot \\ln(a)}"
+        },
+        "composition": {
+            "function": "f(x) = \\log_{a}(g(x))",
+            "derivative": "f'(x) = \\dfrac{g'(x)}{g(x) \\cdot \\ln(a)}"
+        },
         "name": "Derivada de la funcion logaritmo",
         "tags": ["logaritmo"]
     },
     {
-        "function": "f(x) = \\ln(x)",
-        "derivate": "f'(x) = \\dfrac{1}{x}",
+        "simple": {
+            "function": "f(x) = \\ln(x)",
+            "derivative": "f'(x) = \\dfrac{1}{x}"
+        },
+        "composition": {
+            "function": "f(x) = \\ln(g(x))",
+            "derivative": "f'(x) = \\dfrac{g'(x)}{g(x)}"
+        },
         "name": "Derivada de la funcion logaritmo natural",
         "tags": ["logaritmo", "logaritmo-natural"]
     }

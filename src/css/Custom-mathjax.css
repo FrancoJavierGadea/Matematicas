@@ -62,8 +62,14 @@ mjx-container.MathJax {
         padding-inline: var(--mjx-slash-gap, 0.3em);
     }
 
-    /* Corchetes */
+    /* LLaves */
     .mjx-c7D, .mjx-c7B {
+        color: var(--mjx-keys-color, currentColor);
+        padding-inline: var(--mjx-keys-gap, 0.2em);
+    }
+
+    /* Corchetes */
+    .mjx-c5B, .mjx-c5D {
         color: var(--mjx-braces-color, currentColor);
         padding-inline: var(--mjx-braces-gap, 0.2em);
     }

@@ -33,11 +33,31 @@ const EQ = await Promise.all([
 
                 <article class="Equations">
                 {
-                    equations.data.map((data) => {
+                    equations.data.map(({tags, name, simple, composition}) => {
 
-                        return <EquationCard name={data.name} tags={data.tags}>
-                            <div class="Equation" slot="function" set:html={renderLatex.getHTML(data.function)} />
-                            <div class="Equation" slot="derivate" set:html={renderLatex.getHTML(data.derivate)} />
+                        const tabs = [
+                            simple ? 'simple' : null, 
+                            composition ? 'compuesta' : null
+                        ]
+                        .filter(v => v);
+
+                        return <EquationCard name={name} tags={tags} tabs={tabs}>
+                            {
+                                simple && 
+                                <div class="Equation" slot="simple-function" set:html={renderLatex.getHTML(simple.function)} /> 
+                            }
+                            {
+                                simple && 
+                                <div class="Equation" slot="simple-derivative" set:html={renderLatex.getHTML(simple.derivative)} />
+                            }
+                            {
+                                composition && 
+                                <div class="Equation" slot="compuesta-function" set:html={renderLatex.getHTML(composition.function)} />
+                            }
+                            {
+                                composition &&
+                                <div class="Equation" slot="compuesta-derivative" set:html={renderLatex.getHTML(composition.derivative)} />
+                            }
                         </EquationCard>
                     })
                 }

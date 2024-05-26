@@ -1,38 +1,74 @@
 [
     {
-        "function": "f(x) = \\arcsin(x)",
-        "derivate": "f'(x) = \\dfrac{1}{\\sqrt{1 - x^{2}}}",
+        "simple": {
+            "function": "f(x) = \\text{arc } \\sin(x)",
+            "derivative": "f'(x) = \\dfrac{1}{\\sqrt{1 - x^{2}}}"
+        },
+        "composition": {
+            "function": "f(x) = \\text{arc } \\sin(g(x))",
+            "derivative": "f'(x) = \\dfrac{g'(x)}{\\sqrt{ \\displaystyle{1 - g(x)^{2}} }}"
+        },
         "name": "Derivada de la funcion arco seno",
-        "tags": ["trigonometricas-inversas", "arcsin"]
+        "tags": ["trigonometricas-inversas", "arc-sin"]
     },
     {
-        "function": "f(x) = \\arccos(x)",
-        "derivate": "f'(x) = \\dfrac{-1}{\\sqrt{1 - x^{2}}}",
+        "simple": {
+            "function": "f(x) = \\text{arc} \\cos(x)",
+            "derivative": "f'(x) = \\dfrac{-1}{\\sqrt{1 - x^{2}}}"
+        },
+        "composition": {
+            "function": "f(x) = \\text{arc} \\cos(g(x))",
+            "derivative": "f'(x) = \\dfrac{- g'(x)}{\\sqrt{ \\displaystyle{1 - g(x)^{2}} }}"
+        },
         "name": "Derivada de la funcion arco coseno",
-        "tags": ["trigonometricas-inversas", "arccos"]
+        "tags": ["trigonometricas-inversas", "arc-cos"]
     },
     {
-        "function": "f(x) = \\arctan(x)",
-        "derivate": "f'(x) = \\dfrac{1}{1 + x^{2}}",
+        "simple": {
+            "function": "f(x) = \\text{arc} \\tan(x)",
+            "derivative": "f'(x) = \\dfrac{1}{1 + x^{2}}"
+        },
+        "composition": {
+            "function": "f(x) = \\text{arc} \\tan(g(x))",
+            "derivative": "f'(x) = \\dfrac{g'(x)}{1 + g(x)^{2}}"
+        },
         "name": "Derivada de la funcion arco tangente",
-        "tags": ["trigonometricas-inversas", "arctan"]
+        "tags": ["trigonometricas-inversas", "arc-tan"]
     },
     {
-        "function": "f(x) = \\text{arcsec}(x)",
-        "derivate": "f'(x) = \\dfrac{1}{|x| \\cdot \\sqrt{x^{2} - 1}}",
-        "name": "Derivada de la funcion arcosecante",
-        "tags": ["trigonometricas-inversas", "arcsec"]
+        "simple": {
+            "function": "f(x) = \\text{arc sec}(x)",
+            "derivative": "f'(x) = \\dfrac{1}{|x| \\cdot \\sqrt{x^{2} - 1}}"
+        },
+        "composition": {
+            "function": "f(x) = \\text{arc sec}(g(x))",
+            "derivative": "f'(x) = \\dfrac{g'(x)}{|g(x)| \\cdot \\sqrt{g(x)^{2} - 1}}"
+        },
+        "name": "Derivada de la funcion arco secante",
+        "tags": ["trigonometricas-inversas", "arc-sec"]
     },
     {
-        "function": "f(x) = \\text{arccsc}(x)",
-        "derivate": "f'(x) = \\dfrac{-1}{|x| \\cdot \\sqrt{x^{2} - 1}}",
+        "simple": {
+            "function": "f(x) = \\text{arc csc}(x)",
+            "derivative": "f'(x) = \\dfrac{-1}{|x| \\cdot \\sqrt{x^{2} - 1}}"
+        },
+        "composition": {
+            "function": "f(x) = \\text{arc csc}(g(x))",
+            "derivative": "f'(x) = \\dfrac{- g'(x)}{|g(x)| \\cdot \\sqrt{g(x)^{2} - 1}}"
+        },
         "name": "Derivada de la funcion arco cosecante",
-        "tags": ["trigonometricas-inversas", "arccsc"]
+        "tags": ["trigonometricas-inversas", "arc-csc"]
     },
     {
-        "function": "f(x) = \\text{arccot}(x)",
-        "derivate": "f'(x) = \\dfrac{-1}{1 + x^{2}}",
+        "simple": {
+            "function": "f(x) = \\text{arc cot}(x)",
+            "derivative": "f'(x) = \\dfrac{-1}{1 + x^{2}}"
+        },
+        "composition": {
+            "function": "f(x) = \\text{arc cot}(g(x))",
+            "derivative": "f'(x) = \\dfrac{-g'(x)}{1 + g(x)^{2}}"
+        },
         "name": "Derivada de la funcion arco cotangente",
-        "tags": ["trigonometricas-inversas", "arccot"]
+        "tags": ["trigonometricas-inversas", "arc-cot"]
     }
 ]

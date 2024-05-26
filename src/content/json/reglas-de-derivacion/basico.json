@@ -1,34 +1,58 @@
 [
     { 
-        "function": "f(x) = k",
-        "derivate": "f'(x) = 0",
+        "simple": {
+            "function": "f(x) = k",
+            "derivative": "f'(x) = 0"
+        },
+        "composition": null,
         "name": "Derivada de una Funcion constante",
         "tags": ["funcion-constante"]
     },
 
     {
-        "function": "f(x) = a \\cdot x + b",
-        "derivate": "f'(x) = a",
+        "simple": {
+            "function": "f(x) = a \\cdot x + b",
+            "derivative": "f'(x) = a"
+        },
+        "composition": {
+            "function": "f(x) = a \\cdot g(x) + b",
+            "derivative": "f'(x) = a \\cdot g'(x)"
+        },
         "name": "Derivada de una Funcion lineal",
         "tags": ["funcion-lineal"]
     },
     {
-        "function": "f(x) = x",
-        "derivate": "f'(x) = 1",
+        "simple": {
+            "function": "f(x) = x",
+            "derivative": "f'(x) = 1"
+        },
+        "composition": null,
         "name": "Derivada de f(x) = x",
         "tags": ["funcion-lineal"]
     },
 
 
     {
-        "function": "f(x) = k \\cdot x^{n}",
-        "derivate": "f'(x) = k \\cdot n \\cdot x^{n-1}",
+        "simple": {
+            "function": "f(x) = k \\cdot x^{n}",
+            "derivative": "f'(x) = k \\cdot n \\cdot x^{n-1}"
+        },
+        "composition": {
+            "function": "f(x) = k \\cdot g(x)^{n}",
+            "derivative": "f'(x) = k \\cdot n \\cdot g(x)^{n-1} \\cdot g'(x)"
+        },
         "name": "regla general",
         "tags": ["potencia"]
     },
     {
-        "function": "f(x) = x^{n}",
-        "derivate": "f'(x) = n \\cdot x^{n-1}",
+        "simple": {
+            "function": "f(x) = x^{n}",
+            "derivative": "f'(x) = n \\cdot x^{n-1}"
+        },
+        "composition": {
+            "function": "f(x) = g(x)^{n}",
+            "derivative": "f'(x) = n \\cdot g(x)^{n-1} \\cdot g'(x)"
+        },
         "name": "regla general f(x) = x^n",
         "tags": ["potencia"]
     }

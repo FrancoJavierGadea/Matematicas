@@ -1,13 +1,25 @@
 [
     {
-        "function": "f(x) = a^{x}",
-        "derivate": "f'(x) = a^{x} \\cdot \\ln(a)",
+        "simple": {
+            "function": "f(x) = a^{x}",
+            "derivative": "f'(x) = a^{x} \\cdot \\ln(a)"
+        },
+        "composition": {
+            "function": "f(x) = a^{g(x)}",
+            "derivative": "f'(x) = a^{g(x)} \\cdot \\ln(a) \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion exponencial",
         "tags": ["exponencial"]
     },
     {
-        "function": "f(x) = e^{x}",
-        "derivate": "f'(x) = e^{x}",
+        "simple": {
+            "function": "f(x) = e^{x}",
+            "derivative": "f'(x) = e^{x}"
+        },
+        "composition": {
+            "function": "f(x) = e^{g(x)}",
+            "derivative": "f'(x) = e^{g(x)} \\cdot g'(x)"
+        },
         "name": "Derivada de la funcion exponencial",
         "tags": ["exponencial", "numero-e"]
     }

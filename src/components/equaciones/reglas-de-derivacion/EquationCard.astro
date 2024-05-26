@@ -1,35 +1,82 @@
 ---
-const {name = '', tags = []} = Astro.props;
+const {name = '', tags = [], tabs = []} = Astro.props;
+
+const active = tabs.at(0);
 ---
 
-<div class="Equation-card" data-tags={tags.join(' ')}>
+<custom-equation-card class="Equation-card" data-tags={tags.join(' ')}>
 
     <h5 class="Equation-title">{name}</h5>
 
     <div class="Equation-content">
-
-        <div>
-            <span>Funcion</span>
-            <slot name="function" />
-            
-        </div>
-
-        <div>
-            <span>Derivada</span>
-            <slot name="derivate" />
-            
-        </div>
-    </div>
-
-    <div class="Equation-tags">
         {
-            tags.map(tag => {
+            tabs.map((tab) => {
 
-                return <span class="badge text-bg-primary">{tag}</span>
+                return <div class="Equation-tab" data-tab={tab} class:list={{'active': tab === active}}>
+                    <div>
+                        <span>Funcion</span>
+                        <Fragment set:html={Astro.slots.render(`${tab}-function`)}/>
+                    </div>
+            
+                    <div>
+                        <span>Derivada</span>
+                        <Fragment set:html={Astro.slots.render(`${tab}-derivative`)}/> 
+                    </div>
+                </div>
             })
-        }
+        }  
     </div>
-</div>
+
+    <div class="Equation-footer">
+        {
+            tabs.length > 1 && <div class="Equation-controls">
+                {
+                    tabs.map(tab => {
+
+                        return <button class="btn btn-sm" class:list={{'active': tab === active}} data-tab={tab}>{tab}</button>
+                    })
+                }
+            </div>
+        }
+
+        <div class="Equation-tags">
+            {
+                tags.map(tag => {
+    
+                    return <span class="badge text-bg-primary">{tag.replace('-', ' ')}</span>
+                })
+            }
+        </div>
+    </div>
+</custom-equation-card>
+
+<script>
+    class CustomEquationCard extends HTMLElement {
+
+        constructor(){
+            super();
+
+            this.querySelectorAll('.Equation-controls button')
+            .forEach(btn => btn.addEventListener('click', (e) => this.#toggleEquation(e)));
+        }
+
+        #toggleEquation(e){
+            const tab = e.currentTarget.getAttribute('data-tab');
+            
+            const currentBtn = this.querySelector(`.Equation-controls button.active`);
+            const nextBtn = this.querySelector(`.Equation-controls button[data-tab="${tab}"]`);
+            const currentAtive = this.querySelector('.Equation-tab.active');
+            const nextActive = this.querySelector(`.Equation-tab[data-tab="${tab}"]`);
+
+            currentAtive.classList.toggle('active', false);
+            currentBtn.classList.toggle('active', false);
+            nextActive.classList.toggle('active', true);
+            nextBtn.classList.toggle('active', true);
+        }   
+    }
+
+    customElements.define('custom-equation-card', CustomEquationCard);
+</script>
 
 <style>
 .Equation-card {
@@ -56,37 +103,68 @@ const {name = '', tags = []} = Astro.props;
     }
 
     .Equation-content {
-        display: flex;
-        gap: 20px;
-        text-align: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
 
-        & > div {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            background-color: #202020;
-            border-radius: 5px;
-            padding: 10px;
+        .Equation-tab {
+            grid-column-start: 1;
+            grid-row-start: 1;
 
-            span {
-                font-weight: bold;
-                letter-spacing: 2px;
-                color: #a1a1a1;
+            display: none;
+            gap: 20px;
+            text-align: center;
+    
+            & > div {
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                background-color: #202020;
+                border-radius: 5px;
+                padding: 10px;
+    
+                span {
+                    font-weight: bold;
+                    letter-spacing: 2px;
+                    color: #a1a1a1;
+                }
             }
         }
+        .Equation-tab.active {
+            display: flex;
+        }
     }
-
-    .Equation-tags {
+    
+    .Equation-footer {
         margin-top: auto;
         display: flex;
         gap: 10px;
-        justify-content: right;
+        align-items: center;
 
-        span {
+        .Equation-controls {
+            display: flex;
+            gap: 10px;
 
-            &::first-letter {
+            button {
+                font-weight: bold;
+                letter-spacing: 1px;
 
-                text-transform: capitalize;
+                &::first-letter {
+                    text-transform: capitalize;
+                }       
+            }
+        }
+
+        .Equation-tags {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+
+            span {
+    
+                &::first-letter {
+                    text-transform: capitalize;
+                }
             }
         }
     }
