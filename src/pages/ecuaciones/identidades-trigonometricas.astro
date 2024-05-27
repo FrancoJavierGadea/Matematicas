@@ -1,0 +1,110 @@
+---
+import Layout from "@layouts/Layout.astro";
+import "@css/Custom-mathjax.css";
+import {renderLatexToCHTML} from "@utils/RenderLatexCHTML.js";
+import { getEntry } from "astro:content";
+import EquationCard from "@components/ecuaciones/EquationCard.astro";
+import Controls from "@components/ecuaciones/Controls.astro";
+import Equation from "@components/ecuaciones/Equation.astro";
+import EquationTabs from "@components/ecuaciones/EquationTabs.astro";
+
+const renderLatex = await renderLatexToCHTML();
+
+const EQ = await Promise.all([
+    getEntry('json', 'identidades-trigonometricas/basico'),
+    getEntry('json', 'identidades-trigonometricas/pitagoricas'),
+    getEntry('json', 'identidades-trigonometricas/razon-trigonometrica-fundamental'),
+    getEntry('json', 'identidades-trigonometricas/suma-de-angulos'),
+    getEntry('json', 'identidades-trigonometricas/suma-de-angulos-notables'),
+    getEntry('json', 'identidades-trigonometricas/angulo-negativo'),
+    getEntry('json', 'identidades-trigonometricas/angulo-medio'),
+    getEntry('json', 'identidades-trigonometricas/angulo-doble'),
+    getEntry('json', 'identidades-trigonometricas/suma-de-senos-y-cosenos'),
+    getEntry('json', 'identidades-trigonometricas/producto-de-senos-y-cosenos'),
+    getEntry('json', 'identidades-trigonometricas/al-cuadrado'),
+]);
+
+const title = "Identidades trigonometricas"
+---
+
+<Layout title={title} sidebar={{title}} logo="ecuaciones" home="/ecuaciones">
+
+    <Controls slot="sidebar-body" equations={EQ} />
+
+    <section>
+    {
+        EQ.map((equations) => {
+
+            return <details open>
+                <summary>{equations.id.split('/').at(1).replaceAll('-', ' ')}</summary>
+
+                <article class="Equations">
+                {
+                    equations.data.map(({tags, name, equations}) => {
+
+                        return <EquationCard name={name} tags={tags} >
+                            {
+                                equations.length > 1 ?
+                                <EquationTabs size={equations.length}>
+                                {
+                                    equations.map((eq, i) => {
+
+                                        return <div class="Equation-tab" data-eq-tab={i} class:list={{'active': i === 0}}>
+                                            <Equation latex={eq}>
+                                                <Fragment set:html={renderLatex.getHTML(eq)}/>
+                                            </Equation>
+                                        </div>
+                                    })
+                                }
+                                </EquationTabs>
+                                :
+                                <Equation latex={equations.at(0)}>
+                                    <Fragment set:html={renderLatex.getHTML(equations.at(0))}/>
+                                </Equation>
+                            }
+                        </EquationCard>  
+                    })
+                }
+                </article>
+            </details>
+        })
+    }
+    </section>
+    
+    <style set:html={renderLatex.getStyles()} />
+</Layout>
+
+<style>
+    details {
+        margin-block: 30px;
+
+        summary {
+            font-size: 25px;
+            font-weight: bold;
+            &::first-letter {
+                text-transform: capitalize;
+            }
+            padding-bottom: 20px;
+        }
+    }
+
+    .Equations {
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .Equations :global(.Equation) {
+
+        & :global(.MathJax) {
+            margin-block: 0;
+        }
+
+        font-size: 24px;
+    }
+    
+    .Equations :global(.hide-equation) {
+        display: none;
+    }
+</style>

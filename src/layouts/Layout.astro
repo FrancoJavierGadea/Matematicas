@@ -31,6 +31,28 @@ const navigationLinks = [
 		name: 'Fisica',
 		url: '/fisica',
 	},
+	{
+		name: 'Ecuaciones',
+		url: '/ecuaciones',
+		children: [
+			{
+				name: 'Reglas de derivacion',
+				url: '/ecuaciones/reglas-de-derivacion'
+			},
+			{
+				name: 'Identidades trigonometricas',
+				url: '/ecuaciones/identidades-trigonometricas'
+			},
+			{
+				name: 'Propiedades de los limites',
+				url: '/ecuaciones/propiedades-de-los-limites'
+			},
+			{
+				name: 'Logaritmos',
+				url: '/ecuaciones/propiedades-de-los-logaritmos'
+			}
+		]
+	},
 ];
 ---
 
@@ -117,6 +139,7 @@ const navigationLinks = [
 			display: flex;
 			flex-direction: column;
 			gap: 50px;
+			min-width: 0;
 		}
 	}
 	

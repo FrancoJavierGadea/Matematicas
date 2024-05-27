@@ -1,0 +1,31 @@
+[
+    {
+        "equations": [
+            "\\sin(\\alpha) + \\sin(\\beta) = 2 \\cdot \\sin\\left( \\dfrac{\\alpha + \\beta}{2} \\right) \\cdot \\cos\\left( \\dfrac{\\alpha - \\beta}{2} \\right)"
+        ],
+        "name": "Seno de alpha mas seno de beta",
+        "tags": ["suma-de-senos", "sin"]
+    },
+    {
+        "equations": [
+            "\\sin(\\alpha) - \\sin(\\beta) = 2 \\cdot \\sin\\left( \\dfrac{\\alpha - \\beta}{2} \\right) \\cdot \\cos\\left( \\dfrac{\\alpha + \\beta}{2} \\right)"
+        ],
+        "name": "Seno de alpha menos seno de beta",
+        "tags": ["suma-de-senos", "sin"]
+    },
+
+    {
+        "equations": [
+            "\\cos(\\alpha) + \\cos(\\beta) = 2 \\cdot \\cos\\left( \\dfrac{\\alpha + \\beta}{2} \\right) \\cdot \\cos\\left( \\dfrac{\\alpha - \\beta}{2} \\right)"
+        ],
+        "name": "Coseno de alpha mas coseno de beta",
+        "tags": ["suma-de-cosenos", "cos"]
+    },
+    {
+        "equations": [
+            "\\cos(\\alpha) - \\cos(\\beta) = -2 \\cdot \\cos\\left( \\dfrac{\\alpha + \\beta}{2} \\right) \\cdot \\cos\\left( \\dfrac{\\alpha - \\beta}{2} \\right)"
+        ],
+        "name": "Coseno de alpha menos coseno de beta",
+        "tags": ["suma-de-cosenos", "cos"]
+    }
+]

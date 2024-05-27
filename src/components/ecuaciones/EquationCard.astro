@@ -1,0 +1,152 @@
+---
+const {name = '', tags = [], tabs = ['default']} = Astro.props;
+
+const active = tabs.at(0);
+---
+
+<custom-equation-card class="Equation-card" data-tags={tags.join(' ')}>
+
+    <h5 class="Equation-card-title">{name}</h5>
+
+    <div class="Equation-card-content">
+        {
+            tabs.map((tab) => {
+
+                return <div class="Equation-card-tab" data-card-tab={tab} class:list={{'active': tab === active}}>
+
+                    <Fragment set:html={Astro.slots.render(tab)}/>
+                </div>
+            })
+        }  
+    </div>
+
+    <div class="Equation-card-footer">
+        {
+            tabs.length > 1 && <div class="Equation-card-controls">
+                {
+                    tabs.map(tab => {
+
+                        return <button class="btn btn-sm" class:list={{'active': tab === active}} data-card-tab={tab}>{tab}</button>
+                    })
+                }
+            </div>
+        }
+
+        <div class="Equation-card-tags">
+            {
+                tags.map(tag => {
+    
+                    return <span class="badge text-bg-primary">{tag.replaceAll('-', ' ')}</span>
+                })
+            }
+        </div>
+    </div>
+</custom-equation-card>
+
+<script>
+    class CustomEquationCard extends HTMLElement {
+
+        constructor(){
+            super();
+
+            this.querySelectorAll('.Equation-card-controls button')
+            .forEach(btn => btn.addEventListener('click', (e) => this.#toggleEquation(e)));
+        }
+
+        #toggleEquation(e){
+            const tab = e.currentTarget.getAttribute('data-card-tab');
+            
+            const currentBtn = this.querySelector(`.Equation-card-controls button.active`);
+            const nextBtn = this.querySelector(`.Equation-card-controls button[data-card-tab="${tab}"]`);
+            const currentAtive = this.querySelector('.Equation-card-tab.active');
+            const nextActive = this.querySelector(`.Equation-card-tab[data-card-tab="${tab}"]`);
+
+            currentAtive.classList.toggle('active', false);
+            currentBtn.classList.toggle('active', false);
+            nextActive.classList.toggle('active', true);
+            nextBtn.classList.toggle('active', true);
+        } 
+    }
+
+    customElements.define('custom-equation-card', CustomEquationCard);
+</script>
+
+<style>
+.Equation-card {
+
+    width: fit-content;
+    flex-grow: 1;
+    background-color: #555;
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .Equation-card-title {
+        text-align: center;
+        font-weight: bold;
+        letter-spacing: 2px;
+        
+        &::first-letter{
+
+            text-transform: capitalize;
+        }
+    }
+
+    .Equation-card-content {
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+
+        .Equation-card-tab {
+            grid-column-start: 1;
+            grid-row-start: 1;
+
+            display: none;
+            align-items: stretch;
+            gap: 20px;
+            text-align: center;
+        }
+        .Equation-card-tab.active {
+            display: flex;
+        }
+    }
+    
+    .Equation-card-footer {
+        margin-top: auto;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        .Equation-card-controls {
+            display: flex;
+            gap: 10px;
+
+            button {
+                font-weight: bold;
+                letter-spacing: 1px;
+
+                &::first-letter {
+                    text-transform: capitalize;
+                }       
+            }
+        }
+
+        .Equation-card-tags {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+
+            span {
+    
+                &::first-letter {
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+}
+</style>

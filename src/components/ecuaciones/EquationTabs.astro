@@ -1,0 +1,92 @@
+---
+import {randomBytes} from "node:crypto";
+
+const {size = 3, name = randomBytes(4).toString("hex")} = Astro.props;
+---
+
+<custom-equation-tab class="Equation-tabs">
+
+    <div class="Equation-tabs-content">
+        <slot />
+    </div>
+
+    <div class="Equation-tabs-controls">
+        {
+            Array.from({length: size}).map((tab, i) => {
+
+                return <div class="form-check">
+                    <input class="form-check-input" type="radio" name={name} title={`Equacion ${i}`} data-eq-tab={i} checked={i === 0}/>
+                </div>
+            })
+        }
+    </div>
+
+</custom-equation-tab>
+
+<script>
+    class CustomEquationTab extends HTMLElement {
+
+        constructor(){
+            super();
+
+            this.querySelectorAll('.Equation-tabs-controls input')
+            .forEach(input => {
+
+                input.addEventListener('click', (e) => this.#toggleTabs(e));
+            });
+        }
+
+        #toggleTabs(e){
+            const tab = e.currentTarget.getAttribute('data-eq-tab');
+            
+            const currentActive = this.querySelector('.Equation-tabs-content .Equation-tab.active');
+            const nextActive = this.querySelector(`.Equation-tabs-content .Equation-tab[data-eq-tab="${tab}"]`);
+
+            currentActive.classList.toggle('active', false);
+            nextActive.classList.toggle('active', true);
+        }
+    }
+
+    customElements.define('custom-equation-tab', CustomEquationTab);
+</script>
+
+<style>
+    .Equation-tabs {
+        position: relative;
+        flex-grow: 1;
+
+        .Equation-tabs-content {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+        }
+        
+        .Equation-tabs-controls {
+            position: absolute;
+            bottom: 0;
+            left: 5px;
+            display: flex;
+            gap: 0px;
+
+            input {
+                --bs-form-check-bg-image: none;
+            }
+        }
+    }
+
+    .Equation-tabs-content {
+
+        & > :global(.Equation-tab){
+
+            grid-column-start: 1;
+            grid-row-start: 1;
+            min-width: 0px;
+            visibility: hidden;
+        }
+        & > :global(.Equation-tab.active){
+
+            visibility: visible;
+        }
+    }
+</style>

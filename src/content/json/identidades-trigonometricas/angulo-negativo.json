@@ -1,0 +1,23 @@
+[
+    {
+        "equations": [
+            "\\sin(-\\alpha) = -\\sin(\\alpha)"
+        ],
+        "name": "Seno de menos alpha",
+        "tags": ["angulo-negativo", "sin"]
+    },
+    {
+        "equations": [
+            "\\cos(-\\alpha) = \\cos(\\alpha)"
+        ],
+        "name": "Coseno de menos alpha",
+        "tags": ["angulo-negativo", "cos"]
+    },
+    {
+        "equations": [
+            "\\tan(-\\alpha) = -\\tan(\\alpha)"
+        ],
+        "name": "Tangente de menos alpha",
+        "tags": ["angulo-negativo", "tan"]
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "equations": [
+            "\\sin(\\alpha) = \\dfrac{\\text{cateto opuesto}}{\\text{hipotenuza}}"
+        ],
+        "name": "Seno",
+        "tags": ["pitagoricas", "sin"]
+    },
+    {
+        "equations": [
+            "\\cos(\\alpha) = \\dfrac{\\text{cateto adyacente}}{\\text{hipotenuza}}"
+        ],
+        "name": "Coseno",
+        "tags": ["pitagoricas", "cos"]
+    },
+    {
+        "equations": [
+            "\\tan(\\alpha) = \\dfrac{\\text{cateto opuesto}}{\\text{cateto adyacente}}"
+        ],
+        "name": "Tangente",
+        "tags": ["pitagoricas", "tan"]
+    },
+    {
+        "equations": [
+            "\\sec(\\alpha) = \\dfrac{\\text{hipotenuza}}{\\text{cateto adyacente}}"
+        ],
+        "name": "Secante",
+        "tags": ["pitagoricas", "sec"]
+    },
+    {
+        "equations": [
+            "\\csc(\\alpha) = \\dfrac{\\text{hipotenuza}}{\\text{cateto opuesto}}"
+        ],
+        "name": "Cosecante",
+        "tags": ["pitagoricas", "csc"]
+    },
+    {
+        "equations": [
+            "\\cot(\\alpha) = \\dfrac{\\text{cateto adyacente}}{\\text{cateto opuesto}}"
+        ],
+        "name": "Cotangente",
+        "tags": ["pitagoricas", "cot"]
+    }
+]

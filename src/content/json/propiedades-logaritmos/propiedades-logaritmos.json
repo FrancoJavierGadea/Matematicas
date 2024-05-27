@@ -1,0 +1,113 @@
+[
+    {
+        "equations": [
+            "\\log_{a}(x) = y \\longrightarrow a^{y} = x",
+            "\\ln(x) = y \\longrightarrow e^{y} = x"
+        ],
+        "name": "Definicion de Logaritmo",
+        "tags": ["definicion"]
+    },
+
+    {
+        "equations": [
+            "\\log_{a}(a) = 1",
+            "\\ln(e) = 1"
+        ],
+        "name": "Logaritmo con misma base y argumento",
+        "tags": ["basico"]
+    },
+    {
+        "equations": [
+            "\\log_{a}(1) = 0",
+            "\\ln(1) = 0"
+        ],
+        "name": "Logaritmo de 1",
+        "tags": ["basico"]
+    },
+
+    {
+        "equations": [
+            "\\log_{a}(x \\cdot y) = \\log_{a}(x) + \\log_{a}(y)",
+            "\\ln(x \\cdot y) = \\ln(x) + \\ln(y)"
+        ],
+        "name": "Logaritmo de un producto",
+        "tags": ["operaciones", "producto"]
+    },
+    {
+        "equations": [
+            "\\log_{a}\\left(\\frac{x}{y}\\right) = \\log_{a}(x) - \\log_{a}(y)",
+            "\\ln\\left(\\frac{x}{y}\\right) = \\ln(x) - \\ln(y)"
+        ],
+        "name": "Logaritmo de una divicion",
+        "tags": ["operaciones", "divicion"]
+    },
+
+    {
+        "equations": [
+            "\\log_{a}(x^{n}) = n \\cdot \\log_{a}(x)",
+            "\\ln(x^{n}) = n \\cdot \\ln(x)"
+        ],
+        "name": "Logaritmo de una potencia",
+        "tags": ["operaciones", "potencia"]
+    },
+
+    {
+        "equations": [
+            "x^{\\hspace{0.2em}\\log_{a}(y)} = y^{ \\hspace{0.2em}\\log_{a}(x)}",
+            "x^{\\hspace{0.2em} \\ln(y)} = y^{\\hspace{0.2em} \\ln(x)}"
+        ],
+        "name": "constante elevada a un logaritmo",
+        "tags": ["operaciones", "potencia"]
+    },
+
+    {
+        "equations": [
+            "a^{\\hspace{0.2em}\\log_{a}(x)} = x",
+            "e^{\\hspace{0.2em}\\ln(x)} = x"
+        ],
+        "name": "Constante elevada a un logaritmo",
+        "tags": ["operaciones", "numero-e"]
+    },
+    {
+        "equations": [
+            "\\log_{a}(a^{x}) = x",
+            "\\ln(e^{x}) = x"
+        ],
+        "name": "Logaritmo de una potencia",
+        "tags": ["operaciones", "numero-e"]
+    },
+
+    {
+        "equations": [
+            "\\log_{a}\\left( \\sqrt[n]{x} \\right) = \\dfrac{\\log_{a}(x)}{n}",
+            "\\ln\\left( \\sqrt[n]{x} \\right) = \\dfrac{\\ln(x)}{n}"
+        ],
+        "name": "Logaritmo de una raiz",
+        "tags": ["operaciones", "raiz"]
+    },
+    {
+        "equations": [
+            "\\log_{a}\\left( \\sqrt[n]{\\displaystyle{x^{p}}} \\right) = \\dfrac{p \\cdot \\log_{a}(x)}{n}",
+            "\\ln\\left( \\sqrt[n]{\\displaystyle{x^{p}}} \\right) = \\dfrac{p \\cdot \\ln(x)}{n}"
+        ],
+        "name": "Logaritmo de una raiz",
+        "tags": ["operaciones", "raiz"]
+    },
+
+    {
+        "equations": [
+            "\\log_{a}(x) = \\frac{\\log_{b}(x)}{\\log_{b}(a)}",
+            "\\ln(x) = \\frac{\\log_{b}(x)}{\\log_{b}(e)}"
+        ],
+        "name": "Cambio de base",
+        "tags": ["cambio-de-base"]
+    },
+    {
+        "equations": [
+            "\\log_{a}(x) = \\frac{1}{\\log_{x}(a)}",
+            "\\ln(x) = \\frac{1}{\\log_{x}(e)}"
+        ],
+        "name": "Intercambiar la base con el argumento",
+        "tags": ["cambio-de-base"]
+    }
+]

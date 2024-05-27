@@ -38,7 +38,7 @@ equations.forEach(({data}) => {
                 <div class="form-check">
                     <label class="form-check-label">
                         <input class="form-check-input" type="checkbox" value={value} checked data-children={children.size} />
-                        {value.replace('-', ' ')}
+                        {value.replaceAll('-', ' ')}
                     </label>
                 </div>
                 {
@@ -49,8 +49,8 @@ equations.forEach(({data}) => {
 
                             return <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value={tag} checked />
-                                    {tag.replace('-', ' ')}   
+                                    <input class="form-check-input" type="checkbox" value={`${value} ${tag}`} checked />
+                                    {tag.replaceAll('-', ' ')}   
                                 </label>
                             </div>
                         })
@@ -115,7 +115,22 @@ equations.forEach(({data}) => {
 
         #showHideEquations({tag, show} = {}){
 
-            document.querySelectorAll(tag ? `.Equation-card[data-tags~="${tag}"]` : '.Equation-card')
+            const selector = (() => {
+                if(!tag) return '.Equation-card';
+
+                const selector = tag.split(' ').reduce((acc, value) => {
+
+                    acc += `[data-tags~="${value}"]`
+                    
+                    return acc;
+                }, '.Equation-card');
+
+                return selector;
+            })();
+
+            console.log(document.querySelectorAll(selector))
+
+            document.querySelectorAll(selector)
             .forEach(element => {
 
                 if(!show){
@@ -145,7 +160,7 @@ equations.forEach(({data}) => {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 15px;
 
         label::first-letter {
             text-transform: capitalize;
@@ -154,12 +169,22 @@ equations.forEach(({data}) => {
         .check-children {
             padding-top: 5px;
             display: flex;
-            flex-direction: column;
             flex-wrap: wrap;
-            max-height: 100px;
+            justify-content: space-between;  
+
+            gap: 5px 20px;
             padding-left: 15px;
             margin-left: 5px;
             border-left: 1px solid gray;
+
+            & > * {
+                flex-grow: 1;
+                flex-basis: 60px;
+
+                label {
+                    white-space: nowrap;
+                }
+            }
         }
     }
 </style>

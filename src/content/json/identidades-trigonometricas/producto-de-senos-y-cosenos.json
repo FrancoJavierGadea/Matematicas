@@ -1,0 +1,23 @@
+[
+    {
+        "equations": [
+            "\\sin(\\alpha) \\cdot \\cos(\\beta) = \\dfrac{\\sin(\\alpha + \\beta) + \\sin(\\alpha - \\beta)}{2}"
+        ],
+        "name": "Seno de alpha por coseno de beta",
+        "tags": ["producto", "sin-por-cos"]
+    },
+    {
+        "equations": [
+            "\\sin(\\alpha) \\cdot \\sin(\\beta) = \\dfrac{\\cos(\\alpha - \\beta) - \\cos(\\alpha + \\beta)}{2}"
+        ],
+        "name": "Seno de alpha por seno de beta",
+        "tags": ["producto", "sin-por-sin"]
+    },
+    {
+        "equations": [
+            "\\cos(\\alpha) \\cdot \\cos(\\beta) = \\dfrac{\\cos(\\alpha + \\beta) + \\cos(\\alpha - \\beta)}{2}"
+        ],
+        "name": "Coseno de alpha por coseno de beta",
+        "tags": ["producto", "cos-por-cos"]
+    }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "equations": [
+            "\\sin^{2}(\\alpha) = \\dfrac{1 - \\cos(2 \\cdot \\alpha)}{2}"
+        ],
+        "name": "Seno al cuadrado de alpha",
+        "tags": ["seno-al-cuadrado"]
+    },
+    {
+        "equations": [
+            "\\cos^{2}(\\alpha) = \\dfrac{1 + \\cos(2 \\cdot \\alpha)}{2}"
+        ],
+        "name": "Coseno al cuadrado de alpha",
+        "tags": ["coseno-al-cuadrado"]
+    }
+]

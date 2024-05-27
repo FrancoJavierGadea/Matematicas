@@ -1,0 +1,90 @@
+---
+const {class:className = '', title = '', latex = ''} = Astro.props;
+---
+
+<custom-equation class={`Equation ${className}`} data-latex={latex}>
+
+    { title && <span>{title}</span> }
+
+    <div class="Equation-content">
+        <slot />
+    </div>
+
+    <button class="btn btn-sm copy-btn" title="Copiar latex">
+        <i class="bi"/>
+    </button> 
+</custom-equation>
+
+<script>
+    class CustomEquation extends HTMLElement {
+
+        constructor(){
+            super();
+
+            this.querySelector('.copy-btn')
+                .addEventListener('click', (e) => this.#copyToClipboard(e));
+        }
+
+        #copyToClipboard(e){
+
+            const btn = e.currentTarget;
+
+            const latex = this.getAttribute('data-latex');
+
+            console.log(latex);
+
+            window.navigator.clipboard.writeText(latex).then(() => {
+
+                btn.classList.toggle('copied', true);
+                setTimeout(() => {
+
+                    btn.classList.toggle('copied', false);
+                }, 1500);
+            });
+        }
+    }
+
+    customElements.define('custom-equation', CustomEquation);
+</script>
+
+<style>
+    custom-equation.Equation {
+        position: relative;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #202020;
+        border-radius: 5px;
+        padding: 10px;
+        height: 100%;
+
+        .Equation-content {
+            margin-block: auto;
+        }
+
+        span {
+            padding-inline: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #a1a1a1;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            --bs-btn-active-border-color: transparent;
+
+            &:hover i.bi {
+                color: #2196f3;
+            }
+
+            i.bi::before {
+                content: '\f290';
+            }
+            &.copied i.bi::before {
+                content: '\f272';
+            }
+        }
+    }
+</style>

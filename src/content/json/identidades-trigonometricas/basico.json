@@ -1,0 +1,47 @@
+[
+    {
+        "equations": [
+            "\\tan(\\alpha) = \\dfrac{\\sin(\\alpha)}{\\cos(\\alpha)}",
+            "\\sin(\\alpha) = \\tan(\\alpha) \\cdot \\cos(\\alpha)",
+            "\\cos(\\alpha) = \\dfrac{\\sin(\\alpha)}{\\tan(\\alpha)}"
+        ],
+        "name": "Tangente, Seno y Coseno",
+        "tags": ["basico", "tan"]
+    },
+    {
+        "equations": [
+            "\\cot(\\alpha) = \\dfrac{\\cos(\\alpha)}{\\sin(\\alpha)}",
+            "\\cos(\\alpha) = \\cot(\\alpha) \\cdot \\sin(\\alpha)",
+            "\\sin(\\alpha) = \\dfrac{\\cos(\\alpha)}{\\cot(\\alpha)}"
+        ],
+        "name": "Cotangente, Seno y Coseno",
+        "tags": ["basico", "cot"]
+    },
+    {
+        "equations": [
+            "\\tan(\\alpha) = \\dfrac{1}{\\cot(\\alpha)}",
+            "\\tan(\\alpha) \\cdot \\cot(\\alpha) = 1",
+            "\\cot(\\alpha) = \\dfrac{1}{\\tan(\\alpha)}"
+        ],
+        "name": "Tangente y Cotangente",
+        "tags": ["basico", "tan"]
+    },
+    {
+        "equations": [
+            "\\csc(\\alpha) = \\dfrac{1}{\\sin(\\alpha)}",
+            "\\sin(\\alpha) \\cdot \\csc(\\alpha) = 1",
+            "\\sin(\\alpha) = \\dfrac{1}{\\csc(\\alpha)}"
+        ],
+        "name": "Seno y Cosecante",
+        "tags": ["basico", "csc"]
+    },
+    {
+        "equations": [
+            "\\sec(\\alpha) = \\dfrac{1}{\\cos(\\alpha)}",
+            "\\sec(\\alpha) \\cdot \\cos(\\alpha) = 1",
+            "\\cos(\\alpha) = \\dfrac{1}{\\sec(\\alpha)}"
+        ],
+        "name": "Coseno y secante",
+        "tags": ["basico", "sec"]
+    }
+]

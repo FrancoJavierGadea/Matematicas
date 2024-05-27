@@ -1,0 +1,83 @@
+[
+    {
+        "equations": [
+            "\\sin(180^{\\circ} + \\alpha) = -\\sin(\\alpha)",
+            "\\sin(\\pi + \\alpha) = -\\sin(\\alpha)"
+        ],
+        "name": "Seno de 180 mas alpha",
+        "tags": ["180 mas alpha", "sin"]
+    },
+    {
+        "equations": [
+            "\\sin(180^{\\circ} - \\alpha) = +\\sin(\\alpha)",
+            "\\sin(\\pi - \\alpha) = +\\sin(\\alpha)"
+        ],
+        "name": "Seno de 180 menos alpha",
+        "tags": ["180 mas alpha", "sin"]
+    },
+    {
+        "equations": [
+            "\\cos(180^{\\circ} \\pm \\alpha) = -\\cos(\\alpha)",
+            "\\cos(\\pi \\pm \\alpha) = -\\cos(\\alpha)"
+        ],
+        "name": "Coseno de 180 mas alpha",
+        "tags": ["180 mas alpha", "cos"]
+    },
+    {
+        "equations": [
+            "\\tan(180^{\\circ} + \\alpha) = \\tan(\\alpha)",
+            "\\tan(\\pi + \\alpha ) = \\tan(\\alpha)"
+        ],
+        "name": "Tangente de 180 mas alpha",
+        "tags": ["180 mas alpha", "tan"]
+    },
+    {
+        "equations": [
+            "\\tan(180^{\\circ} - \\alpha) = -\\tan(\\alpha)",
+            "\\tan(\\pi - \\alpha ) = -\\tan(\\alpha)"
+        ],
+        "name": "Tangente de 180 menos alpha",
+        "tags": ["180 mas alpha", "tan"]
+    },
+
+    {
+        "equations": [
+            "\\sin(90^{\\circ} \\pm \\alpha) = \\cos(\\alpha)",
+            "\\sin\\left(\\dfrac{\\pi}{2} \\pm \\alpha \\right) = \\cos(\\alpha)"
+        ],
+        "name": "Seno de 90 mas / menos alpha",
+        "tags": ["90 mas alpha", "sin"]
+    },
+    {
+        "equations": [
+            "\\cos(90^{\\circ} + \\alpha) = -\\sin(\\alpha)",
+            "\\cos\\left(\\dfrac{\\pi}{2} + \\alpha \\right) = -\\sin(\\alpha)"
+        ],
+        "name": "Coseno de 90 mas alpha",
+        "tags": ["90 mas alpha", "cos"]
+    },
+    {
+        "equations": [
+            "\\cos(90^{\\circ} - \\alpha) = \\sin(\\alpha)",
+            "\\cos\\left(\\dfrac{\\pi}{2} - \\alpha \\right) = \\sin(\\alpha)"
+        ],
+        "name": "Coseno de 90 menos alpha",
+        "tags": ["90 mas alpha", "cos"]
+    },
+    {
+        "equations": [
+            "\\tan(90^{\\circ} + \\alpha) = -\\dfrac{1}{\\tan(\\alpha)}",
+            "\\tan\\left(\\dfrac{\\pi}{2} + \\alpha \\right) = -\\dfrac{1}{\\tan(\\alpha)}"
+        ],
+        "name": "Tangente de 90 mas alpha",
+        "tags": ["90 mas alpha", "tan"]
+    },
+    {
+        "equations": [
+            "\\tan(90^{\\circ} - \\alpha) = \\dfrac{1}{\\tan(\\alpha)}",
+            "\\tan\\left(\\dfrac{\\pi}{2} - \\alpha \\right) = \\dfrac{1}{\\tan(\\alpha)}"
+        ],
+        "name": "Tangente de 90 menos alpha",
+        "tags": ["90 mas alpha", "tan"]
+    }
+]

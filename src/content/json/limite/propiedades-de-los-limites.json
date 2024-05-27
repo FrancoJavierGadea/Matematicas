@@ -1,0 +1,112 @@
+[
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to c} k = k"
+            ]
+        },
+        "composition": null,
+        "name": "Limite de una constante",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": null,
+        "composition": {
+            "equations": [
+                "\\lim_{x \\to c} \\left[f(x) + g(x) \\right] = \\lim_{x \\to c} f(x) + \\lim_{x \\to c} g(x)"
+            ]
+        },
+        "name": "Limite de una suma",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": null,
+        "composition": {
+            "equations": [
+                "\\lim_{x \\to c} \\left[f(x) - g(x) \\right] = \\lim_{x \\to c} f(x) - \\lim_{x \\to c} g(x)"
+            ]
+        },
+        "name": "Limite de una resta",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": null,
+        "composition": {
+            "equations": [
+                "\\lim_{x \\to c} \\left[f(x) \\cdot g(x) \\right] = \\lim_{x \\to c} f(x) \\cdot \\lim_{x \\to c} g(x)"
+            ]
+        },
+        "name": "Limite de un producto",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": null,
+        "composition": {
+            "equations": [
+                "\\lim_{x \\to c} \\left[k \\cdot g(x) \\right] = k \\cdot \\lim_{x \\to c} g(x)"
+            ]
+        },
+        "name": "Limite constante por funcion",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": null,
+        "composition": {
+            "equations": [
+                "\\lim_{x \\to c} \\left[ \\frac{f(x)}{g(x)} \\right] = \\frac{ \\displaystyle{ \\lim_{x \\to c} f(x) } }{ \\displaystyle{ \\lim_{x \\to c} g(x) } }"
+            ]
+        },
+        "name": "Limite de un cociente",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": null,
+        "composition": {
+            "equations": [
+                "\\lim_{x \\to c} \\left[ f(x)^{g(x)} \\right] = \\left[ \\lim_{x \\to c} f(x) \\right]^{ \\displaystyle{\\lim_{x \\to c} g(x) } }"
+            ]
+        },
+        "name": "Limite de una potencia",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": null,
+        "composition": {
+            "equations": [
+                "\\lim_{x \\to c} \\left[ k^{\\hspace{0.2em}f(x)} \\right] = {k}^{ \\hspace{0.5em} \\displaystyle{\\lim_{x \\to c} f(x)} }"
+            ]
+        },
+        "name": "Limite de una constante elevada a una funcion",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": null,
+        "composition": {
+            "equations": [
+                "\\lim_{x \\to c} \\left[ f(x)^{n} \\right] = \\left[ \\lim_{x \\to c} f(x) \\right]^{n}"
+            ]
+        },
+        "name": "Limite de una funcion elevada a una constante",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to c} \\sqrt[d]{x} = \\sqrt[d]{c}"
+            ]
+        },
+        "composition": null,
+        "name": "Limite de una raiz",
+        "tags": ["propiedades"]
+    },
+    {
+        "simple": null,
+        "composition": {
+            "equations": [
+                "\\lim_{x \\to c} f \\left[g(x) \\right] = f \\left[ \\lim_{x \\to c} g(x) \\right]"
+            ]
+        },
+        "name": "Limite de una funcion compuesta",
+        "tags": ["propiedades"]
+    }
+]

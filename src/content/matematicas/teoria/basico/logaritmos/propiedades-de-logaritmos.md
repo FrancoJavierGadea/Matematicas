@@ -27,16 +27,16 @@ $$
 
 $$
     \large{
-        x^{\log_{a}(y)} = y^{\log_{a}(x)}
+        x^{\hspace{0.2em}\log_{a}(y)} = y^{ \hspace{0.2em}\log_{a}(x)}
         \hspace{2em}
-        x^{\ln(y)} = y^{\ln(x)}
+        x^{\hspace{0.2em} \ln(y)} = y^{\hspace{0.2em} \ln(x)}
     }
 $$
 <br>
 
 $$
     \Large{
-        e^{\ln(x)} = x
+        e^{\hspace{0.2em}\ln(x)} = x
     }
 $$
 <br>
@@ -67,6 +67,24 @@ $$
         \log_{a}(\sqrt[i]{x}) = \frac{1}{i} \cdot \log_{a}(x) 
         \hspace{2em}
         \ln(\sqrt[i]{x}) = \frac{1}{i} \cdot \ln(x)
+    }
+$$
+<br>
+
+$$
+    \large{
+        \log_{a}(\sqrt[n]{x}) = \dfrac{\log_{a}(x)}{n} 
+        \hspace{2em}
+        \ln(\sqrt[n]{x}) = \dfrac{\ln(x)}{n}
+    }
+$$
+<br>
+
+$$
+    \large{
+        \log_{a}(\sqrt[n]{x^{p}}) = \dfrac{p \cdot \log_{a}(x)}{n} 
+        \hspace{2em}
+        \ln(\sqrt[n]{x^{p}}) = \dfrac{p \cdot \ln(x)}{n}
     }
 $$
 <br>

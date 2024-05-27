@@ -1,0 +1,23 @@
+[
+    {
+        "equations": [    
+            "\\sin\\left( \\dfrac{\\alpha}{2} \\right) = \\pm \\sqrt{\\dfrac{1 - \\cos(\\alpha)}{2}}"
+        ],
+        "name": "Seno de alpha sobre 2",
+        "tags": ["angulo-medio", "sin"]
+    },
+    {
+        "equations": [    
+            "\\cos\\left( \\dfrac{\\alpha}{2} \\right) = \\pm \\sqrt{\\dfrac{1 + \\cos(\\alpha)}{2}}"
+        ],
+        "name": "Coseno de alpha sobre 2",
+        "tags": ["angulo-medio", "cos"]
+    },
+    {
+        "equations": [    
+            "\\tan\\left( \\dfrac{\\alpha}{2} \\right) = \\pm \\sqrt{\\dfrac{1 - \\cos(\\alpha)}{1 + \\cos(\\alpha)}}"
+        ],
+        "name": "Tangente de alpha sobre 2",
+        "tags": ["angulo-medio", "tan"]
+    }
+]

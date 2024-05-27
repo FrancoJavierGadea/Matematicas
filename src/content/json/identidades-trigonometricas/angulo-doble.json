@@ -1,0 +1,26 @@
+[
+    {
+        "equations": [
+            "\\sin(2 \\cdot \\alpha) = 2 \\cdot \\sin(\\alpha) \\cdot \\cos(\\alpha)"
+        ],
+        "name": "Seno de 2 alpha",
+        "tags": ["angulo-doble", "sin"]
+    },
+    {
+        "equations": [
+            "\\cos(2 \\cdot \\alpha) = \\cos^{2}(\\alpha) - \\sin^{2}(\\alpha)",
+            "\\cos(2 \\cdot \\alpha) = 1 - 2 \\cdot \\sin^{2}(\\alpha)",
+            "\\cos(2 \\cdot \\alpha) = 2 \\cdot \\cos^{2}(\\alpha) - 1",
+            "\\cos(2 \\cdot \\alpha) = \\dfrac{1 - \tan^{2}(\\alpha)}{1 + \\tan^{2}(\\alpha)}"
+        ],
+        "name": "Coseno de 2 alpha",
+        "tags": ["angulo-doble", "cos"]
+    },
+    {
+        "equations": [
+            "\\tan(2 \\cdot \\alpha) = \\dfrac{2 \\cdot \\tan(\\alpha)}{1 - \\tan^{2}(\\alpha)}"
+        ],
+        "name": "Tangente de 2 alpha",
+        "tags": ["angulo-doble", "tan"]
+    }
+]

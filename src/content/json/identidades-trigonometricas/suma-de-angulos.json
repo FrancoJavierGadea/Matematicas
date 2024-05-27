@@ -1,0 +1,46 @@
+[
+    {
+        "equations": [
+            "\\sin(\\alpha + \\beta) = \\sin(\\alpha) \\cdot \\cos(\\beta) + \\sin(\\beta) \\cdot \\cos(\\alpha)"
+        ],
+        "name": "Seno de alpha mas beta",
+        "tags": ["suma-de-angulos", "sin"]
+    },
+    {
+        "equations": [
+            "\\sin(\\alpha - \\beta) = \\sin(\\alpha) \\cdot \\cos(\\beta) - \\sin(\\beta) \\cdot \\cos(\\alpha)"
+        ],
+        "name": "Seno de alpha menos beta",
+        "tags": ["suma-de-angulos", "sin"]
+    },
+
+    {
+        "equations": [
+            "\\cos(\\alpha + \\beta) = \\cos(\\alpha) \\cdot \\cos(\\beta) - \\sin(\\alpha) \\cdot \\sin(\\beta)"
+        ],
+        "name": "Coseno de alpha mas beta",
+        "tags": ["suma-de-angulos", "cos"]
+    },
+    {
+        "equations": [
+            "\\cos(\\alpha - \\beta) = \\cos(\\alpha) \\cdot \\cos(\\beta) + \\sin(\\alpha) \\cdot \\sin(\\beta)"
+        ],
+        "name": "Coseno de alpha menos beta",
+        "tags": ["suma-de-angulos", "cos"]
+    },
+
+    {
+        "equations": [
+            "\\tan(\\alpha + \\beta) = \\dfrac{\\tan(\\alpha) + \\tan(\\beta)}{1 - \\tan(\\alpha) \\cdot \\tan(\\beta)}"
+        ],
+        "name": "Tangente de alpha mas beta",
+        "tags": ["suma-de-angulos", "tan"]
+    },
+    {
+        "equations": [
+            "\\tan(\\alpha - \\beta) = \\dfrac{\\tan(\\alpha) - \\tan(\\beta)}{1 + \\tan(\\alpha) \\cdot \\tan(\\beta)}"
+        ],
+        "name": "Tangente de alpha menos beta",
+        "tags": ["suma-de-angulos", "tan"]
+    }
+]

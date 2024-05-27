@@ -1,0 +1,98 @@
+[
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to 0} \\sin(x) = 0"
+            ]
+        },
+        "composition": null,
+        "name": "Limite del seno",
+        "tags": ["trigonometricos", "sin"]
+    },
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to 0} \\cos(x) = 1"
+            ]
+        },
+        "composition": null,
+        "name": "Limite del coseno",
+        "tags": ["trigonometricos", "cos"]
+    },
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to 0} \\tan(x) = 0"
+            ]
+        },
+        "composition": null,
+        "name": "Limite de la tangente",
+        "tags": ["trigonometricos", "tan"]
+    },
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to 0} \\frac{\\sin(x)}{x} = 1",
+                "\\lim_{x \\to 0} \\frac{k \\cdot \\sin(x)}{k \\cdot x} = 1"
+            ]
+        },
+        "composition": null,
+        "name": "Limite trigonometrico fundamental",
+        "tags": ["trigonometricos", "sin"]
+    },
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to 0} \\frac{x}{\\sin(x)} = 1",
+                "\\lim_{x \\to 0} \\frac{k \\cdot x}{k \\cdot \\sin(x)} = 1"
+            ]
+        },
+        "composition": null,
+        "name": "Limite trigonometrico fundamental invertido",
+        "tags": ["trigonometricos", "sin"]
+    },
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to 0} \\frac{1 - \\cos(x)}{x} = 0",
+                "\\lim_{x \\to 0} \\frac{1 - \\cos(k \\cdot x)}{k \\cdot x} = 0"
+            ]
+        },
+        "composition": null,
+        "name": "Limite de 1 menos el coseno x sobre x",
+        "tags": ["trigonometricos", "cos"]
+    },
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to 0} \\dfrac{1 - \\cos(x)}{x^{2}} = \\dfrac{1}{2}",
+                "\\lim_{x \\to 0} \\dfrac{1 - \\cos(k \\cdot x)}{\\displaystyle{(k \\cdot x)^{2}}} = \\dfrac{1}{2}"
+            ]
+        },
+        "composition": null,
+        "name": "Limite de 1 menos el coseno x sobre x al cuadrado",
+        "tags": ["trigonometricos", "cos"]
+    },
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to 0} \\dfrac{\\tan(x)}{x} = 1",
+                "\\lim_{x \\to 0} \\dfrac{\\tan(k \\cdot x)}{k \\cdot x} = 1"
+            ]
+        },
+        "composition": null,
+        "name": "Limite de tangente de x sobre x",
+        "tags": ["trigonometricos", "tan"]
+    },
+    {
+        "simple": {
+            "equations": [
+                "\\lim_{x \\to 0} \\dfrac{x}{\\tan(x)} = 1",
+                "\\lim_{x \\to 0} \\dfrac{k \\cdot x}{\\tan(k \\cdot x)} = 1"
+            ]
+        },
+        "composition": null,
+        "name": "Limite de x sobre tangente de x",
+        "tags": ["trigonometricos", "tan"]
+    }
+]

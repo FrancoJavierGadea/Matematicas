@@ -1,0 +1,112 @@
+---
+import Layout from "@layouts/Layout.astro";
+import "@css/Custom-mathjax.css";
+import {renderLatexToCHTML} from "@utils/RenderLatexCHTML.js";
+import { getEntry } from "astro:content";
+import EquationCard from "@components/ecuaciones/EquationCard.astro";
+import Controls from "@components/ecuaciones/Controls.astro";
+import Equation from "@components/ecuaciones/Equation.astro";
+
+const renderLatex = await renderLatexToCHTML();
+
+const EQ = await Promise.all([
+    getEntry('json', 'limite/propiedades-de-los-limites'),
+    getEntry('json', 'limite/limite-trigonometricos'),
+]);
+
+const title = "Propiedades de los limites"
+---
+
+<Layout title={title} sidebar={{title}} logo="ecuaciones" home="/ecuaciones">
+
+    <Controls slot="sidebar-body" equations={EQ} />
+
+    <section class="horizontal-scroll-bar">
+    {
+        EQ.map((equations) => {
+
+            return <details open>
+                <summary>{equations.id.split('/').at(1).replaceAll('-', ' ')}</summary>
+
+                <article class="Equations">
+                {
+                    equations.data.map(({tags, name, simple, composition}) => {
+
+                        const tabs = [
+                            simple ? 'simple' : null, 
+                            composition ? 'compuesta' : null
+                        ]
+                        .filter(v => v);
+
+                        return <EquationCard name={name} tags={tags} tabs={tabs}>
+                            {
+                                simple && <Fragment slot="simple">
+                                    {
+                                        simple.equations.map(eq => {
+
+                                            return <Equation latex={eq} >
+                                                <Fragment set:html={renderLatex.getHTML(eq)}/>
+                                            </Equation> 
+                                        })
+                                    }
+                                </Fragment>
+                            }
+                            {
+                                composition && <Fragment slot="compuesta">
+                                    {
+                                        composition.equations.map(eq => {
+
+                                            return <Equation latex={eq} >
+                                                <Fragment set:html={renderLatex.getHTML(eq)}/>
+                                            </Equation> 
+                                        })
+                                    }
+                                </Fragment>
+                            }
+                        </EquationCard>
+                    })
+                }
+                </article>
+            </details>
+        })
+    }
+    </section>
+
+    <style set:html={renderLatex.getStyles()} />
+
+</Layout>
+
+<style>
+    details {
+        margin-block: 30px;
+
+        summary {
+            font-size: 25px;
+            font-weight: bold;
+            &::first-letter {
+                text-transform: capitalize;
+            }
+            padding-bottom: 20px;
+        }
+    }
+
+    .Equations {
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .Equations :global(.Equation) {
+
+        & :global(.MathJax) {
+            margin-block: 0;
+        }
+
+        font-size: 24px;
+    }
+    
+    .Equations :global(.hide-equation) {
+        display: none;
+    }
+</style>

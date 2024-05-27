@@ -3,8 +3,9 @@ import Layout from "@layouts/Layout.astro";
 import "@css/Custom-mathjax.css";
 import {renderLatexToCHTML} from "@utils/RenderLatexCHTML.js";
 import { getEntry } from "astro:content";
-import EquationCard from "@components/equaciones/reglas-de-derivacion/EquationCard.astro";
-import Controls from "@components/equaciones/reglas-de-derivacion/Controls.astro";
+import EquationCard from "@components/ecuaciones/EquationCard.astro";
+import Controls from "@components/ecuaciones/Controls.astro";
+import Equation from "@components/ecuaciones/Equation.astro";
 
 const renderLatex = await renderLatexToCHTML();
 
@@ -18,18 +19,19 @@ const EQ = await Promise.all([
     getEntry('json', 'reglas-de-derivacion/operaciones'),
 ]);
 
+const title = "Reglas de derivacion";
 ---
 
-<Layout title="Reglas de derivacion" sidebar={{title: 'Reglas de derivacion'}} logo="equaciones" home="/equaciones">
+<Layout title={title} sidebar={{title}} logo="ecuaciones" home="/ecuaciones">
 
     <Controls slot="sidebar-body" equations={EQ} />
 
-    <section>
+    <section class="horizontal-scroll-bar">
     {
         EQ.map((equations) => {
 
             return <details open>
-                <summary>{equations.id.split('/').at(1)}</summary>
+                <summary>{equations.id.split('/').at(1).replaceAll('-', ' ')}</summary>
 
                 <article class="Equations">
                 {
@@ -43,20 +45,26 @@ const EQ = await Promise.all([
 
                         return <EquationCard name={name} tags={tags} tabs={tabs}>
                             {
-                                simple && 
-                                <div class="Equation" slot="simple-function" data-latex={simple.function} set:html={renderLatex.getHTML(simple.function)} /> 
+                                simple && <Fragment slot="simple">
+                                    <Equation latex={simple.function} title="Funcion">
+                                        <Fragment set:html={renderLatex.getHTML(simple.function)}/>
+                                    </Equation> 
+
+                                    <Equation latex={simple.derivative} title="Derivada">
+                                        <Fragment set:html={renderLatex.getHTML(simple.derivative)}/>
+                                    </Equation>
+                                </Fragment>
                             }
                             {
-                                simple && 
-                                <div class="Equation" slot="simple-derivative" data-latex={simple.derivative} set:html={renderLatex.getHTML(simple.derivative)} />
-                            }
-                            {
-                                composition && 
-                                <div class="Equation" slot="compuesta-function" data-latex={composition.function} set:html={renderLatex.getHTML(composition.function)} />
-                            }
-                            {
-                                composition &&
-                                <div class="Equation" slot="compuesta-derivative" data-latex={composition.derivative} set:html={renderLatex.getHTML(composition.derivative)} />
+                                composition && <Fragment slot="compuesta">
+                                    <Equation latex={composition.function} title="Funcion">
+                                        <Fragment set:html={renderLatex.getHTML(composition.function)}/>
+                                    </Equation>
+
+                                    <Equation latex={composition.derivative} title="Derivada">
+                                        <Fragment set:html={renderLatex.getHTML(composition.derivative)}/>
+                                    </Equation>
+                                </Fragment>
                             }
                         </EquationCard>
                     })
@@ -72,8 +80,12 @@ const EQ = await Promise.all([
 
 <style>
     
+    section {
+        margin-bottom: 20px;
+    }
     details {
         margin-block: 30px;
+        width: fit-content;
 
         summary {
             font-size: 25px;
@@ -90,11 +102,10 @@ const EQ = await Promise.all([
         justify-content: start;
         flex-wrap: wrap;
         gap: 20px;
+        width: fit-content;
     }
 
     .Equations :global(.Equation) {
-
-        margin-block: auto;
 
         & :global(.MathJax) {
             margin-block: 0;

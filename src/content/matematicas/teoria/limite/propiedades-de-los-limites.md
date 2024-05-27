@@ -76,11 +76,12 @@ $$
 #### Limite de una potencia con base contante
 
 $$
-    \lim_{x \to c} \left[ k^{f(x)} \right] = 
+    \lim_{x \to c} \left[ k^{\hspace{0.2em}f(x)} \right] = 
     {
         k
     }
     ^{
+        \hspace{0.5em}
         \displaystyle{
             \lim_{x \to c} f(x) 
         } 
@@ -134,17 +135,17 @@ $$
 #### Limite trigonometrico fundamental
 
 $$
-    \lim_{x \to 0} \frac{\sin(x)}{x} = 1
+    \lim_{x \to 0} \dfrac{\sin(x)}{x} = 1
     \hspace{3em}
-    \lim_{x \to 0} \frac{k \cdot \sin(x)}{k \cdot x} = 1
+    \lim_{x \to 0} \dfrac{k \cdot \sin(x)}{k \cdot x} = 1
 $$
 
 Tambien aplica al reves
 
 $$
-    \lim_{x \to 0} \frac{x}{\sin(x)} = 1
+    \lim_{x \to 0} \dfrac{x}{\sin(x)} = 1
     \hspace{3em}
-    \lim_{x \to 0} \frac{k \cdot x}{k \cdot \sin(x)} = 1
+    \lim_{x \to 0} \dfrac{k \cdot x}{k \cdot \sin(x)} = 1
 $$
 
 <br>
@@ -152,17 +153,17 @@ $$
 #### Limite de la tangente
 
 $$
-    \lim_{x \to 0} \frac{\tan(x)}{x} = 1
+    \lim_{x \to 0} \dfrac{\tan(x)}{x} = 1
     \hspace{3em}
-    \lim_{x \to 0} \frac{\tan(k \cdot x)}{k \cdot x} = 1
+    \lim_{x \to 0} \dfrac{\tan(k \cdot x)}{k \cdot x} = 1
 $$
 
 Tambien aplica al reves
 
 $$
-    \lim_{x \to 0} \frac{x}{\tan(x)} = 1
+    \lim_{x \to 0} \dfrac{x}{\tan(x)} = 1
     \hspace{3em}
-    \lim_{x \to 0} \frac{k \cdot x}{\tan(k \cdot x)} = 1
+    \lim_{x \to 0} \dfrac{k \cdot x}{\tan(k \cdot x)} = 1
 $$ 
 
 
@@ -171,7 +172,13 @@ $$
 #### Limite 1 menos el coseno
 
 $$
-    \lim_{x \to 0} \frac{1 - \cos(x)}{x} = 0
+    \lim_{x \to 0} \dfrac{1 - \cos(x)}{x} = 0
     \hspace{3em}
-    \lim_{x \to 0} \frac{1 - \cos(k \cdot x)}{k \cdot x}= 0
+    \lim_{x \to 0} \dfrac{1 - \cos(k \cdot x)}{k \cdot x}= 0
+$$
+
+$$
+    \lim_{x \to 0} \dfrac{1 - \cos(x)}{x^{2}} = \dfrac{1}{2}
+    \hspace{3em}
+    \lim_{x \to 0} \dfrac{1 - \cos(k \cdot x)}{\displaystyle{(k \cdot x)^{2}}} = \dfrac{1}{2}
 $$
