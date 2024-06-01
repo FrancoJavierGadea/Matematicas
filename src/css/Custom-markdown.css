@@ -1,7 +1,28 @@
 .markdown-body {
 
     padding-block: 20px;
-    padding-inline: clamp(0px, 2vw, 50px);
+    letter-spacing: 1px;
+
+    p, blockquote {
+        font-size: 18px;
+    }
+
+    blockquote p {
+        line-height: 1.8;
+    }
+
+    h2 {
+        border-bottom: 4px solid #00aeef;
+        margin-inline: 0px !important;
+    }
+    h2 ~ * {
+        margin-inline: 15px;
+    }
+
+    h3 {
+        border-bottom: 2px solid var(--color-border-muted);
+        padding-bottom: 5px;
+    }
 
     table {
         overflow: hidden;
