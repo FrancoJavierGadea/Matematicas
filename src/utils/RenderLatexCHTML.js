@@ -12,10 +12,11 @@ import {RegisterHTMLHandler} from 'mathjax-full/js/handlers/html.js';
 import {AllPackages} from 'mathjax-full/js/input/tex/AllPackages.js';
 import {JSDOM} from 'jsdom';
 import {jsdomAdaptor} from 'mathjax-full/js/adaptors/jsdomAdaptor.js'
+import { baseURL } from './baseURLUtil';
 
 const OPTIONS = {
     chtml: {
-        fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+        fontURL: baseURL("/fonts/mathjax/chtml")
     }
 };
 

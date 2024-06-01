@@ -68,6 +68,16 @@ const navigationLinks = [
 
 		<meta name="description" content="Astro description" />
 
+		<style>
+			@font-face {
+				font-family: "Noto Sans Math";
+				src: url("/facultad-apuntes/fonts/NotoSansMath-Regular.ttf") format("TrueType");
+				font-weight: normal;
+				font-style: normal;
+				font-display: swap;
+			}
+		</style>
+
 		<title>{title}</title>
 	</head>
 	<body>
@@ -107,7 +117,6 @@ const navigationLinks = [
 </html>
 
 <style is:global>
-	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap');
 
 	:root {
 		--font-math: "Noto Sans Math", sans-serif;
