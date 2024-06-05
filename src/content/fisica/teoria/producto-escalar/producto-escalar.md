@@ -37,7 +37,7 @@ $$
 }   
 $$
 
-![alt](./producto-escalar-1.svg)
+![alt](./producto-escalar-1.lnkscape.svg)
 
 <br>
 
@@ -71,7 +71,7 @@ $$
 }
 $$
 
-![alt](./producto-escalar-2.svg)
+![alt](./producto-escalar-2.lnkscape.svg)
 
 <br>
 
@@ -83,7 +83,7 @@ $$
 }
 $$
 
-![alt](./producto-escalar-3.svg)
+![alt](./producto-escalar-3.lnkscape.svg)
 
 
 <br>
