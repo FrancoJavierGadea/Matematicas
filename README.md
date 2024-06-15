@@ -6,44 +6,21 @@ Mis apuentes sobre `matematicas` para el cursado de las materias:
 - **Analisis matematico 2**
 - **Algebra y geometria analitica**
 - **Matemarica discreta**
+- **Fisica 1**
+- **Fisica 2**
 
 de la carrera de `Ing. en sistemas de informacione` en la **Universidad Tecnologica nacional Facultad Regional de Tucuman** (**`UTN-FRT`**)
 
 <br>
 
-## Estructura del proyecto
+### Deploys
 
-```text
-/
-├── public/
-│   └── favicon.svg
-│
-├── src/
-│   ├── assets/
-│   │   └── math/
-│   │
-│   ├── components/
-│   │   └── React/
-│   │
-│   ├── content/
-│   │   └── docs/
-│   │
-│   ├── css/
-│   │
-│   ├── layouts/
-│   │   └── Layout.astro
-│   │
-│   ├── utils/
-│   │
-│   └── pages/
-│       ├── docs/
-│       └── index.astro
-│
-└── package.json
-```
+- [Github pages](https://francojaviergadea.github.io/facultad-apuntes/)
 
-
+- [Netlify](https://facultad-apuntes.netlify.app/facultad-apuntes/)
+  
 <br>
+
 
 ## Comandos
 

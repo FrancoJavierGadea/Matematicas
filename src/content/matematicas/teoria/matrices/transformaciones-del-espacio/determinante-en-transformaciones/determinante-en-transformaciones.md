@@ -1,0 +1,44 @@
+## Determinante en Transformaciones del espacio
+
+Pensando en las `matrices` como `transformaciones del espacio`
+
+El **valor absoluto** del `determinante` de una **matriz** nos dice el `factor de cambio` de la `transformacion`
+
+En **matrices** $2 \times 2$: cuanto se **incrementa** o se **reduce** el `area` luego de aplicar la `transformacion`
+
+![alt](./determinante.lnkspace.svg)
+
+![alt](./determinante-2.lnkspace.svg)
+
+En **matrices** $3 \times 3$: cuanto se **incrementa** o se **reduce** el `volumen` luego de aplicar la `transformacion`
+
+<br>
+
+
+### Determinante negativo
+
+Cuando el `determinante` es **negativo** la `transformacion` ha provocado un **cambio de orientacion**
+
+![alt](./determinante-3.lnkspace.svg)
+
+![alt](./determinante-4.lnkspace.svg)
+
+<br>
+
+
+### Determinante 0
+
+Cuando el `determinante` es $0$ la `transformacion` a **reducido** el espacio a una **dimension inferior**
+
+En el caso de **matrices** $2 \times 2$ donde **transformamos un plano 2D** este se reduce a una `linea` o un `punto`
+
+![alt](./determinante-5.lnkspace.svg)
+
+En el caso de **matrices** $3 \times 3$ donde **transformamos el espacio 3D** este se reduce a un `plano`, una `linea` o un `punto`
+
+
+<br><br>
+
+#### Docs
+
+- [El determinante | Esencia del álgebra lineal, capítulo 5](https://www.youtube.com/watch?v=yt3eoYvGel0)
