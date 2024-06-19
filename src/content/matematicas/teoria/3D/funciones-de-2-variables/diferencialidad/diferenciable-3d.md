@@ -36,16 +36,10 @@ y $f(x_{0}, y_{0}) + A \cdot \Delta x + B \cdot \Delta y$ es un **punto** en el 
 
 #### Incremeto $r$
 $$
-\Large{
-    \lim_{
-        \tiny{(\Delta x, \Delta y)\to(0, 0)} 
-    } 
-}
-\normalsize{
-    \dfrac{r(\Delta x, \Delta y)}{
-        \sqrt{\displaystyle{\Delta x^{2} + \Delta y^{2}}}
-    } = 0
-}
+\lim_{(\Delta x, \Delta y)\to(0, 0)}
+\dfrac{r(\Delta x, \Delta y)}{
+    \sqrt{\displaystyle{\Delta x^{2} + \Delta y^{2}}}
+} = 0
 $$
 
 $r(\Delta x, \Delta y)$ tiende a $0$ mucho mas **rapido** que el `modulo` de $\Delta x, \Delta y$

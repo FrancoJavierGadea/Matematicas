@@ -43,7 +43,7 @@ export default defineConfig({
       ], 
       [
         mdVideoPlugin, 
-        {base: 'majo'}
+        {autoplay: true, muted: true, loop: true, controls: true}
       ]
     ]
   }

@@ -95,8 +95,11 @@ const Tabscontent = await ['markdown', ...Tabsname].reduce(async (pacc, name) =>
 
 <script>
     import {initPhotoSwipe} from "@utils/scripts/PhotoSwipeUtils.js";
+    import {makeVideosLazy} from "@utils/scripts/VideoLaziLoading.js";
 
     initPhotoSwipe('.Doc-content-markdown');
+
+    makeVideosLazy('.Doc-content-markdown');
 </script>
 
 <!-- MARK: Styles -->
