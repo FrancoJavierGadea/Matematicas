@@ -46,6 +46,15 @@
         border-radius: 10px;
     }
 
+    video {
+        display: block;
+        margin: auto;
+        max-width: 720px;
+        object-fit: cover;
+        box-shadow: 0px 0px 10px 0px #00000029;
+        border-radius: 10px;
+    }
+
     a {
         text-decoration: none;
         color: #4493f8;

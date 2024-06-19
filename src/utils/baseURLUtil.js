@@ -1,6 +1,11 @@
-
+import { BASE_URL } from "../config/globals.js";
 
 export function baseURL(url = ''){
+
+    if(!import.meta.env?.BASE_URL){
+
+        return `${BASE_URL}/${url.replace(/^\//, '')}`;
+    }
 
     if(import.meta.env.BASE_URL !== '/'){
 

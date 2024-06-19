@@ -1,6 +1,31 @@
 ## Determinante
 
-Es un numero real asosiado a una matriz cuadrada
+Es un **numero real** asosiado a una `matriz cuadrada`
+
+Una **funcion** que asocia un numero a cada **matriz**
+
+
+La **suma** de todas las **posibles combinanciones** de tomar un `numero de una fila` y multiplicarlo por **otro** de una `fila y columna distinta`
+
+<br>
+
+#### Cantidad de terminos y combinanciones
+
+Una **matriz** de orden $n \times n$ tiene $n!$ combinaciones
+
+$$
+\begin{array}{lll}
+    2 \times 2 \Longrightarrow 2! = 2
+    &
+    3 \times 3 \Longrightarrow 3! = 6
+    \\\\
+    4 \times 4 \Longrightarrow 4! = 24
+    &
+    5 \times 5 \Longrightarrow 5! = 120 
+\end{array}
+$$
+
+<br>
 
 #### Matriz $1 \times 1$
 
@@ -115,3 +140,8 @@ $$
         \\\\      
     \end{array}  
 $$
+
+
+#### Docs
+
+- [Qué son LOS DETERMINANTES](https://www.youtube.com/watch?v=Bd7XboIfsU4)

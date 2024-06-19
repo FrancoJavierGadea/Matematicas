@@ -109,6 +109,10 @@ const {geogebra, videos, images} = doc.entry.data;
 
     class CustomDoc extends HTMLElement {
 
+        getContent(){
+            return this.querySelector('.Doc-content-markdown');
+        }
+
         constructor(){
             super();
 
@@ -128,7 +132,7 @@ const {geogebra, videos, images} = doc.entry.data;
         
                 showHtml.disabled = true;
          
-                DOWNLOAD.downloadHTML(this.querySelector('.Render-markdown'), {title, rootAttributes: getRootAttributes()})
+                DOWNLOAD.downloadHTML(this.getContent(), {title, rootAttributes: getRootAttributes()})
                 .then(url => {
         
                     open(url, '_blank');
@@ -143,7 +147,7 @@ const {geogebra, videos, images} = doc.entry.data;
         
                 downloadHtml.disabled = true;
         
-                DOWNLOAD.downloadHTML(this.querySelector('.Render-markdown'), {title, rootAttributes: getRootAttributes()})
+                DOWNLOAD.downloadHTML(this.getContent(), {title, rootAttributes: getRootAttributes()})
                 .then(url => {
                     
                     DOWNLOAD.downloadFileByURL(url, `${title}.html`);
@@ -158,11 +162,11 @@ const {geogebra, videos, images} = doc.entry.data;
         
                 downloadPdf.disabled = true;
         
-                DOWNLOAD.downloadPDF(this.querySelector('.Render-markdown'), {title, rootAttributes: getRootAttributes()})
+                DOWNLOAD.downloadPDF(this.getContent(), {title, rootAttributes: getRootAttributes()})
                 .then(() => {
         
                     downloadPdf.disabled = false;
-                })
+                });
             });
         
             //Download Markdown button
@@ -179,7 +183,7 @@ const {geogebra, videos, images} = doc.entry.data;
         
                     const url = URL.createObjectURL(text);
                     DOWNLOAD.downloadFileByURL(url, name);
-                })
+                });
             });   
         }
     }

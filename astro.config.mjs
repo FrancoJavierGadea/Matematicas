@@ -4,6 +4,8 @@ import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax/chtml';
 import rehypeExternalLinks from 'rehype-external-links';
 import { optimizeSVGPlugin } from './optimize-svg.js';
+import { mdVideoPlugin } from './md-video-plugin.js';
+import { BASE_URL, SITE } from './src/config/globals.js';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,11 +15,11 @@ export default defineConfig({
     enabled: false
   },
 
-  site: 'https://francojaviergadea.github.io/facultad-apuntes',
-  base: 'facultad-apuntes',
+  site: SITE,
+  base:  BASE_URL,
 
   vite: {
-    plugins: [optimizeSVGPlugin()]
+    plugins: [optimizeSVGPlugin()],
   },
 
   
@@ -29,7 +31,7 @@ export default defineConfig({
         rehypeMathjax,
         { 
           chtml: {
-            fontURL: "/facultad-apuntes/fonts/mathjax/chtml"
+            fontURL: `/${BASE_URL}/fonts/mathjax/chtml`
           }
         }
       ],
@@ -38,6 +40,10 @@ export default defineConfig({
         {
           target: '_blank'
         }
+      ], 
+      [
+        mdVideoPlugin, 
+        {base: 'majo'}
       ]
     ]
   }
