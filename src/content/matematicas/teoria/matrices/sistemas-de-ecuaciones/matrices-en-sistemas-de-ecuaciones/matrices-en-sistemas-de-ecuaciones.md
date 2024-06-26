@@ -30,9 +30,7 @@ $$
     \underbrace{
         \left(
             \begin{array}{r}
-                x
-                \\
-                y
+                x \\ y
             \end{array}
         \right)
     }_{\displaystyle{\vec{\text{x}}}}
@@ -40,9 +38,7 @@ $$
     \underbrace{
         \left(
             \begin{array}{r}
-                4
-                \\
-                7
+                4 \\ 7
             \end{array}
         \right)
     }_{\displaystyle{\vec{\text{v}}}}
@@ -149,6 +145,76 @@ $$
 ![alt](./sistema-de-ecuaciones-como-vector-2.lnkspace.svg)
 
 
+<br>
+
+### Ejemplo 3D
+
+Dado un sistema de ecuaciones
+$$
+\large{
+    \left\{
+        \begin{array}{l}
+            x + 2 \cdot y + z = 7
+            \\\\
+            3 \cdot x + y + z = 5
+            \\\\
+            2 \cdot x + 3 \cdot y - z = 3
+        \end{array}
+    \right.
+}
+$$
+
+Podemos escribirlo como un **producto de matrices**
+
+$$
+\large{
+    \underbrace{
+        \left(
+            \begin{array}{rrr}
+                1 & 2 & 1
+                \\
+                3 & 1 & 1
+                \\
+                2 & 3 & -1
+            \end{array}
+        \right)
+    }_{\displaystyle{A}}
+    \cdot
+    \underbrace{
+        \left(
+            \begin{array}{r}
+                x \\ y \\ z
+            \end{array}
+        \right)
+    }_{\displaystyle{\vec{\text{x}}}}
+    =
+    \underbrace{
+        \left(
+            \begin{array}{r}
+                7 \\ 5 \\ 3
+            \end{array}
+        \right)
+    }_{\displaystyle{\vec{\text{v}}}}
+}
+$$
+
+<video src="./transformacion-vectores-3d.mp4" loop muted autoplay controls></video>
+
+> $A$ **transforma** el espacio del **convirtiendo** al **vector** $\vec{\text{x}}$ en el **vector** $\vec{\text{v}}$
+
+#### Las soluciones del sistema
+
+$$
+\large{
+    x = 0 \hspace{2em} y = 2 \hspace{2em} z = 3 \hspace{2em}
+    \vec{\text{x}} = 
+    \left(
+        \begin{array}{r}
+            0 \\ 2 \\ 3
+        \end{array}
+    \right)
+}
+$$
 
 <br><br>
 

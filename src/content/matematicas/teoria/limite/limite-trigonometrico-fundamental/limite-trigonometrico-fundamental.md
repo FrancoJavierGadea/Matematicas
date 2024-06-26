@@ -26,14 +26,7 @@ $$
 
 Calculamos las areas en **funcion del angulo** $x$
 
-| Triangulo A                               | Triangulo B                         | Sector circular                                                      |
-| ----------------------------------------- | ----------------------------------- | -------------------------------------------------------------------- |
-| ![Triangulo A](./trianguloA.svg)          | ![Triangulo A](./trianguloB.svg)    | ![Sector cirular](./sector-circular.svg)                             |
-| $Area = \dfrac{\cos(x) \cdot \sin(x)}{2}$ | $Area = \dfrac{1 \cdot \tan(x)}{2}$ | $Area = \dfrac{x \cdot \pi \cdot 1^{2}}{2 \cdot \pi} = \dfrac{x}{2}$ |
-
-$$
-
-$$
+![alt](./relacion-entre-areas.lnkspace.svg)
 
 $$
     \frac{\cos(x) \cdot \sin(x)}{2} \leq \frac{x}{2} \leq \frac{\tan(x)}{2}
@@ -98,17 +91,13 @@ $$
     }
 \end{array}
 $$
+<br>
 
-
-#### 1º propiedad
+### 1º propiedad
 
 Al obtener esta relacion
 $$
-    \cos(x)
-    \leq
-    \frac{x}{\sin(x)}
-    \leq
-    \frac{1}{\cos(x)}
+    \cos(x) \leq \frac{x}{\sin(x)} \leq \frac{1}{\cos(x)}
 $$
 
 Aplicamos el `teorema del emparedado` y calculamos los limites de los extremos
@@ -128,6 +117,7 @@ $$
     }
 \end{array}
 $$
+<br>
 
 Al ser iguales, entonces tenemos que: 
 
@@ -139,9 +129,31 @@ $$
 
 <br>
 
-#### 2º propiedad
+
+
+### 2º propiedad
+
+Partiendo de la propiedad anterior 
+
+invertimos **numerador** con el **denominador** en todos los miembros, lo cual **cambia el sentido** de la desigualdad
+
+$$
+    \cos(x) \leq \frac{x}{\sin(x)} \leq \frac{1}{\cos(x)}
+    \hspace{2em}
+    \frac{1}{\cos(x)} \geq \frac{\sin(x)}{x} \geq \cos(x)
+$$
+<br>
+
+reordenamos de menor a mayor y obtenemos la relacion buscada
+
+$$
+    \cos(x) \leq \frac{\sin(x)}{x} \leq \frac{1}{\cos(x)}
+$$
+
 
 ![Grafica x sobre sin x](./sin-de-x-sobre-x.svg)
+
+Aplicamos el `teorema del emparedado` y calculamos los limites de los extremos
 
 $$
 \begin{array}{ccc}
@@ -158,7 +170,13 @@ $$
     }
 \end{array}
 $$
+<br>
 
+Al ser iguales, entonces tenemos que: 
+
+$$
+    \lim_{x \to 0} \frac{\sin(x)}{x}= 1
+$$
 
 
 
